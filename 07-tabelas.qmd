@@ -1,0 +1,896 @@
+# Tabelas {#sec-tabelas}
+
+A apresentação tabular de dados, ou tabulação, é a organização dos dados por meio de tabelas. Uma tabela é uma disposição sistemática e lógica dos dados na forma de linhas e colunas com relação às características dos dados. É uma forma ordenada, compacta, autoexplicativa e eficiente de mostrar os dados levantados, facilitando a sua compreensão e interpretação. Permite identificar padrões, tendências e intuições valiosos.\
+A tabela mais utilizada para descrever os dados é a **tabela de frequência**.
+
+## Componentes de uma tabela
+
+Uma tabela bem estruturada é essencial para comunicar dados de forma clara e científica, especialmente em publicações acadêmicas. Os componentes fundamentais que uma tabela (@fig-tabela1) deve conter, para estar pronta para publicação, são os seguintes:
+
+1.  **Título da Tabela** - deve ser claro, conciso e informativo. Indica o conteúdo da tabela e o contexto do estudo. Deve estar no topo da tabela.
+
+2.  **Cabeçalho** - Identifica as variáveis apresentadas. Inclui unidade de medidas quando necessário (ex: idade em anos, glicemia em md/dL)
+
+3.  **Corpo da tabela** - Apresenta os valores estatísticos: média, mediana, desvio padrão, intervalo de confiança, etc. Pode incluir frequências absolutas e relativas (em proporção ou porcentagem). Os dados devem estar alinhados corretamente para facilitar a leitura.
+
+4.  **Notas de rodapé** - Explicações adicionais sobre abreviações, símbolos ou indicação de testes estatísticos aplicados (ex: teste *t* de Student, ANOVA, qui-quadrado). Pode incluir significância estatística (*p* \< 0,05).
+
+5.  **Fonte dos dados** - Caso os dados sejam secundários ou provenientes de outra pesquisa, deve-se citar a fonte.
+
+```{r}
+#| echo: false
+#| label: fig-tabela1
+#| fig.align: 'center'
+#| out.width: "70%"
+#| fig-cap: "Elementos de uma Tabela"
+
+ knitr::include_graphics("https://i.imgur.com/QHPfytN.png")
+```
+
+## Tabelas de Frequências
+
+As tabelas de frequências são essenciais em estatística para organizar e resumir dados. Ajudam a entender como os valores em um conjunto de dados se distribuem, mostrando a frequência com que cada valor ou intervalo de valores aparece.\
+Basicamente, uma tabela de frequências responde a uma pergunta simples: "Quantas vezes cada coisa aconteceu?".
+
+De um modo geral, uma tabela de frequência deve cumprir algumas finalidades:
+
+1.  **Clareza e Organização**: Elas transformam dados brutos e desorganizados em informações claras e fáceis de interpretar.\
+2.  **Identificação de padrões**: Uma tabela deve ajudar a visualizar rapidamente os valores mais comuns (a moda) e a distribuição geral dos dados.\
+3.  **Base para Outras Análises**: São o ponto de partida para criar gráficos como histogramas, polígonos de frequência e gráficos de setores, que oferecem uma representação visual ainda mais intuitiva.\
+4.  **Tomada de decisão**: Permitem que se tire conclusões rápidas sobre um conjunto de dados. Por exemplo, na @tbl-droga , se verifica que "a maioria das gestantes, no Hospital Geral de Caxias do Sul, referem não ser drogaditas" ou "72% das gestantes, no Hospital Geral de Caxias do Sul, referem não ser drogaditas".
+
+### Tipos de Frequências
+
+Geralmente, em uma tabela de frequência aparecem os seguintes tipos de frequência:
+
+#### Frequência Absoluta (f)
+
+É o número de vezes que um valor específico ocorre no conjunto de dados. Por exemplo, na @tbl-droga, 913 das parturientes referem não usar drogas. Podem ser:
+
+1.  [**Distribuição de frequência não agrupada**]{.underline}\
+    As distribuições de frequência não agrupada listam cada valor individual de um conjunto de dados com a sua respetiva contagem (frequência), sendo ideais para conjuntos de dados pequenos ou com poucas categorias. A @tbl-droga mostra a frequência da variável drogadição na gestação, com os diferentes tipos de drogas usadas
+
+2.  [**Distribuição de frequência agrupada**]{.underline}
+
+    As distribuições de frequência agrupadas organizam os dados em intervalos ou classes, úteis para conjuntos de dados extensos, pois condensam a informação em grupos menores., como faixas etárias , estado nutricional da gestante na gravidez, usando o IMC categorizado, idade gestacional categorizada em pré-termo, termo e pós-termo.
+
+#### Frequência Relativa (fr)
+
+É a proporção da frequência absoluta em relação ao total de dados. É calculada dividindo a frequência absoluta pelo número total de observações ($fr=f/n$).
+
+A frequência relativa pode ser expressa como uma fração, decimal ou, mais comumente, como uma porcentagem (*frp*). É útil para comparar distribuições de dados com tamanhos totais diferentes. Por exemplo, na @tbl-droga, 2,13% da das parturientes declararam ser alcoolistas.\
+
+#### Frequência Absoluta Acumulada (F)
+
+É a soma das frequências absolutas até um determinado ponto na tabela. Ela mostra quantos dados estão abaixo ou iguais a um certo valor.Na @tbl-droga não tem importância, são variáveis nominais sem uma ordem estabelecida. Não faz sentido somar "pessoas que fumantes" com "pessoas não usuárias de drogas". As frequências cumulativas não fazem sentido para variáveis nominais porque os valores não têm ordem — um valor não é maior ou menor que outro valor.
+
+#### Frequência Relativa Acumulada (Fr)
+
+É a soma das frequências relativas até um determinado ponto. Ela mostra a proporção de dados que estão abaixo ou iguais a um certo valor.Assim como an frequência absoluta acumulada, não faz sentido usar a frequência relativa acumulada com dados nominais, onde a ordem das categorias não tem valor.
+
+```{r}
+#| label: tbl-droga
+#| tbl-cap: "Distribuição de frequência de drogadição em gestantes"
+#| echo: false
+#| message: false
+#| warning: false
+
+library(dplyr)
+library(gt)
+
+df <- data.frame(Droga = c("Nenhuma", "Fumo", "Álcool", "Medicamentos",
+                           "Crack", "Cocaína", "Total"),
+                 f = c(913, 301, 27, 23, 2, 1, 1267),
+                 frp = c(72.06, 23.76, 2.13, 1.82, 0.16, 0.08, 100))
+
+tab_freq <- gt(df) %>% 
+  tab_header(
+    title = "Drogadição em Gestantes") %>% 
+  tab_style(
+    style = cell_text(
+      weight = "bold",
+      size = "medium",
+      font = "Arial",
+      color = "gray18"),
+    locations = cells_title(groups = "title")) %>% 
+  tab_style(
+    style = cell_text(
+      weight = "bold"),
+    locations = cells_column_labels()) %>% 
+  cols_label(
+    f = "Frequência Absoluta",
+    frp = "Frequência Relativa (%)"
+  ) %>% 
+  cols_align(
+    align = "center",
+    columns = c(f, frp)
+  ) %>% 
+  cols_width(
+    1 ~ px(120),
+    2:3 ~ px(150)
+  ) %>% 
+  tab_source_note(source_note = md("Fonte: Oliveira Filho, PF (2025)")) %>% 
+  tab_footnote(
+    footnote = "Hospital Geral de Caxias do Sul, RS, 2008",
+    locations = cells_title(groups = "title")) %>% 
+  tab_footnote(
+    footnote = "101 gestantes não informaram a condição de drogadição",
+    locations = cells_column_labels(columns = f))
+
+tab_freq
+```
+
+### Regras gerais para construção de tabelas de frequência
+
+As tabelas de frequências seguem algumas regras,
+
+Existem algumas recomendações na construção de uma tabela de frequência @arango2009tab:
+
+-   Deve ter um título na parte superior que responda as perguntas: “o que? quando? onde?” relativas ao fato estudado;
+
+-   Deve ter um rodapé, na parte inferior da tabela, onde se coloca notas necessárias e a fonte dos dados;
+
+-   As colunas externas da tabela devem ser abertas, o emprego de linhas verticais para a separação das colunas no corpo da tabela é opcional;
+
+-   Na parte superior e inferior, as tabelas devem, ser fechadas por linhas horizontais;
+
+-   Nenhuma casela deve ficar vazia, apresentando um número ou um símbolo. Se não se dispuser do dado, colocar reticências ... e a presença de um X representa que o dado foi omitido para evitar a identificação.
+
+-   Tabelas devem ter, pelo menos, duas linhas no seu corpo e, prioritariamente, pelo menos três colunas. Tabelas com duas colunas devem ser evitadas, pois as informações contidas nelas podem, em geral, ser apresentadas no corpo do texto da obra.
+
+### Construção de tabelas de frequência no R {#sec-tabfreq}
+
+#### Dados para os exemplos {#sec-dados7}
+
+Para os exemplos, o dataframe `dadosMater.xlsx` será acionado para fornecer dados, semelhante ao realizado na @sec-dados6 .\
+Após carregar o dataframe, serão selecionadas as variáveis necessárias. As variáveis `utiNeo`, `sexo` serão convertidas a fatores; a variável `idadeMae` será categorizada em três níveis (\<20 anos, 20-35 anos, \>35 anos), criando uma nova variável `categIdade`. Além disso, será criada a variável `imc` que também será categorizada em uma nova variável `estNutri` em quatro níveis (Baixo Peso, Peso adequado, Sobrepeso, Obesidade). Por último, será extraída uma amostra de n = 200 e atribuída a um objeto `dados`:
+
+```{r}
+#| message: false
+#| warning: false
+
+library(dplyr)
+library(readxl)
+
+set.seed(123)
+dados <- readxl::read_excel("dados/dadosMater.xlsx") %>% 
+  select(idadeMae, peso, altura, anosEst, fumo, pesoRN, apgar1, utiNeo) %>% 
+  mutate(fumo = factor(fumo, 
+                       levels = c(1,2), 
+                       labels = c("fumante", "não fumante")),
+         utiNeo = factor(utiNeo, 
+                         levels = c(1,2), 
+                         labels = c("sim", "não")),
+         categIdade = case_when(
+           idadeMae < 20 ~ "< 20 anos",
+           idadeMae >= 20 & idadeMae <= 35 ~ "20 a 35 anos",
+           idadeMae > 35 ~ "> 35 anos"),
+         categIdade = factor(categIdade, 
+                             levels = c("< 20 anos", "20 a 35 anos", "> 35 anos")),
+         imc = peso/altura^2,
+         estNutri = case_when(
+           imc < 18.5 ~ "Baixo Peso",
+           imc >= 18.5 & imc < 25 ~ "Peso adequado", 
+           imc >= 25 & imc < 30 ~ "Sobrepeso",
+           imc >= 30 ~ "Obesidade"),
+         estNutri = factor(estNutri, 
+                           levels = c("Baixo Peso", "Peso adequado", 
+                                      "Sobrepeso", "Obesidade"))) %>%
+  slice_sample(n=200) 
+
+str(dados)
+```
+
+#### Tabelas de frequência para dados categóricos
+
+[Função table() e função prop.table]{.underline}
+
+O R básico possui uma função incorporada, `table()` que permite a verificação da frequência absoluta de variáveis categóricas de uma maneira bem simples. A função `table()` é a base para criar tabelas de frequência. Ela conta o número de ocorrências de cada valor em um vetor (ou coluna de um dataframe). Por exemplo, a frequência absoluta (f) em cada uma das categorias da variável `categIdade`: (idade das parturientes dividida em classes):
+
+```{r}
+f  <- table (dados$categIdade)
+print (f)
+```
+
+A função `prop.table()` é usada para calcular as frequências relativas a partir de uma tabela de frequência absoluta. Em outras palavras, ela transforma as contagens em proporções ou porcentagens. A funçaõ `round()` recebe a função prop.table para arredondar para três dígitos a frequência relativa (fr):
+
+```{r}
+fr  <- round(prop.table(f), 3)
+print(fr)
+```
+
+Multiplicando por 100 a fr, tem-se a frequência relativa em porcentagem – frp ou fr(%). A operação será colocada dentro da função round(), como feito com a fr, arredondando o resultado para dois dígitos.
+
+```{r}
+frp <- round(fr*100, 2)
+print(frp)
+```
+
+Embora as funções `table()` e `prop.table()` sejam separadas, é muito comum usá-las juntas para construir uma **tabela de frequência completa**. Portanto, os passos para a contrução de uma tabela de frequência no R são os segintes
+
+Para atingir este objetivo, a construção de uma tabela de frequência absoluta e de frequência relativa (%) deve ser o primeiro passo. Os passos seguintes são;
+
+**Passo 1**:Usar as funções `table()` e `prop.table()` juntas como feito acima, para construir as frequências absoluta e relativa.
+
+**Passo 2**: Criar um dataframe combinando as funções para uma melhor visualização:
+
+```{r}
+tab_completa <- data.frame(
+     f = as.vector(f),
+     fr = as.factor(fr),
+    frp = as.vector(frp))
+
+print(tab_completa)
+```
+
+Este último exemplo mostra a flexibilidade do R para manipular e apresentar dados de forma clara e organizada, combinando as saídas de funções básicas em uma única tabela.
+
+Para análises mais avançadas ou para variáveis quantitativas contínuas, pode-se usar a função `mutate()` ,junto com a função `case_when()` @geeks2025case_when , usada para criar a variáveis `categIdade` e `estNutri`, na @sec-dados7. Também é possível associar a função `mutate()` com a função `cut()`, como se verá a seguir.
+
+#### Tabelas de frequência para dados numéricos  {#sec-freq}
+
+A construção de tabelas de frequência com dados agrupados em classes é crucial quando se lida com variáveis quantitativas contínuas, como idade, altura, peso do recém-nascido, renda, etc. Usar table() diretamente, nesses casos não faz sentido, pois cada valor pode ser único e o número de “categorias” seria imenso, tornando a tabela quase inútil. A solução é agrupar os dados em **intervalos** ou **classes**. Para realizar esta operação, pode-se acionar a mesma função `mutate()` associada a função `cut()`, que divide um vetor numérico em fatores com base em intervalos especificados.
+
+[**Passo a passo com a função cut()**]{.underline}
+
+Como exemplo prático, a variável de interesse será representada pelos pesos dos recém-nascidos (`pesoRN`) do conjunto de dados, `dados`, mencionado na (@sec-dados7).
+
+**Passo 1**: [Definir os intervalos de classe]{.underline}
+
+Antes, as classes foram estabelecidas de acordo com algum critério escolhido pelo autor ou por algum critério relacionado à saúde, como por exemplo a idade materna, onde as gestante com idade abaixo de 20 anos e acima de 35 anos, gestantes com baixa escolaridade (< de 5 anos), situação conjugal insegura, etc., constituem fatores de risco na gravidez @schirmer2000manual. Em geral, quando não há um padrão pré-determinado, o número de classes é estabelecido de acordo com o tamanho da amostra. Este número pode ser escolhido lembrando-se das oscilações que ocorrem nos dados e do interesse do pesquisador em mostrar seus dados. Não existe uma regra totalmente eficiente para determinar o número de classes. É importante ter bom senso, de maneira que seja possível ver como os valores se distribuem. Uma regra geral é usar entre 5 e 15 classes @Daniel_Cross_2013, mas isso pode variar. Com poucas classes, perde-se precisão e, com muitas classes, a tabela torna-se muito extensa. Uma forma comum é usar a *Regra de Sturges* [^07-tabelas-1], para estimar o número de classes. Baseado na regra de Sturges é sugerido usar a recomendação da @tbl-sturges @arango2009classes.
+
+[^07-tabelas-1]: Determina que o número de classes (*k*) pode ser calculado pela fórmula: $k = 1 + 3.322 * log10(n)$, onde *n* é igual ao número de observações.
+
+```{r}
+#| label: tbl-sturges
+#| tbl-cap: "Numero de classes, baseado em Sturges"
+#| echo: false
+#| message: false
+#| warning: false
+
+library(flextable)
+df <- data.frame(n = c("1", "2", "3 a 5", "6 a 11", "12 a 23", "24 a 46", 
+                       "47 a 93", "94 a 187", "188 a 376", "377 a 756"),
+                 k = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
+
+tab <- flextable(df) %>%
+  set_header_labels(
+    n = "Nº de observações (n)",
+    k = "Nº de classes") %>% 
+  autofit() %>% 
+  align(align = "center", part = "header") %>% 
+  align(align = "center", part = "body") %>% 
+  bold(part = "header") %>% 
+  add_footer_lines(value = "FONTE:Arango, H. G. (2009)") %>%
+  align(align = "left", part = "footer") %>% 
+  fontsize(size = 9, part = "footer") 
+
+tab
+```
+
+Para a variável `dados$pesoRN`, como existem 200 observações, pode-se, de acordo com a @tbl-sturges, usar ao redor de 9 classes. O R tem uma função `nclass.Sturges ()`, que também pode ser usada:
+
+```{r}
+k <- nclass.Sturges(dados$pesoRN)
+print(k)
+```
+
+O cálculo da função retorna o mesmo resultado.
+
+**Passo 2**: [Amplitude e limites das classes]{.underline}
+
+A classe possui um **limite inferior** e um **limite superior**. O importante é que os limites dos intervalos sejam mutuamente exclusivos, isto é, cada valor deve ser representado em um único intervalo. Além disso, os intervalos devem ser exaustivos, isto é, devem conter todos os valores possíveis entre o valor mínimo e o máximo. O recomendado é que as classes sejam homogêneas, ou seja, tenham a mesma amplitude[^07-tabelas-2]. A amplitude dos valores pode ser obtida com a função `range()`:
+
+[^07-tabelas-2]: Quando já existe um critério, como mostrado acima, ou o pesquisador tem um determinado interesse, as classes podem ter amplitudes diferentes.
+
+```{r}
+amplitude <- range(dados$pesoRN) 
+amplitude
+```
+
+Usando esta amplitude dos dados, é possível ter a largura das classes (*h*):
+
+```{r}
+h <- round(diff(amplitude)/k, 0)
+h
+```
+
+A fórmula é apenas a diferença absoluta dos valores mínimos e máximo , calculada pela função `diff()` [^07-tabelas-3], dividida pelo número de classes (*k*), arredondado com o a função `round ()`.
+
+[^07-tabelas-3]: A função `diff()` no R calcula as diferenças entre elementos consecutivos de um vetor, matriz ou série temporal. Ela subtrai cada elemento do elemento seguinte, retornando um valor absoluto.
+
+A partir desses dados, é possível construir as classes: O limite inferior da primeira classe é `r  min(dados$pesoRN)` e o limite superior é `r min(dados$pesoRN) + h`, exclusive; o limite inferior da segunda classe inclui o valor de `r min(dados$pesoRN) + h` e vai até `r min(dados$pesoRN) + (2* h)`, excluindo-o, pois ele será limite inferior da terceira classe e assim por diante
+
+**Passo 3**: [Agrupar os dados usando `cut()`]{.underline}
+
+Seguir esse processo seria longo, tedioso e sujeito a erros. O R permite agilizar este trabalho com as funções `mutate()` e função `cut()`. Dentro da função `cut()`, pode ser acionada a função `seq()` para estabelecer os pontos de corte.
+
+1.  Criar uma sequência dos pontos de corte desejados, usando a função `seq()`:
+
+    ::: callout-tip
+    ### Sintaxe função seq()
+
+    Necessita os seguintes argumentos:
+
+    -   **from** : valor inicial da sequência
+
+    -   **to**: valor final da sequência
+
+    -   **length.out**: número inteiro que especifica o comprimento desejado da sequência. Este último argumento é importante, pois se o objetivo é construir  9 classes, preciso de uma sequência de 10 valores.
+    :::
+
+Como os pontos de cortes precisam ser números inteiros, usa-se a função `round()` com 0 (zero) dígitos:
+
+```{r}
+valor_min <- min(dados$pesoRN)    # valor inicial
+valor_max <- max(dados$pesoRN)    # valor final
+length.out = k + 1                # 10 valores para obter 9 classes
+
+cortes <- round(seq(valor_min, valor_max, length.out = k + 1), 0)  
+```
+
+2.  Tendo os pontos de corte estabelecidos, basta agora criar a variável `pesoCateg`, ou seja a variável `pesoRN` numérica classificada em 9 classes:
+
+```{r}
+dados <- dados%>% 
+  mutate(pesoCateg = cut(
+    pesoRN,
+    breaks = cortes,
+    include.lowest = TRUE,
+    right = FALSE,
+    ordered_result = TRUE))
+```
+
+3.  Criar uma tabela de frequência absoluta com a variável `pesoCateg`:
+
+```{r}
+f <- table(dados$pesoCateg)
+print(f)
+```
+
+Como diria , o famoso personagem Obelix, amigo inseparável do gaulês Asterix[^07-tabelas-4] ; “Os céus caíram sobre nós! O que é isso? Vocês são loucos romanos!! Por Júpiter!!!”
+
+[^07-tabelas-4]: Personagens criados pelos franceses Albert Uderzo e Rene Goscinny.
+
+Nada de especial. simplesmente, o R retornou valores em notação científica. Não tem nada errado! Apenas, isso torna a legibilidade dos números mais complicada, menos intuitiva. A primeira classe \[810,1.24e+03) ficaria mais fácil de ser lida se estivesse como \[810, 1240), ou seja, inclui o valor de 810 e exclui o 1240 e a última classe \[4.24e+03,4.67e+03\] inclui ambos os limites, melhor escritos como \[4240, 4670\].
+
+::: callout-note
+### Nota
+
+Observe a lógica para o último intervalo, que é fechado nos dois lados \[ \] , incluindo os valores no intervalo de classe. Os outros obedecem a lógica \[ ), incluindo o valor limite inferior e excluindo o superior. A forma como isso ocorre é determinado pela função `cut()` , que cria os intervalos (variável `categPeso`), depende de dois argumentos lógicos:
+
+-   **right = TRUE (padrão):** Os intervalos são do tipo (X, Y\]. Isso significa que o valor X não é incluído, mas o valor Y é. O primeiro intervalo é a exceção, sendo \[X, Y\].
+
+-   **right = FALSE:** Os intervalos são do tipo \[X, Y), como no exemplo usado, \[810,1240). Isso significa que o valor 810 é incluído, mas o valor 1240 não é. O último intervalo é a exceção, sendo \[X, Y\]. No exemplo, \[4240,4670\] e significa que os dois valores estão incluídos.
+
+-   O argumento `include.lowest` entra em jogo, modificando o comportamento padrão:
+
+Quando se usa `right = FALSE` (como o código usado acima), o R cria intervalos \[X, Y), no exemplo, igual a \[810,1240). O argumento `include.lowest = TRUE` faz com que o primeiro intervalo seja \[mínimo, Y), garantindo que o valor mínimo da variável - 810 - seja incluído no primeiro intervalo.
+
+Resumindo:
+
+1\) **right = FALSE e include.lowest = TRUE:**
+
+-   **Intervalos:** \[A, B), \[C, D), \[E, F), e assim por diante.
+
+-   **O primeiro intervalo** (\[min(x), ...) ) **inclui o valor mínimo**.
+
+-   **O último intervalo** (\[..., max(x)\]) **inclui o valor máximo**.
+
+2\) **right = TRUE** (padrão) **e include.lowest = FALSE** (padrão):
+
+-   **Intervalos:** (A, C\], (C, D\], (E, F\].
+
+-   **O primeiro intervalo** \[min(x), ...\] **inclui o valor mínimo**.
+:::
+
+4.  Para que os rótulo apareçam sem notação científica[^07-tabelas-5] e no mesmo formato `[)` , com exceção da última classe que ficará `[]`, procede-se do seguinte modo:
+
+[^07-tabelas-5]: Se houver interesse de remover a notação científica e deixar os gauleses felizes.
+
+```{r}
+rotulos <-  paste0("[", 
+                   format(head(cortes, -1), 
+                          scientific = FALSE),
+                   ",",
+                   format(tail(cortes, -1), 
+                          scientific = FALSE),
+                   ")")
+dados$pesoCateg <- factor(rotulos[dados$pesoCateg], 
+                          levels = rotulos, 
+                          ordered = TRUE)
+```
+
+**Passo 4**: [Construção da tabela de frequência]{.underline}
+
+Com os dados agrupados em classes, agora pode-se usar as funções `table()` e `prop.table()` para construir a tabela de frequência absoluta e relativa, com realizado anteriormente.
+
+```{r}
+# Frequência Absoluta
+f <- table(dados$pesoCateg)
+print(f)
+
+# Frequência Relativa Percentual
+frp <- prop.table(f) * 100
+print(frp)
+```
+
+[Tabela de Frequência Completa]{.underline}
+
+Para uma apresentação mais clara, combinar tudo em um dataframe, adicionando as colunas de frequência acumulada.
+
+```{r}
+# Dataframe com as f e fr como vetores
+tab_frequencia <- data.frame(f = as.vector(f),
+                             frp = as.vector(frp))
+  
+# Adicionar Frequência Absoluta Acumulada
+tab_frequencia$F <- cumsum(tab_frequencia$f)
+
+# Adicionar Frequência Relativa Acumulada (%)
+tab_frequencia$Frp <- cumsum(tab_frequencia$frp)
+  
+# Adicionar os intervalos como uma coluna  
+tab_frequencia$Classes <- names(table(dados$pesoCateg))
+
+# Reorganizar as colunas para melhor visualização
+tab_frequencia <- tab_frequencia[c(5, 1, 2, 3, 4)]
+
+print(tab_frequencia)
+
+```
+
+A saída retorna uma tabela de frequência completa, mostrando a distribuição dos pesos dos recém-nascidos por classes.
+
+A combinação de mutate(). `cut()`, `table()` e `prop.table()` é a abordagem padrão e mais robusta para criar tabelas de frequência com dados agrupados no R.\`
+
+Mesmo que seja possível observar com clareza como os pesos dos recém-nascidos se distribuem, fica pouco intuitivo analisar, levando em conta as classificações recomendadas pela [Organização Mundial da Saúde](https://www.who.int/teams/maternal-newborn-child-adolescent-health-and-ageing/newborn-health/preterm-and-low-birth-weight) (OMS) e Mistério da Saúde do Brasil (MS), através do [Guia para os Profissionais de Saúde de Atenção à Saúde do Recém-Nascido](https://bvsms.saude.gov.br/bvs/publicacoes/atencao_saude_recem_nascido_profissionais_v1.pdf). Esta tabela de frequência serve mais para se observar o comportamento da variável `pesoRN`. Entretanto, essa ação é mais adequadamente realizada, utilizando-se um gráfico do tipo histograma (veja @sec-hist).\
+A tabela construída será repetida ,usando para classificar, a função `case_when()` e a classificação dos recém-nascidos de acordo com a OMS.
+
+[**Passo a passo com a função case_when()**]{.underline}
+
+A função `cut()` foi já usada para classificar a variável `pesoRN`, entretanto, no início deste capítulo na @sec-dados7 , para realizar esta ação, foi usada a função `case_when()` para agrupar a variável `idadeMae` e `imc` em classes. A principal diferença entre essas funções, é que cut`()` é especificamente projetada para agrupar dados em intervalos numéricos, enquanto `case_when()` é uma ferramenta mais generalista e poderosa do pacote `dplyr`, que permite criar classes com base em qualquer tipo de condição lógica. A função `case_when()` pode ser vantajosa por apresentar flexibilidade total, permitindo definir intervalos com bastante facilidade. Além disso para pessoas familiarizadas com a sintaxe do `tidyverse` (veja @sec-tidyverse), a estrutura `condição ~ valor` de `case_when()` é extremamente intuitiva e fácil de entender. Como faz parte do `tidyverse`, `case_when()` se encaixa perfeitamente em fluxos de trabalho que usam funções como `mutate()` e `group_by()`. Os dados dos pesos dos recém-nascidos (`pesoRN`) servirão coo exemplo prático para criar uma tabela mais útil e comparação entre as duas funções.
+
+**Passo 1**: Criação da variável `classePeso`, usando o critério da OMS e das de frequência absoluta e relativa percentual:
+
+::: callout-note
+### Classificação dos receém-nascidos de acordo com o peso (OMS)
+
+**Extremo baixo peso ao nascer**: RNs com peso inferior a 1.000 gramas.
+
+**Muito baixo peso ao nascer**: RNs com peso inferior a 1.500 gramas.
+
+**Baixo peso ao nascer**: RNs com peso inferior a 2.500 gramas.
+
+**Adequado peso ao nascer**: RNs com peso inferior a 4000 gramas.
+
+**Excesso de peso ao nascer**: RNs com peso ≥ 4000 gramas.
+:::
+
+```{r}
+# Classificação dos RNs pelo citério da OMS -- classePeso
+dados <- dados %>%  
+  mutate(classePeso = case_when(
+    pesoRN < 1000 ~ "BP Extremo",
+    pesoRN >= 1000 & pesoRN < 1500 ~ "Muito BP", 
+    pesoRN >= 1500 & pesoRN < 2500 ~ "Baixo Peso",
+    pesoRN >= 2500 & pesoRN < 4000 ~ "Peso Normal",
+    pesoRN >= 4000 ~ "Excesso de Peso"
+  )) %>% 
+  mutate(classePeso = factor(classePeso, 
+                             levels = c("BP Extremo", "Muito BP", "Baixo Peso (BP)",
+                                        "Peso Normal", "Excesso Peso")))  
+
+# Tabela de frequência absoluta
+f <- table(dados$classePeso)
+print(f)
+
+# Tabela de frequência relativa (em porcentagem)
+frp <- round(prop.table(f) * 100, 1)
+print(frp)
+
+```
+
+**Passo 2**: Combinar as frequências em um dataframe
+
+```{r}
+tab_completa <- data.frame(
+  f = as.vector(f),
+  frp = as.vector(frp))
+```
+
+**Passo 3**: Adicionar a frequência absoluta e a frequência relativa (em %) acumuladas
+
+```{r}
+# Frequência Absoluta Acumulada
+tab_completa$F <- cumsum(tab_completa$f)
+
+# Frequência Relativa Acumulada (%)
+tab_completa$Frp <- cumsum(tab_completa$frp)
+```
+
+**Passo 4**: Adicionar os nomes das categorias como uma coluna
+
+```{r}
+tab_completa$classePeso <- rownames (f)
+```
+
+**Passo 5**: Renomeie a coluna `classePeso` como "Classificação"
+
+```{r}
+library(dplyr)
+tab_completa <- tab_completa %>%
+  rename("Classificação" = classePeso)
+```
+
+**Passo 6**: Renomeie a coluna `classePeso` como "Classificação"
+
+```{r}
+tab_completa <- tab_completa[c("Classificação", "f", "frp", "F", "Frp")]
+
+print(tab_completa)
+```
+
+Assim, pode-se dizer que a prevalência de baixo peso na maternidade do Hospital Geral de Caxias do Sul é bem mais alta da prevalência no Brasil que é de 6,1% (IC95%: 4,5-8,3%) @viana2013birth.
+
+## Tabelas Prontas para Publicação
+
+O R possui várias alternativas para produzir tabelas científicas, bonitas e elegantes que possam ser publicadas. Neste livro, serão mostradas algumas dessas alternativas.
+
+### Pacote gt
+
+O pacote `gt` é um pacote que permite a apresentação de tabelas de maneira limpa e organizada @iannone2020gt. funciona através do `tidyverse` com os comandos `pipe %>%`, o que facilita sua aplicação.
+
+#### Passos para criar uma tabela com o pacote gt
+
+**Passo 1**: Criar uma tabela base (dataframe ou tibble), como a tabela recém criada (`tab_completa`) com os dados dos recém-nascidos. Verificar se os dados são realmente um dataframe ou tibble:
+
+```{r}
+class(tab_completa)
+```
+
+A seguir, transformar o dataframe em uma tabela `gt` com a função `gt()`:
+
+```{r}
+#| label: tbl-tabgt1
+#| tbl-cap: "Tabela simples com o pacote gt"
+library(gt)
+tab_gt <- gt(data = tab_completa)
+tab_gt
+```
+
+A @tbl-tabgt1 mostra duas partes, os rótulos das colunas e o corpo da tabela. Entretanto, o pacote `gt` permite de maneira fácil modificar ou acrescentar outras partes.\
+As partes que constituem a tabela `gt` são nomeadas de forma semelhante ao mostrado na @fig-tabela1: cabeçalho (*table header*), rótulo das linhas (*stub*), corpo (*body*) e rodapé (*footer*). Reconhecer essas partes é importante para a adição outras características da tabela.
+
+**Passo 2**: Personalizar o estilo (@tbl-tabgt2)
+
+A família de funções `tab_*()` permite adicionar outras partes. O título e subtítulo podem ser adicionados com a função `tab_header()`. Alterações de estilo são feitas pela função `tab_style()`. Essa função define a formatação a ser aplicada, que pode ser `cell_text()` para formatar texto e `locations =` que define quais células ou áreas da tabela devem receber o estilo. As opções incluem:
+
+• `cells_column_labels()`: Para os cabeçalhos das colunas.\
+• `cells_title()`: Para o título da tabela.\
+• `cells_stub()`: Para o cabeçalho da linha.\
+• `cells_body()`: Para o corpo da tabela.\
+• E outras funções específicas, como `cells_row_groups()`.
+
+Para maiores detalhes consulte [Create beautiful tables with gt](Create%20beautiful%20tables%20with%20gt) ou [Introduction to Creating gt Tables](https://gt.rstudio.com/articles/gt.html).
+
+```{r}
+#| label: tbl-tabgt2
+#| tbl-cap: "Tabela com o pacote gt personalizada"
+tab_gt <- tab_gt %>%
+  tab_header(
+    title = "Classificação dos Pesos ao Nascer, de acordo com a OMS",
+    subtitle = "Hospital Geral de Caxias do Sul, 2008") %>%
+  tab_style(
+    style = cell_text(
+      weight = "bold",
+      size = "medium",
+      font = "Arial",
+      color = "gray18"),
+    locations = cells_title(groups = "title")) %>%
+  tab_style(
+    style = cell_text(
+      weight = "bold"),
+    locations = cells_column_labels()) %>% 
+  tab_style(
+    style = cell_text(color = "red"),
+    locations = cells_body(
+      columns = Frp,
+      rows = near(Frp, 15))) %>%
+    cols_width(
+      1 ~ px(150),
+      2:5 ~ px(80)
+    ) %>% 
+  tab_source_note(source_note = md("Fonte: Oliveira Filho, PF (2025)")) %>% 
+  tab_footnote(
+    footnote = "BP = Baixo Peso",
+    locations = cells_body(columns = Classificação, rows = c(1,2))
+  )
+
+tab_gt
+
+```
+
+**Passo 3**: Explicação do código
+
+1.  [Estrutura geral]{.underline}: inicialmente foi construída uma tabela `gt` com os dados da `tab_completa`. A partir daí foi encadeado, através do operador `pipe`, várias funções.
+
+2.  [Cabeçalho da tabela]{.underline}: a função `tab_header()` adiciona um título e subtítulo à tabela.
+
+    -   Aplicado estílo ao título principal com a função `tab_style()` - negrito (`bold`), tamanho médio, fonte arial e cor cinza escura (`gray18`)
+
+3.  [Estilo dos rótulos das colunas]{.underline}: deixa os nomes das colunas em negrito, dando maior destaque.
+
+4.  [Destaque condicional no corpo da tabela]{.underline}: aplica cor vermelha à células da coluna `Frp` (frequência relativa acumulada em porcentagem) somente onde o valor está próximo de 15. Isto indica que 15% dos recém-nascidos têm peso ao nascer igual ou abaixo deste valor. A função `near()` é útil para destacar valores com tolerância numérica.
+
+5.  [Largura das colunas]{.underline}: define a largura das colunas, onde a primeira coluna tem 150 px e as demais (2 a 5) 80 px (pixels). Podem ser usadas duas unidades de medidas: pixels ou pct (percentual de largura da tabela). A conversão de pixels (px) para centímetros (cm) depende da resolução da tela medida em pixels por polegada (PPI). O padrão mais comum é 96 PPI.
+
+    $$
+    cm = (px \ \times 2.54)/PPI
+    $$
+
+    Com base em 96 PPI, $150 px \approx 4$ cm.
+
+6.  Por úktimo se incluiu a fonte e uma nota explicativa.
+
+### Pacote flextable
+
+O pacote `flextable` fornece uma estrutura para criar facilmente tabelas elegantes e personalizadas para relatórios e publicações. @gohel2025flextable.
+
+As finalidades básicas do pacote `flextable` são:
+
+-   Constrói tabelas a partir de **dataframes** ou **tibbles**.
+
+-   Permite **formatar títulos, subtítulos, rodapés, cabeçalhos e corpo** da tabela.
+
+-   Dá suporte a estilos avançados:
+
+    -   cores de células e bordas;
+
+    -   alinhamento (horizontal e vertical);
+
+    -   negrito/itálico;
+
+    -   largura das colunas e altura das linhas;
+
+    -   mesclagem de células;
+
+    -   numeração e percentuais formatados.
+
+-   Gera tabelas que podem ser **dinâmicas** (em R Markdown, Quarto).
+
+#### Passos para criar uma tabela com o pacote flextable
+
+**Passo 1**: Da mesma forma como nas tabelas criadas pelo pacote `gt`, o `flextable` também necessita de tabela base (dataframe ou tibble) @navarro2024flextable. Será usada a mesma tabela (`tab_completa`). Uma tabela simples (tbl-ft1) pode ser facilmente gerada:
+
+```{r}
+#| label: tbl-ft1
+#| tbl-cap: "Tabela simples com o pacote flextable"
+
+library(flextable)
+library(dplyr)
+
+ft <- flextable(data = tab_completa)
+ft
+```
+
+**Passo 2**: As colunas podem ter sua largura ajustadas de forma manual, passando para o argumento `width()` um vetor com as larguras em polegadas.
+
+```{r}
+#| label: tbl-ft2
+#| tbl-cap: "Ajuste das colunas"
+
+ft <- ft %>% width(width = c(2, 1.5, 1.5, 1.5, 1.5))
+ft
+```
+
+O controle manual pode ser útil e fácil. A @tbl-ft2 melhorou o aspecto da @tbl-ft1, mas as colunas ficaram muito largas. O processo de tentativa e erro para encontrar as larguras ideais torna-se tedioso, irritante. Felizmente, o `flextable` permite que se ignore esse procedimento com a função `autofit()`, que tenta selecionar larguras de coluna adequadas automaticamente.
+
+```{r}
+#| label: tbl-ft3
+#| tbl-cap: "Ajuste automático das colunas"
+
+ft <- ft %>% autofit()
+ft
+```
+
+Agora, a @tbl-ft3 já apresenta um layout bem mais bonito e , dependendo, do contexto, quase pronta para publicação.
+
+**Passo 3**: Ajuste do cabeçalho e rótulos das colunas. Dependendo da necessidade os rótulos do cabeçalho podem ser facilmente modificados com a função `set_header_labels ()`:
+
+```{r}
+#| label: tbl-ft4
+#| tbl-cap: "Ajuste do cabeçalho"
+
+ft <- ft %>% 
+  autofit() %>% 
+  set_header_labels(
+    frp = "fr (%)",
+    Frp = "Fr (%)"
+  )
+ft
+```
+
+A @tbl-ft4 mudou pouca coisa, está mais ajustada.
+
+**Passo 4**: O `flextable` possui vários temas (`theme`) que possibilitam customizar o estilo da tabela. Esses temas oferecem diferentes aparências para as tabelas. É possível combinar esses temas com outros comandos de formatação, para criar um visual personalizado!
+
+```{r}
+#| label: tbl-ft5
+#| tbl-cap: "Modificando o tema da tabela flextable"
+
+ft <- ft %>% 
+  autofit() %>% 
+  set_header_labels(
+    frp = "fr (%)",
+    Frp = "Fr (%)"
+  ) %>% 
+  theme_vanilla()
+ft
+```
+
+A @tbl-ft5 já está ótima, mas utros temas podem ser usados como `theme_booktabs()` (padrão), `theme_vader()`, `theme_apa()`, `theme_zebra()`, `theme_box()`, `theme_tron_legacy ()`.
+
+::: callout-tip
+## Exercício
+
+Teste a aparência da tabela com diferentes temas.
+:::
+
+**Passo 5**: Uma nota de rodapé pode ser adicionada, usando-se uma função específica, a`dd_footer_lines()` junto com as funções que determinam o tamanho da fonte:
+
+```{r}
+#| label: tbl-ft6
+#| tbl-cap: "Tabela com nota de rodapé"
+
+ft1 <- ft %>% 
+  autofit() %>% 
+  set_header_labels(
+    frp = "fr (%)",
+    Frp = "Fr (%)"
+  ) %>%  
+  theme_vanilla() %>% 
+  add_footer_lines(value = "FONTE: Hospital Geral, Caxias do Sul, RS, 2008") %>% 
+  fontsize(size = 9, part = "footer") 
+
+ft1
+```
+
+A @tbl-ft6 é igual a @tbl-ft5 adicionada de um rodapé.
+
+**Passo 6**: Muitas vezes, é útil definir regras de formatação que se aplicam apenas a um subconjunto da tabela. Por exemplo, algumas linhas ou colunas devam aparecer em uma cor diferente por um motivo ou outro. Todas as tabelas flexíveis são compostas por três partes: cabeçalho (**header**) na parte superior, uma grade de células no corpo (**body**) da tabela e um conjunto de linhas de rodapé (**footer**) na parte inferior. Muitas funções na tabela flexível têm um argumento que se pode usar para selecionar uma (ou todas) essas três partes. Por exemplo, a função `bg()` é usada para definir a cor de fundo. Pode-se adicionar um conteúdo extra ao cabeçalho, `add_header_lines()` e colorir o fundo:
+
+```{r}
+#| label: tbl-ft7
+#| tbl-cap: "Tabela com nota de rodapé"
+
+ft2 <- ft %>% 
+  autofit() %>% 
+  set_header_labels(
+    frp = "fr (%)",
+    Frp = "Fr (%)"
+  ) %>%  
+  theme_booktabs() %>% 
+  add_footer_lines(value = "FONTE: Hospital Geral, Caxias do Sul, RS, 2008") %>% 
+  fontsize(size = 9, part = "footer") %>% 
+  add_header_lines("TABELA 1: Pesos dos RN de acordo com a OMS") %>% 
+  bg(bg = "gray30", part ="header") %>% 
+  color(part = "header", color = "ghostwhite")
+
+ft2
+```
+
+A @tbl-ft7 mostra um título com fundo escuro e letras brancas.
+
+**Passo 7**: Se for especificado uma seleção de linha e uma seleção de coluna, a regra de formatação será aplicada às células que satisfizerem ambos os critérios. Por exemplo, será selecionada a coluna 5 (frequência relativa acumulada ) e as linhas 1 a 3 coloridas em um gradiente de azul para representar todos os recém-nascidos abaixo de 2500 g (baixo peso).
+
+Antes cria-se uma função geradora de cores numéricas, criada com a função `col_numeric()` do pacote `scales` que cria um mapeamenteo de cores para valores numéricos. A paleta define um gradiente de cores que vai do transparente para o azul. O intervalo de valores é definido pelo argumento `domain = c(0,50)`. Isto significa que qualquer número é convertido em uma cor proporcional dentro do gradiente. Os valores mais baixos serão transparentes (próximo a 0) e os valores mais altos (próximos a 50) serão azuis (@tbl-ft8).
+
+```{r}
+#| label: tbl-ft8
+#| tbl-cap: "Tabela com seleção esécial de células"
+
+library(scales)
+colourer <- scales::col_numeric(
+  palette = c("transparent", "deepskyblue4"),
+  domain = c(0, 50))
+
+ft3<- ft %>% 
+  autofit() %>% 
+  set_header_labels(
+    frp = "fr (%)",
+    Frp = "Fr (%)"
+  ) %>%  
+  theme_booktabs() %>% 
+  add_footer_lines(value = "FONTE: Hospital Geral, Caxias do Sul, RS, 2008") %>% 
+  fontsize(size = 9, part = "footer") %>% 
+  add_header_lines("TABELA 1: Pesos dos RN de acordo com a OMS") %>% 
+  bg(i = 1:3, j = 5, bg =colourer)
+
+ft3
+```
+
+Muitas outras funções existem para alterar o layout, dependendo do que o pesquisador deseja mostrar. Para isso, o `flextable` tem funções para altera as bordas, as fontes, formato, cores, alinhamento, etc. que podem ser pesquisadas na [documentação](https://cran.r-project.org/web/packages/flextable/flextable.pdf) do pacote.
+
+### Pacote gtsummary
+
+O pacote `gtsummary` foi criado @daniel2021gtsummary como complemento do pacote `gt`. Para usar o pacote , ele deve estar instalado e carregado:
+
+```{r}
+#| message: false
+#| warning: false
+library(gtsummary)
+```
+
+O pacote `gtsummary` possui uma função `tbl_summary()` que permite sumarizar um dataframe.\
+Ela calcula e apresenta automaticamente estatísticas resumidas para variáveis contínuas, categóricas e dicotômicas dentro de uma estrutura de dados, formatadas para tabelas prontas para publicação. Detecta automaticamente os tipos de variáveis e aplica estatísticas resumidas padrão apropriadas (por exemplo, mediana e intervalo interquarti, média e desvio padrão para variáveis contínuas, contagens e porcentagens para variáveis categóricas).\
+Para maiores detalhes consulte a [vinheta](%5Bdocumentação%5D(https://cran.r-project.org/web/packages/flextable/flextable.pdf)) da função.\
+\#### Dados para o exemplo
+
+Como exemplo, será usado um dataframe originário do conjunto de dados `dadosMater.xlsx` (veja @sec-dados7), contento uma amostra de 200 observações com as seguintes variáveis relacionadas aos recém-nascidos:
+
+```{r}
+#| message: false
+#| warning: false
+
+library(dplyr)
+library(readxl)
+
+set.seed(1234)
+dados <- readxl::read_excel("dados/dadosMater.xlsx") %>% 
+  mutate(eCivil = factor(eCivil, 
+                         levels = c(1,2), 
+                         labels = c("Sem companheiro", "Com companheiro")),
+         tipoParto = factor(tipoParto, 
+                            levels = c(1,2), 
+                            labels = c("Normal", "Cesareo")),
+         fumo = factor(fumo, 
+                       levels = c(1,2), 
+                       labels = c("Fumante", "Não fumante")),
+         obito = factor(obito, 
+                        levels = c(1,2), 
+                        labels = c("Sim", "Não")),
+         categIdade = case_when(
+           idadeMae < 20 ~ "< 20 anos",
+           idadeMae >= 20 & idadeMae <= 35 ~ "20 a 35 anos",
+           idadeMae > 35 ~ "> 35 anos"),
+         categIdade = factor(categIdade, 
+                             levels = c("< 20 anos", "20 a 35 anos", "> 35 anos")),
+         sexo = factor(sexo, 
+                       levels = c(1,2), 
+                       labels = c("Masculino", "Feminino")),
+         categIg = case_when(
+           ig < 37 ~ "RN Pré-termo",
+           ig >= 37 & ig < 42 ~ "RN a Termo",
+           ig >= 42 ~ "RN Pós-termo"),
+         categIg = factor(categIg, 
+                          levels = c("RN Pré-termo", "RN a Termo", "RN Pós-termo"))) %>%  
+  dplyr::select(categIdade, eCivil, anosEst, renda, fumo, tipoParto, sexo,
+                pesoRN, compRN, apgar1, obito) %>% 
+  slice_sample(n=200)
+```
+
+#### Construção da tabela
+
+```{r}
+tbl_summary(dados, 
+            by = sexo,
+            missing = "ifany",
+            type = list(pesoRN ~ "continuous2",
+                        compRN ~ "continuous2"),
+            list(categIdade ~ "Faixa Etária",
+                 eCivil ~ "Estado Civil",
+                 anosEst ~"Anos de estudo completos",
+                 renda ~ "Renda Familiar (SM)",
+                 fumo ~ "Tabagismo",
+                 tipoParto ~"Tipo de Parto",
+                 pesoRN ~ "Peso RN (g)",
+                 compRN ~ "Comp RN (cm)",
+                 apgar1 ~ "Apgar primeiro min",
+                 obito ~"Óbito")) %>% 
+  add_n() %>% 
+  add_p(test = all_continuous() ~ "t.test",
+        pvalue_fun = ~style_pvalue(., digits = 2)) %>% 
+  modify_header(label = "**Variáveis**") %>% 
+  bold_labels()
+```

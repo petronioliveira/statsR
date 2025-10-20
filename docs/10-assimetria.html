@@ -1,0 +1,1909 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.33">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>10&nbsp; Assimetria e Curtose – Bioestatística Usando o R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./11-distAmostrais.html" rel="next">
+<link href="./09-probabilidades.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<link href="site_libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+
+<script src="site_libs/tabwid-1.1.3/tabwid.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-probabilidades.html">Parte IV - Probabilidades e Distribuições</a></li><li class="breadcrumb-item"><a href="./10-assimetria.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Assimetria e Curtose</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Bioestatística Usando o R</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefácio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte I - Fundamentos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introdução</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-dados.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Natureza dos Dados</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-producaoDados.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Produção dos Dados</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte II - Ambiente Computacional com R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-introducaoR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Introdução ao uso do R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-manipulandoDados.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Manipulando dados no R</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte III - Estatística Descritiva</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-medidasResumidoras.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Medidas Resumidoras</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-tabelas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tabelas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-graficos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Gráficos</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte IV - Probabilidades e Distribuições</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-probabilidades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introdução à Teoria das Probabilidades</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-assimetria.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Assimetria e Curtose</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-distAmostrais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Distribuições Amostrais</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte V - Inferência Estatística</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-estimacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Estimação</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-testeHipoteses.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Teste de Hipóteses</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte VI - Testes Paramétricos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-teste-t.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Comparação entre duas médias</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-anova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Análise de Variância</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-anovaRep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Anova de Medidas Repetidas</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte VII - Relações entre Variáveis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-correlacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Correlação</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18-regressao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Regressão Linear Simples</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte VIII - Métodos Não Paramétricos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-dadoscategoricos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Análise de Dados Categóricos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20-testes-naoParametricos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Métodos não paramétricos</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte IX - Bioestatística Aplicada à Epidemiologia</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-testesDiag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Determinação da validade e confiabilidade de testes diagnósticos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22-medidasOcorrencia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Medidas de ocorrência de doença</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23-sobrevida.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Análise de Sobrevida</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./24-reglogbin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Regressão Logística Binária</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./glossario.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glossário</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./referencias.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referências</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#pacotes-necessários-neste-capítulo" id="toc-pacotes-necessários-neste-capítulo" class="nav-link active" data-scroll-target="#pacotes-necessários-neste-capítulo"><span class="header-section-number">10.1</span> Pacotes necessários neste capítulo</a></li>
+  <li><a href="#dados-usados-neste-capítulo" id="toc-dados-usados-neste-capítulo" class="nav-link" data-scroll-target="#dados-usados-neste-capítulo"><span class="header-section-number">10.2</span> Dados usados neste capítulo</a>
+  <ul class="collapse">
+  <li><a href="#sec-assimetria" id="toc-sec-assimetria" class="nav-link" data-scroll-target="#sec-assimetria"><span class="header-section-number">10.2.1</span> Exploração dos dados</a></li>
+  </ul></li>
+  <li><a href="#assimetria" id="toc-assimetria" class="nav-link" data-scroll-target="#assimetria"><span class="header-section-number">10.3</span> Assimetria</a>
+  <ul class="collapse">
+  <li><a href="#avaliação-da-assimetria" id="toc-avaliação-da-assimetria" class="nav-link" data-scroll-target="#avaliação-da-assimetria"><span class="header-section-number">10.3.1</span> Avaliação da assimetria</a></li>
+  </ul></li>
+  <li><a href="#curtose" id="toc-curtose" class="nav-link" data-scroll-target="#curtose"><span class="header-section-number">10.4</span> Curtose</a>
+  <ul class="collapse">
+  <li><a href="#avaliação-da-curtose" id="toc-avaliação-da-curtose" class="nav-link" data-scroll-target="#avaliação-da-curtose"><span class="header-section-number">10.4.1</span> Avaliação da curtose</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-probabilidades.html">Parte IV - Probabilidades e Distribuições</a></li><li class="breadcrumb-item"><a href="./10-assimetria.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Assimetria e Curtose</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Assimetria e Curtose</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Código</button></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="pacotes-necessários-neste-capítulo" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="pacotes-necessários-neste-capítulo"><span class="header-section-number">10.1</span> Pacotes necessários neste capítulo</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(DescTools,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>               dplyr, </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>               e1071, </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>               flextable,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>               ggplot2, </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>               ggpubr, </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>               grDevices, </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>               moments, </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>               readxl, </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>               rstatix)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="dados-usados-neste-capítulo" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="dados-usados-neste-capítulo"><span class="header-section-number">10.2</span> Dados usados neste capítulo</h2>
+<p>Será usada a mesma variável <code>altura</code> de 1368 mulheres do conjunto de dados<code>dadosMater.xlsx</code>, já mostrado anteriormente (<a href="09-probabilidades.html#sec-aplicafreq" class="quarto-xref"><span>Seção 9.4.1</span></a>).</p>
+<section id="sec-assimetria" class="level3" data-number="10.2.1">
+<h3 data-number="10.2.1" class="anchored" data-anchor-id="sec-assimetria"><span class="header-section-number">10.2.1</span> Exploração dos dados</h3>
+<p>O resumo dos dados pode ser realizado, usando a função <code>summarise()</code> do pacote <code>dplyr</code>. A moda será calculada usando com função <code>Mode()</code> do pacote <code>DescTools</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"dados/dadosMater.xlsx"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(altura)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>resumo <span class="ot">&lt;-</span> dados <span class="sc">%&gt;%</span> </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">media =</span> <span class="fu">mean</span>(altura, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">dp =</span> <span class="fu">sd</span>(altura, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">mediana =</span> <span class="fu">median</span>(altura, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">moda =</span> <span class="fu">Mode</span>(altura),</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">Q1 =</span> <span class="fu">quantile</span> (altura, <span class="fl">0.25</span>),</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">Q3 =</span> <span class="fu">quantile</span> (altura, <span class="fl">0.75</span>),</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">CV =</span> dp<span class="sc">/</span>media)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>resumo</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 8
+      n media     dp mediana  moda    Q1    Q3     CV
+  &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+1  1368  1.60 0.0655     1.6   1.6  1.55  1.65 0.0410</code></pre>
+</div>
+</div>
+<p>Para a exploração visual dos dados, será construído um histograma com um boxplot sobreposto (<a href="#fig-histbxp" class="quarto-xref">Figura&nbsp;<span>10.1</span></a>). Para sobrepor o boxplot, foi usado um y = 350 que está acima da frequência máxima. Ajustamos a largura do boxplot com a função width = 13 (método dos acerts e erros). Para colocar o boxplot na horizontal não se usa a função cord_flip() (veja <a href="08-graficos.html#sec-bxphorizontal" class="quarto-xref"><span>Seção 8.6.2</span></a>). Aqui o “truque” é fixar o valor de y no boxplot e ajustar a altura com width(). Isto mantém o boxplot deitado no topo do histograma. É uma apresentação interessante para visualzar a simetria dos dados.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estruturação do histograma</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>histograma <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> altura)) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.04</span>, </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">"lightblue"</span>, </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">"black"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplot sobreposto</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>histograma <span class="sc">+</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="dv">350</span>), <span class="at">width =</span> <span class="dv">13</span>, <span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">13</span>) <span class="sc">+</span> </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>))<span class="sc">+</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Frequência"</span>)<span class="sc">+</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Altura (m)"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-histbxp" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-histbxp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="10-assimetria_files/figure-html/fig-histbxp-1.png" class="quarto-figure quarto-figure-center figure-img" style="width:80.0%;height:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-histbxp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10.1: Histograma da altura das gestantes com boxplot sobreposto.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="assimetria" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="assimetria"><span class="header-section-number">10.3</span> Assimetria</h2>
+<p>A assimetria analisa a proximidade ou o afastamento de um conjunto de dados quantitativos em relação à distribuição normal. Mede o grau de afastamento de uma distribuição em relação a um eixo central (geralmente a média).</p>
+<p>Quando a curva é simétrica, a média, a mediana e a moda coincidem, num mesmo ponto, havendo um perfeito equilíbrio na distribuição. Quando o equilíbrio não acontece, isto é, a média, a mediana e a moda recaem em pontos diferentes da distribuição esta será assimétrica; enviesada a direita ou esquerda. podendo-se caracterizar como curvas assimétricas à direita ou à esquerda. Quando a distribuição é assimétrica à esquerda ou assimetria negativa, a cauda da curva localiza-se à esquerda, desviando a média para este lado (<a href="#fig-skew" class="quarto-xref">Figura&nbsp;<span>10.2</span></a>). Na assimetria positiva, ocorre o contrário, a cauda está localizada à direita e da mesma forma a média <span class="citation" data-cites="peat2014descriptive">(<a href="referencias.html#ref-peat2014descriptive" role="doc-biblioref">1</a>)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-skew" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-skew-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://i.imgur.com/KRTdQ5v.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-skew-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10.2: Assimetria
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="avaliação-da-assimetria" class="level3" data-number="10.3.1">
+<h3 data-number="10.3.1" class="anchored" data-anchor-id="avaliação-da-assimetria"><span class="header-section-number">10.3.1</span> Avaliação da assimetria</h3>
+<p>O <em>R</em> dispões de diversas maneiras para o cálculo do <em>coeficiente de assimetria</em>. O coeficiente de assimetria é um método numérico estatístico para medir a assimetria da distribuição ou conjunto de dados. Ele fala sobre a posição da maioria dos valores de dados na distribuição em torno do valor central.</p>
+<section id="cálculo-do-coeficiente-de-assimetria" class="level4" data-number="10.3.1.1">
+<h4 data-number="10.3.1.1" class="anchored" data-anchor-id="cálculo-do-coeficiente-de-assimetria"><span class="header-section-number">10.3.1.1</span> Cálculo do coeficiente de assimetria</h4>
+<p>Várias medidas de coeficientes de assimetria amostrais foram propostas. O coeficiente de assimetria pode ser calculado no <em>R</em>, usando a função <code>skewness()</code> do pacote <code>e1071</code> <span class="citation" data-cites="meyer2019package">(<a href="referencias.html#ref-meyer2019package" role="doc-biblioref">2</a>)</span>. Esta função usa os seguintes argumentos:</p>
+<ul>
+<li><strong>x</strong> <span class="math inline">\(\to\)</span> vetor numérico que contém os valores</li>
+<li><strong>na.rm</strong> <span class="math inline">\(\to\)</span> um valor lógico que indica se os valores NA devem ser eliminados antes que o cálculo prossiga.</li>
+<li><strong>type</strong> <span class="math inline">\(\to\)</span> número inteiro entre 1 e 3 selecionando um dos algoritmos para calcular assimetria detalhados abaixo.</li>
+</ul>
+<p>Os três tipos são os seguintes:</p>
+<ol type="1">
+<li><strong>Tipo 1, g1</strong> <span class="math inline">\(\to\)</span> definição típica usada em muitos livros didáticos mais antigos. Dada pela fórmula:</li>
+</ol>
+<p><span class="math display">\[
+g_1=\frac{m_3}{m_2^\frac{3}{2}}
+\]</span></p>
+<p>onde os momentos amostrais para amostras de tamanho <em>n</em> são dados por:</p>
+<p><span class="math display">\[
+m_r=\frac{\sum(x_i - \overline{x})^r}{n}
+\]</span></p>
+<p>Para o momento central amostral de ordem <em>r</em> = 3, tem-se:</p>
+<p><span class="math display">\[
+m_3=\frac{\sum(x_i - \overline{x})^3}{n}
+\]</span> Para <em>r</em> = 2,</p>
+<p><span class="math display">\[
+m_2=\frac{\sum(x_i - \overline{x})^2}{n}
+\]</span></p>
+<p>Usando o resumo dos <code>dados</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a> m3 <span class="ot">&lt;-</span> (<span class="fu">sum</span>((dados<span class="sc">$</span>altura <span class="sc">-</span> (<span class="fu">mean</span>(dados<span class="sc">$</span>altura)))<span class="sc">^</span><span class="dv">3</span>))<span class="sc">/</span>resumo<span class="sc">$</span>n</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a> m3</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.081924e-05</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a> m2 <span class="ot">&lt;-</span> (<span class="fu">sum</span>((dados<span class="sc">$</span>altura <span class="sc">-</span> (<span class="fu">mean</span>(dados<span class="sc">$</span>altura)))<span class="sc">^</span><span class="dv">2</span>))<span class="sc">/</span>resumo<span class="sc">$</span>n</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a> m2</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.004284321</code></pre>
+</div>
+</div>
+<p>Colocando os dados na fórmula do <em>g1</em> no <em>R</em>, chega-se ao resultado:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a> g1 <span class="ot">&lt;-</span> m3<span class="sc">/</span>(m2)<span class="sc">^</span>(<span class="dv">3</span><span class="sc">/</span><span class="dv">2</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a> g1</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1812196</code></pre>
+</div>
+</div>
+<p>Usando a função <code>skewness()</code> do pacote <code>e1071</code>, chega-se ao mesmo resultado:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>e1071<span class="sc">::</span><span class="fu">skewness</span>(dados<span class="sc">$</span>altura, <span class="at">type =</span> <span class="dv">1</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1812196</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li><strong>Tipo 2, G1</strong> <span class="math inline">\(\to\)</span> Usado em vários pacotes estatísticos. É calculado com a seguinte fórmula:</li>
+</ol>
+<p><span class="math display">\[
+G_1=\frac{g_1 \sqrt{n(n-1)}}{n-2}
+\]</span></p>
+<p>Colocando os dados na fórmula na linguagem do <em>R</em>, tem-se:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a> G1 <span class="ot">&lt;-</span> (g1<span class="sc">*</span><span class="fu">sqrt</span>((resumo<span class="sc">$</span>n<span class="sc">*</span>(resumo<span class="sc">$</span>n<span class="dv">-1</span>))))<span class="sc">/</span>(resumo<span class="sc">$</span>n<span class="dv">-2</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a> G1</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1814186</code></pre>
+</div>
+</div>
+<p>Calculando com a função <code>skewness()</code> do pacote <code>e1071</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>e1071<span class="sc">::</span><span class="fu">skewness</span>(dados<span class="sc">$</span>altura, <span class="at">type =</span> <span class="dv">2</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1814186</code></pre>
+</div>
+</div>
+<ol start="3" type="1">
+<li><strong>Tipo 3, b1</strong> <span class="math inline">\(\to\)</span> É o padrão da função <code>skewness()</code> do pacote <code>e1071</code>. Usa-se a seguinte fórmula para o cálculo:</li>
+</ol>
+<p><span class="math display">\[
+b_1= \frac {m_3}{s^3}
+\]</span></p>
+<p>onde <em>s</em> é o desvio padrão da amostra. Na linguagem <em>R</em>, tem-se:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a> b1 <span class="ot">&lt;-</span> m3<span class="sc">/</span>(resumo<span class="sc">$</span>dp)<span class="sc">^</span><span class="dv">3</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a> b1</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1810209</code></pre>
+</div>
+</div>
+<p>Usando a função <code>skewness()</code> do pacote <code>e1071</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>e1071<span class="sc">::</span><span class="fu">skewness</span>(dados<span class="sc">$</span>altura, <span class="at">type =</span> <span class="dv">3</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1810209</code></pre>
+</div>
+</div>
+<p>Para amostras grandes, há muito pouca diferença entre as várias medidas <span class="citation" data-cites="joanes1998skewkurt">(<a href="referencias.html#ref-joanes1998skewkurt" role="doc-biblioref">3</a>)</span>. Todas as três medidas de assimetria são imparciais sob normalidade.</p>
+<p><u>Interpretação do coeficiente de assimetria</u></p>
+<p>Quando a <span class="math inline">\(assimetria = 0\)</span>, tem-se uma distribuição simétrica e a média, a mediana e a moda coincidem; quando a <span class="math inline">\({assimetria} &lt; {0}\)</span>, <span class="math inline">\({média} &lt; {mediana} &lt; {moda}\)</span>, a distribuição tem <em>assimetria negativa</em> e quando a <span class="math inline">\({assimetria} &gt; {0}\)</span>, <span class="math inline">\({média} &gt; {mediana} &gt; {moda}\)</span>, a distribuição tem <em>assimetria positiva</em>.</p>
+<p>A <a href="#tbl-assimetria" class="quarto-xref">Tabela&nbsp;<span>10.1</span></a> sugere uma forma de interpretar o coeficiente de assimetria <span class="citation" data-cites="george2020asymmetry">(<a href="referencias.html#ref-george2020asymmetry" role="doc-biblioref">4</a>)</span>.</p>
+<div class="cell">
+<div id="tbl-assimetria" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-assimetria-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;10.1: Interpretação do Coeficiente de Assimetria
+</figcaption>
+<div aria-describedby="tbl-assimetria-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-c3cd28b6{}.cl-c3c1d740{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-c3c1d754{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-c3c6e064{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-c3c70472{width:2in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3c7047c{width:2in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3c7047d{width:2in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3c70486{width:2in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-c3cd28b6"><thead><tr style="overflow-wrap:break-word;"><th class="cl-c3c70472"><p class="cl-c3c6e064"><span class="cl-c3c1d740">Coeficiente de assimetria</span></p></th><th class="cl-c3c70472"><p class="cl-c3c6e064"><span class="cl-c3c1d740">Assimetria</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-c3c7047c"><p class="cl-c3c6e064"><span class="cl-c3c1d754">-1 a +1</span></p></td><td class="cl-c3c7047c"><p class="cl-c3c6e064"><span class="cl-c3c1d754">leve</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c3c7047c"><p class="cl-c3c6e064"><span class="cl-c3c1d754">-1 a -2 e +1 a +2</span></p></td><td class="cl-c3c7047c"><p class="cl-c3c6e064"><span class="cl-c3c1d754">moderada</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c3c7047d"><p class="cl-c3c6e064"><span class="cl-c3c1d754">-2 a -3 e +2 a +3</span></p></td><td class="cl-c3c7047d"><p class="cl-c3c6e064"><span class="cl-c3c1d754">importante</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c3c70486"><p class="cl-c3c6e064"><span class="cl-c3c1d754">&lt; -3 ou &gt; +3</span></p></td><td class="cl-c3c70486"><p class="cl-c3c6e064"><span class="cl-c3c1d754">grave</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Observando o formato da distribuição no histograma e no boxplot, na <a href="#fig-histbxp" class="quarto-xref">Figura&nbsp;<span>10.1</span></a>, e no resultado do coeficiente de assimetria, conclui-se que a variável <code>altura</code> tem uma assimetria positiva leve, não preocupante. É possível aceitar essa variável como praticamente simétrica.</p>
+</section>
+<section id="sec-qqplot" class="level4" data-number="10.3.1.2">
+<h4 data-number="10.3.1.2" class="anchored" data-anchor-id="sec-qqplot"><span class="header-section-number">10.3.1.2</span> Avaliação da assimetria com o gráfico QQ</h4>
+<p>Outra ferramenta gráfica que permite avaliar a simetria dos dados é o <strong>gráfico QQ</strong> (gráfico quantil-quantil). Ele permite observar se a distribuição se ajusta a distribuição normal. O gráfico QQ é um gráfico de dispersão que compara os quantis <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> da amostra com os quantis teóricos de uma distribuição de referência. Se os pontos do gráfico QQ formarem uma reta, isso indica que os dados têm a mesma distribuição da referência. Se os pontos se afastarem da reta, isso indica que os dados têm uma distribuição diferente da referência. Para construir um gráfico QQ, pode-se usar a função <code>ggqqplot()</code>do pacote <code>ggpubr</code>. Ele apresenta uma linha de referência, acompanhada de uma area sombreada, correspondente ao Intervalo de Confiança de 95% (veja o <a href="12-estimacao.html" class="quarto-xref"><span>Capítulo 12</span></a>):</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggqqplot</span>(<span class="at">data =</span> dados, </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"altura"</span>,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">conf.int =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">shape =</span> <span class="dv">19</span>,</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">xlab =</span> <span class="st">"Quantis teóricos"</span>,</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">ylab =</span> <span class="st">"Altura (m)"</span>,</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> <span class="st">"dodgerblue4"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-chart" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-chart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="10-assimetria_files/figure-html/fig-chart-1.png" class="quarto-figure quarto-figure-center figure-img" style="width:70.0%;height:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10.3: Gráfico QQ
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A <a href="#fig-chart" class="quarto-xref">Figura&nbsp;<span>10.3</span></a> exibe uma reta com IC95% que praticamente se sobrepõe aos pontos. É mais uma informação mostrando que os dados têm uma distribuição simétrica aceitável.</p>
+</section>
+<section id="pesquisa-de-valores-atípicos" class="level4" data-number="10.3.1.3">
+<h4 data-number="10.3.1.3" class="anchored" data-anchor-id="pesquisa-de-valores-atípicos"><span class="header-section-number">10.3.1.3</span> Pesquisa de valores atípicos</h4>
+<p>Os valores atípicos atraem as caudas da dispersão aumentando a possibilidade de assimetria. No boxplot da <a href="#fig-histbxp" class="quarto-xref">Figura&nbsp;<span>10.1</span></a>, verifica-se a presença de <em>outliers</em> que devem ser avaliados.</p>
+<p>Para examinar os <code>outliers</code>, as estatísticas do boxplot são úteis, pois mostram a quantidade e os respectivos valores. A função <code>boxplot.stats()</code> do pacote <code>grDevices</code>, entregam as estatísticas dos 5 números (min, P25, mediana, P75 e max), o total de observações, o limite inferior e superior do intervalo de confiança de 95% e os valores atípicos (<em>outliers</em>)::</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot.stats</span>(dados<span class="sc">$</span>altura)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$stats
+[1] 1.42 1.55 1.60 1.65 1.78
+
+$n
+[1] 1368
+
+$conf
+[1] 1.595728 1.604272
+
+$out
+[1] 1.40 1.82 1.80 1.40 1.40 1.85 1.80</code></pre>
+</div>
+</div>
+<p>Outra maneira de identificar os outliers é através da função <code>indentify_outliers()</code> do pacote <code>rstatix</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a> dados <span class="sc">%&gt;%</span> </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>   rstatix<span class="sc">::</span><span class="fu">identify_outliers</span>(altura)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 3
+  altura is.outlier is.extreme
+   &lt;dbl&gt; &lt;lgl&gt;      &lt;lgl&gt;     
+1   1.4  TRUE       FALSE     
+2   1.82 TRUE       FALSE     
+3   1.8  TRUE       FALSE     
+4   1.4  TRUE       FALSE     
+5   1.4  TRUE       FALSE     
+6   1.85 TRUE       FALSE     
+7   1.8  TRUE       FALSE     </code></pre>
+</div>
+</div>
+<p>Ambas as funções identificaram 7 valores atípicos (acima ou abaixo 1,5 vezes o intervalo interquartil), mas, como mostra a função <code>identify_outliers</code>, eles exercem pouca influência, pois não são extremos, ou seja, acima de três vezes o intervalo interquartil.</p>
+</section>
+</section>
+</section>
+<section id="curtose" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="curtose"><span class="header-section-number">10.4</span> Curtose</h2>
+<p>É o grau de achatamento de uma distribuição, em relação a distribuição normal. A curtose indica como o pico e as caudas de uma distribuição diferem da distribuição normal. A assimetria mede essencialmente a simetria da distribuição, enquanto a curtose determina o peso das caudas da distribuição. Portanto, é uma medida dos tamanhos combinados das duas caudas; mede a quantidade de probabilidade nas caudas. A curtose pode ser de três tipos (<a href="#fig-curtose" class="quarto-xref">Figura&nbsp;<span>10.4</span></a>):</p>
+<ul>
+<li><strong>Mesocúrtica</strong> <span class="math inline">\(\to\)</span> quando a distribuição é normal;</li>
+<li><strong>Leptocúrtica</strong> <span class="math inline">\(\to\)</span> quando a distribuição é mais pontiaguda e concentrada que a normal, mostrando caudas pesadas em ambos os lados;</li>
+<li><strong>Platicúrtica</strong> <span class="math inline">\(\to\)</span> quando a distribuição é mais achatada e dispersa que a normal, com caudas planas.</li>
+</ul>
+<p>Uma curtose em excesso é uma medida que compara a curtose de uma distribuição com a curtose de uma distribuição normal. A curtose de uma distribuição normal é igual a 3. Portanto, o excesso de curtose é determinado subtraindo 3 da curtose:</p>
+<p><span class="math display">\[
+Excesso \space de \space curtose = curtose - 3
+\]</span></p>
+<p>A distribuição normal tem uma curtose de zero e é chamada de <em>mesocúrtica.</em> Uma distribuição com curtose maior que zero (ou três) é mais alta e concentrada que a normal, mostrando caudas pesadas em ambos os lados, e é chamada de <em>leptocúrtica.</em> Uma distribuição com curtose menor que zero é mais achatada e dispersa que a normal, com caudas planas, e é chamada de <em>platicúrtica.</em></p>
+<p>Os dados que seguem uma <em>distribuição mesocúrtica</em> mostram um excesso de curtose de zero ou próximo de zero. Isso significa que se os dados seguem uma distribuição normal, eles seguem uma distribuição mesocúrtica. A <em>distribuição leptocúrtica</em> mostra caudas pesadas em ambos os lados, indicando grandes valores discrepantes. Uma <em>distribuição leptocúrtica</em> manifesta uma curtose excessiva positiva. Uma <em>distribuição platicúrtica</em> mostra uma curtose excessiva negativa, revela uma distribuição com cauda plana.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-curtose" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-curtose-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://i.imgur.com/ckKeN5Z.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-curtose-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10.4: Curtose
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="avaliação-da-curtose" class="level3" data-number="10.4.1">
+<h3 data-number="10.4.1" class="anchored" data-anchor-id="avaliação-da-curtose"><span class="header-section-number">10.4.1</span> Avaliação da curtose</h3>
+<section id="cálculo-do-coeficiente-de-curtose" class="level4" data-number="10.4.1.1">
+<h4 data-number="10.4.1.1" class="anchored" data-anchor-id="cálculo-do-coeficiente-de-curtose"><span class="header-section-number">10.4.1.1</span> Cálculo do coeficiente de curtose</h4>
+<p>O coeficiente de curtose pode ser calculado no R usando a função <code>kurtosis()</code> do pacote <code>e1071</code>. Esta função usa os mesmos argumentos da função <code>skewness()</code>, vista acima. Calcula três tipos de coeficientes:</p>
+<ol type="1">
+<li><strong>Tipo 1, g2</strong> <span class="math inline">\(\to\)</span> definição típica usada em muitos livros didáticos mais antigos. Dada pela fórmula:</li>
+</ol>
+<p><span class="math display">\[
+g_2=\frac{m_4}{m_2^2} - 3
+\]</span></p>
+<p>onde os momentos amostrais para amostras de tamanho <em>n</em> são dados por:</p>
+<p><span class="math display">\[
+m_r=\frac{\sum(x_i - \overline{x})^r}{n}
+\]</span></p>
+<p>Para o momento central amostral de ordem <em>r</em> = 4, tem-se:</p>
+<p><span class="math display">\[
+m_4=\frac{\sum(x_i - \overline{x})^4}{n}
+\]</span></p>
+<p>Para <em>r</em> = 2,</p>
+<p><span class="math display">\[
+m_2=\frac{\sum(x_i - \overline{x})^2}{n}
+\]</span></p>
+<p>Usando o resumo dos dados:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a> m4 <span class="ot">&lt;-</span> (<span class="fu">sum</span>((dados<span class="sc">$</span>altura <span class="sc">-</span> (<span class="fu">mean</span>(dados<span class="sc">$</span>altura)))<span class="sc">^</span><span class="dv">4</span>))<span class="sc">/</span>resumo<span class="sc">$</span>n</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a> m4</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.734699e-05</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a> m2 <span class="ot">&lt;-</span> (<span class="fu">sum</span>((dados<span class="sc">$</span>altura <span class="sc">-</span> (<span class="fu">mean</span>(dados<span class="sc">$</span>altura)))<span class="sc">^</span><span class="dv">2</span>))<span class="sc">/</span>resumo<span class="sc">$</span>n</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a> m2</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.004284321</code></pre>
+</div>
+</div>
+<p>Colocando os dados na fórmula do <em>g2</em> no R, chega-se ao resultado:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> (m4<span class="sc">/</span>(m2)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">-</span><span class="dv">3</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>g2</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1242567</code></pre>
+</div>
+</div>
+<p>Usando a função do pacote <code>e1071</code>, chega-se ao mesmo resultado:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a> e1071<span class="sc">::</span><span class="fu">kurtosis</span>(dados<span class="sc">$</span>altura, <span class="at">type =</span> <span class="dv">1</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1242567</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li><strong>Tipo 2, G2</strong> <span class="math inline">\(\to\)</span> Usado em vários pacotes estatísticos. É calculado com a seguinte fórmula:</li>
+</ol>
+<p><span class="math display">\[
+G_2=\left (\left (n + 1 \right )g_2 + 6 \right )\frac{\left (n - 1 \right)}{\left ( \left(n-2 \right)\left (n-3 \right) \right )}
+\]</span></p>
+<p>Colocando os dados na fórmula na linguagem do <em>R</em>, tem-se:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a> G2 <span class="ot">&lt;-</span> ((resumo<span class="sc">$</span>n<span class="sc">+</span><span class="dv">1</span>)<span class="sc">*</span>g2 <span class="sc">+</span> <span class="dv">6</span>)<span class="sc">*</span>(resumo<span class="sc">$</span>n<span class="dv">-1</span>)<span class="sc">/</span>((resumo<span class="sc">$</span>n<span class="dv">-2</span>)<span class="sc">*</span>(resumo<span class="sc">$</span>n<span class="dv">-3</span>))</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a> G2</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1291109</code></pre>
+</div>
+</div>
+<p>Com a função <code>kurtosis()</code> do pacote <code>e1071</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a> e1071<span class="sc">::</span><span class="fu">kurtosis</span>(dados<span class="sc">$</span>altura, <span class="at">type =</span> <span class="dv">2</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1291109</code></pre>
+</div>
+</div>
+<ol start="3" type="1">
+<li><strong>Tipo 3, b2</strong> <span class="math inline">\(\to\)</span> É o padrão da função <code>kurtosis()</code> do pacote <code>e1071.</code> Usa-se a seguinte fórmula para o cálculo:</li>
+</ol>
+<p><span class="math display">\[
+b_2=\frac{m_4}{s^4}-3
+\]</span> onde <em>s</em> é o desvio padrão da amostra.</p>
+<p>Na linguagem <em>R</em>, tem-se:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a> b2 <span class="ot">&lt;-</span> m4<span class="sc">/</span>(resumo<span class="sc">$</span>dp)<span class="sc">^</span><span class="dv">4</span> <span class="sc">-</span> <span class="dv">3</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a> b2</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1196907</code></pre>
+</div>
+</div>
+<p>Com a função <code>kurtosis()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>e1071<span class="sc">::</span><span class="fu">kurtosis</span>(dados<span class="sc">$</span>altura, <span class="at">type =</span> <span class="dv">3</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1196907</code></pre>
+</div>
+</div>
+<p>Novamente, para amostras grandes, há muito pouca diferença entre as várias medidas, principalmente entre G2 e b2 <span class="citation" data-cites="joanes1998skewkurt">(<a href="referencias.html#ref-joanes1998skewkurt" role="doc-biblioref">3</a>)</span>.</p>
+</section>
+<section id="interpretação-do-coeficiente-de-curtose" class="level4" data-number="10.4.1.2">
+<h4 data-number="10.4.1.2" class="anchored" data-anchor-id="interpretação-do-coeficiente-de-curtose"><span class="header-section-number">10.4.1.2</span> Interpretação do coeficiente de curtose</h4>
+<p>Os coeficientes calculados pela função do pacote <code>e1071</code> retornam um resultado equivalente ao excesso de curtose. A curva normal tem um excesso de curtose próximo a zero e a curva é dita mesocúrtica. Se o coeficiente for positivo, os dados são <em>leptocúrticos</em> e se for negativo, os dados são <em>platicúrticos</em>. O resultado do exemplo aponta para uma distribuição <em>leptocúrtica</em>, pois existe um pequeno excesso de curtose (g2 = 0.1242567). Os valores que contribuem para a curtose são aqueles fora da região do pico, ou seja, ou <em>outliers</em>. A curva <em>mesocúrtica</em> tem um coeficiente de 3. Portanto, os valores calculados anteriormente referem-se ao excesso de curtose. O resultado da g2 = 0,1242567 pode ser escrito como b2 = 3,1242567. Daí o termo excesso de curtose.</p>
+<p>A função <code>kurtosis()</code> do pacote <code>moments</code> retorna um resultado ao redor de 3, para o coeficiente tipo 1. Para chegar ao mesmo resultado do coeficiente tipo 1 da função do pacote <code>e1071</code>, deve-se subtrair 3 do resultado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>moments<span class="sc">::</span><span class="fu">kurtosis</span>(dados<span class="sc">$</span>altura)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.124257</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercício 1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Criar um conjunto de dados com distribuição normal com média 0 e desvio padrão 1 e n = 10000 . Verifique a assimetria e a curtose deste conjunto</p>
+</div>
+</div>
+<p><u>Resposta</u>:</p>
+<ol type="1">
+<li>Conjunto de dados: <code>meusDados</code></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>meusDados <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100000</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="1">
+<li>Construa um histograma (<a href="#fig-histNormal" class="quarto-xref">Figura&nbsp;<span>10.5</span></a>) com curva normal sobreposta:</li>
+</ol>
+<div class="cell" data-layout-align="center" data-out.heigh="70%">
+<div class="cell-output-display">
+<div id="fig-histNormal" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-histNormal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="10-assimetria_files/figure-html/fig-histNormal-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-histNormal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10.5: Histograma com curva normal
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Observe a skewness e a kurtosis</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>e1071<span class="sc">::</span><span class="fu">skewness</span>(meusDados)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.008609517</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>e1071<span class="sc">::</span><span class="fu">kurtosis</span>(meusDados)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.003450388</code></pre>
+</div>
+</div>
+<p>Como era de se esperar, usando a <code>rnorm()</code>, a distribuição é um exemplo de distribuição normal, <span class="math inline">\(skewness \approx 0\)</span> e <span class="math inline">\(kurtosis \approx 0\)</span>. Observe que a cada vez que os comandos forem executados, os resultados serão discretamente diferentes. Para evitar isso, deve-se usar <code>set.seed()</code>, veja a seção <a href="09-probabilidades.html#sec-dnp" class="quarto-xref"><span>Seção 9.7.2</span></a>. Faça o teste!</p>
+
+
+<!-- -->
+
+<div id="refs" class="references csl-bib-body" role="list" style="display: none">
+<div id="ref-peat2014descriptive" class="csl-entry" role="listitem">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Peat J, Barton B. Descriptive statistics. Em: Medical statistics : a guide to SPSS, data analysis, and critical appraisal. New York, NY: John Wiley &amp; Sons; 2014. p. 24–51. </div>
+</div>
+<div id="ref-meyer2019package" class="csl-entry" role="listitem">
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">Meyer D, Dimitriadou E, Hornik K, Weingessel A, Leisch F, Chang C-C, et al. Package <span>«e1071»</span>. The R Journal. 2019;1–67. </div>
+</div>
+<div id="ref-joanes1998skewkurt" class="csl-entry" role="listitem">
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">Joanes D, Gill C. Comparing Measures of Sample Skewness and Kurtosis. Journal of the Royal Statistical Society. 1998;47(1):183–9. </div>
+</div>
+<div id="ref-george2020asymmetry" class="csl-entry" role="listitem">
+<div class="csl-left-margin">4. </div><div class="csl-right-inline">George D, Mallery P. Descriptive Statistics. Em: IBM SPSS Statistics 26 Step by Step: A Simple Guide and Reference. New York, NY: Taylor &amp; Francis Group; 2020. p. 114–20. </div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Sobre os quantis, veja na <a href="06-medidasResumidoras.html#sec-quantil" class="quarto-xref"><span>Seção 6.4.4</span></a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./09-probabilidades.html" class="pagination-link" aria-label="Introdução à Teoria das Probabilidades">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introdução à Teoria das Probabilidades</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./11-distAmostrais.html" class="pagination-link" aria-label="Distribuições Amostrais">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Distribuições Amostrais</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Código fonte</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb49" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Assimetria e Curtose</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pacotes necessários neste capítulo</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(DescTools,</span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>               dplyr, </span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>               e1071, </span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>               flextable,</span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>               ggplot2, </span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>               ggpubr, </span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a>               grDevices, </span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>               moments, </span>
+<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a>               readxl, </span>
+<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a>               rstatix)</span>
+<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Dados usados neste capítulo</span></span>
+<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-22"><a href="#cb49-22" aria-hidden="true" tabindex="-1"></a>Será usada a mesma variável <span class="in">`altura`</span> de 1368 mulheres do conjunto de dados<span class="in">`dadosMater.xlsx`</span>, já mostrado anteriormente (@sec-aplicafreq).</span>
+<span id="cb49-23"><a href="#cb49-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-24"><a href="#cb49-24" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exploração dos dados {#sec-assimetria}</span></span>
+<span id="cb49-25"><a href="#cb49-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-26"><a href="#cb49-26" aria-hidden="true" tabindex="-1"></a>O resumo dos dados pode ser realizado, usando a função <span class="in">`summarise()`</span> do pacote <span class="in">`dplyr`</span>. A moda será calculada usando com função <span class="in">`Mode()`</span> do pacote <span class="in">`DescTools`</span>.</span>
+<span id="cb49-27"><a href="#cb49-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-30"><a href="#cb49-30" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-31"><a href="#cb49-31" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"dados/dadosMater.xlsx"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb49-32"><a href="#cb49-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(altura)</span>
+<span id="cb49-33"><a href="#cb49-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-34"><a href="#cb49-34" aria-hidden="true" tabindex="-1"></a>resumo <span class="ot">&lt;-</span> dados <span class="sc">%&gt;%</span> </span>
+<span id="cb49-35"><a href="#cb49-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb49-36"><a href="#cb49-36" aria-hidden="true" tabindex="-1"></a>            <span class="at">media =</span> <span class="fu">mean</span>(altura, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb49-37"><a href="#cb49-37" aria-hidden="true" tabindex="-1"></a>            <span class="at">dp =</span> <span class="fu">sd</span>(altura, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb49-38"><a href="#cb49-38" aria-hidden="true" tabindex="-1"></a>            <span class="at">mediana =</span> <span class="fu">median</span>(altura, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb49-39"><a href="#cb49-39" aria-hidden="true" tabindex="-1"></a>            <span class="at">moda =</span> <span class="fu">Mode</span>(altura),</span>
+<span id="cb49-40"><a href="#cb49-40" aria-hidden="true" tabindex="-1"></a>            <span class="at">Q1 =</span> <span class="fu">quantile</span> (altura, <span class="fl">0.25</span>),</span>
+<span id="cb49-41"><a href="#cb49-41" aria-hidden="true" tabindex="-1"></a>            <span class="at">Q3 =</span> <span class="fu">quantile</span> (altura, <span class="fl">0.75</span>),</span>
+<span id="cb49-42"><a href="#cb49-42" aria-hidden="true" tabindex="-1"></a>            <span class="at">CV =</span> dp<span class="sc">/</span>media)</span>
+<span id="cb49-43"><a href="#cb49-43" aria-hidden="true" tabindex="-1"></a>resumo</span>
+<span id="cb49-44"><a href="#cb49-44" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-45"><a href="#cb49-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-46"><a href="#cb49-46" aria-hidden="true" tabindex="-1"></a>Para a exploração visual dos dados, será construído um histograma com um boxplot sobreposto (@fig-histbxp). Para sobrepor o boxplot, foi usado um y = 350 que está acima da frequência máxima. Ajustamos a largura do boxplot com a função width = 13 (método dos acerts e erros). Para colocar o boxplot na horizontal não se usa a função cord_flip() (veja @sec-bxphorizontal). Aqui o "truque" é fixar o valor de y no boxplot e ajustar a altura com width(). Isto mantém o boxplot deitado no topo do histograma. É uma apresentação interessante para visualzar a simetria dos dados.</span>
+<span id="cb49-47"><a href="#cb49-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-50"><a href="#cb49-50" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-51"><a href="#cb49-51" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-histbxp</span></span>
+<span id="cb49-52"><a href="#cb49-52" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb49-53"><a href="#cb49-53" aria-hidden="true" tabindex="-1"></a><span class="co">#| out.width: "80%"</span></span>
+<span id="cb49-54"><a href="#cb49-54" aria-hidden="true" tabindex="-1"></a><span class="co">#| out.height: "80%"</span></span>
+<span id="cb49-55"><a href="#cb49-55" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.align: 'center'</span></span>
+<span id="cb49-56"><a href="#cb49-56" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.cap: "Histograma da altura das gestantes com boxplot sobreposto."</span></span>
+<span id="cb49-57"><a href="#cb49-57" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb49-58"><a href="#cb49-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-59"><a href="#cb49-59" aria-hidden="true" tabindex="-1"></a><span class="co"># Estruturação do histograma</span></span>
+<span id="cb49-60"><a href="#cb49-60" aria-hidden="true" tabindex="-1"></a>histograma <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> altura)) <span class="sc">+</span></span>
+<span id="cb49-61"><a href="#cb49-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.04</span>, </span>
+<span id="cb49-62"><a href="#cb49-62" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">"lightblue"</span>, </span>
+<span id="cb49-63"><a href="#cb49-63" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">"black"</span>)</span>
+<span id="cb49-64"><a href="#cb49-64" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplot sobreposto</span></span>
+<span id="cb49-65"><a href="#cb49-65" aria-hidden="true" tabindex="-1"></a>histograma <span class="sc">+</span></span>
+<span id="cb49-66"><a href="#cb49-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="dv">350</span>), <span class="at">width =</span> <span class="dv">13</span>, <span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb49-67"><a href="#cb49-67" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">13</span>) <span class="sc">+</span> </span>
+<span id="cb49-68"><a href="#cb49-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>))<span class="sc">+</span></span>
+<span id="cb49-69"><a href="#cb49-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Frequência"</span>)<span class="sc">+</span></span>
+<span id="cb49-70"><a href="#cb49-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Altura (m)"</span>)</span>
+<span id="cb49-71"><a href="#cb49-71" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-72"><a href="#cb49-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-73"><a href="#cb49-73" aria-hidden="true" tabindex="-1"></a><span class="fu">## Assimetria</span></span>
+<span id="cb49-74"><a href="#cb49-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-75"><a href="#cb49-75" aria-hidden="true" tabindex="-1"></a>A assimetria analisa a proximidade ou o afastamento de um conjunto de dados quantitativos em relação à distribuição normal. Mede o grau de afastamento de uma distribuição em relação a um eixo central (geralmente a média).</span>
+<span id="cb49-76"><a href="#cb49-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-77"><a href="#cb49-77" aria-hidden="true" tabindex="-1"></a>Quando a curva é simétrica, a média, a mediana e a moda coincidem, num mesmo ponto, havendo um perfeito equilíbrio na distribuição. Quando o equilíbrio não acontece, isto é, a média, a mediana e a moda recaem em pontos diferentes da distribuição esta será assimétrica; enviesada a direita ou esquerda. podendo-se caracterizar como curvas assimétricas à direita ou à esquerda. Quando a distribuição é assimétrica à esquerda ou assimetria negativa, a cauda da curva localiza-se à esquerda, desviando a média para este lado (@fig-skew). Na assimetria positiva, ocorre o contrário, a cauda está localizada à direita e da mesma forma a média @peat2014descriptive.</span>
+<span id="cb49-78"><a href="#cb49-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-81"><a href="#cb49-81" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-82"><a href="#cb49-82" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-skew</span></span>
+<span id="cb49-83"><a href="#cb49-83" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb49-84"><a href="#cb49-84" aria-hidden="true" tabindex="-1"></a><span class="co">#| out.width: "80%"</span></span>
+<span id="cb49-85"><a href="#cb49-85" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.align: 'center'</span></span>
+<span id="cb49-86"><a href="#cb49-86" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.cap: "Assimetria"</span></span>
+<span id="cb49-87"><a href="#cb49-87" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb49-88"><a href="#cb49-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-89"><a href="#cb49-89" aria-hidden="true" tabindex="-1"></a> knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"https://i.imgur.com/KRTdQ5v.png"</span>)</span>
+<span id="cb49-90"><a href="#cb49-90" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-91"><a href="#cb49-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-92"><a href="#cb49-92" aria-hidden="true" tabindex="-1"></a><span class="fu">### Avaliação da assimetria</span></span>
+<span id="cb49-93"><a href="#cb49-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-94"><a href="#cb49-94" aria-hidden="true" tabindex="-1"></a>O *R* dispões de diversas maneiras para o cálculo do *coeficiente de assimetria*. O coeficiente de assimetria é um método numérico estatístico para medir a assimetria da distribuição ou conjunto de dados. Ele fala sobre a posição da maioria dos valores de dados na distribuição em torno do valor central.</span>
+<span id="cb49-95"><a href="#cb49-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-96"><a href="#cb49-96" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Cálculo do coeficiente de assimetria</span></span>
+<span id="cb49-97"><a href="#cb49-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-98"><a href="#cb49-98" aria-hidden="true" tabindex="-1"></a>Várias medidas de coeficientes de assimetria amostrais foram propostas. O coeficiente de assimetria pode ser calculado no *R*, usando a função <span class="in">`skewness()`</span> do pacote <span class="in">`e1071`</span> @meyer2019package. Esta função usa os seguintes argumentos:</span>
+<span id="cb49-99"><a href="#cb49-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-100"><a href="#cb49-100" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**x** $\to$ vetor numérico que contém os valores</span>
+<span id="cb49-101"><a href="#cb49-101" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**na.rm** $\to$ um valor lógico que indica se os valores NA devem ser eliminados antes que o cálculo prossiga.</span>
+<span id="cb49-102"><a href="#cb49-102" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**type** $\to$ número inteiro entre 1 e 3 selecionando um dos algoritmos para calcular assimetria detalhados abaixo.</span>
+<span id="cb49-103"><a href="#cb49-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-104"><a href="#cb49-104" aria-hidden="true" tabindex="-1"></a>Os três tipos são os seguintes:</span>
+<span id="cb49-105"><a href="#cb49-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-106"><a href="#cb49-106" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Tipo 1, g1** $\to$ definição típica usada em muitos livros didáticos mais antigos. Dada pela fórmula:</span>
+<span id="cb49-107"><a href="#cb49-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-108"><a href="#cb49-108" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb49-109"><a href="#cb49-109" aria-hidden="true" tabindex="-1"></a>g_1=\frac{m_3}{m_2^\frac{3}{2}}</span>
+<span id="cb49-110"><a href="#cb49-110" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb49-111"><a href="#cb49-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-112"><a href="#cb49-112" aria-hidden="true" tabindex="-1"></a>onde os momentos amostrais para amostras de tamanho *n* são dados por:</span>
+<span id="cb49-113"><a href="#cb49-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-114"><a href="#cb49-114" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb49-115"><a href="#cb49-115" aria-hidden="true" tabindex="-1"></a>m_r=\frac{\sum(x_i - \overline{x})^r}{n}</span>
+<span id="cb49-116"><a href="#cb49-116" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb49-117"><a href="#cb49-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-118"><a href="#cb49-118" aria-hidden="true" tabindex="-1"></a>Para o momento central amostral de ordem *r* = 3, tem-se:</span>
+<span id="cb49-119"><a href="#cb49-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-120"><a href="#cb49-120" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb49-121"><a href="#cb49-121" aria-hidden="true" tabindex="-1"></a>m_3=\frac{\sum(x_i - \overline{x})^3}{n}</span>
+<span id="cb49-122"><a href="#cb49-122" aria-hidden="true" tabindex="-1"></a>$$ Para *r* = 2,</span>
+<span id="cb49-123"><a href="#cb49-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-124"><a href="#cb49-124" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb49-125"><a href="#cb49-125" aria-hidden="true" tabindex="-1"></a>m_2=\frac{\sum(x_i - \overline{x})^2}{n}</span>
+<span id="cb49-126"><a href="#cb49-126" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb49-127"><a href="#cb49-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-128"><a href="#cb49-128" aria-hidden="true" tabindex="-1"></a>Usando o resumo dos <span class="in">`dados`</span>:</span>
+<span id="cb49-129"><a href="#cb49-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-132"><a href="#cb49-132" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-133"><a href="#cb49-133" aria-hidden="true" tabindex="-1"></a> m3 <span class="ot">&lt;-</span> (<span class="fu">sum</span>((dados<span class="sc">$</span>altura <span class="sc">-</span> (<span class="fu">mean</span>(dados<span class="sc">$</span>altura)))<span class="sc">^</span><span class="dv">3</span>))<span class="sc">/</span>resumo<span class="sc">$</span>n</span>
+<span id="cb49-134"><a href="#cb49-134" aria-hidden="true" tabindex="-1"></a> m3</span>
+<span id="cb49-135"><a href="#cb49-135" aria-hidden="true" tabindex="-1"></a> m2 <span class="ot">&lt;-</span> (<span class="fu">sum</span>((dados<span class="sc">$</span>altura <span class="sc">-</span> (<span class="fu">mean</span>(dados<span class="sc">$</span>altura)))<span class="sc">^</span><span class="dv">2</span>))<span class="sc">/</span>resumo<span class="sc">$</span>n</span>
+<span id="cb49-136"><a href="#cb49-136" aria-hidden="true" tabindex="-1"></a> m2</span>
+<span id="cb49-137"><a href="#cb49-137" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-138"><a href="#cb49-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-139"><a href="#cb49-139" aria-hidden="true" tabindex="-1"></a>Colocando os dados na fórmula do *g1* no *R*, chega-se ao resultado:</span>
+<span id="cb49-140"><a href="#cb49-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-143"><a href="#cb49-143" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-144"><a href="#cb49-144" aria-hidden="true" tabindex="-1"></a> g1 <span class="ot">&lt;-</span> m3<span class="sc">/</span>(m2)<span class="sc">^</span>(<span class="dv">3</span><span class="sc">/</span><span class="dv">2</span>)</span>
+<span id="cb49-145"><a href="#cb49-145" aria-hidden="true" tabindex="-1"></a> g1</span>
+<span id="cb49-146"><a href="#cb49-146" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-147"><a href="#cb49-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-148"><a href="#cb49-148" aria-hidden="true" tabindex="-1"></a>Usando a função <span class="in">`skewness()`</span> do pacote <span class="in">`e1071`</span>, chega-se ao mesmo resultado:</span>
+<span id="cb49-149"><a href="#cb49-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-152"><a href="#cb49-152" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-153"><a href="#cb49-153" aria-hidden="true" tabindex="-1"></a>e1071<span class="sc">::</span><span class="fu">skewness</span>(dados<span class="sc">$</span>altura, <span class="at">type =</span> <span class="dv">1</span>)</span>
+<span id="cb49-154"><a href="#cb49-154" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-155"><a href="#cb49-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-156"><a href="#cb49-156" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Tipo 2, G1** $\to$ Usado em vários pacotes estatísticos. É calculado com a seguinte fórmula:</span>
+<span id="cb49-157"><a href="#cb49-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-158"><a href="#cb49-158" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb49-159"><a href="#cb49-159" aria-hidden="true" tabindex="-1"></a>G_1=\frac{g_1 \sqrt{n(n-1)}}{n-2}</span>
+<span id="cb49-160"><a href="#cb49-160" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb49-161"><a href="#cb49-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-162"><a href="#cb49-162" aria-hidden="true" tabindex="-1"></a>Colocando os dados na fórmula na linguagem do *R*, tem-se:</span>
+<span id="cb49-163"><a href="#cb49-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-166"><a href="#cb49-166" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-167"><a href="#cb49-167" aria-hidden="true" tabindex="-1"></a> G1 <span class="ot">&lt;-</span> (g1<span class="sc">*</span><span class="fu">sqrt</span>((resumo<span class="sc">$</span>n<span class="sc">*</span>(resumo<span class="sc">$</span>n<span class="dv">-1</span>))))<span class="sc">/</span>(resumo<span class="sc">$</span>n<span class="dv">-2</span>)</span>
+<span id="cb49-168"><a href="#cb49-168" aria-hidden="true" tabindex="-1"></a> G1</span>
+<span id="cb49-169"><a href="#cb49-169" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-170"><a href="#cb49-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-171"><a href="#cb49-171" aria-hidden="true" tabindex="-1"></a>Calculando com a função <span class="in">`skewness()`</span> do pacote <span class="in">`e1071`</span>:</span>
+<span id="cb49-172"><a href="#cb49-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-175"><a href="#cb49-175" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-176"><a href="#cb49-176" aria-hidden="true" tabindex="-1"></a>e1071<span class="sc">::</span><span class="fu">skewness</span>(dados<span class="sc">$</span>altura, <span class="at">type =</span> <span class="dv">2</span>)</span>
+<span id="cb49-177"><a href="#cb49-177" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-178"><a href="#cb49-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-179"><a href="#cb49-179" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Tipo 3, b1** $\to$ É o padrão da função <span class="in">`skewness()`</span> do pacote <span class="in">`e1071`</span>. Usa-se a seguinte fórmula para o cálculo:</span>
+<span id="cb49-180"><a href="#cb49-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-181"><a href="#cb49-181" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb49-182"><a href="#cb49-182" aria-hidden="true" tabindex="-1"></a>b_1= \frac {m_3}{s^3} </span>
+<span id="cb49-183"><a href="#cb49-183" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb49-184"><a href="#cb49-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-185"><a href="#cb49-185" aria-hidden="true" tabindex="-1"></a>onde *s* é o desvio padrão da amostra. Na linguagem *R*, tem-se:</span>
+<span id="cb49-186"><a href="#cb49-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-189"><a href="#cb49-189" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-190"><a href="#cb49-190" aria-hidden="true" tabindex="-1"></a> b1 <span class="ot">&lt;-</span> m3<span class="sc">/</span>(resumo<span class="sc">$</span>dp)<span class="sc">^</span><span class="dv">3</span></span>
+<span id="cb49-191"><a href="#cb49-191" aria-hidden="true" tabindex="-1"></a> b1</span>
+<span id="cb49-192"><a href="#cb49-192" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-193"><a href="#cb49-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-194"><a href="#cb49-194" aria-hidden="true" tabindex="-1"></a>Usando a função <span class="in">`skewness()`</span> do pacote <span class="in">`e1071`</span>:</span>
+<span id="cb49-195"><a href="#cb49-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-198"><a href="#cb49-198" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-199"><a href="#cb49-199" aria-hidden="true" tabindex="-1"></a>e1071<span class="sc">::</span><span class="fu">skewness</span>(dados<span class="sc">$</span>altura, <span class="at">type =</span> <span class="dv">3</span>)</span>
+<span id="cb49-200"><a href="#cb49-200" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-201"><a href="#cb49-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-202"><a href="#cb49-202" aria-hidden="true" tabindex="-1"></a>Para amostras grandes, há muito pouca diferença entre as várias medidas @joanes1998skewkurt. Todas as três medidas de assimetria são imparciais sob normalidade.</span>
+<span id="cb49-203"><a href="#cb49-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-204"><a href="#cb49-204" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Interpretação do coeficiente de assimetria</span><span class="co">]</span>{.underline}</span>
+<span id="cb49-205"><a href="#cb49-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-206"><a href="#cb49-206" aria-hidden="true" tabindex="-1"></a>Quando a $assimetria = 0$, tem-se uma distribuição simétrica e a média, a mediana e a moda coincidem; quando a ${assimetria} &lt; {0}$, ${média} &lt; {mediana} &lt; {moda}$, a distribuição tem *assimetria negativa* e quando a ${assimetria} &gt; {0}$, ${média} &gt; {mediana} &gt; {moda}$, a distribuição tem *assimetria positiva*.</span>
+<span id="cb49-207"><a href="#cb49-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-208"><a href="#cb49-208" aria-hidden="true" tabindex="-1"></a>A @tbl-assimetria sugere uma forma de interpretar o coeficiente de assimetria @george2020asymmetry.</span>
+<span id="cb49-209"><a href="#cb49-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-212"><a href="#cb49-212" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-213"><a href="#cb49-213" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-assimetria</span></span>
+<span id="cb49-214"><a href="#cb49-214" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Interpretação do Coeficiente de Assimetria"</span></span>
+<span id="cb49-215"><a href="#cb49-215" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: FALSE</span></span>
+<span id="cb49-216"><a href="#cb49-216" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: FALSE</span></span>
+<span id="cb49-217"><a href="#cb49-217" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: FALSE</span></span>
+<span id="cb49-218"><a href="#cb49-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-219"><a href="#cb49-219" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"-1 a +1"</span>, <span class="st">"-1 a -2 e +1 a +2"</span>, <span class="st">"-2 a -3 e +2 a +3"</span>, <span class="st">"&lt; -3 ou &gt; +3"</span>)</span>
+<span id="cb49-220"><a href="#cb49-220" aria-hidden="true" tabindex="-1"></a>assimetria <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"leve"</span>, <span class="st">"moderada"</span>, <span class="st">"importante"</span>, <span class="st">"grave"</span>)</span>
+<span id="cb49-221"><a href="#cb49-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-222"><a href="#cb49-222" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(g1,assimetria)</span>
+<span id="cb49-223"><a href="#cb49-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-224"><a href="#cb49-224" aria-hidden="true" tabindex="-1"></a>minha_tab <span class="ot">&lt;-</span> <span class="fu">flextable</span>(df) <span class="sc">%&gt;%</span></span>
+<span id="cb49-225"><a href="#cb49-225" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_header_labels</span>(</span>
+<span id="cb49-226"><a href="#cb49-226" aria-hidden="true" tabindex="-1"></a>    <span class="at">g1 =</span> <span class="st">"Coeficiente de assimetria"</span>,</span>
+<span id="cb49-227"><a href="#cb49-227" aria-hidden="true" tabindex="-1"></a>    <span class="at">assimetria =</span> <span class="st">"Assimetria"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb49-228"><a href="#cb49-228" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autofit</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb49-229"><a href="#cb49-229" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_booktabs</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb49-230"><a href="#cb49-230" aria-hidden="true" tabindex="-1"></a>  <span class="fu">width</span>(<span class="at">j =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">width =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb49-231"><a href="#cb49-231" aria-hidden="true" tabindex="-1"></a>  <span class="fu">align</span>(<span class="at">align =</span> <span class="st">"left"</span>, <span class="at">part =</span> <span class="st">"header"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb49-232"><a href="#cb49-232" aria-hidden="true" tabindex="-1"></a>  <span class="fu">align</span>(<span class="at">align =</span> <span class="st">"left"</span>, <span class="at">part =</span> <span class="st">"body"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb49-233"><a href="#cb49-233" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bold</span>(<span class="at">part =</span> <span class="st">"header"</span>) </span>
+<span id="cb49-234"><a href="#cb49-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-235"><a href="#cb49-235" aria-hidden="true" tabindex="-1"></a>minha_tab</span>
+<span id="cb49-236"><a href="#cb49-236" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-237"><a href="#cb49-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-238"><a href="#cb49-238" aria-hidden="true" tabindex="-1"></a>Observando o formato da distribuição no histograma e no boxplot, na @fig-histbxp, e no resultado do coeficiente de assimetria, conclui-se que a variável <span class="in">`altura`</span> tem uma assimetria positiva leve, não preocupante. É possível aceitar essa variável como praticamente simétrica.</span>
+<span id="cb49-239"><a href="#cb49-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-240"><a href="#cb49-240" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Avaliação da assimetria com o gráfico QQ {#sec-qqplot}</span></span>
+<span id="cb49-241"><a href="#cb49-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-242"><a href="#cb49-242" aria-hidden="true" tabindex="-1"></a>Outra ferramenta gráfica que permite avaliar a simetria dos dados é o **gráfico QQ** (gráfico quantil-quantil). Ele permite observar se a distribuição se ajusta a distribuição normal. O gráfico QQ é um gráfico de dispersão que compara os quantis <span class="ot">[^10-assimetria-1]</span> da amostra com os quantis teóricos de uma distribuição de referência. Se os pontos do gráfico QQ formarem uma reta, isso indica que os dados têm a mesma distribuição da referência. Se os pontos se afastarem da reta, isso indica que os dados têm uma distribuição diferente da referência. Para construir um gráfico QQ, pode-se usar a função <span class="in">`ggqqplot()`</span>do pacote <span class="in">`ggpubr`</span>. Ele apresenta uma linha de referência, acompanhada de uma area sombreada, correspondente ao Intervalo de Confiança de 95% (veja o @sec-estimacao):</span>
+<span id="cb49-243"><a href="#cb49-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-244"><a href="#cb49-244" aria-hidden="true" tabindex="-1"></a><span class="ot">[^10-assimetria-1]: </span>Sobre os quantis, veja na @sec-quantil.</span>
+<span id="cb49-245"><a href="#cb49-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-248"><a href="#cb49-248" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-249"><a href="#cb49-249" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-chart</span></span>
+<span id="cb49-250"><a href="#cb49-250" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb49-251"><a href="#cb49-251" aria-hidden="true" tabindex="-1"></a><span class="co">#| out.width: "70%"</span></span>
+<span id="cb49-252"><a href="#cb49-252" aria-hidden="true" tabindex="-1"></a><span class="co">#| out.height: "70%"</span></span>
+<span id="cb49-253"><a href="#cb49-253" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.align: 'center'</span></span>
+<span id="cb49-254"><a href="#cb49-254" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.cap: "Gráfico QQ"</span></span>
+<span id="cb49-255"><a href="#cb49-255" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb49-256"><a href="#cb49-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-257"><a href="#cb49-257" aria-hidden="true" tabindex="-1"></a><span class="fu">ggqqplot</span>(<span class="at">data =</span> dados, </span>
+<span id="cb49-258"><a href="#cb49-258" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"altura"</span>,</span>
+<span id="cb49-259"><a href="#cb49-259" aria-hidden="true" tabindex="-1"></a>         <span class="at">conf.int =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb49-260"><a href="#cb49-260" aria-hidden="true" tabindex="-1"></a>         <span class="at">shape =</span> <span class="dv">19</span>,</span>
+<span id="cb49-261"><a href="#cb49-261" aria-hidden="true" tabindex="-1"></a>         <span class="at">xlab =</span> <span class="st">"Quantis teóricos"</span>,</span>
+<span id="cb49-262"><a href="#cb49-262" aria-hidden="true" tabindex="-1"></a>         <span class="at">ylab =</span> <span class="st">"Altura (m)"</span>,</span>
+<span id="cb49-263"><a href="#cb49-263" aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> <span class="st">"dodgerblue4"</span>)</span>
+<span id="cb49-264"><a href="#cb49-264" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-265"><a href="#cb49-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-266"><a href="#cb49-266" aria-hidden="true" tabindex="-1"></a>A @fig-chart exibe uma reta com IC95% que praticamente se sobrepõe aos pontos. É mais uma informação mostrando que os dados têm uma distribuição simétrica aceitável.</span>
+<span id="cb49-267"><a href="#cb49-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-268"><a href="#cb49-268" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Pesquisa de valores atípicos</span></span>
+<span id="cb49-269"><a href="#cb49-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-270"><a href="#cb49-270" aria-hidden="true" tabindex="-1"></a>Os valores atípicos atraem as caudas da dispersão aumentando a possibilidade de assimetria. No boxplot da @fig-histbxp, verifica-se a presença de *outliers* que devem ser avaliados.</span>
+<span id="cb49-271"><a href="#cb49-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-272"><a href="#cb49-272" aria-hidden="true" tabindex="-1"></a>Para examinar os <span class="in">`outliers`</span>, as estatísticas do boxplot são úteis, pois mostram a quantidade e os respectivos valores. A função <span class="in">`boxplot.stats()`</span> do pacote <span class="in">`grDevices`</span>, entregam as estatísticas dos 5 números (min, P25, mediana, P75 e max), o total de observações, o limite inferior e superior do intervalo de confiança de 95% e os valores atípicos (*outliers*)::</span>
+<span id="cb49-273"><a href="#cb49-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-276"><a href="#cb49-276" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-277"><a href="#cb49-277" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot.stats</span>(dados<span class="sc">$</span>altura)</span>
+<span id="cb49-278"><a href="#cb49-278" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-279"><a href="#cb49-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-280"><a href="#cb49-280" aria-hidden="true" tabindex="-1"></a>Outra maneira de identificar os outliers é através da função <span class="in">`indentify_outliers()`</span> do pacote <span class="in">`rstatix`</span>:</span>
+<span id="cb49-281"><a href="#cb49-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-284"><a href="#cb49-284" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-285"><a href="#cb49-285" aria-hidden="true" tabindex="-1"></a> dados <span class="sc">%&gt;%</span> </span>
+<span id="cb49-286"><a href="#cb49-286" aria-hidden="true" tabindex="-1"></a>   rstatix<span class="sc">::</span><span class="fu">identify_outliers</span>(altura)</span>
+<span id="cb49-287"><a href="#cb49-287" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-288"><a href="#cb49-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-289"><a href="#cb49-289" aria-hidden="true" tabindex="-1"></a>Ambas as funções identificaram 7 valores atípicos (acima ou abaixo 1,5 vezes o intervalo interquartil), mas, como mostra a função <span class="in">`identify_outliers`</span>, eles exercem pouca influência, pois não são extremos, ou seja, acima de três vezes o intervalo interquartil.</span>
+<span id="cb49-290"><a href="#cb49-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-291"><a href="#cb49-291" aria-hidden="true" tabindex="-1"></a><span class="fu">## Curtose</span></span>
+<span id="cb49-292"><a href="#cb49-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-293"><a href="#cb49-293" aria-hidden="true" tabindex="-1"></a>É o grau de achatamento de uma distribuição, em relação a distribuição normal. A curtose indica como o pico e as caudas de uma distribuição diferem da distribuição normal. A assimetria mede essencialmente a simetria da distribuição, enquanto a curtose determina o peso das caudas da distribuição. Portanto, é uma medida dos tamanhos combinados das duas caudas; mede a quantidade de probabilidade nas caudas. A curtose pode ser de três tipos (@fig-curtose):</span>
+<span id="cb49-294"><a href="#cb49-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-295"><a href="#cb49-295" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Mesocúrtica** $\to$ quando a distribuição é normal;</span>
+<span id="cb49-296"><a href="#cb49-296" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Leptocúrtica** $\to$ quando a distribuição é mais pontiaguda e concentrada que a normal, mostrando caudas pesadas em ambos os lados;</span>
+<span id="cb49-297"><a href="#cb49-297" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Platicúrtica** $\to$ quando a distribuição é mais achatada e dispersa que a normal, com caudas planas.</span>
+<span id="cb49-298"><a href="#cb49-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-299"><a href="#cb49-299" aria-hidden="true" tabindex="-1"></a>Uma curtose em excesso é uma medida que compara a curtose de uma distribuição com a curtose de uma distribuição normal. A curtose de uma distribuição normal é igual a 3. Portanto, o excesso de curtose é determinado subtraindo 3 da curtose:</span>
+<span id="cb49-300"><a href="#cb49-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-301"><a href="#cb49-301" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb49-302"><a href="#cb49-302" aria-hidden="true" tabindex="-1"></a>Excesso \space de \space curtose = curtose - 3</span>
+<span id="cb49-303"><a href="#cb49-303" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb49-304"><a href="#cb49-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-305"><a href="#cb49-305" aria-hidden="true" tabindex="-1"></a>A distribuição normal tem uma curtose de zero e é chamada de *mesocúrtica.* Uma distribuição com curtose maior que zero (ou três) é mais alta e concentrada que a normal, mostrando caudas pesadas em ambos os lados, e é chamada de *leptocúrtica.* Uma distribuição com curtose menor que zero é mais achatada e dispersa que a normal, com caudas planas, e é chamada de *platicúrtica.*</span>
+<span id="cb49-306"><a href="#cb49-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-307"><a href="#cb49-307" aria-hidden="true" tabindex="-1"></a>Os dados que seguem uma *distribuição mesocúrtica* mostram um excesso de curtose de zero ou próximo de zero. Isso significa que se os dados seguem uma distribuição normal, eles seguem uma distribuição mesocúrtica. A *distribuição leptocúrtica* mostra caudas pesadas em ambos os lados, indicando grandes valores discrepantes. Uma *distribuição leptocúrtica* manifesta uma curtose excessiva positiva. Uma *distribuição platicúrtica* mostra uma curtose excessiva negativa, revela uma distribuição com cauda plana.</span>
+<span id="cb49-308"><a href="#cb49-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-311"><a href="#cb49-311" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-312"><a href="#cb49-312" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-curtose</span></span>
+<span id="cb49-313"><a href="#cb49-313" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb49-314"><a href="#cb49-314" aria-hidden="true" tabindex="-1"></a><span class="co">#| out.width: "60%"</span></span>
+<span id="cb49-315"><a href="#cb49-315" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.align: 'center'</span></span>
+<span id="cb49-316"><a href="#cb49-316" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.cap: "Curtose"</span></span>
+<span id="cb49-317"><a href="#cb49-317" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb49-318"><a href="#cb49-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-319"><a href="#cb49-319" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"https://i.imgur.com/ckKeN5Z.png"</span>)</span>
+<span id="cb49-320"><a href="#cb49-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-321"><a href="#cb49-321" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-322"><a href="#cb49-322" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-323"><a href="#cb49-323" aria-hidden="true" tabindex="-1"></a><span class="fu">### Avaliação da curtose</span></span>
+<span id="cb49-324"><a href="#cb49-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-325"><a href="#cb49-325" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Cálculo do coeficiente de curtose</span></span>
+<span id="cb49-326"><a href="#cb49-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-327"><a href="#cb49-327" aria-hidden="true" tabindex="-1"></a>O coeficiente de curtose pode ser calculado no R usando a função <span class="in">`kurtosis()`</span> do pacote <span class="in">`e1071`</span>. Esta função usa os mesmos argumentos da função <span class="in">`skewness()`</span>, vista acima. Calcula três tipos de coeficientes:</span>
+<span id="cb49-328"><a href="#cb49-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-329"><a href="#cb49-329" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Tipo 1, g2** $\to$ definição típica usada em muitos livros didáticos mais antigos. Dada pela fórmula:</span>
+<span id="cb49-330"><a href="#cb49-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-331"><a href="#cb49-331" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb49-332"><a href="#cb49-332" aria-hidden="true" tabindex="-1"></a>g_2=\frac{m_4}{m_2^2} - 3</span>
+<span id="cb49-333"><a href="#cb49-333" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb49-334"><a href="#cb49-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-335"><a href="#cb49-335" aria-hidden="true" tabindex="-1"></a>onde os momentos amostrais para amostras de tamanho *n* são dados por:</span>
+<span id="cb49-336"><a href="#cb49-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-337"><a href="#cb49-337" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb49-338"><a href="#cb49-338" aria-hidden="true" tabindex="-1"></a>m_r=\frac{\sum(x_i - \overline{x})^r}{n}</span>
+<span id="cb49-339"><a href="#cb49-339" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb49-340"><a href="#cb49-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-341"><a href="#cb49-341" aria-hidden="true" tabindex="-1"></a>Para o momento central amostral de ordem *r* = 4, tem-se:</span>
+<span id="cb49-342"><a href="#cb49-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-343"><a href="#cb49-343" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb49-344"><a href="#cb49-344" aria-hidden="true" tabindex="-1"></a>m_4=\frac{\sum(x_i - \overline{x})^4}{n}</span>
+<span id="cb49-345"><a href="#cb49-345" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb49-346"><a href="#cb49-346" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-347"><a href="#cb49-347" aria-hidden="true" tabindex="-1"></a>Para *r* = 2,</span>
+<span id="cb49-348"><a href="#cb49-348" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-349"><a href="#cb49-349" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb49-350"><a href="#cb49-350" aria-hidden="true" tabindex="-1"></a>m_2=\frac{\sum(x_i - \overline{x})^2}{n}</span>
+<span id="cb49-351"><a href="#cb49-351" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb49-352"><a href="#cb49-352" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-353"><a href="#cb49-353" aria-hidden="true" tabindex="-1"></a>Usando o resumo dos dados:</span>
+<span id="cb49-354"><a href="#cb49-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-357"><a href="#cb49-357" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-358"><a href="#cb49-358" aria-hidden="true" tabindex="-1"></a> m4 <span class="ot">&lt;-</span> (<span class="fu">sum</span>((dados<span class="sc">$</span>altura <span class="sc">-</span> (<span class="fu">mean</span>(dados<span class="sc">$</span>altura)))<span class="sc">^</span><span class="dv">4</span>))<span class="sc">/</span>resumo<span class="sc">$</span>n</span>
+<span id="cb49-359"><a href="#cb49-359" aria-hidden="true" tabindex="-1"></a> m4</span>
+<span id="cb49-360"><a href="#cb49-360" aria-hidden="true" tabindex="-1"></a> m2 <span class="ot">&lt;-</span> (<span class="fu">sum</span>((dados<span class="sc">$</span>altura <span class="sc">-</span> (<span class="fu">mean</span>(dados<span class="sc">$</span>altura)))<span class="sc">^</span><span class="dv">2</span>))<span class="sc">/</span>resumo<span class="sc">$</span>n</span>
+<span id="cb49-361"><a href="#cb49-361" aria-hidden="true" tabindex="-1"></a> m2</span>
+<span id="cb49-362"><a href="#cb49-362" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-363"><a href="#cb49-363" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-364"><a href="#cb49-364" aria-hidden="true" tabindex="-1"></a>Colocando os dados na fórmula do *g2* no R, chega-se ao resultado:</span>
+<span id="cb49-365"><a href="#cb49-365" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-368"><a href="#cb49-368" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-369"><a href="#cb49-369" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> (m4<span class="sc">/</span>(m2)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">-</span><span class="dv">3</span></span>
+<span id="cb49-370"><a href="#cb49-370" aria-hidden="true" tabindex="-1"></a>g2</span>
+<span id="cb49-371"><a href="#cb49-371" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-372"><a href="#cb49-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-373"><a href="#cb49-373" aria-hidden="true" tabindex="-1"></a>Usando a função do pacote <span class="in">`e1071`</span>, chega-se ao mesmo resultado:</span>
+<span id="cb49-374"><a href="#cb49-374" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-377"><a href="#cb49-377" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-378"><a href="#cb49-378" aria-hidden="true" tabindex="-1"></a> e1071<span class="sc">::</span><span class="fu">kurtosis</span>(dados<span class="sc">$</span>altura, <span class="at">type =</span> <span class="dv">1</span>)</span>
+<span id="cb49-379"><a href="#cb49-379" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-380"><a href="#cb49-380" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-381"><a href="#cb49-381" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Tipo 2, G2** $\to$ Usado em vários pacotes estatísticos. É calculado com a seguinte fórmula:</span>
+<span id="cb49-382"><a href="#cb49-382" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-383"><a href="#cb49-383" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb49-384"><a href="#cb49-384" aria-hidden="true" tabindex="-1"></a> G_2=\left (\left (n + 1 \right )g_2 + 6 \right )\frac{\left (n - 1 \right)}{\left ( \left(n-2 \right)\left (n-3 \right) \right )}</span>
+<span id="cb49-385"><a href="#cb49-385" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb49-386"><a href="#cb49-386" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-387"><a href="#cb49-387" aria-hidden="true" tabindex="-1"></a>Colocando os dados na fórmula na linguagem do *R*, tem-se:</span>
+<span id="cb49-388"><a href="#cb49-388" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-391"><a href="#cb49-391" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-392"><a href="#cb49-392" aria-hidden="true" tabindex="-1"></a> G2 <span class="ot">&lt;-</span> ((resumo<span class="sc">$</span>n<span class="sc">+</span><span class="dv">1</span>)<span class="sc">*</span>g2 <span class="sc">+</span> <span class="dv">6</span>)<span class="sc">*</span>(resumo<span class="sc">$</span>n<span class="dv">-1</span>)<span class="sc">/</span>((resumo<span class="sc">$</span>n<span class="dv">-2</span>)<span class="sc">*</span>(resumo<span class="sc">$</span>n<span class="dv">-3</span>))</span>
+<span id="cb49-393"><a href="#cb49-393" aria-hidden="true" tabindex="-1"></a> G2</span>
+<span id="cb49-394"><a href="#cb49-394" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-395"><a href="#cb49-395" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-396"><a href="#cb49-396" aria-hidden="true" tabindex="-1"></a>Com a função <span class="in">`kurtosis()`</span> do pacote <span class="in">`e1071`</span>:</span>
+<span id="cb49-397"><a href="#cb49-397" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-400"><a href="#cb49-400" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-401"><a href="#cb49-401" aria-hidden="true" tabindex="-1"></a> e1071<span class="sc">::</span><span class="fu">kurtosis</span>(dados<span class="sc">$</span>altura, <span class="at">type =</span> <span class="dv">2</span>)</span>
+<span id="cb49-402"><a href="#cb49-402" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-403"><a href="#cb49-403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-404"><a href="#cb49-404" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Tipo 3, b2** $\to$ É o padrão da função <span class="in">`kurtosis()`</span> do pacote <span class="in">`e1071.`</span> Usa-se a seguinte fórmula para o cálculo:</span>
+<span id="cb49-405"><a href="#cb49-405" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-406"><a href="#cb49-406" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb49-407"><a href="#cb49-407" aria-hidden="true" tabindex="-1"></a>b_2=\frac{m_4}{s^4}-3</span>
+<span id="cb49-408"><a href="#cb49-408" aria-hidden="true" tabindex="-1"></a>$$ onde *s* é o desvio padrão da amostra.</span>
+<span id="cb49-409"><a href="#cb49-409" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-410"><a href="#cb49-410" aria-hidden="true" tabindex="-1"></a>Na linguagem *R*, tem-se:</span>
+<span id="cb49-411"><a href="#cb49-411" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-414"><a href="#cb49-414" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-415"><a href="#cb49-415" aria-hidden="true" tabindex="-1"></a> b2 <span class="ot">&lt;-</span> m4<span class="sc">/</span>(resumo<span class="sc">$</span>dp)<span class="sc">^</span><span class="dv">4</span> <span class="sc">-</span> <span class="dv">3</span></span>
+<span id="cb49-416"><a href="#cb49-416" aria-hidden="true" tabindex="-1"></a> b2</span>
+<span id="cb49-417"><a href="#cb49-417" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-418"><a href="#cb49-418" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-419"><a href="#cb49-419" aria-hidden="true" tabindex="-1"></a>Com a função <span class="in">`kurtosis()`</span>:</span>
+<span id="cb49-420"><a href="#cb49-420" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-423"><a href="#cb49-423" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-424"><a href="#cb49-424" aria-hidden="true" tabindex="-1"></a>e1071<span class="sc">::</span><span class="fu">kurtosis</span>(dados<span class="sc">$</span>altura, <span class="at">type =</span> <span class="dv">3</span>)</span>
+<span id="cb49-425"><a href="#cb49-425" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-426"><a href="#cb49-426" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-427"><a href="#cb49-427" aria-hidden="true" tabindex="-1"></a>Novamente, para amostras grandes, há muito pouca diferença entre as várias medidas, principalmente entre G2 e b2 @joanes1998skewkurt.</span>
+<span id="cb49-428"><a href="#cb49-428" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-429"><a href="#cb49-429" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Interpretação do coeficiente de curtose</span></span>
+<span id="cb49-430"><a href="#cb49-430" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-431"><a href="#cb49-431" aria-hidden="true" tabindex="-1"></a>Os coeficientes calculados pela função do pacote <span class="in">`e1071`</span> retornam um resultado equivalente ao excesso de curtose. A curva normal tem um excesso de curtose próximo a zero e a curva é dita mesocúrtica. Se o coeficiente for positivo, os dados são *leptocúrticos* e se for negativo, os dados são *platicúrticos*. O resultado do exemplo aponta para uma distribuição *leptocúrtica*, pois existe um pequeno excesso de curtose (g2 = 0.1242567). Os valores que contribuem para a curtose são aqueles fora da região do pico, ou seja, ou *outliers*. A curva *mesocúrtica* tem um coeficiente de 3. Portanto, os valores calculados anteriormente referem-se ao excesso de curtose. O resultado da g2 = 0,1242567 pode ser escrito como b2 = 3,1242567. Daí o termo excesso de curtose.</span>
+<span id="cb49-432"><a href="#cb49-432" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-433"><a href="#cb49-433" aria-hidden="true" tabindex="-1"></a>A função <span class="in">`kurtosis()`</span> do pacote <span class="in">`moments`</span> retorna um resultado ao redor de 3, para o coeficiente tipo 1. Para chegar ao mesmo resultado do coeficiente tipo 1 da função do pacote <span class="in">`e1071`</span>, deve-se subtrair 3 do resultado.</span>
+<span id="cb49-434"><a href="#cb49-434" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-437"><a href="#cb49-437" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-438"><a href="#cb49-438" aria-hidden="true" tabindex="-1"></a>moments<span class="sc">::</span><span class="fu">kurtosis</span>(dados<span class="sc">$</span>altura)</span>
+<span id="cb49-439"><a href="#cb49-439" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-440"><a href="#cb49-440" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-441"><a href="#cb49-441" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb49-442"><a href="#cb49-442" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercício 1</span></span>
+<span id="cb49-443"><a href="#cb49-443" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-444"><a href="#cb49-444" aria-hidden="true" tabindex="-1"></a>Criar um conjunto de dados com distribuição normal com média 0 e desvio padrão 1 e n = 10000 . Verifique a assimetria e a curtose deste conjunto</span>
+<span id="cb49-445"><a href="#cb49-445" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb49-446"><a href="#cb49-446" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-447"><a href="#cb49-447" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Resposta</span><span class="co">]</span>{.underline}:</span>
+<span id="cb49-448"><a href="#cb49-448" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-449"><a href="#cb49-449" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Conjunto de dados: <span class="in">`meusDados`</span></span>
+<span id="cb49-450"><a href="#cb49-450" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-453"><a href="#cb49-453" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-454"><a href="#cb49-454" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb49-455"><a href="#cb49-455" aria-hidden="true" tabindex="-1"></a>meusDados <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100000</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb49-456"><a href="#cb49-456" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-457"><a href="#cb49-457" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-458"><a href="#cb49-458" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Construa um histograma (@fig-histNormal) com curva normal sobreposta:</span>
+<span id="cb49-459"><a href="#cb49-459" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-462"><a href="#cb49-462" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-463"><a href="#cb49-463" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-histNormal</span></span>
+<span id="cb49-464"><a href="#cb49-464" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb49-465"><a href="#cb49-465" aria-hidden="true" tabindex="-1"></a><span class="co">#| out.width: "70%"</span></span>
+<span id="cb49-466"><a href="#cb49-466" aria-hidden="true" tabindex="-1"></a><span class="co">#| out.heigh: "70%"</span></span>
+<span id="cb49-467"><a href="#cb49-467" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.align: 'center'</span></span>
+<span id="cb49-468"><a href="#cb49-468" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.cap: "Histograma com curva normal"</span></span>
+<span id="cb49-469"><a href="#cb49-469" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb49-470"><a href="#cb49-470" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb49-471"><a href="#cb49-471" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb49-472"><a href="#cb49-472" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> meusDados,</span>
+<span id="cb49-473"><a href="#cb49-473" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span><span class="fu">after_stat</span>(density)), </span>
+<span id="cb49-474"><a href="#cb49-474" aria-hidden="true" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">20</span>,</span>
+<span id="cb49-475"><a href="#cb49-475" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill=</span><span class="st">'tomato'</span>,</span>
+<span id="cb49-476"><a href="#cb49-476" aria-hidden="true" tabindex="-1"></a>                 <span class="at">col=</span><span class="fu">alpha</span>(<span class="st">'gray40'</span>,<span class="fl">0.5</span>)) <span class="sc">+</span> </span>
+<span id="cb49-477"><a href="#cb49-477" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(<span class="at">fun=</span>dnorm,</span>
+<span id="cb49-478"><a href="#cb49-478" aria-hidden="true" tabindex="-1"></a>                <span class="at">args=</span><span class="fu">list</span>(<span class="at">mean=</span><span class="dv">0</span>,<span class="at">sd=</span><span class="dv">1</span>), </span>
+<span id="cb49-479"><a href="#cb49-479" aria-hidden="true" tabindex="-1"></a>                <span class="at">col=</span><span class="st">'dodgerblue4'</span>,</span>
+<span id="cb49-480"><a href="#cb49-480" aria-hidden="true" tabindex="-1"></a>                <span class="at">lwd=</span><span class="dv">1</span>,</span>
+<span id="cb49-481"><a href="#cb49-481" aria-hidden="true" tabindex="-1"></a>                <span class="at">lty=</span><span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb49-482"><a href="#cb49-482" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">'X'</span>,    </span>
+<span id="cb49-483"><a href="#cb49-483" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">'Densidade de probabilidade'</span>)<span class="sc">+</span></span>
+<span id="cb49-484"><a href="#cb49-484" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>),</span>
+<span id="cb49-485"><a href="#cb49-485" aria-hidden="true" tabindex="-1"></a>                      <span class="at">n.breaks =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb49-486"><a href="#cb49-486" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() </span>
+<span id="cb49-487"><a href="#cb49-487" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-488"><a href="#cb49-488" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-489"><a href="#cb49-489" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Observe a skewness e a kurtosis</span>
+<span id="cb49-490"><a href="#cb49-490" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-493"><a href="#cb49-493" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-494"><a href="#cb49-494" aria-hidden="true" tabindex="-1"></a>e1071<span class="sc">::</span><span class="fu">skewness</span>(meusDados)</span>
+<span id="cb49-495"><a href="#cb49-495" aria-hidden="true" tabindex="-1"></a>e1071<span class="sc">::</span><span class="fu">kurtosis</span>(meusDados)</span>
+<span id="cb49-496"><a href="#cb49-496" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-497"><a href="#cb49-497" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-498"><a href="#cb49-498" aria-hidden="true" tabindex="-1"></a>Como era de se esperar, usando a <span class="in">`rnorm()`</span>, a distribuição é um exemplo de distribuição normal, $skewness \approx 0$ e $kurtosis \approx 0$. Observe que a cada vez que os comandos forem executados, os resultados serão discretamente diferentes. Para evitar isso, deve-se usar <span class="in">`set.seed()`</span>, veja a seção @sec-dnp. Faça o teste!</span>
+</code><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

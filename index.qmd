@@ -1,0 +1,40 @@
+# Prefácio {.unnumbered}
+
+![](capa.png){fig-align="center" width="300px"}
+
+## Bem-vindos ao **Bioestatística usando o R**
+
+::: callout-tip
+**Bioestatística Usando o R** é uma jornada completa pela estatística aplicada à saúde, com foco prático no uso do R e RStudio. Esta segunda edição foi revisada, reorganizada em partes temáticas e enriquecida com novos recursos visuais e pedagógicos.
+:::
+
+Este livro foi escrito para estudantes, pesquisadores e profissionais da área biomédica que desejam compreender e aplicar os conceitos estatísticos com o suporte de uma das ferramentas mais poderosas e acessíveis: o R. **Bioestatística Usando o R** tem a ambição de ser um pouco mais tolerável e amistoso, a fim de estimular o estudo da Bioestatística e, assim, facilitar a crítica da literatura científica e , desta forma, ajudar a evitar a intoxicação causada pela pseudociência.
+
+Você encontrará aqui:
+
+-   Fundamentos teóricos da bioestatística
+-   Aplicações práticas com a linguagem R
+-   Visualizações elegantes com `ggplot2`
+-   Testes estatísticos, regressões, ANOVA e muito mais
+-   Aplicações em epidemiologia e saúde pública
+
+> ## Sobre o Autor
+>
+> **Petrônio Fagundes de Oliveira Filho** nasceu em 4 de outubro de 1947, em Porto Alegre, Rio Grande do Sul, Brasil. Cursou o Ensino Médio no Colégio do Rosário, em Porto Alegre. Graduou-se em Medicina pela Universidade de Caxias do Sul (UCS) em 1973, realizou residência em Pediatria no Hospital da Criança Conceição (Porto Alegre) em 1975, e concluiu o mestrado em Saúde Pública Materno-Infantil pela Universidade de São Paulo em 1998.
+
+```{r}
+#| echo: false
+#| fig.align: 'center'
+#| out.width: '20%'
+
+knitr::include_graphics("https://i.imgur.com/uukObDQ.png")
+```
+
+> Em 1980, obteve o Título de Especialista em Pediatria (TEP) e, em 2009, o título de especialista em Estatística Aplicada pela UCS. Atuou como pediatra no INAMPS até 2002 e mantém consultório privado até hoje. Aposentou-se como professor da Universidade de Caxias do Sul em 2019, após uma trajetória iniciada em 1975. Na UCS, lecionou nas áreas de Pediatria, Epidemiologia e Bioestatística, foi coordenador do Serviço e da Residência Médica em Pediatria, chefe de Departamento, coordenador do curso de Medicina e diretor de Ensino do Hospital Geral de Caxias do Sul — hospital de ensino da universidade. Também integrou o Comitê de Ética em Pesquisa da UCS, vinculado à CONEP (Conselho Nacional de Ética em Pesquisa).
+>
+> Por mais de 20 anos, fez parte do Núcleo de Consultoria e Epidemiologia do Centro de Ciências da Saúde da UCS. É autor de dois livros: Epidemiologia e Bioestatística: Fundamentos para a leitura crítica (Editora Rubio, 2015/2018; 2ª edição em 2022) e SPSS – Análise de Dados Biomédicos, em coautoria com Valter Motta (MedBook, 2009). Participou ainda de dezenas de publicações científicas e capítulos de livros.
+>
+> Desde 1976, é casado com Lena Maria Cantergiani Fagundes de Oliveira. Tem duas filhas, Nathalia e Andressa, e dois netos encantadores e inteligentes: Gabriel e Felix. Ah, e havia também Floquinho — um cão da raça Shih Tzu, branco com manchas marrom claro e pretas — que acompanhava seus estudos e análises estatísticas. Floquinho latia toda vez que ouvia o nome de Ronald Fisher. Faleceu em 2024, aos 17 anos, deixando um grande vazio e muitas lembranças.
+
+email: petronioliveira\@gmail.com\
+WhatsApp: +55 54 9997 15499

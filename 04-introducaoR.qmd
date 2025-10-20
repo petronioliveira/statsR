@@ -1,0 +1,740 @@
+# Introdução ao uso do R
+
+## Instalação do R básico
+
+Para usar o R, há necessidade de carregar o programa básico que contém a sua linguagem de programação. O sistema é formado por um programa básico, *Graphical User Interface* (R-Gui) e muitos pacotes com procedimentos adicionais.
+
+O [**site**](https://www.r-project.org) oficial do R fornece as versões atualizadas do software e informações sobre este sofisticado projeto de computação estatística.
+
+Para baixar o R, usa-se um “CRAN Mirror”, clicando em CRAN (*Comprehensive R Archive Network*) na margem esquerda, abaixo de *Download*. O CRAN é central no uso do R: é o local de onde se carrega o software e todos os pacotes necessários para instalar e para expandir o R.
+
+Em vez de ter um único local, o CRAN é "espelhado" em diferentes locais do mundo. "Espelhado" significa simplesmente que existem versões idênticas do CRAN distribuídas por todo o mundo. É possível baixar o R diretamente da [**nuvem**](https://cloud.r-project.org) ou escolher uma origem mais próxima do seu local de atuação. No Brasil, encontram-se várias opções, como a [**Universidade Federal do Paraná**](https://cran-r.c3sl.ufpr.br), [**Fundação Oswaldo Cruz, RJ**](https://cran.fiocruz.br/), [**Universidade de São Paulo, São Paulo**](https://vps.fmvz.usp.br/CRAN) e [**Universidade de São Paulo, Piracicaba**](https://brieger.esalq.usp.br/CRAN)
+
+Após escolher uma das alternativas acima (pode ser qualquer uma delas) surgirá a página *The Comprehensive R Archive Network* com as opções para escolher o sistema operacional. Escolha o sitema de acordo com o seu computador (Windows, macOS ou Linux). Ao clicar em uma dessas opções, se o sistema operacional escolhido é o Windows, aparecerá a página *R for Windows*. Nesta, deve-se clicar em *base*. No caso de outros sistemas operacionais, seguir as orientações mostradas no site do R.
+
+Clicando em *base*, haverá um redirecionamento para a a página onde aparece a versão do R para o Windows mais atual. Clique no link que diz *Download R-...for Window* para baixar o instalador em um diretório do computador, em geral *Downloads*.
+
+Para instalar o programa básico, basta executar o instalador *R-...-win.exe* baixado no diretório. Ao fazer isso, aparece na tela do computador,no canto esquerdo, em baixo, o arquivo salvo. Execute este arquivo com um clique sobre ele. Aparecerá u,a janela perguntando *"Deseja permitir que este aplicativo faça alterações no seu dispositivo?"*. Clique em *Sim.* A seguir o instalador pedirá para escolher o Idioma. Selecione Português Brasileiro.
+
+Em sequência aparecerão informações sobre o diretório no qual o R será instalado em seu computador. Recomenda-se aceitar a configuração padrão sugerida pelo instalador do software.
+
+A próxima janela pedirá para personalizar os componentes que serão instalados. Recomenda-se usar as configurações sugeridas pelo instalador que irá reconhecer automaticamente a arquitetura do seu sistema Windows (32 e/ou 64 bits).
+
+A partir daqui, siga as recomendações padrão propostas pelo instalador até completar a instalação, clicando em *Concluir*.
+
+O R não precisa ser iniciado, pois o software que será usado, neste livro, é o *RStudio*. Este, para ser executado, necessita ter o R instalado no computador. Ou seja, o R é o programa "cérebro" necessário para as análises de dados que serão realizadas. Ele precisa estar instalado para permitir o funcionamento do *RStudio*.
+
+## Ambiente de desenvolvimento
+
+### RStudio
+
+Um ambiente de desenvolvimento integrado (IDE - *Integrated Development Environment*) é uma ferramenta que facilita a escrita, execução e depuração de código.\
+O *RStudio* é o ambiente de desenvolvimento integrado mais utilizado com o R. Ele serve para facilitar a escrita, execução e depuração de código R, bem como para gerenciar projetos, visualizar dados e criar gráficos. O *RStudio* é um membro ativo da comunidade R. Foi fundado em 2009 por Joseph J. Allaire, engenheiro de software americano. O *RStudio*, inspirado pelas inovações dos usuários de R em ciência, educação e indústria, desenvolveu ferramentas gratuitas e abertas para facilitar o uso do R. O *RStudio* é escrito em linguagem C++ e foi inicialmente focado apenas na linguagem R. Com o tempo o desenvolveu suporte para *Python* e *VSCode*. Em 2022, para acompanhar essa mudança, foi anunciada a mudança do nome da empresa que o desenvolve para [Posit](https://posit.co/) e, recentemente, introduzido um novo IDE, denominado *Positron* @blog_2024, um projeto inicial, com um ambiente semelhante ao *RStudio* e que continua em desenvolvimento. Talvez, no futuro, possa substituir o RStudio. Por enquanto, isso será difícil , pois o *Positron* não tem todas as funcionalidades do *RStudio* @positron2025.
+
+#### Instalação do *R Studio*
+
+Para instalar o *RStudio* , acessar o [**site**](https://www.rstudio.com/products/rstudio/download/) e clicar em *Download* para obter a versão desejada. Recomenda-se a versão *RStudio Desktop* – *Open Source License* que é gratuita. Esta versão entrega as ferramentas integradas para o R.
+
+A seguir, aparecerão os instaladores disponíveis, conforme a plataforma suportada pelo seu computador. As mais utilizadas são Windows e Mac OS X. Neste livro, como base, serão mostrados os passos para a plataforma Windows[^04-introducaor-1] .
+
+[^04-introducaor-1]: A instalação para Mac OS X pode ser facilmente obtida em busca do *Google*. Depois de instalado, o uso do *RStudio* não difere do Windows
+
+Em sequência, executar o instalador baixado *RStudio-2025.05.1-513.exe* [^04-introducaor-2]e seguir as suas instruções.
+
+[^04-introducaor-2]: Disponível em 16/06/2025
+
+#### Iniciando o *RStudio*
+
+Para iniciar o *RStudio* basta clicar no ícone indicativo (@fig-icone) que se encontra no menu *Iniciar* do Windows.
+
+```{r}
+#| echo: false
+#| out.width: "15%"
+#| label: fig-icone
+#| fig.align: 'center'
+#| fig-cap: "Ícone do RStudio"
+
+knitr::include_graphics("https://i.imgur.com/vpHesDH.png")
+```
+
+O *RStudio* abre como mostrado na @fig-inicial. O *RStudio* é uma interface mais funcional e amigável para o R. Contém um conjunto de ferramentas integradas projetadas para ajudá-lo a ser mais produtivo com o R.
+
+```{r}
+#| label: fig-inicial
+#| echo: false
+#| out.width: "75%"
+#| fig.align: 'center'
+#| fig-cap: "Tela inicial do RStudio"
+ knitr::include_graphics("https://i.imgur.com/oG2o4cl.png")
+```
+
+Inclui o *Console* , editor que suporta execução direta de códigos e uma variedade de ferramentas robustas para plotagem, exibição de histórico, depuração e gerenciamento de seu espaço de trabalho incluídos em uma interface que está, inicialmente, dividida em 3 paineis:
+
+1.  *Console*
+2.  *Environment, History, Connections, Tutorial*
+3.  *Files, Plots, Packages, Help*
+
+**Console e R Script**
+
+Do lado esquerdo fica o **Console** (@fig-inicial), em vermelho), onde os comandos podem ser digitados e aparecem os resultados da execução dos comandos. Ao abrir o *RStudio* , vê-se no *Console* uma série de informações sobre o R, como versão em uso e, por último, o diretório onde está armazenado o espaço de trabalho (*workspace*). Estas informações podem ser facilmente apagadas, clicando na barra de ferramentas, no menu *Edit*, e após em *Clear Console* ou, usando as teclas *Ctrl+L*.
+
+O *Console* é a principal parte do R. Aqui é onde o R realmente executa o comando. No início do *Console*, existe um caractere (\>). Este é um *prompt* que informa que o R está pronto para receber um novo código. Pode-se digitar o código diretamente no *Console* após o *prompt* e obter uma resposta imediata. Por exemplo, se for digitado 1 + 1 e pressionado *Enter*, o R imediatamente gera uma saída de 2 (@fig-console).
+
+```{r}
+#| echo: false
+#| out.width: "70%"
+#| label: fig-console
+#| fig.align: 'center'
+#| fig-cap: "Console do RStudio"
+#| 
+ knitr::include_graphics("https://i.imgur.com/3Fu5drg.png")
+```
+
+Recomenda-se que a maior parte dos comandos sejam digitados no bloco de notas do *RStudio* , o *R Script*. Reservar o *Console* apenas para depurar ou fazer análises e cálculos rápidos. A razão para isso é simples: se o comando for digitado diretamente no *Console*, ele não será salvo e se for cometido um erro na digitação, haverá necessidade de digitar tudo novamente. Portanto, é melhor escrever os comandos no *R Script* e, quando estiver pronto para executar, enviar para o *Console*.
+
+O *R Script* é o quarto painel do *RStudio* e seu bloco de notas. Ele é criado através do menu *File* \> *New File* \> *R Script* ou clicando no botão verde com o sinal (+), na barra de ferramentas de acesso rápido, na parte superior à esquerda. Ao criar um novo *R Script* será aberto o painel do bloco de notas (@fig-script), em verde).
+
+```{r}
+#| echo: false
+#| out.width: "75%"
+#| label: fig-script
+#| fig.align: 'center'
+#| fig-cap: "Bloco de Notas do RStudio: R Script"
+ knitr::include_graphics("https://i.imgur.com/0URmX6w.png")
+```
+
+Um diferencial do *RStudio* é que os comandos são autocompletáveis. Basta começar a escrever o comando, inserindo 3 ou mais caracteres, por exemplo, `summ` referente a função `summary ()`, usada para sumarizar um conjunto de dados, e surge um menu de opções, facilitando a digitação (@fig-auto).
+
+```{r}
+#| echo: false
+#| out.width: "75%"
+#| label: fig-auto
+#| fig.align: 'center'
+#| fig-cap: "Menu autocompletável"
+ knitr::include_graphics("https://i.imgur.com/qNS4uYP.png")
+```
+
+Após digitar no *Console*, para que seja executado o comando há necessidade de clicar na tecla *Enter*; no *RScript*, clicar em *Run*, acima, na barra, no lado direito, ou usar o atalho *Ctrl + Enter*. Textos podem ser copiados e colados no script e linhas em branco podem ser inseridas. Além disso, no final da sua sessão, é possível salvar o arquivo, que poderá ser recarregado no futuro, se precisar refazer a análise.
+
+Os *scripts* do *RStudio* são apenas arquivos de texto com a extensão (.R). Quando se cria um *R Script*, aparece como *Sem título* (*Untitled*). Antes de começar a digitar um novo *script* no *RStudio*, recomenda-se salvar o atual com um novo nome de arquivo. Dessa forma, se algo no computador falhar durante o trabalho, o código ficará protegido.
+
+Ao digitar o código em um *script*, o R não executa o código enquanto se digita. Para que o R realmente avalie o código digitado, há necessidade de primeiro enviar o código para o *Console*, clicando no botão *Run* ou usando a tecla de atalho *Crtl + Enter*. Cada linha é marcada no início por um número em sequência.
+
+Além da digitação de comandos, o *R Script* permite fazer comentários onde tudo que for escrito, após o símbolo $\#$, não é considerado, é apenas uma explicação, um esclarecimento. Os comentários são literais, escritos diretamente para explicar o comando executado. São repetidos na saída do *Console* sem aparecer nos resultados.
+
+**Ambiente, História, Conexão e Tutorial**
+
+No lado superior direito há um painel com quatro abas (@fig-inicial), em azul):
+
+1)  **Ambiente** (*Environment*) - onde ficam armazenados os objetos criados, as bases de dados importadas, etc., na sessão ativa. É possível visualizar informações como o número de observações e linhas dos bancos de dados ativos. A guia também tem algumas ações clicáveis, como *Import Dataset*, que permite importar arquivos csv, Excel, SPSS, etc.
+
+2)  **História** (*History*) - onde fica o histórico dos comandos executados no *Console*. Estes comandos podem ser pesquisados nesta guia. Os comandos são exibidos em ordem (mais recentes na parte inferior) e agrupados por bloco de tempo.
+
+3)  **Conexões** (*Connections*) - mostra todas as conexões feitas com fontes de dados suportadas e permite saber quais conexões estão ativas no momento. O *RStudio* suporta múltiplas conexões de banco de dados simultâneas.
+
+4)  **Tutorial** - a partir da versão 1.3, o *R Script* ganhou um painel Tutorial dedicado, usado para executar tutoriais que ajudarão você a aprender e dominar a linguagem de programação R. Na primeira vez que se abre o programa, clicando nesta aba, o *RStudio* solicita que seja instalado o pacote `learnr` (@fig-tutorial)). Isto permite acesso a vários tutoriais úteis que merecem ser explorados
+
+```{r}
+#| echo: false
+#| out.width: "50%"
+#| label: fig-tutorial
+#| fig.align: 'center'
+#| fig-cap: "Tutoriais do RStudio"
+ knitr::include_graphics("https://i.imgur.com/wSgusUJ.png")
+```
+
+**Arquivos, Gráficos, Pacotes, Ajuda e Apresentação**
+
+No lado direito, abaixo, existem outras abas muito úteis (@fig-inicial), em amarelo):
+
+1)  **Arquivos (Files)** - esta guia dá acesso ao diretório onde se encontram os seus arquivos. Um bom recurso do painel *Files* é que se pode usá-lo para definir seu diretório de trabalho. Para isso, clique em *More* e depois em *Set As Working Directory*.
+
+2)  **Gráficos (Plots)** - local onde ficam os gráficos gerados. Existem botões para abrir o gráfico em uma janela separada e exportar o gráfico como um *.pdf* ou *.jpeg*.
+
+3)  **Pacotes (Packages)** - mostra uma lista de todos os pacotes R instalados no seu computador e indica se eles estão atualmente carregados ou não. Pacotes que estão sendo executados na sessão atual, estão marcados, enquanto aqueles que estão instalados, mas ainda inativos, estão desmarcados.
+
+4)  **Ajuda (Help)** - menu de ajuda para as funções R. Você pode digitar o nome de uma função na janela de pesquisa (por exemplo, `histogram` ou usar o `?hist`), no *Console* ou no *R Script*, para procurar ajuda sobre uma função (@fig-ajuda)). A Ajuda no *R Studio* pode também ser acessada no menu *Help* da barra de ferramentas onde existem várias opções. Para complementar, alguns livros são muito uteis, como o *R Cookbook* @chang2021cookbook ou *Using* R\* for introductory statistics\* @verzani2004using. No entanto, na maioria das vezes a forma mais prática de conseguir ajuda com uma dúvida específica é a busca em fóruns na internet, como o *Stack Overflow*: <https://stackoverflow.com/>.
+
+5)  **Apresentação (Presentation)** – é visualizador de apresentações. Nas últimas versões do Rstudio, é possível com o Quarto, editar um código em R Markdown para construir uma apresentação. Não faz parte do objetivo deste livro desenvolver este assunto. É possível encontrar um tutorial em <https://quarto.org/docs/get-started/hello/rstudio.html>.
+
+```{r}
+#| echo: false
+#| out.width: "85%"
+#| label: fig-ajuda
+#| fig.align: 'center'
+#| fig-cap: "Ajuda do RStudio"
+ knitr::include_graphics("https://i.imgur.com/XlGJgCt.png")
+```
+
+### Pacotes
+
+Para que o R possa interagir com o usuário, realizar análises estatísticas e gerar gráficos, a instalação de pacotes é essencial.\
+Um **pacote é um conjunto de funções, dados e documentação** que amplia os recursos do R base. O uso de pacotes é fundamental para explorar todo o potencial da ferramenta, sendo sua instalação orientada pelas demandas específicas de cada projeto. Ao instalar o R básico, diversos pacotes já vêm incluídos, permitindo uma ampla gama de análises. No entanto, à medida que o uso do R se aprofunda, torna-se necessário instalar pacotes adicionais desenvolvidos pela comunidade, que oferecem funcionalidades extras por meio de novas funções e comandos.
+
+#### Repositório de pacotes
+
+Quando se identifica a necessidade de um novo pacote, é fundamental saber onde ele se encontra. O principal repositório de pacotes é o CRAN (*Comprehensible R Archive Network*), já comentado anteriormente. Para acessar este repositório, use o [**link**](https://cran.r-project.org/mirrors.html) e escolha um espelho (*0-Cloud* ou o mais próximo geograficamente). Depois que o pacote for instalado, ele será mantido em sua biblioteca (*library*) R associada à sua versão principal atual do R. Haverá necessidade de atualizar e reinstalar os pacotes sempre que atualizar uma versão principal do R.
+
+Estando na página do CRAN, no menu, à esquerda, clique em *Packages* . Isto o colocará na página dos *Contributed Packages*, onde a maioria dos pacotes podem ser encontrados em *Table of available packages, sorted by name* . Também é possível clicar em CRAN *Task Views* , onde estão os pacotes separados por tópicos.
+
+#### Instalação de um novo pacote
+
+Instalar um pacote significa simplesmente baixar o código do pacote em um computador pessoal. Existem duas maneiras principais de instalar novos pacotes. O método mais comum é baixá-los do CRAN, usando a função `install.packages()`. Dentro dos parênteses, como argumento, coloca-se entre aspas (duplas ou simples) o nome do pacote. Como visto, deve-se, de preferência, digitar o comando no *R Script*. Por exemplo, para instalar o pacote `ggplot2`, usado para trabalhar gráficos, se procede da seguite maneira:
+
+```{r}
+#| eval: false
+install.packages("ggplot2")
+library(ggplot2)
+```
+
+Para carregar o pacote, isto é, para fazer com que suas funções se tornem ativas para uso na na sessão, deve-se usar a função `library()`, como mostrado no comando acima.\
+Se o *RStudio* for fechado e reaberto, o pacote deverá ser novamente ativado. Observe que a função `library()` não requer que o nome do pacote seja digitado entre aspas. Isto acontece porque antes de o pacote ser instalado o R não o reconhece , portanto, há necessidade de indicar o nome (caracteres), para que o R procure na internet o que deve deve baixar. Já, depois de instalado, o pacote é um objeto conhecido pelo R, logo as aspas não são mais necessárias.
+
+Uma outra maneira de instalar pacotes no R, é usar o botão **Install**, localizado na aba *Packages*, no painel inferior, à direita. Clicando em **Install**, abre-se a caixa de diálogo da @fig-install. Digitar em *Packages* o nome do pacote (`ggplot2`) e o *RStudio* completará com opções para achar o pacote. Clicar em `ggplot2` e verifique se *Install dependencies* foi selecionado. A seguir clicar em *Install* e aguardar aparecer no *Console* a mensagem que o pacote foi instalado com sucesso.
+
+```{r}
+#| echo: false
+#| out.width: "55%"
+#| label: fig-install
+#| fig.align: 'center'
+#| fig-cap: "Instalação do pacote 'ggplot2' usando a caixa de diálogo 'Install Packages'"
+ knitr::include_graphics("https://i.imgur.com/HBlM3FL.png")
+```
+
+#### Atualização dos pacotes
+
+Periodicamente, há necessidade de atualizar os pacotes instalados. Essa necessidade advém do fato que, com o tempo, os autores de pacotes lançarão novas versões com correções de defeitos e novos recursos e, geralmente, é uma boa ideia manter-se atualizado. Para realizar a atualização, use a função `update.packages()`, colocando o nome do pacote entre aspas, por exemplo, `update.packages("ggplot2)`.
+
+#### Instalando e carregando mais de um pacote {#sec-pacman}
+
+Uma das funções, atualmente, mais usadas para executar essa ação é fornecida pelo pacote `pacman` @tyler2018pacman.
+
+É interessante configurar o `pacman` para que ele esteja sempre disponível assim que o R é aberto. Isso é feito editando o arquivo chamado `.Rprofile`, que é carregado automaticamente toda vez que você inicia uma sessão do R. Para configurar o `pacman` no `.Rprofile`, abra-o no *RStudio*:
+
+```{r}
+file.edit("~/.Rprofile")
+```
+
+Adicione o seguinte código:
+
+```{r}
+if (!requireNamespace("pacman", quietly = TRUE)) {
+  install.packages("pacman")
+}
+library(pacman)
+```
+
+Esse trecho garante que:
+
+• Se o `pacman` não estiver instalado, ele será instalado automaticamente.\
+• Depois, ele será carregado para uso imediato.
+
+Após esse procedimento, salve o `.Rprofile` e feche o arquivo. Reinicie o R para que a configuração entre em vigor.
+
+O pacman instala e carrega um ou mais pacotes, através da sua função `p_load()` da seguinte maneira, não havendo necessidade de escrever o nome dos pacotes entre aspas:
+
+```{r}
+#| eval: false
+
+pacman::p_load(readxl, dplyr, ggplot2, car)
+```
+
+Além da função `p_load()`, o pacote `pacman` tem outas funções, entre elas a função `p_update()` que atualiza o pacote e , se usada sem especificar o pacote , atualiza todos. Para saber mais sobre o pacote `pacman`, use a ajuda.
+
+#### Citação de pacotes em publicações
+
+No R existe um comando que mostra como citar o R ou um de seus pacotes. Basta digitar a função `citation()` no *Console* ou no *R Script* e observar a saída. Para um pacote específico, basta colocar o nome do pacote entre aspas, na função.
+
+```{r}
+citation()
+citation ("ggplot2")
+```
+
+### Diretório de Trabalho
+
+O diretório de trabalho (**Working Directory**) é uma pasta onde o R lê e salva arquivos. Deve-se criar um diretório de trabalho para a sessão . Para isso, no *RStudio* siga o caminho: *Session* \> *Set Working Directory* \> *Choose Directory* ou use o atalho *Ctrl + Shift + H* e escolha o diretório desejado ou crie um novo.
+
+Ao finalizar, aparecerá no *Console* (@fig-wd):
+
+```{r}
+#| echo: false
+#| out.width: "85%"
+#| label: fig-wd
+#| fig.align: 'center'
+#| fig-cap: "Diretório de trabalho"
+ knitr::include_graphics("https://i.imgur.com/o27RYRI.png.png")
+```
+
+Note que o R usou a função `setwd()` que significa "definir diretório de trabalho". Também é possível usar esta função diretamente no *R Script* ou no *Console*, digitando conforme o caminho do diretório.
+
+Para saber qual é o diretório de trabalho que está sendo usado pelo R, pode-se executar a função `getwd()`. A saída no *Console* mostrará o diretório de trabalho usado, portanto é recomendado que se faça isso no início da sessão para verificar se há ou não necessidade de modificar o diretório.
+
+### Projeto
+
+Uma funcionalidade importante do *RStudio* é a possibilidade de se criar projetos. Um projeto nada mais é do que uma pasta no seu computador. Nessa pasta, estarão todos os arquivos que serão usados ou criados na sua análise.
+
+A principal razão de se utilizar projetos é simplesmente *organização*. Com eles, fica muito mais fácil importar conjunto de dados para dentro do R, criar análises reprodutíveis e compartilhar o trabalho realizado.
+
+Ao se começar uma nova análise, é interessante criar um Novo Projeto. Para isso, clicar *File* \> *New Project* ou clicar no menu que está na parte superior, à direita, *Project (none)* \> *New Project...*. Abrirá a janela da @fig-projeto).
+
+```{r}
+#| echo: false
+#| out.width: "55%"
+#| label: fig-projeto
+#| fig.align: 'center'
+#| fig-cap: "Assistente de novo projeto"
+ knitr::include_graphics("https://i.imgur.com/6N4p3VY.png")
+```
+
+Clique em *New Directory* para criar um novo diretório. Por exemplo, para as aulas de Bioestatística, pode-se criar um diretório com o nome de *bioestatistica* ou qualquer outro nome[^04-introducaor-3].
+
+[^04-introducaor-3]: Evite acentos, maiúsculas ou caracteres especiais. Seja simples e objetivo, usando nomes que estejam relacionados com o assunto.
+
+Quaisquer documentos Excel ou arquivos de texto associados podem ser salvos nesta nova pasta e facilmente acessados, indo ao menu *Project (none)* \> *Open Project...*. A partir daí, é possível realizar análises de dados ou produzir visualizações com seus dados importados.
+
+Quando um projeto estiver aberto no *RStudio*, o seu nome aparecerá no canto superior direito da tela.\
+Na aba *Files*, aparecerão todos os arquivos contidos no projeto. Quando se clica no nome do projeto, abre um menu que torna muito fácil a navegação pelos projetos existentes. Basta clicar em qualquer um deles para trocar de projeto, isto é, deixar de trabalhar em uma análise e começar a trabalhar em outra.
+
+## Princípios básicos de uso do R
+
+### R como calculadora
+
+O R pode ser usado como uma calculadora desde as mais simples até as mais complexas. Para isso, basta digitar as equações no *Console* ou no *R Script*, usando os operadores:
+
+#### Operadores
+
+Operadores são usados para realizar operações com variáveis e valores.
+
+[Operadores aritméticos]{.underline}
+
+No R, você pode usar operadores aritméticos para realizar operações matemáticas comuns.
+
+```{r}
+ 10 + 5        # Adição
+ 10 - 5        # Subtração
+ 10 * 5        # Multiplicação
+ 10 / 5        # Divisão
+ 10 ^ 5        # Potência
+ 10 %% 3       # Divisão modular (divisão com resto)
+ 10 %/% 3      # Divisão inteiro
+```
+
+Observe que o R repete a operação e coloca em baixo o resultado precedido por \[1\]. O resultado da operação de exponenciação é exibido como notação científica, onde $e+05$ significa $10^5$.
+
+[Operadores de atribuição]{.underline}
+
+Operadores de atribuição são usados para atribuir valores a variáveis, como será visto na @sec-objetos, adiante.
+
+[Operadores de comparação]{.underline}
+
+São usados para comparar dois valores.
+
+```{r}
+# Igualdade
+3 == 3
+3 == 4
+
+# Não igual (diferente)
+3 != 4
+
+# Maior
+6 > 3
+
+# Menor
+3 < 4
+
+# Maior ou igual
+5 >= 3
+
+# Menor ou igual  
+3 <= 4
+```
+
+::: callout-note
+## Atenção
+
+Na linguagem R, o sinal de igualdade é escrito com duplo $=$.
+:::
+
+[Operadores lógicos]{.underline}
+
+Operadores lógicos são usados para combinar declarações condicionais:
+
+```{r}
+# Conjunção lógica E, retorna TRUE se ambos elementos são  verdadeiros 
+6 == 6 & 7 == 8
+
+# Conjunção lógica E, retorna TRUE se ambos elementos são  verdadeiros
+2 * 3 && 1 * 6
+
+# Conjunção lógica OU, retorna TRUE se um dos elementos é verdadeiro
+(2 * 2) | sqrt(16)
+6 == 6 | 7 == 8 
+
+# Conjunção lógica NÃO, retorna FALSE se o  elemento é verdadeiro
+!6==6
+!2==4
+
+# Operador lógico que verifica se um elemento pertence a um conjunto (%in%)
+
+ pares <- c(0, 2, 4, 6, 8, 10)
+ 5 %in% pares
+```
+
+[Outros operadores]{.underline}
+
+```{r}
+# Logarítmo natural (base e)
+log (10) 
+
+# Logarítmo base 10
+log10 (10)       
+
+# Raiz quadrada
+sqrt (81)
+
+# Resultado absoluto
+abs (3 - 6)
+```
+
+### Objetos {#sec-objetos}
+
+O R permite salvar valores dentro de um *objeto*. Os objetos são criados utilizando o *operador de atribuição* (\<-). Para digitar este operador, basta teclar o sinal *menor que* (\<), seguido de *hífen* (-) , sem espaços. Existe um atalho que é pressionar (`Alt`) $+$ (-). O símbolo $=$ pode ser usado no lugar de \<-.
+
+**Objeto** é um pequeno espaço na memória do computador onde o R armazenará um valor ou o resultado de um comando, utilizando um nome arbitrariamente definido. Tudo criado pelo R pode se constituir em um objeto, por exemplo: uma variável, uma operação aritmética, um gráfico, uma matriz ou um modelo estatístico. Através de um objeto torna-se simples acessar os dados armazenados na memória. Ao criar um objeto, se faz uma declaração. Isto significa que se está afirmando que uma determinada operação aritmética irá, agora, tornar-se um objeto que irá armazenar um determinado valor. As declarações são feitas uma em cada linha do *R Script*.
+
+Os objetos devem receber um nome e é obrigatório que ele comece por uma letra (ou um ponto) e não é permitido o uso do hífen. Pode-se usar o ponto ou *underlines* para separar palavras. Deve ser evitado o uso de nomes que sejam de objetos do sistema, ou outros objetos já criados, funções ou constantes. Por exemplo, não deve ser utilizado: `c`, `q`, `r`, `s`, `t`, `C`, `D`, `F`, `I`, `T`, `diff`, `exp`, `log`, `mean`, `pi`, `range`, `rank`, `var`, `NA`, `NaN`, `NULL`, `FALSE`, `TRUE`, `break`, `else`, `if`, `break`, `function`, `in`, `while` que devem ser reservados, pois têm significados especiais.
+
+Quando se usa um objeto com o nome `pi`, ele assumirá outro valor diferente de 3,141593. Preservando este nome, toda vez que usarmos a palavra `pi`, o R assume o valor pré-estabelecido. Além disso, o R faz a diferença entre letras maiúsculas e minúsculas. Ou seja, `soma` é um objeto diferente de `Soma` e ambos são diferentes de `SOMA`.
+
+Para exibir o conteúdo de um objeto, basta digitar seu nome no *R Script* ou no *Console* e executar. Em análises mais extensas, verificar se já há um objeto com o mesmo nome, pois seus valores serão substituídos ao executar o novo objeto. Para saber se já existe um objeto com o nome definido, digite as primeiras letras do objeto criado e o *R Studio* listará, usando a sua função de autocompletar, tudo que começar com essas letras no arquivo. Assim ficará fácil verificar se já existe um objeto com o nome desejado.
+
+No comando abaixo, é criado um objeto que receberá a soma de dez números, utilizando a função `sum()`. O objeto foi denominado de `soma`. Para exibir o valor contido no objeto `soma`, é necessário digitar `soma` no *R Script* ou *Console* e executar:
+
+```{r}
+soma <- sum (2, 3, 12, 15, 21, 4, 8, 7, 13, 21)
+soma
+```
+
+#### Atributos de dados inseridos nos objetos
+
+Os dados inseridos nos objetos pertencem as seguintes classes [^04-introducaor-4]:
+
+[^04-introducaor-4]: Atributos de um objeto.
+
+1.  [Caracteres (character)]{.underline}: são categóricos ou qualitativos. Em geral, são carcteres ou texto. São escritos entre aspas simples ou duplas e não são modificáveis.
+
+2.  [Numérico (numeric)]{.underline}: são números inteiros (`integer`) ou decimais ou ponto flutuante (`dbl` = `double`). A sintaxe para o número inteiro é 42L, 3L\[\^04-introducaor-5\], pois se fosse escrito como 42, o R automaticamente o trata como um número flutuante (`double`). \[\^04-introducaor-5\]: O `L` vem da linguagem C, onde `long` é um tipo inteiro. É uma convenção que o R herdou
+
+3.  [Lógico (logical)]{.underline}: são usados para combinar declarações condicionais. Retorna: verdadeiro (TRUE) ou falso (FALSE). São escritos obrigatoriamente com letras maiúsculas sem aspas. São utilizados para indicar opções onde há apenas duas opções ou como resultado de um teste lógico.
+
+É a partir do conhecimento do tipo de classe que as funções sabem o que extamente fazer com um objeto. Por exemplo, não é possivel somar duas letras e se for feita a tentativa de somar "a" e "b", o Rretorna um erro: [Error in "a" + "b": non-numeric argument to binary operator]{style="color:red"}.
+
+No R, os textos são escritos entre aspas simples ou duplas. As aspas servem para diferenciar nomes (objetos, funções, pacotes) de textos (letras e palavras). Os textos são muito comuns em variáveis categóricas e são popularmente chamados de *strings* ou *character*. Além desta classe, o R tem outras classes básicas que são a *numeric* e a *logical*. Um objeto de qualquer uma dessas classes é chamado de *objeto atômico*. Esse nome se deve ao fato de essas classes não se misturarem [@cursor2015livro].
+
+Para saber qual o tipo de classe que um objeto pertence, basta usar a função `class()`.
+
+```{r}
+idade <- c(3, 5, 7, 9, 6, 7)
+class (idade)
+
+nome <- c("Pedro", "Maria", "Margarida", "Alice", "João", "Luís")
+class(nome)
+```
+
+## Funções {#sec-funcoes}
+
+A função é uma orientação ao R para que ele execute uma ação que é algum procedimento específico. Em decorrência, em geral, uma função ttem um nome sugestivo da ação que ela realiza. Por exemplo, a função `mean ()` realiza a média aritmética de uma série de números. O resultado, como regra geral, deve ser colocado em um objeto que será armazenado na memória do computador.
+
+Esta série de números, concatenados na função `c()`, é armazenada por um objeto, nomeado `dados`e, posteriormente, se usa a função `mean()`com este objeto `dados`. O resultado da função `mean`, exibido no *Console*, será recebido por outro objeto `media_dados` e colocado na memória do computador.
+
+```{r}
+dados <- c(3, 5, 7, 9, 6, 7)
+media_dados <- mean(dados)
+media_dados
+```
+
+De acordo com as necessidades pode-se criar funções pessoais, customizadas. Entretanto, na maioria das vezes, elas são encontradas prontas, fazendo parte de um pacote. Pacotes contêm muitas funções que para serem executadas necessitam que estes estejam instalados e carregados. As funções para exercerem a sua ação devem receber dentro delas (entre parênteses) os *argumentos* que elas exigem. Os argumentos de uma função são sempre separados por vírgulas.
+
+Para se saber quais argumentos necessários para uma determinada função basta consultar a ajuda, onde se encontrará a documentação da mesma. Para isso basta digitar no *Console*, no caso da função `mean()`, `help(mean)` ou `?mean`:
+
+```{r}
+#| eval: false
+help(mean)
+```
+
+O resultado deste comando aparecerá na aba *Help*, na parte inferior, à direita (@fig-help):
+
+```{r}
+#| echo: false
+#| out.width: "60%"
+#| label: fig-help
+#| fig.align: 'center'
+#| fig-cap: "Ajuda para Média Aritmética"
+ knitr::include_graphics("https://i.imgur.com/Dy3gA7R.png")
+```
+
+Os principais argumentos da função `mean()` são:
+
+-   **x** $\to$ vetor numérico
+-   **trim** $\to$ fração das observações (varia de 0 a 0,5) extraída de cada extremidade de x para calcular a média aparada
+-   **na.rm** $\to$ valor lógico (TRUE ou FALSE) que indicam se os valores ausentes (NA) devem ser removidos antes que o cálculo continue
+
+Este último argumento é muito importante quando, na sequência de valores existe algum não informado ou inexistente. No R, eles são denominados de valores ausentes (*missing values*) e denotados por **NA** (*Not Available*).
+
+Por exemplo, em uma coleta de uma série de valores, correspondentes ao peso de 15 recém-nascidos, havendo a "falta" de um dos registros, ao calcular a média com a função `mean()`, ela retornará NA.
+
+```{r}
+pesoRN <- c (3340,3345,3750,3650,3220,4070,NA,3970,3060,3180,  
+             2865,2815,3245,2051,2630)
+mean (pesoRN)
+```
+
+Colocando o argumento `na.rm = TRUE`, para remover os valores faltantes, a função retornará a média aritmética sem este valor:
+
+```{r}
+mean (pesoRN, na.rm = TRUE)
+```
+
+### Criando funções {#sec-funcpropria}
+
+No R, é possível criar funções pessoais que podem simplificar um código e, eventualmente, diminuir o tempo de execução das análises.
+
+#### Fórmula geral
+
+As funções têm uma fórmula geral:
+
+> <font size=3>nome_da_funcao \<- function (x){transformar x}</font>
+
+Por exemplo, a área de um circulo é igual a $\pi\times raio^2$. Uma função pode otimizar o cálculo da área:
+
+```{r}
+area.circ <- function(r){
+  area <- pi*r^2
+  return(area)                
+}
+```
+
+Ou seja, foi usada a função `function()`, com o raio do círculo como argumento. A seguir, entre chaves `{}`, coloca-se a ação que a função realizará, no caso o cálculo da área do círculo. O resultado deste cálculo (`pi*r^2`) é recebido por um objeto denominado `area`.[^04-introducaor-5] A seguir, usou-se a função `return ()` para retornar o resultado do cálculo realizado.\
+Ao executar essa função, é possível usá-la para calcular a área de um círculo, cujo raio é igual a 5 cm:
+
+[^04-introducaor-5]: Foi usado o nome `area` sem acentuação, mas poderia ser qualquer nome.
+
+```{r}
+area.circ(5)
+```
+
+#### Outros exemplos
+
+O Indice de Massa Corporal é igual ao peso (kg) dividido pela $altura^2$, em metros. Uma função para fazer este cálculo é:
+
+```{r}
+imc <- function(peso, altura){
+  res <- peso/altura^2
+  return(res)
+}
+```
+
+Logo, o IMC de um indivíduo que tenha 67 kg e 1,7 m é:
+
+```{r}
+peso <-  67
+altura <-  1.70
+imc(67, 1.70)
+```
+
+Os exemplos mostrados são muito simples. Quase não haveria necessidade de construir uma função. Entretanto, quando se tem uma ação mais complexa, a função mostra a sua utilidade. Por exemplo, se for necessário realizar a comparação entre duas médias, usando um teste *t* e apresentar o resultado junto com boxplots, a função fica mais complexa. Sempre que for necessário cálculo semelhante, a função automatiza a ação, sem necessidade de repetir os códigos:
+
+```{r}
+plotBpT <- function(df, var.x, var.y){
+  library(ggplot2)
+  library(ggpubr)
+  ggplot(df, aes(x = {{var.x}}, y = {{var.y}}, fill = {{var.x}})) +
+    geom_errorbar(stat = "boxplot", width = 0.1) +
+    geom_boxplot() +
+    theme_classic() +
+    theme(legend.position = "none") +
+    stat_compare_means(method = "t.test", label.x = 0.5)
+}
+```
+
+Neste momento, não serão discutidos os códigos da função. Ela será utilizada como uma função qualquer com os dados do arquivo `dadosPop.xlsx`\^\[Para maiores detalhes, consulte a o @sec-testet. Os argumentos da função são o dataframe (df = dados), a variável x (var.x = pop) e a variável y (var.y = altura). Dessa forma, está se comparando a altura de mulheres de duas populações de duas regiões diferentes :
+
+```{r}
+#| warning: false
+#| out.width: "70%"
+#| out.heigh: "70%"
+#| label: fig-twopop
+#| fig.align: 'center'
+#| fig-cap: "Comparação da altura de mulheres em duas populações"
+dados <- readxl::read_excel("dados/dadosPop.xlsx")
+dados$pop <- as.factor(dados$pop)
+plotBpT (df = dados, var.x = pop, var.y = altura)
+```
+
+Observe na @fig-twopop o resultado do teste *t* ($P = 2,2 \times 10^-16$) e os boxplots que têm posições bem diferentes (veja @sec-bxp).
+
+#### Ativação de uma função criada
+
+Para ativar uma função previamente criada, usa-se a função nativa `source ()`. O argumento desta função é o caminho (no exemplo, é o diretório do autor) onde se encontra a função buscada, por exemplo, a função `imc()` criada acima:
+
+```{r}
+#| eval: false
+source('C:/Users/petro/Dropbox/Estatistica/Bioestatistica_usando_R/Funcoes/imc.R')
+```
+
+## Vetores {#sec-vetores}
+
+Os vetores (vector) são objetos que armazenam um ou mais elementos, do tipo `numeric`, `character` ou `logical`. Um **vetor** é uma variável com um ou mais valores do mesmo tipo. Por exemplo, o número de filhos em 10 famílias foi 4, 5, 3, 2, 2, 1, 2, 1, 3 e 2. O vetor nomeado de `n.filhos` é um objeto numérico. Todo vetor tem duas características: comprimento e nomes dos elementos que podem ser encontradas com as funções length() e names, repectivamente. A maneira mais fácil de criar um vetor é concatenar (ligar) os 10 valores, usando a função concatenar `c()`:
+
+```{r}
+n.filhos <- c(4, 5, 3, 2, 2, 1, 2, 1, 3, 2)
+n.filhos
+
+length(n.filhos)
+names(n.filhos)
+```
+
+Como não há nomes no objeto `n.filhos`, a saída é `NULL`
+
+### Indexação de vetores
+
+Como os vetores são conjuntos *indexados*, pode-se dizer que cada valor dentro de um vetor tem uma **posição**. Essa posição é dada pela ordem em que os elementos foram colocados no momento em que o vetor foi criado. Isso nos permite acessar individualmente cada valor de um vetor [@cursor2015livro].\
+Para acessar um determinado valor, basta colocar a posição do mesmo entre colchetes \[ \]. Se há interesse em conhecer o número de filhos da quinta família, procede-se da seguinte forma:
+
+```{r}
+n.filhos[5]
+```
+
+Se houver tentativa de acessar um valor inexixtente, o R retorna `NA`.
+
+```{r}
+n.filhos[11]
+```
+
+Se houver necessidade de excluir um dos elementos, basta colocar entre colchetes a posição do mesmo com sinal negativo. Por exemplo, para excluir o valor correspondente a sexta família, usa-se:
+
+```{r}
+n.filhos[-6]
+```
+
+Observa-se que o valor 1 foi excluído da série de elementos.
+
+Quando são colocados elementos em um vetor que pertençam a classes diferentes, o R promove o que se denomina de **coerção**, pois o vetor pode ter apenas uma classe de objeto. Dessa forma, as classes mais fortes reprimem as mais fracas. Por exemplo, sempre que for misturado números e texto em um vetor, os números serão considerados como texto:
+
+```{r}
+vetor <- c(12, 15, 4, 6, "A", "D")
+vetor
+```
+
+Veja que, agora, todos os elementos do vetor passaram a ser textos e, por isso, estão entre aspas.
+
+### Tipos de vetores
+
+Dado um vetor, pode-se determinar seu tipo com `typeof()`, ou verificar se é um tipo específico com uma das funções: `is.character()`, 'is.double()`,`is.integer()`,`is.logical( )\`.
+
+```{r}
+n.filhos <- c(4, 5, 3, 2, 2, 1, 2, 1, 3, 2)
+typeof(n.filhos)
+is.numeric(n.filhos)
+```
+
+As expressões do tipo *character* devem aparecer entre aspas duplas ou simples. Os números no R são geralmente tratados como objetos numéricos (números reais de dupla precisão). Mesmo números inteiros são tratados como numéricos. Para fazer um número inteiro ser tratado como objeto inteiro, deve-se utilizar a letra L após o número.
+
+Os valores lógicos (ou booleanos) são TRUE ou FALSE. T ou F também são aceitos.
+
+```{r}
+n.filhos <- c(4L, 5L, 3L, 2L, 2L, 1L, 2L, 1L, 3L, 2L)
+typeof(n.filhos)
+is.numeric(n.filhos)
+is.double(n.filhos)
+```
+
+```{r}
+nomes <- c('Maria', 'João', 'Manuel', 'Petronio', 'José')
+typeof(nomes)
+is.numeric(nomes)
+is.double(nomes)
+```
+
+```{r}
+altura <- c(1.60, 1.78, 1.55, 1.67, 1.69)
+typeof(altura)
+is.numeric(altura)
+is.double(altura)
+```
+
+## Fatores {#sec-fatores}
+
+A classe `factor` serve para designar categorias para um vetor. Essa classe é semelhante a um vetor da classe `character`, mas tem importancia maior na modelagem estatística e análise exploratóriade dados @wickham2017factors. Tanto números quanto caracteres podem ser convertidos em fatores usando a função `factor()`. Esses fatores podem não ser ordenados representado apenas diferentes categorias ou podem representar categorias ordenadas. A função `ordered()` gera fatores ordenados, em ordem crescente ou descrescente.
+
+O vetor a seguir representa o tipo de parto ocorrido em 15 anscimentos, ond 1 = parto normal e 2 = parto cesáreo:
+
+```{r}
+tipoParto <- c (1,1,2,1,2,2,1,2,1,1,1,2,1,1,1)
+tipoParto
+```
+
+Verificando a classe desse objeto:
+
+```{r}
+class(tipoParto)
+```
+
+Como é númerico, teoricamente, seria possível realizar operações matemáticas com ele. Entretanto, sabe-se que os números 1 e 2, representam categorias e, consequentemente, devem ser transformados em fatores, usando a função `factor()`:
+
+```{r}
+tipoParto <- factor(tipoParto, 
+                    levels = c(1,2),
+                    labels = c("normal","cesareo"))
+tipoParto
+class(tipoParto)
+```
+
+Agora, a variável `tipoParto` é um fator. Se for utilizada a função `table()` para ver o número de ocorrências de cada tipo de parto, tem-se:
+
+```{r}
+table(tipoParto)
+```
+
+## Matrizes
+
+Uma **matriz** é uma estrutura bidimensional (linhas e colunas) que **contém apenas um tipo de dado** — geralmente números ou caracteres. É ideal para operações matemática e álgebra linear.
+
+Uma matriz pode ser criada com a função `matrix()`:
+
+```{r}
+m <- matrix(data = 1:6, nrow = 2, ncol = 3)
+m
+```
+
+A indexação de uma matriz é feita com \[linha, coluna\], por exemplo:
+
+```{r}
+m[1,2]  # retorna o valor da primeira linha, segunda coluna
+```
+
+## Listas
+
+Uma **lista** é uma estrutura flexível e heterogênea que pode conter elementos de tipos diferentes, como vetores, strings, funções, até outras listas.\
+
+Cada elemento da lista pode ter um nome que pode ser acessado com `$` ou `[[]]`. É muito usado para estruturas complexas, como resultados de modelos estatísticos.
+
+Uma lista pode ser criada com a função \`list()\`\` :
+
+```{r}
+lista <- list(aluno = "Gabriel", idade = 14, notas = c(9.5, 8.7, 10, 9.1))
+lista
+```
+
+Se o interesse é saber as notas:
+
+```{r}
+lista$notas
+```
+
+É possível calcular a média das notas, usando a função `mean()`:
+
+```{r}
+mean(lista$notas)
+```

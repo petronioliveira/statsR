@@ -1,0 +1,369 @@
+# Regressão Linear Simples {#sec-rls}
+
+## Pacotes usados neste capítulo
+
+```{r}
+#|message: false
+#|warning: false
+pacman::p_load(car,
+               dplyr,
+               flextable,
+               ggplot2,
+               ggpubr,
+               ggsci,
+               knitr,
+               lmtest,
+               readxl,
+               rstatix)
+```
+
+## Introdução
+
+A *regressão linear simples*, assim como a correlação, é uma técnica usada para explorar a natureza da relação entre duas variáveis aleatórias contínuas. A principal diferença entre esses dois métodos analíticos é que a regressão permite investigar a alteração em uma variável, chamada *resposta*, correspondente a uma determinada alteração em outra, conhecida como variável *explicativa*. A regressão é um modelo matemático que permite a *predição* de uma variável resposta a partir de uma outra variável explicativa. A análise de correlação quantifica a força da relação entre as variáveis, tratando-as simetricamente @sedgwick2013correlation.
+
+A *regressão linear simples* é chamada assim, porque existe apenas uma variável independente. Se houver mais de uma variável independente, é chamada de *regressão múltipla*.
+
+A representação matemática do modelo de regressão linear populacional é descrita pela equação da reta de melhor ajuste em um conjunto de pares de dados (x, y) em um gráfico de dispersão de pontos.
+
+$$
+y = \beta_{0} + \beta_{1}x
+$$
+
+```{r}
+#| label: fig-retareg
+#| echo: false
+#| out.width: "60%"
+#| fig.align: "center"
+#| fig.cap: "Reta de regressão, coeficiente angular e coeficiente linear"
+
+knitr::include_graphics("https://i.imgur.com/kOoggkC.png")
+```
+
+A inclinação da reta de regressão ($\beta_{1}$) determina a variação de *y* para cada unidade de variação de *x* e recebe o nome de *coeficiente angular* ou *de regressão*. O ponto de interceptação da reta com *y* quando *x* é igual a zero é $\beta_{0}$ e é denominado de *coeficiente linear* (@fig-retareg). A equação da reta de regressão amostral que estima a reta de regressão populacional é igual a:
+
+$$
+\hat {y} = b_{0} + b_{1}x
+$$
+
+A reta do diagrama de dispersão da @fig-retareg é a melhor reta de ajuste aos dados.
+
+## Dados usados no exemplo
+
+Serão usados os mesmos dados do exemplo da Correlação (@sec-execor). A função `read_excel` do pacote `readxl` carregará o arquivo.
+
+```{r}
+dados <- read_excel("dados/dadosReg.xlsx")
+str(dados)
+```
+
+A variável `sexo`, como realizado na Correlação, será transformada em fator:
+
+```{r}
+dados$sexo <- as.factor(dados$sexo)
+```
+
+Revise no capítulo de correlação a sumarização dos dados.
+
+## Resíduos
+
+No exemplo. usado na correlação (@sec-execor), verificou-se que existe uma correlação linear entre o a idade e o comprimento de crianças, usando uma amostra de 40 crianças entre 18 e 36 meses. A correlação de Pearson foi muito forte (*r* = 0,96, *p* \< 0,00001). Esta relação linear pode ser descrita pela reta, mostrada na @fig-retareg1.
+
+```{r}
+#| label: fig-retareg1
+#| message: false
+#| warning: false
+#| out.height: "70%"
+#| out.width: "70%"
+#| fig.align: "center"
+#| fig.cap: "Reta de regressão"
+
+ggplot2::ggplot(dados, 
+                aes(x = idade, 
+                    y = comp,
+                    color = "tomato")) +
+  geom_smooth(method = "lm", 
+              se = FALSE, 
+              color = "steelblue") +
+  geom_point(size = 3.5) +
+  theme_classic() + 
+  xlab("Idade (meses") +
+  ylab("Comprimento (cm)") +
+  theme(text = element_text(size = 12)) +
+  theme(legend.position = "none")
+```
+
+Não é possível traçar uma reta que passe por todos os pontos. Esta reta ideal descreveria uma correlação perfeita, que não é o caso. Pode haver várias retas, a reta calculada pela regressão linear é aquela que promove o melhor ajuste, ou seja, é aquela cuja distância dos pontos até a reta é a menor possível.
+
+Os resíduos são a diferença entre o valor observado e o valor previsto pelo modelo de regressão linear, construído anteriormente (`mod_reg`). A técnica estatística para achar a melhor reta que ajusta um conjunto de dados é denominada de **método dos mínimos quadrados** (*Ordinary Least Square*). A melhor reta ajustada é aquela em que a soma dos quadrados da distância de cada ponto (**soma dos quadrados residual**) em relação à reta é minimizada.
+
+Para se obter os resíduos, como realizado na correlação, ao se avaliar os pressupostos (@sec-precor), foi ajustado um modelo de reressão da seguinte maneira:
+
+```{r}
+mod_reg <- lm(comp ~ idade, dados)
+```
+
+E após, os seguintes comandos:
+
+```{r}
+# Obter e salvar os valores preditos e residuais
+dados$previsto <- predict(mod_reg) 
+
+dados$residuos <- residuals(mod_reg)
+```
+
+Usando as variáveis criadas pode criar o gráfico da @fig-residuos que mostra os resíduos do modelo:
+
+```{r}
+#| label: fig-residuos
+#| message: false
+#| warning: false
+#| out.height: "70%"
+#| out.width: "70%"
+#| fig.align: "center"
+#| fig.cap: "Resíduos do Modelo de Regressão Linear"
+
+ggplot2::ggplot(dados, 
+                aes(x = idade, 
+                    y = comp,
+                    color = "tomato")) +
+  geom_smooth(method = "lm", 
+              se = FALSE, 
+              color = "steelblue") +
+  geom_segment(aes(xend = idade, 
+                   yend = previsto), 
+               linewidth = 0.8,
+               linetype = "dotted") +
+  geom_point(aes(y = previsto), 
+             shape = 19,
+             size = 3,
+             colour = "steelblue") +
+  geom_point(size = 3) +
+  theme_classic() + 
+  xlab("Idade (meses") +
+  ylab("Comprimento (cm)") +
+  theme(text = element_text(size = 12)) +
+  theme(legend.position = "none")
+```
+
+Uma boa maneira de testar a qualidade do ajuste do modelo é observar os resíduos @kim2019statistical ou as diferenças entre os valores reais (pontos vermelhos) e os valores previstos (pontos azuis). A reta de regressão, em azul no gráfico, representa os valores previstos. A linha vertical pontilhada da linha reta até o valor dos dados observados é o **resíduo**.
+
+A ideia aqui é que a soma dos resíduos seja aproximadamente zero ou o mais baixo possível. Na vida real, a maioria dos casos não seguirá uma linha perfeitamente reta, portanto, resíduos são esperados. Na saída do resumo da função `lm()` em (`mod_reg$residuals`), você pode ver estatísticas descritivas sobre os resíduos do modelo (*residuals*), elas mostram como os resíduos são aproximadamente zero. Pode-se observar isso, usando a função `summary ()` e `sum()`:
+
+```{r}
+summary(mod_reg$residuals)
+sum(mod_reg$residuals)
+```
+
+Como se observa, a soma dos residuos é praticamente iguais a zero ($-3,54 \times 10^-15$).
+
+## Análise dos pressupostos do modelo de regressão
+
+A análise exploratória do conjunto de dados foi feita quando do estudo da Correlação. Assim como a correlação, a regressão linear faz várias suposições sobre os dados.
+
+### Gráficos diagnóstico {#sec-graphdiag}
+
+Os gráficos de diagnóstico da regressão (@fig-diagreg) podem ser criados usando a função `plot()` do R base, como mostrado para a correlação. O modelo de regressão, anteriormente criado, mod_reg, entra como argumento da função. A função `par(mfrow = 2, 2)` foi utilizada, como de outras vezes, para colocar os gráficos em duas linhas e duas colunas:
+
+O modelo de regressão, anteriormente criado, `mod_reg`, entra como argumento da função:
+
+```{r}
+#| label: fig-diagreg
+#| message: false
+#| warning: false
+#| fig.align: "center" 
+#| out.height: "80%"
+#| out.width: "80%"
+#| fig.cap: "Gráficos diagnósticos"
+
+par(mfrow=c(2,2))
+plot (mod_reg)
+par(mfrow=c(1,1))
+```
+
+Os gráficos de diagnóstico mostram resíduos de quatro maneiras diferentes:
+
+1.  *Resíduos vs. ajustados (Residuals vs Fitted)*. Usado para verificar os pressupostos de relação linear. Uma linha horizontal, sem padrões distintos é um indicativo de uma relação linear, o que é bom. Os dados do exemplo (linha vermelha) afastam-se muito pouco do zero, mas a acompanham e não se observa nenhum padrão distinto, como uma parábola por exemplo.
+
+2.  *Q-Q plot*. Usado para examinar se os resíduos são normalmente distribuídos. É bom se os pontos residuais seguirem a linha reta tracejada. É possível dizer que os resíduos seguem a linha diagonal, com pequenos desvios toleráveis.
+
+3.  *Localização da dispersão (scale-location)*. Usado para verificar a homogeneidade de variância dos resíduos (homocedasticidade). Uma linha horizontal com pontos igualmente dispersos é uma boa indicação de homocedasticidade. No exemplo usado, os resíduos parecem estar dispersos e a linha vermelha não está próxima do zero, sugerindo um problema com a homocedasticidade, entretanto, não está acima de 3.
+
+4.  *Resíduos vs. alavancagem (leverage)*. Usado para identificar casos influentes, ou seja, valores extremos que podem influenciar os resultados da regressão quando incluídos ou excluídos da análise. Nem todos os *outliers* são influentes na análise de regressão linear. Mesmo que os dados tenham valores extremos, eles podem não ser influentes para determinar uma linha de regressão. Isso significa que os resultados não seriam muito diferentes, incluindo ou não esses valores. Por outro lado, alguns casos podem ser muito influentes, mesmo que pareçam estar dentro de uma faixa razoável de valores. Outra forma de colocar, é que eles não se entendem com a tendência na maioria dos casos. Ao contrário dos outros gráficos, desta vez os padrões não são relevantes. Deve-se estar atento aos valores distantes no canto superior direito ou no canto inferior direito. Esses pontos são os lugares onde os casos podem ter influência contra uma linha de regressão. Procurar casos fora de uma linha tracejada, *distância de Cook*. Quando os casos estão fora da distância de Cook (o que significa que têm pontuações altas de distância de Cook), os casos são influentes para os resultados da regressão. Os resultados da regressão serão alterados se excluirmos esses casos.
+
+A aparência dos gráficos do exemplo mostra que não há nenhum caso influente. Pouco se observa as linhas de distância de Cook (uma linha tracejada) porque todos os casos estão bem dentro das linhas de distância de Cook.
+
+### Avaliação da normalidade dos resíduos
+
+Ao analisar os pressupostos da correlação, foi realizado a avaliação da normalidade nos dados brutos que indicaram não ser possível rejeitar a hipótese nula de que os dados têm distribuição normal. Agora, isto será repetido para avaliar a normalidade dos resíduos, usando o mesmo teste, teste de Shapiro-Wilk.
+
+Ao ser criado o modelo de regressão (`mod_reg`), ele fornece uma série de variáveis que pode ser listada da seguinte maneira:
+
+```{r}
+ls(mod_reg)
+```
+
+Usando a variável `residuals`, confirma-se o observado no `QQPlot` de que os resíduos apresentam distribuição normal, pois o valor de *p* \> 0,05.
+
+```{r}
+shapiro_test(mod_reg$residuals)
+```
+
+A saída retorna a estatística do teste de Shapiro-Wilk com um valor P = 0,655, mostrando que os dados se ajustam à distribuição normal. Isto confirma a impressão da @fig-diagreg.
+
+### Pesquisa de valores atípicos nos resíduos
+
+Existe uma função pode ser usada para verificar valores atípicos nos resíduos da regressão para modelos lineares como `rstandard()` do pacote `stats`, que analisa os resíduos padronizados.
+
+A função padroniza todos os resíduos e inclui no objeto `residuos_p`. Para analisá-los, faz-se um sumário, usando a função `summary()`. Esta função exibirá os a estatística dos 5 números mais a média para os resíduos padronizados:
+
+```{r}
+residuos_p <- rstandard(mod_reg)
+summary(residuos_p)
+```
+
+Em uma amostra normalmente distribuída, ao redor de 95% dos valores estão entre –1,96 e +1,96, 99% deve estar entre –2,58 e +2,58 e quase todos (99,9%) deve se situar entre –3,09 e +3,09.
+
+Portanto, resíduos padronizados com um valor absoluto maior que 3 são motivo de preocupação porque em uma amostra média é improvável que aconteça um valor tão alto por acaso @field2012regression.
+
+Se a saída da função `rstandard()` for comparada com o eixo *y* do gráfico `Residuals vs Leverage`, dos gráficos diagnósticos, verifica-se valores semelhantes que variam abaixo de 3 e acima de -3, indicando que não há `outliers` influenciando e a mediana está próxima de zero.
+
+#### Homocedasticidade dos resíduos {#sec-BP}
+
+Na @sec-precor, foi analisada a homocedasticidade , onde se viu que o teste de Breusch-Pagan, retornou um resultado de *P* = 0,8231, indicando que a variância permanece praticamente constante, havendo homocedasticidade nos resíduos.
+
+O problema mais sério associado à heterocedasticidade é o fato de que os erros padrão são tendenciosos. Como o erro padrão é fundamental para a realização de testes de significância e cálculo de intervalos de confiança, os erros padrão tendenciosos levam a conclusões incorretas sobre a significância dos coeficientes de regressão. No geral, no entanto, a violação da suposição de homocedasticidade deve ser bastante grave para apresentar um grande problema, dada a natureza robusta da regressão pelo método `ordinary least-squares`. No entanto, é importante que a equação final de predição seja aplicada apenas a populações com as mesmas características da amostra do estudo.
+
+#### Independência dos resíduos {#sec-dw}
+
+Os resíduos no modelo devem ser independentes, ou seja, não devem ser correlacionados entre si. Para verificar isso, pode-se executar o *teste Durbin-Watson* (`teste dw`), utilizando a função `durbinWatsonTest()` do pacote ´car\`. O teste retorna um valor entre 0 e 4. Um valor maior que 2 indica uma correlação negativa entre resíduos adjacentes, enquanto um valor menor que 2 indica uma correlação positiva. Se o valor for dois, é provável que exista independência. Existe uma sugestão de que valores abaixo de 1 ou mais de 3 são um motivo definitivo de preocupação @field2012regression. É importante mencionar que o teste tem como pressuposto a normalidade dos dados.
+
+```{r}
+durbinWatsonTest(mod_reg)
+```
+
+Como na saída do teste o valor *p* \> 0,05 e a estatística DW é igual a 2,2, não se rejeita a hipótese nula de independência (rho = 0).
+
+### Tamanho amostral na regressão
+
+O tamanho da amostra deve ser suficiente para suportar o modelo de regressão. É importante coletar dados suficientes para obter um modelo de regressão confiável. O tamanho da amostra necessário para suportar um modelo depende do valor do coeficiente de correlação do modelo (no caso da correlação linear simples é o *r* de Pearson) e do número de variáveis incluídas.
+
+A @tbl-samplesize @peat2014regression mostra o número de participantes necessários em modelos com 1 a 4 preditores independentes. Como se observa, o requisito de tamanho da amostra aumenta com o número de variáveis preditoras.
+
+```{r}
+#| label: tbl-samplesize
+#| tbl-cap: "Tamanho amostral para regressão de acordo com o r de Pearson e o número de preditores"
+#| echo: FALSE
+#| message: FALSE
+#| warning: FALSE
+
+r_pearson <-c(0.2, 0.3,0.4)
+uma <- c(190, 80, 45)
+duas <- c(230, 100, 55)
+tres <- c(265, 115, 65)
+quatro <- c(290, 125, 70)
+
+df <- data.frame(r_pearson, uma, duas, tres, quatro)
+
+minha_tab <- flextable(df) %>%
+  set_header_labels(
+    r_pearson = "r de Pearson",
+    uma = "Uma",
+    duas = "Duas",
+    tres = "Três",
+    quatro = "Quatro") %>%
+  autofit() %>%
+  add_header_row(values = c("", "Número de Variáveis Preditoras"),
+                 colwidths = c(1, 4)) %>% 
+  theme_booktabs() %>%
+  width(j = 1, width = 1.5) %>%
+  width(j = 2:4, width = 1.5) %>%
+  align(align = "center", part = "header") %>%
+  align(align = "center", part = "body") %>%
+  bold(part = "header") 
+
+minha_tab
+```
+
+Existem muitas regras práticas, sugerindo o tamanho da amostra. Uma delas, diz que se deve ter 10 a 15 casos por variável preditora no modelo. Entretanto, essas regras podem ser duvidosas e o melhor é calcular o tamanho amostral baseado no tamanho do efeito, usando, por exemplo o site [*StatToDo*](https://www.statstodo.com/SSizMulReg.php) ou com o sofware *GPower* 3.1.9.7 @faul2007g.
+
+### Realização da regressão linear
+
+Após analisar os pressupostos do modelo de regressão do exemplo, verificou-se que as variáveis `idade` e `comprimento` da criança têm relação linear, que os resíduos do modelo têm distribuição normal, que existe homoscedasticidade e que não há pontos influentes. E, portanto, o modelo permite que se realize uma análise de regressão linear para avaliar a relação entre as variáveis independentes e dependentes.
+
+Para realizar uma análise de regressão linear simples e verificar os resultados, há necessidade de executar dois comandos. O primeiro, que cria o modelo linear já foi realizado na análise dos gráficos e será repetido aqui. O segundo, imprime o resumo do modelo com a função `summary()`:
+
+```{r}
+mod_reg <- lm (comp ~ idade, dados)
+summary (mod_reg)
+```
+
+A saída da função `summary()` primeiro apresenta como o modelo foi obtido e, em seguida, resume os resíduos do modelo. Por último, tem-se os `Coeficientes`:
+
+1.  As estimativas (*Estimate*) para os parâmetros do modelo - o valor do intercepto *y* (neste caso, 61,44) e o efeito estimado da idade sobre o comprimento (1,1)- significam que para cada unidade de aumento na idade se espera um aumento de 1,1 cm no comprimento.
+2.  O erro padrão dos valores estimados (*Std. Error*).
+3.  A estatística de teste (*t value*)
+4.  O valor *P* (Pr (\>\| t \|)), também conhecido como a probabilidade de encontrar a estatística *t* fornecida se a hipótese nula de nenhuma correlação for verdadeira.\
+5.  As três linhas finais são os diagnósticos do modelo - o mais importante a observar é o valor *P* ($2,2\times 10^{-16}$), que indica se o modelo se ajusta bem aos dados.
+
+A partir desses resultados, pode-se dizer que existe uma correlação positiva significativa entre idade e comprimento (valor P \< 0,001), com um aumento de 1,1 cm no comprimento para cada aumento de 1 mês no na idade , possibilitando a previsão comprimento da criança pela idade.
+
+Estes dados são empregados para formular a equação do modelo de regressão da seguinte maneira:
+
+$$
+\hat {y} = 61,44 + 1,1 x
+$$
+
+O erro padrão das estimativas são fornecidos. Esses dados permitem calcular o IC95%. Ou pode-se usar a função `confint()` do pacote `stats`, que será colocada dentro da função `round()` para arredondar os valores até um digito.
+
+```{r}
+round (confint (mod_reg, level = 0.95), 1)
+```
+
+Dessa forma, é possível prever que uma criança de 30 meses, de acordo com o modelo, terá o seguinte comprimento:
+
+```{r}
+comp_30m <- 61.4 + 1.1 * 30
+comp_30m
+
+```
+
+```{r}
+lim.sup <- 64.2 + 1.2*30
+lim.inf <- 58.7 + 1.0*30
+print (c(lim.inf, lim.sup))
+```
+
+Ou seja, espera-se que uma criança tenha, aos 30 meses de idade, um comprimento médio de 94,4 cm (IC95%: 88,7-100,2)
+
+### Visualização dos resultados
+
+Será obtido um gráfico de dispersão com a reta de regressão e seu intervalo de confiança de 95% (@fig-resreg). Além disso, adicionou-se a equação do modelo de regressão (o R arredondou os valores), juntamente com o coeficiente de determinação $R^{2}$.
+
+```{r}
+#| label: fig-resreg
+#| message: false
+#| warning: false
+#| out.height: "70%"
+#| out.width: "70%"
+#| fig.align: "center"
+#| fig.cap: "Resultado da Regressão Linear"
+
+ggplot2:: ggplot (dados, aes (x = idade, y = comp)) +
+  geom_point (size = 3) +
+  geom_smooth (method = "lm", se = TRUE, color = "tomato") +
+  stat_regline_equation (label.y = 100, aes (label = (..eq.label..))) + 
+  stat_regline_equation (label.y = 99, aes (label = (..rr.label..))) +       
+  theme_classic () +
+  xlab ("Idade (meses)") +
+  ylab ("Comprimento(cm)") +
+  theme (text = element_text (size = 12))
+```
+
+No gráfico, o intervalo de previsão médio de 95% em torno da reta de regressão é um intervalo de confiança de 95%, ou seja, a área na qual há 95% de certeza de que a reta de regressão verdadeira se encontra @altman1988statistics. Esta banda de intervalo é levemente curvada porque os erros na estimativa do intercepto e da inclinação são incluídos em adição ao erro na previsão da variável desfecho.
+
+Se for observado, o IC95% da reta de regressão obbtida pelo `ggplot2` difere um pouco do IC95% da função `confint()`. Isto ocorre porque:
+
+-   quando se usa `geom_smooth(method = "lm", se = TRUE)`, o intervalo de confiança gerado é baseado na incerteza da **previsão média** da regressão. Ou seja, ele mostra a faixa onde se espera que a média da variável dependente (`comp`) esteja para um determinado valor da variável independente (`idade`) e\
+-   quando se usa a função `confint()`, ela retorna o intervalo de confiança dos **coeficientes** do modelo de regressão. Ou seja, ela fornece a incerteza associada aos parâmetros estimados (incluindo o intercepto e os coeficientes das variáveis preditoras).
+
+A principal diferença, portanto, é que o intervalo de confiança do `ggplot2` reflete a incerteza da linha de regressão ajustada, enquanto `confint()` fornece a incerteza dos parâmetros do modelo.

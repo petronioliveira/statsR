@@ -1,0 +1,136 @@
+/* === TÍTULOS DE PARTES DO LIVRO === */
+.book-part-title {
+  font-size: 1.8em;
+  font-weight: bold;
+  padding: 0.8em 1em;
+  margin: 2em 0 1em 0;
+  border-left: 10px solid #2c3e50;
+  background-color: #ecf0f1;
+  color: #2c3e50;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+/* === TÍTULOS DOS CAPÍTULOS === */
+h1 {
+  font-size: 2em;
+  color: #1a5276;
+  border-bottom: 2px solid #d5d8dc;
+  padding-bottom: 0.3em;
+  margin-top: 1.5em;
+}
+
+/* === SUBTÍTULOS === */
+h2, h3 {
+  color: #34495e;
+}
+
+/* === TEXTO PADRÃO === */
+body {
+  font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+  line-height: 1.6;
+  color: #2c3e50;
+  background-color: #ffffff;
+}
+
+/* === LINKS === */
+a {
+  color: #2980b9;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* === TABELAS === */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
+}
+th, td {
+  border: 1px solid #bdc3c7;
+  padding: 0.6em;
+  text-align: left;
+}
+th {
+  background-color: #f2f3f4;
+}
+
+/* === CITAÇÕES E BLOCOS DE TEXTO === */
+blockquote {
+  border-left: 5px solid #7f8c8d;
+  padding-left: 1em;
+  color: #555;
+  background-color: #f9f9f9;
+}
+
+/* === CALL OUTS === */
+.callout-note {
+  border-left: 6px solid #3498db;
+  background-color: #eaf2f8;
+  padding: 1em;
+  margin: 1.5em 0;
+  border-radius: 5px;
+}
+.callout-warning {
+  border-left: 6px solid #e67e22;
+  background-color: #fdf2e9;
+  padding: 1em;
+  margin: 1.5em 0;
+  border-radius: 5px;
+}
+.callout-tip {
+  border-left: 6px solid #27ae60;
+  background-color: #eafaf1;
+  padding: 1em;
+  margin: 1.5em 0;
+  border-radius: 5px;
+}
+
+/* === CÓDIGO === */
+pre, code {
+  background-color: #f4f6f7;
+  padding: 0.3em 0.6em;
+  border-radius: 4px;
+  font-family: "Courier New", monospace;
+}
+
+/* === CAPA DO LIVRO === */
+.cover-image {
+  max-width: 100%;
+  margin: 2em auto;
+  display: block;
+  border: 2px solid #d5d8dc;
+  box-shadow: 3px 3px 10px rgba(0,0,0,0.1);
+}
+
+/* === RODAPÉ === */
+footer {
+  font-size: 0.9em;
+  color: #7f8c8d;
+  text-align: center;
+  margin-top: 3em;
+  padding-top: 1em;
+  border-top: 1px solid #d5d8dc;
+}
+
+p.caption {
+  color: #777;
+  margin-top: 10px;
+}
+p code {
+  white-space: inherit;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code {
+  white-space: inherit;
+}
+p {
+  text-align: justify;
+}
+.caption {
+  text-align: center
+}

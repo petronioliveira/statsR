@@ -1,0 +1,43 @@
+% preambulo.tex
+
+% Pacotes matemáticos e símbolos
+\usepackage{amsmath, amssymb, amsfonts}
+
+% Tabelas e gráficos
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{float}
+
+% Estilo de fonte e layout
+\usepackage{lmodern}       % Fonte moderna
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel} % Português do Brasil
+
+% Margens e espaçamento
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{setspace}
+\onehalfspacing             % Espaçamento 1.5
+
+% Estilo de cabeçalhos
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Bioestatística Usando o R}
+\fancyhead[R]{\leftmark}
+\fancyfoot[C]{\thepage}
+
+% Legendas de figuras e tabelas
+\usepackage{caption}
+\captionsetup{font=small, labelfont=bf}
+
+% Hiperlinks
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue,
+  pdftitle={Bioestatística Usando o R},
+  pdfauthor={Petrônio Fagundes de Oliveira Filho}
+}

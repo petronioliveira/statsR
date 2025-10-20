@@ -1,0 +1,87 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Bioestatística Usando o R"
+  author: "Petrônio Fagundes de Oliveira Filho"
+  date: today
+  date-format: "DD/MM/YYYY"
+  chapters:
+    - index.qmd
+    
+    - part: "Parte I - Fundamentos"
+      chapters:
+        - intro.qmd
+        - 02-dados.qmd
+        - 03-producaoDados.qmd 
+    - part: "Parte II - Ambiente Computacional com R"
+      chapters:
+        - 04-introducaoR.qmd
+        - 05-manipulandoDados.qmd
+    - part: "Parte III - Estatística Descritiva"
+      chapters:
+        - 06-medidasResumidoras.qmd
+        - 07-tabelas.qmd
+        - 08-graficos.qmd
+    - part: "Parte IV - Probabilidades e Distribuições"
+      chapters:
+        - 09-probabilidades.qmd
+        - 10-assimetria.qmd
+        - 11-distAmostrais.qmd
+    - part: "Parte V - Inferência Estatística"
+      chapters:
+        - 12-estimacao.qmd
+        - 13-testeHipoteses.qmd
+    - part: "Parte VI - Testes Paramétricos"
+      chapters:
+        - 14-teste-t.qmd
+        - 15-anova.qmd
+        - 16-anovaRep.qmd
+    - part: "Parte VII - Relações entre Variáveis"
+      chapters:
+        - 17-correlacao.qmd
+        - 18-regressao.qmd
+    - part: "Parte VIII - Métodos Não Paramétricos"
+      chapters:
+        - 19-dadoscategoricos.qmd
+        - 20-testes-naoParametricos.qmd
+    - part: "Parte IX - Bioestatística Aplicada à Epidemiologia"
+      chapters:
+        - 21-testesDiag.qmd
+        - 22-medidasOcorrencia.qmd
+        - 23-sobrevida.qmd
+        - 24-reglogbin.qmd
+    - glossario.qmd
+    - referencias.qmd
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    number-sections: true
+    code-fold: false
+    code-tools: true
+    fig-cap-location: bottom
+    fig-align: center
+    tbl-cap-location: top
+    css: style.css
+    citation-mode: "continuous" 
+  pdf:
+    documentclass: scrbook
+    toc: true
+    number-sections: true
+    keep-tex: true
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    include-in-header: preambulo.tex
+    citation-mode: "continuous" 
+
+bibliography: referencias.bib
+csl: vancouver.csl
+lang: pt
+
+freeze: false  
+
+editor: visual
+

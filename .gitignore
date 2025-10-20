@@ -1,0 +1,17 @@
+# Arquivos de ambiente do R/RStudio
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+# Arquivos temporários e de cache do Quarto
+/.quarto/
+/_freeze/  
+
+# Pastas de saída que NÃO queremos no repositório principal
+# Inclui a antiga pasta de saída de livros
+/_book/
+
+/auxiliar/
+/cores_R/
+/scripts/
