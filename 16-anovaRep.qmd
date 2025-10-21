@@ -57,7 +57,7 @@ tab <- flextable(df) %>%
 tab
 ```
 
-A ANOVA de medidas repetidas é mais poderosa estatisticamente porque reduz a variabilidade entre sujeitos, focando nas mudanças dentro de cada indivíduo. A ANOVA de medidas repetidas pode ser entendida como uma expansão da ANOVA (@anunciacao2021anovarep).
+A ANOVA de medidas repetidas é mais poderosa estatisticamente porque reduz a variabilidade entre sujeitos, focando nas mudanças dentro de cada indivíduo. A ANOVA de medidas repetidas pode ser entendida como uma expansão da ANOVA @anunciacao2021anovarep.
 
 ## ANOVA de medidas repetidas unifatorial
 
