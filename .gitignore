@@ -16,3 +16,9 @@
 /cores_R/
 /scripts/
 /dados/
+
+# Evita arquivos grandes e dados brutos
+*.csv
+*.rds
+*.sav
+*.xlsx

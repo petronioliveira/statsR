@@ -553,8 +553,8 @@ Pergunta motivadora
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(dados)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>tibble [200 × 2] (S3: tbl_df/tbl/data.frame)
- $ sexo  : Factor w/ 2 levels "Masculino","Feminino": 2 1 2 1 2 2 2 2 2 2 ...
- $ pesoRN: num [1:200] 2950 2605 3515 3280 3540 ...</code></pre>
+ $ sexo  : Factor w/ 2 levels "Masculino","Feminino": 1 2 2 2 1 2 1 1 2 1 ...
+ $ pesoRN: num [1:200] 4660 2415 3385 3020 3150 ...</code></pre>
 </div>
 </div>
 <p>Este conjunto de dados fica restrito, portanto, a 200 casos, contendo duas variáveis <code>sexo</code> e <code>pesoRN</code>, necessárias neste capítulo e assim resumidas:</p>
@@ -569,11 +569,11 @@ Pergunta motivadora
 <pre><code># A tibble: 2 × 4
   sexo          n media    dp
   &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
-1 Masculino    99 3302.  485.
-2 Feminino    101 3157.  471.</code></pre>
+1 Masculino   100 3286.  478.
+2 Feminino    100 3164.  456.</code></pre>
 </div>
 </div>
-<p>Esta amostra de 99 meninos e 101 meninas, informa que os meninos têm, em média, 3302 g ao nascer e as meninas 3157 g. Esta diferença de peso entre os sexos pode ter ocorrido devido ao acaso. Portanto, há necessidade de realizar um teste de hipóteses para tomar uma decisão sobre o parâmetro populacional. Esta diferença é grande o suficiente para rejeitar a hipótese de igualdade entre os pesos e concluir que existe uma diferença real entre eles?</p>
+<p>Esta amostra de 100 meninos e 100 meninas, informa que os meninos têm, em média, 3286 g ao nascer e as meninas 3164 g. Esta diferença de peso entre os sexos pode ter ocorrido devido ao acaso. Portanto, há necessidade de realizar um teste de hipóteses para tomar uma decisão sobre o parâmetro populacional. Esta diferença é grande o suficiente para rejeitar a hipótese de igualdade entre os pesos e concluir que existe uma diferença real entre eles?</p>
 </section>
 </section>
 <section id="introdução" class="level2" data-number="13.3">
@@ -707,7 +707,7 @@ Figura&nbsp;13.2: Tomada de decisão e erros
 </section>
 <section id="sec-exeth1" class="level3" data-number="13.5.3">
 <h3 data-number="13.5.3" class="anchored" data-anchor-id="sec-exeth1"><span class="header-section-number">13.5.3</span> Exemplo (continuação)</h3>
-<p>Continuando com o exemplo da <a href="#sec-exeth" class="quarto-xref"><span>Seção 13.4.1</span></a>, aceita-se que os pesos dos recém-nascidos de ambas as amostras tenham distribuição normal e que as variâncias são semelhantes. Apesar de o desvio padrão (<span class="math inline">\(\sigma\)</span>) da <code>população-alvo</code> ser conhecido (485, 471g), será suposto que ele é desconhecido <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Portanto, o teste <em>t</em> de amostras independentes será o teste escolhido como o teste estatístico. A hipótese alternativa é bilateral e o <span class="math inline">\(\alpha\)</span> = 0,05.<br>
+<p>Continuando com o exemplo da <a href="#sec-exeth" class="quarto-xref"><span>Seção 13.4.1</span></a>, aceita-se que os pesos dos recém-nascidos de ambas as amostras tenham distribuição normal e que as variâncias são semelhantes. Apesar de o desvio padrão (<span class="math inline">\(\sigma\)</span>) da <code>população-alvo</code> ser conhecido (478, 456g), será suposto que ele é desconhecido <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Portanto, o teste <em>t</em> de amostras independentes será o teste escolhido como o teste estatístico. A hipótese alternativa é bilateral e o <span class="math inline">\(\alpha\)</span> = 0,05.<br>
 A distribuição <em>t</em> é dependente dos grau de liberdade, que para duas amostras independentes é igual <span class="math inline">\(gl=n_1+n_2-2\)</span>. Para os dados em uso, tem-se:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a> n1 <span class="ot">&lt;-</span> resumo<span class="sc">$</span>n[<span class="dv">1</span>]</span>
@@ -753,12 +753,12 @@ A distribuição <em>t</em> é dependente dos grau de liberdade, que para duas a
 <pre><code># A tibble: 1 × 15
   estimate estimate1 estimate2 .y.    group1 group2    n1    n2 statistic      p
 *    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;  &lt;dbl&gt;
-1     145.     3302.     3157. pesoRN Mascu… Femin…    99   101      2.15 0.0327
+1     122.     3286.     3164. pesoRN Mascu… Femin…   100   100      1.84 0.0667
 # ℹ 5 more variables: df &lt;dbl&gt;, conf.low &lt;dbl&gt;, conf.high &lt;dbl&gt;, method &lt;chr&gt;,
 #   alternative &lt;chr&gt;</code></pre>
 </div>
 </div>
-<p>A saída do teste mostra uma estatística de teste <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> igual a 2.151. Esta é maior do que o <em>t_crítico</em> = 1.972, consequentemente, rejeita-se a hipótese nula e conclui-se, com uma confiança de 95%, que existe uma diferença estatisticamente significativa no peso dos recém-nascidos entre os sexos. Esta diferença é em média igual a 145 g (IC95%: 12, 279), <span class="math inline">\(peso_{meninos} &gt; peso_{meninas}\)</span>.</p>
+<p>A saída do teste mostra uma estatística de teste <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> igual a 1.844. Esta é maior do que o <em>t_crítico</em> = 1.972, consequentemente, rejeita-se a hipótese nula e conclui-se, com uma confiança de 95%, que existe uma diferença estatisticamente significativa no peso dos recém-nascidos entre os sexos. Esta diferença é em média igual a 122 g (IC95%: -8, 252), <span class="math inline">\(peso_{meninos} &gt; peso_{meninas}\)</span>.</p>
 </section>
 </section>
 <section id="sec-valorp" class="level2" data-number="13.6">
@@ -769,7 +769,7 @@ A distribuição <em>t</em> é dependente dos grau de liberdade, que para duas a
 <p>Uma boa parte dos pesquisadores, principalmente no início da carreira, ficam empolgados pelo conhecimento do valor <em>p</em>. Entretanto, deve ser sempre lembrado que encontrar o valor <em>p</em> não é o único foco da pesquisa. O foco deve estar dirigido ao <em>tamanho do efeito</em> (<em>effect size</em>). O valor <em>p</em> obtido pelo teste estatístico, vai informar apenas sobre a probabilidade de se cometer erro ao rejeitar ou não rejeitar a hipóteses nula.</p>
 <section id="exemplo-continuação" class="level3" data-number="13.6.1">
 <h3 data-number="13.6.1" class="anchored" data-anchor-id="exemplo-continuação"><span class="header-section-number">13.6.1</span> Exemplo (continuação)</h3>
-<p>O teste realizado, <code>t_test()</code>, fornece o valor <em>p</em> = 0.0327. Este valor é menor do que <span class="math inline">\(\alpha\)</span> e leva as mesmas conclusões da <a href="#sec-exeth1" class="quarto-xref"><span>Seção 13.5.3</span></a>.</p>
+<p>O teste realizado, <code>t_test()</code>, fornece o valor <em>p</em> = 0.0667. Este valor é menor do que <span class="math inline">\(\alpha\)</span> e leva as mesmas conclusões da <a href="#sec-exeth1" class="quarto-xref"><span>Seção 13.5.3</span></a>.</p>
 </section>
 </section>
 <section id="poder-do-teste" class="level2" data-number="13.7">
@@ -814,12 +814,12 @@ Existem diferentes métodos para calcular o poder do teste, dependendo do tipo d
 </ul>
 <section id="exemplo-continuação-1" class="level3" data-number="13.7.1">
 <h3 data-number="13.7.1" class="anchored" data-anchor-id="exemplo-continuação-1"><span class="header-section-number">13.7.1</span> Exemplo (continuação)</h3>
-<p>O teste <em>t</em> retornou um resultado significativo, com valor de t = 2.151 &gt; 1.972, com <em>p</em> = 0.0327. Um resultado significativo não informa sobre a magnitude do efeito. Para isso, lançamos mão do teste <em>d</em> de Cohen que pode ser calculado, usando a função <code>cohensD()</code> do pacote <code>lsr</code>:</p>
+<p>O teste <em>t</em> retornou um resultado significativo, com valor de t = 1.844 &gt; 1.972, com <em>p</em> = 0.0667. Um resultado significativo não informa sobre a magnitude do efeito. Para isso, lançamos mão do teste <em>d</em> de Cohen que pode ser calculado, usando a função <code>cohensD()</code> do pacote <code>lsr</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> lsr<span class="sc">::</span><span class="fu">cohensD</span> (<span class="at">data =</span> dados, <span class="at">formula =</span> pesoRN <span class="sc">~</span> sexo)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>d</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.3043191</code></pre>
+<pre><code>[1] 0.2607794</code></pre>
 </div>
 </div>
 <p>Na <a href="14-teste-t.html#sec-cohen" class="quarto-xref"><span>Seção 14.2.6.1</span></a>, se entrará em maiores detalhes, por enquanto, será assumido que a magnitude do efeito é pequena.</p>
@@ -846,15 +846,15 @@ Existem diferentes métodos para calcular o poder do teste, dependendo do tipo d
      Two-sample t test power calculation 
 
               n = 150
-              d = 0.3043191
+              d = 0.2607794
       sig.level = 0.05
-          power = 0.7476209
+          power = 0.6145518
     alternative = two.sided
 
 NOTE: n is number in *each* group</code></pre>
 </div>
 </div>
-<p>A saída mostra que no lugar do <code>NULL</code>, aparece o poder do teste estatístico. Ou seja, o poder foi de 0.748 , consequentemente, como <span class="math inline">\(\beta = 1 – Poder\)</span>, então, <span class="math inline">\(\beta\)</span> = 0.252.</p>
+<p>A saída mostra que no lugar do <code>NULL</code>, aparece o poder do teste estatístico. Ou seja, o poder foi de 0.615 , consequentemente, como <span class="math inline">\(\beta = 1 – Poder\)</span>, então, <span class="math inline">\(\beta\)</span> = 0.385.</p>
 <p>O poder geralmente é definido em 0,80 (ou 0,90). Isto significa que se existirem efeitos verdadeiros a serem encontrados em 100 estudos diferentes com 80% de poder, apenas 80 em 100 testes estatísticos irão realmente detectá-los. Se não for garantido poder suficiente, é possível que nenhum efeito seja detectado, por isso, deve-se calcular o tamanho amostral necessário, antes de iniciar qualquer estudo, para garantir o poder pretendido.</p>
 
 

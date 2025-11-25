@@ -171,7 +171,7 @@ b.  *Imputação por regressão*: Utilizar um modelo de regressão para prever o
 c.  *Imputação múltipla*: Criar múltiplos conjuntos de dados, cada um com diferentes valores imputados, e combinar os resultados das análises. Método mais robusto e permite estimar a incerteza.\
 d.  *Imputação por K-Nearest Neighbors*: Substituir os valores faltantes pela média dos *k* vizinhos mais próximos. Útil para dados numéricos e pode capturar padrões locais.
 
-Considerando a quantidade de dados faltantes e a natureza da variável `idade`, a imputação múltipla é uma excelente opção. Ela permite lidar com a incerteza associada aos valores imputados e fornece uma estimativa mais precisa dos parâmetros do modelo. Para isso, será usada a função `mice()` do pacote `mice` (*Multivariate Imputation by Chained Equations*) @van2011mice para fazer a imputação múltipla. O argumento `m = 5` se refere ao número de múltiplas imputações (cinco é o padrão); `method = “pmm”` é o método de imputação, onde se usa a correspondência da média preditiva (predictive mean matching – dados numéricos) como método de imputação. O método `pmm` garante que os valores imputados sejam próximos de valores reais do conjunto de dados, mantendo a coerência estatística. A função `mice()` produz várias cópias completas de *dataframe*, cada uma com diferentes imputações dos dados ausentes. Essa transformação será atribuída a um objeto de nome `dados`.
+Considerando a quantidade de dados faltantes e a natureza da variável `idade`, a imputação múltipla é uma excelente opção. Ela permite lidar com a incerteza associada aos valores imputados e fornece uma estimativa mais precisa dos parâmetros do modelo. Para isso, será usada a função `mice()` do pacote `mice` (*Multivariate Imputation by Chained Equations*) @van2011mice para fazer a imputação múltipla. O argumento `m = 5` se refere ao número de múltiplas imputações (cinco é o padrão); `method = “pmm”` é o método de imputação, onde se usa a correspondência da média preditiva (*predictive mean matching* – dados numéricos) como método de imputação. O método `pmm` garante que os valores imputados sejam próximos de valores reais do conjunto de dados, mantendo a coerência estatística. A função `mice()` produz várias cópias completas de *dataframe*, cada uma com diferentes imputações dos dados ausentes. Essa transformação será atribuída a um objeto de nome `dados`.
 
 ```{r}
 #| label: mice
@@ -252,7 +252,7 @@ Inicialmente, serão usados os `dadosTreino` para criar o modelo de regressão l
 
 No modelo, a variável resposta ou desfecho é representada por `sobreviveu`; todas as outras variáveis são variáveis explicativas.
 
-A função nativa `glm()` – **g**eneralized **l**inear **m**odel - é usada\* para aplicar uma regressão logística no *R*. Sua funcionalidade é idêntica à função `lm()` da regressão linear. Necessita alguns argumentos:
+A função nativa `glm()` – **g**eneralized **l**inear **m**odel - é usada para aplicar uma regressão logística no *R*. Sua funcionalidade é idêntica à função `lm()` da regressão linear. Necessita alguns argumentos:
 
 -   **formula** $\to$ objeto da classe *formula*. Um preditor típico tem o formato `resposta \~ preditor` em que `resposta`, na regressão logística binária, é uma variável dicotômica e o `preditor` pode ser uma série de variáveis numéricas ou categóricas;
 
@@ -299,7 +299,7 @@ Resumindo:
 
 [Outras métricas da saída do sumário do modelo]{.underline}
 
--   **Significância estatística**: o R, para facilitar, informa com asteriscos quais variáveis possuem coeficientes estatisticamente significativos: \* para *p* \< 0,05, \*\* para *p* \< 0,01, e \*\*\* para *p* \< 0,001.\
+-   **Significância estatística**: o R, para facilitar, informa com asteriscos quais variáveis possuem coeficientes estatisticamente significativos: \* para *p* $\lt 0,05$ , \*\* para *p* $\lt 0,01$, e \*\*\* para *p* $\lt 0,001$.\
 -   **Deviance residual**: Indica o ajuste do modelo; quanto menor, melhor.\
 -   **AIC (Critério de Informação de Akaike)** [^24-reglogbin-3]: Ajuda a comparar modelos; quanto menor, melhor o ajuste e a simplicidade.
 
@@ -398,7 +398,7 @@ anova(modelo1, modelo2, test = "Chisq")
 
 Os dois modelo têm a mesma interpretação, mas o `modelo2` ajusta melhor os dados.
 
-### Modelo de regreção e interação
+### Modelo de regressão e interação
 
 A interação entre variáveis pode ser crucial em modelos de regressão logística, pois pode revelar padrões que não são evidentes ao analisar cada variável separadamente. Usar interações pode tornar o modelo mais informativo, mas também mais complexo. Por isso, é sempre bom verificar métricas como AIC ou testes estatísticos para ver se a inclusão da interação realmente melhora a previsão.
 
@@ -853,7 +853,15 @@ Em uma amostra normalmente distribuída, ao redor de 95% dos valores estão entr
 
 Essa avaliação pode ser acompanhada de um gráfico diagnóstico, usando a função `plot()` para o modelo `modelo2`(para maiores detalhes veja as @sec-graphdiag e @sec-BP).
 
-```{r #fig-graph5, warning=FALSE, out.width="60%", out.height="60%", fig.align="center", fig.cap="Gráfico diagnóstico dos resíduos e pontos de alavancagem.", fig.pos="H"}
+```{r}
+#| label: fig-graph5
+#| echo: true
+#| fig.align: "center"
+#| out.width: "60%"
+#| out.height: "60%"
+#| message: false
+#| warning: false
+#| fig-cap: "Gráfico diagnóstico dos resíduos e pontos de alavancagem."
 plot (modelo2, which = 5)
 ```
 

@@ -479,7 +479,7 @@ window.Quarto = {
   <li><a href="#sec-modreglog" id="toc-sec-modreglog" class="nav-link" data-scroll-target="#sec-modreglog"><span class="header-section-number">24.6.2</span> Modelo de Regressão Logística</a></li>
   <li><a href="#visualização-da-regressão-logística" id="toc-visualização-da-regressão-logística" class="nav-link" data-scroll-target="#visualização-da-regressão-logística"><span class="header-section-number">24.6.3</span> Visualização da regressão logística</a></li>
   <li><a href="#remoção-de-variáveis-não-significativas" id="toc-remoção-de-variáveis-não-significativas" class="nav-link" data-scroll-target="#remoção-de-variáveis-não-significativas"><span class="header-section-number">24.6.4</span> Remoção de variáveis não significativas</a></li>
-  <li><a href="#modelo-de-regreção-e-interação" id="toc-modelo-de-regreção-e-interação" class="nav-link" data-scroll-target="#modelo-de-regreção-e-interação"><span class="header-section-number">24.6.5</span> Modelo de regreção e interação</a></li>
+  <li><a href="#modelo-de-regressão-e-interação" id="toc-modelo-de-regressão-e-interação" class="nav-link" data-scroll-target="#modelo-de-regressão-e-interação"><span class="header-section-number">24.6.5</span> Modelo de regressão e interação</a></li>
   <li><a href="#sec-compararoc" id="toc-sec-compararoc" class="nav-link" data-scroll-target="#sec-compararoc"><span class="header-section-number">24.6.6</span> Curva ROC para comparar os modelos</a></li>
   <li><a href="#avaliação-do-modelo-de-regressão-logística" id="toc-avaliação-do-modelo-de-regressão-logística" class="nav-link" data-scroll-target="#avaliação-do-modelo-de-regressão-logística"><span class="header-section-number">24.6.7</span> Avaliação do Modelo de Regressão Logística</a></li>
   </ul></li>
@@ -693,7 +693,7 @@ Figura&nbsp;24.2: Titanic parado em Queenstown, 11 de abril.de 1912
 </li>
 <li><em>Imputação por K-Nearest Neighbors</em>: Substituir os valores faltantes pela média dos <em>k</em> vizinhos mais próximos. Útil para dados numéricos e pode capturar padrões locais.</li>
 </ol>
-<p>Considerando a quantidade de dados faltantes e a natureza da variável <code>idade</code>, a imputação múltipla é uma excelente opção. Ela permite lidar com a incerteza associada aos valores imputados e fornece uma estimativa mais precisa dos parâmetros do modelo. Para isso, será usada a função <code>mice()</code> do pacote <code>mice</code> (<em>Multivariate Imputation by Chained Equations</em>) <span class="citation" data-cites="van2011mice">(<a href="referencias.html#ref-van2011mice" role="doc-biblioref">8</a>)</span> para fazer a imputação múltipla. O argumento <code>m = 5</code> se refere ao número de múltiplas imputações (cinco é o padrão); <code>method = “pmm”</code> é o método de imputação, onde se usa a correspondência da média preditiva (predictive mean matching – dados numéricos) como método de imputação. O método <code>pmm</code> garante que os valores imputados sejam próximos de valores reais do conjunto de dados, mantendo a coerência estatística. A função <code>mice()</code> produz várias cópias completas de <em>dataframe</em>, cada uma com diferentes imputações dos dados ausentes. Essa transformação será atribuída a um objeto de nome <code>dados</code>.</p>
+<p>Considerando a quantidade de dados faltantes e a natureza da variável <code>idade</code>, a imputação múltipla é uma excelente opção. Ela permite lidar com a incerteza associada aos valores imputados e fornece uma estimativa mais precisa dos parâmetros do modelo. Para isso, será usada a função <code>mice()</code> do pacote <code>mice</code> (<em>Multivariate Imputation by Chained Equations</em>) <span class="citation" data-cites="van2011mice">(<a href="referencias.html#ref-van2011mice" role="doc-biblioref">8</a>)</span> para fazer a imputação múltipla. O argumento <code>m = 5</code> se refere ao número de múltiplas imputações (cinco é o padrão); <code>method = “pmm”</code> é o método de imputação, onde se usa a correspondência da média preditiva (<em>predictive mean matching</em> – dados numéricos) como método de imputação. O método <code>pmm</code> garante que os valores imputados sejam próximos de valores reais do conjunto de dados, mantendo a coerência estatística. A função <code>mice()</code> produz várias cópias completas de <em>dataframe</em>, cada uma com diferentes imputações dos dados ausentes. Essa transformação será atribuída a um objeto de nome <code>dados</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> mice<span class="sc">::</span><span class="fu">mice</span>(dadosTitanic, <span class="at">m=</span><span class="dv">5</span>, <span class="at">method=</span><span class="st">"pmm"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -745,7 +745,7 @@ Figura&nbsp;24.2: Titanic parado em Queenstown, 11 de abril.de 1912
  $ sobreviveu: num  0 1 1 1 0 0 0 0 1 1 ...
  $ classe    : num  3 1 3 1 3 3 1 3 3 2 ...
  $ sexo      : chr  "masc" "fem" "fem" "fem" ...
- $ idade     : num  22 38 26 35 35 24 54 2 27 14 ...
+ $ idade     : num  22 38 26 35 35 18 54 2 27 14 ...
  $ irco      : num  1 1 0 1 0 0 0 3 0 1 ...
  $ pafi      : num  0 0 0 0 0 0 0 1 2 0 ...</code></pre>
 </div>
@@ -768,7 +768,7 @@ Figura&nbsp;24.2: Titanic parado em Queenstown, 11 de abril.de 1912
  $ sobreviveu: Factor w/ 2 levels "0","1": 1 2 2 2 1 1 1 1 2 2 ...
  $ classe    : Factor w/ 3 levels "1","2","3": 3 1 3 1 3 3 1 3 3 2 ...
  $ sexo      : Factor w/ 2 levels "fem","masc": 2 1 1 1 2 2 2 2 1 1 ...
- $ idade     : num  22 38 26 35 35 24 54 2 27 14 ...
+ $ idade     : num  22 38 26 35 35 18 54 2 27 14 ...
  $ irco      : num  1 1 0 1 0 0 0 3 0 1 ...
  $ pafi      : num  0 0 0 0 0 0 0 1 2 0 ...</code></pre>
 </div>
@@ -811,7 +811,7 @@ Figura&nbsp;24.2: Titanic parado em Queenstown, 11 de abril.de 1912
  $ sobreviveu: Factor w/ 2 levels "0","1": 2 1 1 1 2 1 2 2 2 1 ...
  $ classe    : Factor w/ 3 levels "1","2","3": 3 1 2 3 1 1 2 2 3 1 ...
  $ sexo      : Factor w/ 2 levels "fem","masc": 2 2 2 2 1 2 1 1 1 2 ...
- $ idade     : num  44 47 30 40.5 44 45 0.92 24 22 38 ...
+ $ idade     : num  44 47 30 40.5 44 45 0.92 24 22 37 ...
  $ irco      : num  0 0 0 0 0 0 1 1 2 0 ...
  $ pafi      : num  0 0 0 0 0 0 2 1 0 0 ...</code></pre>
 </div>
@@ -821,7 +821,7 @@ Figura&nbsp;24.2: Titanic parado em Queenstown, 11 de abril.de 1912
  $ sobreviveu: Factor w/ 2 levels "0","1": 1 2 1 2 2 1 1 2 1 1 ...
  $ classe    : Factor w/ 3 levels "1","2","3": 1 3 3 3 1 2 3 1 3 3 ...
  $ sexo      : Factor w/ 2 levels "fem","masc": 2 1 2 2 1 2 1 1 2 1 ...
- $ idade     : num  30 18 7 25 60 30 9 22 51 28 ...
+ $ idade     : num  30 18 7 25 60 30 1 22 51 28 ...
  $ irco      : num  1 0 4 0 1 1 3 0 0 0 ...
  $ pafi      : num  2 0 1 0 0 1 1 2 0 0 ...</code></pre>
 </div>
@@ -832,7 +832,7 @@ Figura&nbsp;24.2: Titanic parado em Queenstown, 11 de abril.de 1912
 <h3 data-number="24.6.2" class="anchored" data-anchor-id="sec-modreglog"><span class="header-section-number">24.6.2</span> Modelo de Regressão Logística</h3>
 <p>Inicialmente, serão usados os <code>dadosTreino</code> para criar o modelo de regressão logística.</p>
 <p>No modelo, a variável resposta ou desfecho é representada por <code>sobreviveu</code>; todas as outras variáveis são variáveis explicativas.</p>
-<p>A função nativa <code>glm()</code> – <strong>g</strong>eneralized <strong>l</strong>inear <strong>m</strong>odel - é usada* para aplicar uma regressão logística no <em>R</em>. Sua funcionalidade é idêntica à função <code>lm()</code> da regressão linear. Necessita alguns argumentos:</p>
+<p>A função nativa <code>glm()</code> – <strong>g</strong>eneralized <strong>l</strong>inear <strong>m</strong>odel - é usada para aplicar uma regressão logística no <em>R</em>. Sua funcionalidade é idêntica à função <code>lm()</code> da regressão linear. Necessita alguns argumentos:</p>
 <ul>
 <li><p><strong>formula</strong> <span class="math inline">\(\to\)</span> objeto da classe <em>formula</em>. Um preditor típico tem o formato <code>resposta \~ preditor</code> em que <code>resposta</code>, na regressão logística binária, é uma variável dicotômica e o <code>preditor</code> pode ser uma série de variáveis numéricas ou categóricas;</p></li>
 <li><p><strong>family</strong> <span class="math inline">\(\to\)</span> uma descrição da distribuição de erro e função de <em>link</em> a ser usada no modelo <code>glm</code>, pode ser uma <em>string</em> que nomeia uma função de <em>family</em>. O padrão é <code>family = gaussian()</code>. No caso da regressão logística binária, <code>family = binomial()</code> ou <code>family = binomial (link =”logit”)</code>. Para outras informações, use <code>help(glm)</code> ou <code>help(family)</code>;</p></li>
@@ -854,21 +854,21 @@ glm(formula = sobreviveu ~ ., family = binomial(link = "logit"),
 
 Coefficients:
              Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)  4.132611   0.422656   9.778  &lt; 2e-16 ***
-classe2     -1.174431   0.277973  -4.225 2.39e-05 ***
-classe3     -2.200140   0.266194  -8.265  &lt; 2e-16 ***
-sexomasc    -3.550041   0.220317 -16.113  &lt; 2e-16 ***
-idade       -0.032159   0.007728  -4.162 3.16e-05 ***
-irco        -0.417165   0.114575  -3.641 0.000272 ***
-pafi        -0.091018   0.116204  -0.783 0.433475    
+(Intercept)  4.171883   0.424308   9.832  &lt; 2e-16 ***
+classe2     -1.193470   0.279535  -4.269 1.96e-05 ***
+classe3     -2.223977   0.267226  -8.322  &lt; 2e-16 ***
+sexomasc    -3.567161   0.221029 -16.139  &lt; 2e-16 ***
+idade       -0.032648   0.007659  -4.263 2.02e-05 ***
+irco        -0.417290   0.114605  -3.641 0.000271 ***
+pafi        -0.085290   0.115166  -0.741 0.458949    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
-    Null deviance: 1210.4  on 915  degrees of freedom
-Residual deviance:  715.0  on 909  degrees of freedom
-AIC: 729
+    Null deviance: 1210.44  on 915  degrees of freedom
+Residual deviance:  714.01  on 909  degrees of freedom
+AIC: 728.01
 
 Number of Fisher Scoring iterations: 5</code></pre>
 </div>
@@ -877,7 +877,7 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <h4 data-number="24.6.2.1" class="anchored" data-anchor-id="interpretação-dos-coeficientes"><span class="header-section-number">24.6.2.1</span> Interpretação dos Coeficientes</h4>
 <p>Em uma regressão logística, a resposta que está sendo modelada é o <code>log(odds)</code> ou <code>logit</code> de que o desfecho é igual a 1. Os coeficientes de regressão fornecem a mudança no <code>log(odds)</code> no desfecho para a mudança de uma unidade na variável preditora, mantendo todas as outras variáveis preditivas constantes <span class="citation" data-cites="hosmer2013applied">(<a href="referencias.html#ref-hosmer2013applied" role="doc-biblioref">11</a>)</span>.</p>
 <p>Na saída da função <code>summary()</code>, são produzidos os coeficientes da regressão na coluna <code>Estimate</code>, associados ao respectivos desvio padrão dos resíduos (<code>Std. Error</code>), o valor <code>z</code> (estatística de Wald) e os valores do <em>p</em> (<code>Pr(&gt;|t|</code>). Importante destacar que a hipótese nula dos coeficientes da regressão é de que “os coeficientes são nulos/zeros”. Então, os valores <em>P</em> devem ser interpretados como a probabilidade de se observar valores de coeficientes tão extremos dado que a hipótese nula é verdadeira. Estes coeficientes estão modelando a probabilidade do evento desfecho (<code>sobreviveu</code>) ocorrer com base nas variáveis explicativas: <code>sexo</code>, <code>idade</code>, <code>classe</code> do passageiro, número de irmãos/conjuges a bordo (<code>irco</code>) e número de pais/filhos a bordo (<code>pafi</code>) . Os coeficientes da regressão representam o impacto de cada variável explicativa na probabilidade de sobrevivência.</p>
-<p>Nas <em>variáveis contínuas</em> , para cada aumento de uma unidade na <code>idade</code>, por exemplo, o <span class="math inline">\(log(odds)\)</span> de sobreviver <code>1 = sim</code> (versus <code>0 = não</code>) diminui, pois o coeficiente é negativo, em -0.0321593.</p>
+<p>Nas <em>variáveis contínuas</em> , para cada aumento de uma unidade na <code>idade</code>, por exemplo, o <span class="math inline">\(log(odds)\)</span> de sobreviver <code>1 = sim</code> (versus <code>0 = não</code>) diminui, pois o coeficiente é negativo, em -0.0326484.</p>
 <p>Para <em>variáveis categóricas</em>, o desempenho de cada categoria é avaliado em relação a uma categoria de base. A categoria de base para a variável <code>sexo</code> é o sexo feminino (primeira categoria que aparece quando se observa os níveis) e para a classe do passageiro é a 1ª classe.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(dadosTreino<span class="sc">$</span>sexo)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -905,7 +905,7 @@ Number of Fisher Scoring iterations: 5</code></pre>
 </ul>
 <p><u>Outras métricas da saída do sumário do modelo</u></p>
 <ul>
-<li><strong>Significância estatística</strong>: o R, para facilitar, informa com asteriscos quais variáveis possuem coeficientes estatisticamente significativos: * para <em>p</em> &lt; 0,05, ** para <em>p</em> &lt; 0,01, e *** para <em>p</em> &lt; 0,001.<br>
+<li><strong>Significância estatística</strong>: o R, para facilitar, informa com asteriscos quais variáveis possuem coeficientes estatisticamente significativos: * para <em>p</em> <span class="math inline">\(\lt 0,05\)</span> , ** para <em>p</em> <span class="math inline">\(\lt 0,01\)</span>, e *** para <em>p</em> <span class="math inline">\(\lt 0,001\)</span>.<br>
 </li>
 <li><strong>Deviance residual</strong>: Indica o ajuste do modelo; quanto menor, melhor.<br>
 </li>
@@ -930,9 +930,9 @@ Terms added sequentially (first to last)
 NULL                     915    1210.44              
 classe  2    63.38       913    1147.06 1.728e-14 ***
 sexo    1   401.14       912     745.92 &lt; 2.2e-16 ***
-idade   1    10.82       911     735.10  0.001004 ** 
-irco    1    19.48       910     715.62 1.017e-05 ***
-pafi    1     0.62       909     715.00  0.431231    
+idade   1    12.04       911     733.88 0.0005215 ***
+irco    1    19.31       910     714.57 1.108e-05 ***
+pafi    1     0.55       909     714.01 0.4565044    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
@@ -965,18 +965,18 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(odds_ratio1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                OR  2.5 %  97.5 %
-(Intercept) 62.340 27.810 146.041
-classe2      0.309  0.178   0.530
-classe3      0.111  0.065   0.185
-sexomasc     0.029  0.018   0.044
-idade        0.968  0.954   0.983
+(Intercept) 64.837 28.842 152.464
+classe2      0.303  0.174   0.521
+classe3      0.108  0.063   0.181
+sexomasc     0.028  0.018   0.043
+idade        0.968  0.953   0.982
 irco         0.659  0.520   0.815
-pafi         0.913  0.724   1.144</code></pre>
+pafi         0.918  0.730   1.147</code></pre>
 </div>
 </div>
 <p>Observando, novamente, a variável <code>idade</code>, vê-se que à medida que ela aumenta, reduz a chance de sobrevivência no naufrágio do Titanic. A <em>OR</em> nos informa que a cada aumento de uma unidade na <code>idade</code>, há uma diminuição na chance de sobrevivência (<code>sobreviveu = 1</code>) de <span class="math inline">\(1 – OR \times 100\)</span>%, ou seja, uma diminuição de 3.2%.<br>
-Para o sexo masculino, há uma diminuição (coeficiente negativo) na chance de sobrevivência. O fato de ser homem reduz em 97.1% a chance de sobreviver.<br>
-Para a 3ª classe, comparada à 1ª classe, há uma diminuição de 88.9% na chance de sobrevivência. Da mesma forma a 2ª classe, comparada à 1ª classe, tem uma diminuição de 69.1%% na chance de sobrevivência <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
+Para o sexo masculino, há uma diminuição (coeficiente negativo) na chance de sobrevivência. O fato de ser homem reduz em 97.2% a chance de sobreviver.<br>
+Para a 3ª classe, comparada à 1ª classe, há uma diminuição de 89.2% na chance de sobrevivência. Da mesma forma a 2ª classe, comparada à 1ª classe, tem uma diminuição de 69.7%% na chance de sobrevivência <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
 </section>
 </section>
 <section id="visualização-da-regressão-logística" class="level3" data-number="24.6.3">
@@ -1016,20 +1016,20 @@ glm(formula = sobreviveu ~ classe + sexo + idade + irco, family = binomial(link 
 
 Coefficients:
              Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)  4.058365   0.410689   9.882  &lt; 2e-16 ***
-classe2     -1.166736   0.277821  -4.200 2.67e-05 ***
-classe3     -2.187957   0.265584  -8.238  &lt; 2e-16 ***
-sexomasc    -3.513748   0.214324 -16.395  &lt; 2e-16 ***
-idade       -0.031576   0.007681  -4.111 3.94e-05 ***
-irco        -0.441232   0.111044  -3.973 7.08e-05 ***
+(Intercept)  4.104338   0.413276   9.931  &lt; 2e-16 ***
+classe2     -1.187064   0.279443  -4.248 2.16e-05 ***
+classe3     -2.213914   0.266821  -8.297  &lt; 2e-16 ***
+sexomasc    -3.532793   0.215076 -16.426  &lt; 2e-16 ***
+idade       -0.032159   0.007618  -4.221 2.43e-05 ***
+irco        -0.439918   0.111067  -3.961 7.47e-05 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
     Null deviance: 1210.44  on 915  degrees of freedom
-Residual deviance:  715.62  on 910  degrees of freedom
-AIC: 727.62
+Residual deviance:  714.57  on 910  degrees of freedom
+AIC: 726.57
 
 Number of Fisher Scoring iterations: 5</code></pre>
 </div>
@@ -1043,12 +1043,12 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(odds.ratio2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              OddsRatio       2.5 %       97.5 %
-(Intercept) 57.87958418 26.42265323 132.40635345
-classe2      0.31138175  0.17935940   0.53372018
-classe3      0.11214561  0.06592310   0.18701304
-sexomasc     0.02978508  0.01932015   0.04481385
-idade        0.96891685  0.95424718   0.98345433
-irco         0.64324358  0.51093171   0.79039502</code></pre>
+(Intercept) 60.60261380 27.53690109 139.41030140
+classe2      0.30511569  0.17513367   0.52448516
+classe3      0.10927212  0.06407984   0.18266665
+sexomasc     0.02922317  0.01892514   0.04402731
+idade        0.96835278  0.95379619   0.98274720
+irco         0.64408939  0.51159862   0.79149465</code></pre>
 </div>
 </div>
 <p>Quando se compara os dois modelos para ver se houve uma melhora no ajuste, é interessante observar os AICs.</p>
@@ -1057,11 +1057,11 @@ irco         0.64324358  0.51093171   0.79039502</code></pre>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>aic</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        df      AIC
-modelo1  7 729.0010
-modelo2  6 727.6205</code></pre>
+modelo1  7 728.0125
+modelo2  6 726.5669</code></pre>
 </div>
 </div>
-<p>O <code>modelo1</code> tem uma AIC (729) discretamente maior que a do <code>modelo2</code> (727.62). Isto indica que o ajuste do <code>modelo2</code> é um pouco melhor (teve menos informação perdida no ajuste), entretanto, esta ligeira melhora não modifica a interpretação.A função <code>anova()</code>, que a diferença entre os modelos não é significativa (<em>p</em> &gt; 0.05):</p>
+<p>O <code>modelo1</code> tem uma AIC (728.01) discretamente maior que a do <code>modelo2</code> (726.57). Isto indica que o ajuste do <code>modelo2</code> é um pouco melhor (teve menos informação perdida no ajuste), entretanto, esta ligeira melhora não modifica a interpretação.A função <code>anova()</code>, que a diferença entre os modelos não é significativa (<em>p</em> &gt; 0.05):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modelo1, modelo2, <span class="at">test =</span> <span class="st">"Chisq"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1070,14 +1070,14 @@ modelo2  6 727.6205</code></pre>
 Model 1: sobreviveu ~ classe + sexo + idade + irco + pafi
 Model 2: sobreviveu ~ classe + sexo + idade + irco
   Resid. Df Resid. Dev Df Deviance Pr(&gt;Chi)
-1       909     715.00                     
-2       910     715.62 -1 -0.61951   0.4312</code></pre>
+1       909     714.01                     
+2       910     714.57 -1 -0.55445   0.4565</code></pre>
 </div>
 </div>
 <p>Os dois modelo têm a mesma interpretação, mas o <code>modelo2</code> ajusta melhor os dados.</p>
 </section>
-<section id="modelo-de-regreção-e-interação" class="level3" data-number="24.6.5">
-<h3 data-number="24.6.5" class="anchored" data-anchor-id="modelo-de-regreção-e-interação"><span class="header-section-number">24.6.5</span> Modelo de regreção e interação</h3>
+<section id="modelo-de-regressão-e-interação" class="level3" data-number="24.6.5">
+<h3 data-number="24.6.5" class="anchored" data-anchor-id="modelo-de-regressão-e-interação"><span class="header-section-number">24.6.5</span> Modelo de regressão e interação</h3>
 <p>A interação entre variáveis pode ser crucial em modelos de regressão logística, pois pode revelar padrões que não são evidentes ao analisar cada variável separadamente. Usar interações pode tornar o modelo mais informativo, mas também mais complexo. Por isso, é sempre bom verificar métricas como AIC ou testes estatísticos para ver se a inclusão da interação realmente melhora a previsão.</p>
 <p>Será construído um gráfico (<a href="#fig-interacao" class="quarto-xref">Figura&nbsp;<span>24.4</span></a>)), usando o pacote <code>ggeffects</code> e sua função <code>ggpredict()</code> <span class="citation" data-cites="ludecke2018ggeffects">(<a href="referencias.html#ref-ludecke2018ggeffects" role="doc-biblioref">13</a>)</span>. Este calcula os efeitos marginais a partir de modelos estatísticos e retorna o resultado como estruturas de dados organizadas. Essas estruturas de dados estão prontas para serem usadas com o pacote <code>ggplot2</code>. Os efeitos marginais podem ser calculados para muitos modelos diferentes, incluindo termos de interação. Junto será criado o modelo de interação (<code>modelo3</code>)</p>
 <div class="cell" data-layout-align="center">
@@ -1100,22 +1100,22 @@ glm(formula = sobreviveu ~ sexo * classe + idade + irco, family = "binomial",
 
 Coefficients:
                           Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)               5.034458   0.699711   7.195 6.24e-13 ***
-sexomasc                 -4.455551   0.627851  -7.097 1.28e-12 ***
-classe2ª Classe          -0.769215   0.789410  -0.974 0.329850    
-classe3ª Classe          -3.437080   0.637079  -5.395 6.85e-08 ***
-idade                    -0.036039   0.008232  -4.378 1.20e-05 ***
-irco                     -0.425728   0.112655  -3.779 0.000157 ***
-sexomasc:classe2ª Classe -0.920840   0.866889  -1.062 0.288129    
-sexomasc:classe3ª Classe  1.754004   0.674646   2.600 0.009325 ** 
+(Intercept)               5.036349   0.698267   7.213 5.49e-13 ***
+sexomasc                 -4.476998   0.627800  -7.131 9.95e-13 ***
+classe2ª Classe          -0.808608   0.789868  -1.024 0.305965    
+classe3ª Classe          -3.440118   0.636174  -5.408 6.39e-08 ***
+idade                    -0.035444   0.008087  -4.383 1.17e-05 ***
+irco                     -0.420978   0.112696  -3.736 0.000187 ***
+sexomasc:classe2ª Classe -0.872473   0.866511  -1.007 0.313992    
+sexomasc:classe3ª Classe  1.736813   0.673835   2.578 0.009952 ** 
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
     Null deviance: 1210.44  on 915  degrees of freedom
-Residual deviance:  690.23  on 908  degrees of freedom
-AIC: 706.23
+Residual deviance:  690.18  on 908  degrees of freedom
+AIC: 706.18
 
 Number of Fisher Scoring iterations: 6</code></pre>
 </div>
@@ -1162,12 +1162,12 @@ Figura&nbsp;24.4: Gráfico de linha da interação sexo:classe
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>aic</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        df      AIC
-modelo2  6 727.6205
-modelo3  8 706.2294</code></pre>
+modelo2  6 726.5669
+modelo3  8 706.1834</code></pre>
 </div>
 </div>
-<p>A saída mostra que existe uma diferença de 21.39 pontos. Isso é uma forte evidência que o modelo com a interação melhora o ajuste.<br>
-O coeficiente de interação positivo como 1.7540036 não significa que homens da 3ª classe têm alta probabilidade de sobreviver. Significa que o efeito negativo de ser homem na 3ª classe é menos grave (ou a relação da classe com a sobrevivência é diferente para homens) do que seria previsto apenas pelos efeitos principais <code>sexomasc</code> e 3ª Classe somados linearmente. É uma correção para a relação aditiva simples.<br>
+<p>A saída mostra que existe uma diferença de 20.39 pontos. Isso é uma forte evidência que o modelo com a interação melhora o ajuste.<br>
+O coeficiente de interação positivo como 1.736813 não significa que homens da 3ª classe têm alta probabilidade de sobreviver. Significa que o efeito negativo de ser homem na 3ª classe é menos grave (ou a relação da classe com a sobrevivência é diferente para homens) do que seria previsto apenas pelos efeitos principais <code>sexomasc</code> e 3ª Classe somados linearmente. É uma correção para a relação aditiva simples.<br>
 O gráfico mostra claramente que homens da 3ª classe têm uma probabilidade predita de sobrevivência bem baixa, que é a mais baixa de todas as categorias.</p>
 <p>Desta forma, a interpretação é semelhante a que foi mostrada com o modelo sem interação:</p>
 <ul>
@@ -1216,8 +1216,8 @@ Figura&nbsp;24.5: Proporção de sobrevivência por sexo e classe
 Model 1: sobreviveu ~ classe + sexo + idade + irco
 Model 2: sobreviveu ~ sexo * classe + idade + irco
   Resid. Df Resid. Dev Df Deviance  Pr(&gt;Chi)    
-1       910     715.62                          
-2       908     690.23  2   25.391 3.065e-06 ***
+1       910     714.57                          
+2       908     690.18  2   24.384 5.072e-06 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
@@ -1316,43 +1316,43 @@ Figura&nbsp;24.6: Comparação das curvas ROC(modelo sem interação = preto; mo
 
           Reference
 Prediction   0   1
-         0 235  26
-         1  17 115
+         0 233  28
+         1  19 113
                                           
-               Accuracy : 0.8906          
-                 95% CI : (0.8555, 0.9197)
+               Accuracy : 0.8804          
+                 95% CI : (0.8442, 0.9108)
     No Information Rate : 0.6412          
     P-Value [Acc &gt; NIR] : &lt;2e-16          
                                           
-                  Kappa : 0.7588          
+                  Kappa : 0.7364          
                                           
- Mcnemar's Test P-Value : 0.2225          
+ Mcnemar's Test P-Value : 0.2432          
                                           
-            Sensitivity : 0.8156          
-            Specificity : 0.9325          
-         Pos Pred Value : 0.8712          
-         Neg Pred Value : 0.9004          
+            Sensitivity : 0.8014          
+            Specificity : 0.9246          
+         Pos Pred Value : 0.8561          
+         Neg Pred Value : 0.8927          
              Prevalence : 0.3588          
-         Detection Rate : 0.2926          
+         Detection Rate : 0.2875          
    Detection Prevalence : 0.3359          
-      Balanced Accuracy : 0.8741          
+      Balanced Accuracy : 0.8630          
                                           
        'Positive' Class : 1               
                                           </code></pre>
 </div>
 </div>
 <p>A tabela de contingência do início da matriz de confusão, mostra a comparação dos dados preditos e os dados reais (reference) e o significado de cada célula, onde <em>Classe 0</em> representa negativo e <em>Classe 1</em>, positivo.</p>
-<p>A <strong>Acurácia</strong> (89.1%) é a proporção de previsões corretas. O modelo tem uma alta acurácia, isso indica um bom desempenho geral. Um modelo é considerado razoavelmente bom se a precisão do modelo for superior a 70%.<br>
-A <strong>Sensibilidade (Recall)</strong> é a proporção de verdadeiros positivos (VP) identificados corretamente. O modelo o modelo identifica corretamete 81.6% dos verdadeiros positivos.<br>
-A <strong>Especificidade</strong> é a proporção de verdadeiros negativos(VN). O modelo reconhece 93.3% dos verdadeiros negativos.<br>
-O <strong>Valor P</strong> (<em>McNemar’s Test</em>) testa se há viés significativo na classificação dos erros. O valor alto (<em>P</em> = 0.222) sugere que os erros entre classes não são estatisticamente diferentes.<br>
+<p>A <strong>Acurácia</strong> (88%) é a proporção de previsões corretas. O modelo tem uma alta acurácia, isso indica um bom desempenho geral. Um modelo é considerado razoavelmente bom se a precisão do modelo for superior a 70%.<br>
+A <strong>Sensibilidade (Recall)</strong> é a proporção de verdadeiros positivos (VP) identificados corretamente. O modelo o modelo identifica corretamete 80.1% dos verdadeiros positivos.<br>
+A <strong>Especificidade</strong> é a proporção de verdadeiros negativos(VN). O modelo reconhece 92.5% dos verdadeiros negativos.<br>
+O <strong>Valor P</strong> (<em>McNemar’s Test</em>) testa se há viés significativo na classificação dos erros. O valor alto (<em>P</em> = 0.243) sugere que os erros entre classes não são estatisticamente diferentes.<br>
 O <strong>Kappa</strong> mede concordância ajustada para a distribuição dos dados. Um valor próximo de 1 indica boa concordância entre previsões e valores reais.<br>
 O <strong>escore F1</strong> (não listado diretamente) representa o equilíbrio entre precisão e recall. Pode ser obtido pela equação:</p>
 <p><span class="math display">\[
 F1 = 2 \times \frac{VPN \times sensibilidade}{VPN + sensibilidade}
 \]</span><br>
-Ou consultando <code>conf_matrix$byClass[7]</code> (84.2%).</p>
-<p>A <strong>Precisão (VPP)</strong> é a proporção de previsões positivas que estavam corretas, também denomonada de valor preditivo positivo (VPP). A precisão do modelo é igual 87.1, é considerada um valor alto.</p>
+Ou consultando <code>conf_matrix$byClass[7]</code> (82.8%).</p>
+<p>A <strong>Precisão (VPP)</strong> é a proporção de previsões positivas que estavam corretas, também denomonada de valor preditivo positivo (VPP). A precisão do modelo é igual 85.6, é considerada um valor alto.</p>
 </section>
 <section id="uso-da-curva-roc-para-avaliar-o-modelo" class="level4" data-number="24.6.7.2">
 <h4 data-number="24.6.7.2" class="anchored" data-anchor-id="uso-da-curva-roc-para-avaliar-o-modelo"><span class="header-section-number">24.6.7.2</span> Uso da curva ROC para avaliar o modelo</h4>
@@ -1429,7 +1429,7 @@ Figura&nbsp;24.7: Desempenho do modelo treino e do modelo teste
 </div>
 <p>A <strong>Curva ROC</strong> mostra o quão bem seu modelo distingue entre as classes positiva e negativa em diferentes limites de classificação. Uma curva que se aproxima do canto superior esquerdo indica um modelo com bom poder de discriminação.</p>
 <p>A <strong>AUC (Area Under the Curve)</strong> é um resumo numérico desse desempenho. Um valor de AUC de 1 significa um modelo perfeito, enquanto 0.5 indica um modelo que se comporta aleatoriamente (como jogar uma moeda para classificar). Quanto maior a AUC, melhor o desempenho geral do seu modelo em separar as classes. Em geral, uma AUC acima de 0.7 é considerada razoável, acima de 0.8 é boa e acima de 0.9 é excelente.</p>
-<p>A AUC Teste = 0.91 é considerada <strong>excelente</strong>. Isso significa que o modelo tem uma capacidade muito alta de distinguir entre as classes positiva e negativa no conjunto de dados não visto (teste). Uma AUC Treino = 0.9 também é um desempenho muito forte. A diferença entre as duas é mínima (0.02). Isso é um sinal extremamente positivo. Significa que o modelo não está sofrendo de:</p>
+<p>A AUC Teste = 0.91 é considerada <strong>excelente</strong>. Isso significa que o modelo tem uma capacidade muito alta de distinguir entre as classes positiva e negativa no conjunto de dados não visto (teste). Uma AUC Treino = 0.89 também é um desempenho muito forte. A diferença entre as duas é mínima (0.01). Isso é um sinal extremamente positivo. Significa que o modelo não está sofrendo de:</p>
 <ul>
 <li><strong>Overfitting</strong> (sobreajuste): Se houvesse <em>overfitting</em>, a AUC de treino seria significativamente mais alta que a AUC de teste, indicando que o modelo “memorizou” os dados de treino e não generaliza bem para dados novos.<br>
 </li>
@@ -1488,10 +1488,10 @@ Figura&nbsp;24.9: Avaliação do modelo com interação com foco na linearidade
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vif_valores)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           GVIF Df GVIF^(1/(2*Df))
-classe 1.412679  2        1.090212
-sexo   1.227434  1        1.107896
-idade  1.321484  1        1.149558
-irco   1.150439  1        1.072585</code></pre>
+classe 1.427017  2        1.092968
+sexo   1.233873  1        1.110798
+idade  1.324465  1        1.150854
+irco   1.147276  1        1.071109</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>vif_valores2 <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">vif</span>(modelo3)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -1501,11 +1501,11 @@ consider setting type = 'predictor'; see ?vif</code></pre>
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vif_valores2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                 GVIF Df GVIF^(1/(2*Df))
-sexo         9.784418  1        3.128005
-classe      29.369362  2        2.327950
-idade        1.361342  1        1.166766
-irco         1.145677  1        1.070363
-sexo:classe 38.152833  2        2.485316</code></pre>
+sexo         9.788254  1        3.128619
+classe      29.201327  2        2.324613
+idade        1.350924  1        1.162293
+irco         1.141819  1        1.068559
+sexo:classe 37.909947  2        2.481352</code></pre>
 </div>
 </div>
 <ul>
@@ -1537,7 +1537,7 @@ O -2LL do modelo nulo (<code>Null deviance</code>) e do modelo proposto (<code>R
 </div>
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>modelo2<span class="sc">$</span>deviance</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 715.6205</code></pre>
+<pre><code>[1] 714.5669</code></pre>
 </div>
 </div>
 <p>O cálculo da estatística G (Teste da Razão de Verossimilhança) pode ser obtido, como visto pela diferença entre deviance do modelo nulo e do modelo ajustado:</p>
@@ -1545,7 +1545,7 @@ O -2LL do modelo nulo (<code>Null deviance</code>) e do modelo proposto (<code>R
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>estatistica_G <span class="ot">&lt;-</span> modelo2<span class="sc">$</span>null.deviance <span class="sc">-</span> modelo2<span class="sc">$</span>deviance </span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(estatistica_G)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 494.8204</code></pre>
+<pre><code>[1] 495.874</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Graus de liberdade para o teste G</span></span>
 <span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>df_G <span class="ot">&lt;-</span> modelo2<span class="sc">$</span>df.null <span class="sc">-</span> modelo2<span class="sc">$</span>df.residual</span>
@@ -1575,7 +1575,7 @@ Pode-se obter os vários valores de <span class="math inline">\(R^2\)</span>, us
 <span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="fu">PseudoR2</span>(modelo2, <span class="at">which =</span><span class="fu">c</span>(<span class="st">"Nagelkerke"</span>, <span class="st">"McFadden"</span>, <span class="st">"CoxSnell"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Nagelkerke   McFadden   CoxSnell 
- 0.5692011  0.4087935  0.4173665 </code></pre>
+ 0.5701145  0.4096639  0.4180363 </code></pre>
 </div>
 </div>
 <p>Como se verifica, na Saída do código, todos os valores de <span class="math inline">\(R^2\)</span> diferem ligeiramente, mas podem ser usados como medidas de tamanho de efeito para o modelo. Então, basicamente, o pseudo R quadrado pode ser interpretado como <span class="math inline">\(R^2\)</span>, mas não se espera que seja tão grande. Uma regra prática, bastante útil é que o pseudo R quadrado de McFadden variando de 0,2 a 0,4 indica um ajuste muito bom do modelo <span class="citation" data-cites="mcfadden2021quantitative">(<a href="referencias.html#ref-mcfadden2021quantitative" role="doc-biblioref">17</a>)</span>.</p>
@@ -1588,7 +1588,7 @@ Uma observação influente é uma observação que tem um impacto desproporciona
 <span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(residuos_p)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
--2.68164 -0.53537 -0.36506 -0.05421  0.52679  2.66549 </code></pre>
+-2.69824 -0.53302 -0.36470 -0.05385  0.51851  2.66390 </code></pre>
 </div>
 </div>
 <p>Em uma amostra normalmente distribuída, ao redor de 95% dos valores estão entre –1,96 e +1,96, 99% deve estar entre –2,58 e +2,58 e quase todos (99,9%) devem situar-se entre –3,09 e +3,09. Portanto, resíduos padronizados com um valor absoluto maior que 3 são motivo de preocupação porque em uma amostra média é improvável que aconteça um valor tão alto por acaso <span class="citation" data-cites="field2012outliers">(<a href="referencias.html#ref-field2012outliers" role="doc-biblioref">19</a>)</span>. Na Saída da função <code>rstandard()</code>, observa-se que os valores estão dentro de –3 e +3.</p>
@@ -1596,10 +1596,10 @@ Uma observação influente é uma observação que tem um impacto desproporciona
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span> (modelo2, <span class="at">which =</span> <span class="dv">5</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-graph5" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-pos="H">
+<div id="fig-graph5" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-graph5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="24-reglogbin_files/figure-html/fig-graph5-1.png" class="quarto-figure quarto-figure-center figure-img" style="width:60.0%;height:60.0%" data-fig-pos="H">
+<img src="24-reglogbin_files/figure-html/fig-graph5-1.png" class="quarto-figure quarto-figure-center figure-img" style="width:60.0%;height:60.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-graph5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;24.10: Gráfico diagnóstico dos resíduos e pontos de alavancagem.
@@ -1615,16 +1615,16 @@ Figura&nbsp;24.10: Gráfico diagnóstico dos resíduos e pontos de alavancagem.
 <span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span> (hat)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
-0.001938 0.002805 0.006013 0.006550 0.007643 0.079204 </code></pre>
+0.001926 0.002814 0.006031 0.006550 0.007597 0.077549 </code></pre>
 </div>
 </div>
-<p>Os valores de alavancagem podem estar entre 0 (indicando que o caso não tem qualquer influência) e 1 (indicando que o caso tem grande influência). Se nenhum caso exercer influência indevida sobre o modelo, se espera que todos os valores de alavancagem estivessem próximos do valor médio. Alguns autores <span class="citation" data-cites="hoaglin1978hat">(<a href="referencias.html#ref-hoaglin1978hat" role="doc-biblioref">20</a>)</span>, recomendam investigar casos com valores superiores a duas vezes a média (0.0131004) como ponto de corte para identificar casos com influência indevida. Alguns valores (<span class="math inline">\(\sim\)</span> 5%) estão acima de duas vezes a média, o que se pode considerar pouco. Principalmente, porque o maior valor está bem longe do valor igual a 1 (0.0792037). É interessante fazer a análise, observando junto a <em>distância de Cook</em> para ver se um ponto é um <em>outlier</em> significativo.</p>
+<p>Os valores de alavancagem podem estar entre 0 (indicando que o caso não tem qualquer influência) e 1 (indicando que o caso tem grande influência). Se nenhum caso exercer influência indevida sobre o modelo, se espera que todos os valores de alavancagem estivessem próximos do valor médio. Alguns autores <span class="citation" data-cites="hoaglin1978hat">(<a href="referencias.html#ref-hoaglin1978hat" role="doc-biblioref">20</a>)</span>, recomendam investigar casos com valores superiores a duas vezes a média (0.0131004) como ponto de corte para identificar casos com influência indevida. Alguns valores (<span class="math inline">\(\sim\)</span> 5%) estão acima de duas vezes a média, o que se pode considerar pouco. Principalmente, porque o maior valor está bem longe do valor igual a 1 (0.0775491). É interessante fazer a análise, observando junto a <em>distância de Cook</em> para ver se um ponto é um <em>outlier</em> significativo.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>cook <span class="ot">&lt;-</span> <span class="fu">cooks.distance</span>(modelo2)</span>
 <span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span> (cook)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-1.585e-06 3.793e-05 1.762e-04 1.068e-03 6.004e-04 3.114e-02 </code></pre>
+1.373e-06 3.693e-05 1.702e-04 1.072e-03 6.084e-04 3.120e-02 </code></pre>
 </div>
 </div>
 <p>Se a distância de Cook é <span class="math inline">\(\lt\)</span> 1, não há necessidade real de excluir esses valores, uma vez que não tem um grande efeito na análise de regressão <span class="citation" data-cites="stevens1984outliers">(<a href="referencias.html#ref-stevens1984outliers" role="doc-biblioref">21</a>)</span>. Na <a href="#fig-graph5" class="quarto-xref">Figura&nbsp;<span>24.10</span></a>), verifica-se que os casos mais distantes não alcançam a distância de Cook.</p>
@@ -2346,7 +2346,7 @@ Figura&nbsp;24.10: Gráfico diagnóstico dos resíduos e pontos de alavancagem.
 <span id="cb96-185"><a href="#cb96-185" aria-hidden="true" tabindex="-1"></a>c.  *Imputação múltipla*: Criar múltiplos conjuntos de dados, cada um com diferentes valores imputados, e combinar os resultados das análises. Método mais robusto e permite estimar a incerteza.\</span>
 <span id="cb96-186"><a href="#cb96-186" aria-hidden="true" tabindex="-1"></a>d.  *Imputação por K-Nearest Neighbors*: Substituir os valores faltantes pela média dos *k* vizinhos mais próximos. Útil para dados numéricos e pode capturar padrões locais.</span>
 <span id="cb96-187"><a href="#cb96-187" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb96-188"><a href="#cb96-188" aria-hidden="true" tabindex="-1"></a>Considerando a quantidade de dados faltantes e a natureza da variável <span class="in">`idade`</span>, a imputação múltipla é uma excelente opção. Ela permite lidar com a incerteza associada aos valores imputados e fornece uma estimativa mais precisa dos parâmetros do modelo. Para isso, será usada a função <span class="in">`mice()`</span> do pacote <span class="in">`mice`</span> (*Multivariate Imputation by Chained Equations*) @van2011mice para fazer a imputação múltipla. O argumento `m = 5` se refere ao número de múltiplas imputações (cinco é o padrão); `method = “pmm”` é o método de imputação, onde se usa a correspondência da média preditiva (predictive mean matching – dados numéricos) como método de imputação. O método `pmm` garante que os valores imputados sejam próximos de valores reais do conjunto de dados, mantendo a coerência estatística. A função `mice()` produz várias cópias completas de *dataframe*, cada uma com diferentes imputações dos dados ausentes. Essa transformação será atribuída a um objeto de nome <span class="in">`dados`</span>.</span>
+<span id="cb96-188"><a href="#cb96-188" aria-hidden="true" tabindex="-1"></a>Considerando a quantidade de dados faltantes e a natureza da variável <span class="in">`idade`</span>, a imputação múltipla é uma excelente opção. Ela permite lidar com a incerteza associada aos valores imputados e fornece uma estimativa mais precisa dos parâmetros do modelo. Para isso, será usada a função <span class="in">`mice()`</span> do pacote <span class="in">`mice`</span> (*Multivariate Imputation by Chained Equations*) @van2011mice para fazer a imputação múltipla. O argumento `m = 5` se refere ao número de múltiplas imputações (cinco é o padrão); `method = “pmm”` é o método de imputação, onde se usa a correspondência da média preditiva (*predictive mean matching* – dados numéricos) como método de imputação. O método `pmm` garante que os valores imputados sejam próximos de valores reais do conjunto de dados, mantendo a coerência estatística. A função `mice()` produz várias cópias completas de *dataframe*, cada uma com diferentes imputações dos dados ausentes. Essa transformação será atribuída a um objeto de nome <span class="in">`dados`</span>.</span>
 <span id="cb96-189"><a href="#cb96-189" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb96-192"><a href="#cb96-192" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb96-193"><a href="#cb96-193" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: mice</span></span>
@@ -2427,7 +2427,7 @@ Figura&nbsp;24.10: Gráfico diagnóstico dos resíduos e pontos de alavancagem.
 <span id="cb96-276"><a href="#cb96-276" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb96-277"><a href="#cb96-277" aria-hidden="true" tabindex="-1"></a>No modelo, a variável resposta ou desfecho é representada por <span class="in">`sobreviveu`</span>; todas as outras variáveis são variáveis explicativas.</span>
 <span id="cb96-278"><a href="#cb96-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb96-279"><a href="#cb96-279" aria-hidden="true" tabindex="-1"></a>A função nativa <span class="in">`glm()`</span> – **g**eneralized **l**inear **m**odel - é usada<span class="sc">\*</span> para aplicar uma regressão logística no *R*. Sua funcionalidade é idêntica à função <span class="in">`lm()`</span> da regressão linear. Necessita alguns argumentos:</span>
+<span id="cb96-279"><a href="#cb96-279" aria-hidden="true" tabindex="-1"></a>A função nativa <span class="in">`glm()`</span> – **g**eneralized **l**inear **m**odel - é usada para aplicar uma regressão logística no *R*. Sua funcionalidade é idêntica à função <span class="in">`lm()`</span> da regressão linear. Necessita alguns argumentos:</span>
 <span id="cb96-280"><a href="#cb96-280" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb96-281"><a href="#cb96-281" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**formula** $\to$ objeto da classe *formula*. Um preditor típico tem o formato <span class="in">`resposta \~ preditor`</span> em que <span class="in">`resposta`</span>, na regressão logística binária, é uma variável dicotômica e o <span class="in">`preditor`</span> pode ser uma série de variáveis numéricas ou categóricas;</span>
 <span id="cb96-282"><a href="#cb96-282" aria-hidden="true" tabindex="-1"></a></span>
@@ -2474,7 +2474,7 @@ Figura&nbsp;24.10: Gráfico diagnóstico dos resíduos e pontos de alavancagem.
 <span id="cb96-327"><a href="#cb96-327" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb96-328"><a href="#cb96-328" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Outras métricas da saída do sumário do modelo</span><span class="co">]</span>{.underline}</span>
 <span id="cb96-329"><a href="#cb96-329" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb96-330"><a href="#cb96-330" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Significância estatística**: o R, para facilitar, informa com asteriscos quais variáveis possuem coeficientes estatisticamente significativos: <span class="sc">\*</span> para *p* \&lt; 0,05, \*\* para *p* \&lt; 0,01, e \*\*\* para *p* <span class="sc">\&lt;</span> 0,001.\</span>
+<span id="cb96-330"><a href="#cb96-330" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Significância estatística**: o R, para facilitar, informa com asteriscos quais variáveis possuem coeficientes estatisticamente significativos: <span class="sc">\*</span> para *p* $\lt 0,05$ , \*\* para *p* $\lt 0,01$, e \*\*\* para *p* $\lt 0,001$.\</span>
 <span id="cb96-331"><a href="#cb96-331" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Deviance residual**: Indica o ajuste do modelo; quanto menor, melhor.\</span>
 <span id="cb96-332"><a href="#cb96-332" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**AIC (Critério de Informação de Akaike)** <span class="ot">[^24-reglogbin-3]</span>: Ajuda a comparar modelos; quanto menor, melhor o ajuste e a simplicidade.</span>
 <span id="cb96-333"><a href="#cb96-333" aria-hidden="true" tabindex="-1"></a></span>
@@ -2573,7 +2573,7 @@ Figura&nbsp;24.10: Gráfico diagnóstico dos resíduos e pontos de alavancagem.
 <span id="cb96-440"><a href="#cb96-440" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb96-441"><a href="#cb96-441" aria-hidden="true" tabindex="-1"></a>Os dois modelo têm a mesma interpretação, mas o <span class="in">`modelo2`</span> ajusta melhor os dados.</span>
 <span id="cb96-442"><a href="#cb96-442" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb96-443"><a href="#cb96-443" aria-hidden="true" tabindex="-1"></a><span class="fu">### Modelo de regreção e interação</span></span>
+<span id="cb96-443"><a href="#cb96-443" aria-hidden="true" tabindex="-1"></a><span class="fu">### Modelo de regressão e interação</span></span>
 <span id="cb96-444"><a href="#cb96-444" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb96-445"><a href="#cb96-445" aria-hidden="true" tabindex="-1"></a>A interação entre variáveis pode ser crucial em modelos de regressão logística, pois pode revelar padrões que não são evidentes ao analisar cada variável separadamente. Usar interações pode tornar o modelo mais informativo, mas também mais complexo. Por isso, é sempre bom verificar métricas como AIC ou testes estatísticos para ver se a inclusão da interação realmente melhora a previsão.</span>
 <span id="cb96-446"><a href="#cb96-446" aria-hidden="true" tabindex="-1"></a></span>
@@ -3028,27 +3028,35 @@ Figura&nbsp;24.10: Gráfico diagnóstico dos resíduos e pontos de alavancagem.
 <span id="cb96-935"><a href="#cb96-935" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb96-936"><a href="#cb96-936" aria-hidden="true" tabindex="-1"></a>Essa avaliação pode ser acompanhada de um gráfico diagnóstico, usando a função <span class="in">`plot()`</span> para o modelo <span class="in">`modelo2`</span>(para maiores detalhes veja as @sec-graphdiag e @sec-BP).</span>
 <span id="cb96-937"><a href="#cb96-937" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb96-938"><a href="#cb96-938" aria-hidden="true" tabindex="-1"></a><span class="in">```{r #fig-graph5, warning=FALSE, out.width="60%", out.height="60%", fig.align="center", fig.cap="Gráfico diagnóstico dos resíduos e pontos de alavancagem.", fig.pos="H"}</span></span>
-<span id="cb96-939"><a href="#cb96-939" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span> (modelo2, <span class="at">which =</span> <span class="dv">5</span>)</span>
-<span id="cb96-940"><a href="#cb96-940" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb96-941"><a href="#cb96-941" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb96-942"><a href="#cb96-942" aria-hidden="true" tabindex="-1"></a>São produzidos vários gráficos com a função <span class="in">`plot()`</span>, mas o foco é o gráfico 5 (@fig-graph5) que confirma os achados de não existirem valores atípicos que comprometam o ajuste do modelo. A @fig-linearidade exibe um gráfico igual, sem mostrar as distância s de Cook.</span>
-<span id="cb96-943"><a href="#cb96-943" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb96-944"><a href="#cb96-944" aria-hidden="true" tabindex="-1"></a>Para a análise dos pontos influentes, pode-se verificar os pontos de alavancagem (<span class="in">`leverage`</span>) com a função <span class="in">`hatvalues()`</span> do pacote <span class="in">`stats`</span>, incluído no R base.</span>
-<span id="cb96-945"><a href="#cb96-945" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb96-948"><a href="#cb96-948" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb96-949"><a href="#cb96-949" aria-hidden="true" tabindex="-1"></a>hat <span class="ot">&lt;-</span> <span class="fu">hatvalues</span>(modelo2)</span>
-<span id="cb96-950"><a href="#cb96-950" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span> (hat)</span>
-<span id="cb96-951"><a href="#cb96-951" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb96-952"><a href="#cb96-952" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb96-953"><a href="#cb96-953" aria-hidden="true" tabindex="-1"></a>Os valores de alavancagem podem estar entre 0 (indicando que o caso não tem qualquer influência) e 1 (indicando que o caso tem grande influência). Se nenhum caso exercer influência indevida sobre o modelo, se espera que todos os valores de alavancagem estivessem próximos do valor médio. Alguns autores @hoaglin1978hat, recomendam investigar casos com valores superiores a duas vezes a média (<span class="in">`r 2*mean(hat)`</span>) como ponto de corte para identificar casos com influência indevida. Alguns valores ($\sim$ 5%) estão acima de duas vezes a média, o que se pode considerar pouco. Principalmente, porque o maior valor está bem longe do valor igual a 1 (<span class="in">`r max(hat)`</span>). É interessante fazer a análise, observando junto a *distância de Cook* para ver se um ponto é um *outlier* significativo.</span>
-<span id="cb96-954"><a href="#cb96-954" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb96-957"><a href="#cb96-957" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb96-958"><a href="#cb96-958" aria-hidden="true" tabindex="-1"></a>cook <span class="ot">&lt;-</span> <span class="fu">cooks.distance</span>(modelo2)</span>
-<span id="cb96-959"><a href="#cb96-959" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span> (cook)</span>
-<span id="cb96-960"><a href="#cb96-960" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb96-961"><a href="#cb96-961" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb96-962"><a href="#cb96-962" aria-hidden="true" tabindex="-1"></a>Se a distância de Cook é $\lt$ 1, não há necessidade real de excluir esses valores, uma vez que não tem um grande efeito na análise de regressão @stevens1984outliers. Na @fig-graph5), verifica-se que os casos mais distantes não alcançam a distância de Cook.</span>
+<span id="cb96-940"><a href="#cb96-940" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb96-941"><a href="#cb96-941" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-graph5</span></span>
+<span id="cb96-942"><a href="#cb96-942" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb96-943"><a href="#cb96-943" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.align: "center"</span></span>
+<span id="cb96-944"><a href="#cb96-944" aria-hidden="true" tabindex="-1"></a><span class="co">#| out.width: "60%"</span></span>
+<span id="cb96-945"><a href="#cb96-945" aria-hidden="true" tabindex="-1"></a><span class="co">#| out.height: "60%"</span></span>
+<span id="cb96-946"><a href="#cb96-946" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb96-947"><a href="#cb96-947" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb96-948"><a href="#cb96-948" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Gráfico diagnóstico dos resíduos e pontos de alavancagem."</span></span>
+<span id="cb96-949"><a href="#cb96-949" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span> (modelo2, <span class="at">which =</span> <span class="dv">5</span>)</span>
+<span id="cb96-950"><a href="#cb96-950" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb96-951"><a href="#cb96-951" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-952"><a href="#cb96-952" aria-hidden="true" tabindex="-1"></a>São produzidos vários gráficos com a função <span class="in">`plot()`</span>, mas o foco é o gráfico 5 (@fig-graph5) que confirma os achados de não existirem valores atípicos que comprometam o ajuste do modelo. A @fig-linearidade exibe um gráfico igual, sem mostrar as distância s de Cook.</span>
+<span id="cb96-953"><a href="#cb96-953" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-954"><a href="#cb96-954" aria-hidden="true" tabindex="-1"></a>Para a análise dos pontos influentes, pode-se verificar os pontos de alavancagem (<span class="in">`leverage`</span>) com a função <span class="in">`hatvalues()`</span> do pacote <span class="in">`stats`</span>, incluído no R base.</span>
+<span id="cb96-955"><a href="#cb96-955" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-958"><a href="#cb96-958" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb96-959"><a href="#cb96-959" aria-hidden="true" tabindex="-1"></a>hat <span class="ot">&lt;-</span> <span class="fu">hatvalues</span>(modelo2)</span>
+<span id="cb96-960"><a href="#cb96-960" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span> (hat)</span>
+<span id="cb96-961"><a href="#cb96-961" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb96-962"><a href="#cb96-962" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-963"><a href="#cb96-963" aria-hidden="true" tabindex="-1"></a>Os valores de alavancagem podem estar entre 0 (indicando que o caso não tem qualquer influência) e 1 (indicando que o caso tem grande influência). Se nenhum caso exercer influência indevida sobre o modelo, se espera que todos os valores de alavancagem estivessem próximos do valor médio. Alguns autores @hoaglin1978hat, recomendam investigar casos com valores superiores a duas vezes a média (<span class="in">`r 2*mean(hat)`</span>) como ponto de corte para identificar casos com influência indevida. Alguns valores ($\sim$ 5%) estão acima de duas vezes a média, o que se pode considerar pouco. Principalmente, porque o maior valor está bem longe do valor igual a 1 (<span class="in">`r max(hat)`</span>). É interessante fazer a análise, observando junto a *distância de Cook* para ver se um ponto é um *outlier* significativo.</span>
+<span id="cb96-964"><a href="#cb96-964" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-967"><a href="#cb96-967" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb96-968"><a href="#cb96-968" aria-hidden="true" tabindex="-1"></a>cook <span class="ot">&lt;-</span> <span class="fu">cooks.distance</span>(modelo2)</span>
+<span id="cb96-969"><a href="#cb96-969" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span> (cook)</span>
+<span id="cb96-970"><a href="#cb96-970" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb96-971"><a href="#cb96-971" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-972"><a href="#cb96-972" aria-hidden="true" tabindex="-1"></a>Se a distância de Cook é $\lt$ 1, não há necessidade real de excluir esses valores, uma vez que não tem um grande efeito na análise de regressão @stevens1984outliers. Na @fig-graph5), verifica-se que os casos mais distantes não alcançam a distância de Cook.</span>
 </code><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

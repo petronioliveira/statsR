@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" version="1.0">
+  <info>
+    <title>Vancouver (adaptado para livros)</title>
+    <id>http://www.zotero.org/styles/vancouver-book</id>
+    <link href="http://www.zotero.org/styles/vancouver" rel="template"/>
+    <category citation-format="numeric"/>
+    <category field="medicine"/>
+    <updated>2025-11-25</updated>
+  </info>
+
+  <!-- Macros principais -->
+  <macro name="author">
+    <names variable="author">
+      <name form="short" and="text" delimiter=", "/>
+    </names>
+  </macro>
+
+  <macro name="title">
+    <text variable="title"/>
+  </macro>
+
+  <macro name="container-title">
+    <text variable="container-title" font-style="italic"/>
+  </macro>
+
+  <macro name="year">
+    <date variable="issued">
+      <date-part name="year"/>
+    </date>
+  </macro>
+
+  <macro name="bibliography-entry">
+    <group delimiter=". ">
+      <text macro="author"/>
+      <text macro="title"/>
+      <text macro="container-title"/>
+      <text macro="year"/>
+      <text variable="DOI" prefix="doi: "/>
+      <text variable="URL"/>
+    </group>
+  </macro>
+
+  <!-- Citações no texto -->
+  <citation collapse="citation-number" disambiguate-add-names="true">
+    <layout prefix="[" suffix="]" delimiter=",">
+      <text variable="citation-number"/>
+    </layout>
+  </citation>
+
+  <!-- Lista de referências -->
+  <bibliography>
+    <layout>
+      <text variable="citation-number" prefix="[" suffix="]"/>
+      <text macro="bibliography-entry"/>
+    </layout>
+  </bibliography>
+</style>

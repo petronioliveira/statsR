@@ -534,7 +534,7 @@ window.Quarto = {
 <p>A chamada <strong>Lei dos Grandes Números</strong> diz que à medida que múltiplas observações são coletadas, a proporção observada de ocorrências de um determinado desfecho, após <em>n</em> ensaios, converge para a probabilidade real P desse desfecho. Ou seja, quanto mais vezes for repetido uma experiência, a melhor estimativa de probabilidade tende a ocorrer. Suponha que seja lançada uma moeda honesta repetidas vezes. Por definição, essa é uma moeda que tem <span class="math inline">\(P(cara)=0,5\)</span>. O que se observaria? O autor fez 20 lançamentos seguidos com uma mesma moeda e obteve o seguinte resultado, onde 1 = cara (<a href="#fig-moeda20" class="quarto-xref">Figura&nbsp;<span>9.1</span></a>):</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-moeda20" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-pos="H">
+<div id="fig-moeda20" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-moeda20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://i.imgur.com/57v7i9n.png" class="quarto-figure quarto-figure-center figure-img" style="width:80.0%;height:80.0%" data-fig-pos="H">
@@ -549,7 +549,7 @@ Figura&nbsp;9.1: Vinte lançamentos seguidos de uma moeda
 <p>Neste caso, 10 (50%) desses lançamentos deram cara. Agora, suponha que foram feitos registros do número de caras (<span class="math inline">\(n_1\)</span>) dos primeiros lançamentos (<em>N</em>) e calculadas as proporções de caras (<span class="math inline">\(n_1⁄N\)</span>) todas as vezes. O resultado está na <a href="#fig-propmoeda" class="quarto-xref">Figura&nbsp;<span>9.2</span></a>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-propmoeda" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-pos="H">
+<div id="fig-propmoeda" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-propmoeda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://i.imgur.com/joXyqmz.png" class="quarto-figure quarto-figure-center figure-img" style="width:80.0%;height:80.0%" data-fig-pos="H">
@@ -564,7 +564,7 @@ Figura&nbsp;9.2: Proporção em 20 lançamentos de moeda
 <p>Observa-se, nessa sequência, que a proporção de caras flutua muito, variando de 0,17 a 0,75. Se o número de lançamentos for aumentando tem-se a sensação de que a proporção se aproxima da “correta”. Por exemplo, com 100 jogadas, obteve-se 53 caras (0,53); com 150 jogadas, 79 (0,53) e com 200 jogadas, 111 (0,56). Quando N se aproximar do infinito (<span class="math inline">\(N \to\infty\)</span>) a proporção de caras convergirá para 0,50. A definição frequentista de probabilidade segue essa definição. Ninguém consegue um número infinito de lançamentos de moedas, mas um computador pode simular milhares de lançamentos. A <a href="#fig-nmoeda" class="quarto-xref">Figura&nbsp;<span>9.3</span></a> mostra o que acontece com a proporção <span class="math inline">\(n_1⁄N\)</span> à medida que <em>N</em> aumenta em lançamentos de moedas. As simulações foram repetidas 4 vezes somente para ter certeza de que o que aconteceu não foi obra do acaso.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-nmoeda" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-pos="H">
+<div id="fig-nmoeda" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="H" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-nmoeda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://i.imgur.com/H1eeJNj.png" class="quarto-figure quarto-figure-center figure-img" style="width:80.0%;height:80.0%" data-fig-pos="H">
@@ -892,16 +892,16 @@ Figura&nbsp;9.7: Função densidade de probabilidade
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">10</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  0.6757595  0.9360069  0.5409308  1.0756862 -1.0836492  0.4117223
- [7] -0.7684413 -0.6487018 -0.6219977 -0.3545994</code></pre>
+<pre><code> [1]  1.7037892 -0.6276259 -0.8429619  0.1814230 -1.1630219  0.8145165
+ [7] -1.2534361  0.1144978  1.5185332  0.2751852</code></pre>
 </div>
 </div>
 <p>No entanto, deve-se notar que, se uma “semente” (<code>seed</code>) não for especificada, a saída não será reproduzível, ou seja, cada vez que o comando for executado, retornará um novo conjunto de observações:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">10</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] -0.34426700  0.53746664 -1.34228248  0.03935265 -0.99125900  1.99659972
- [7]  1.14536373 -1.01090635  0.23524215 -1.63612339</code></pre>
+<pre><code> [1]  0.99814265 -0.30040896  0.63563322 -0.86952037  0.23884723 -0.84720290
+ [7] -0.38755304 -1.55136529 -1.45345292 -0.02214371</code></pre>
 </div>
 </div>
 <p>Cada vez que este comando for reproduzido, retornará uma nova série de 10 números diferentes do anterior. Para tornar o código reproduzível, retornando o mesmo conjunto de valores, deve-se usar uma “semente” (<em>seed</em>), usando a função <em>set.seed()</em>, cujo argumento é um número que identificará a série gerada, no exemplo, pela função <code>rnorm()</code>. O valor do número (“semente”) não é importante, é apenas um identificador. Para ilustrar, será construído dois conjuntos de 10 números que serão recebidos pelos objetos <em>x</em> e <em>y</em>. Para gerar o conjunto de números <em>x</em>, será usado o número <code>123</code> como “semente”. A “semente” funciona como uma espécie de marca. Para o <em>y</em> não será usado a função <code>set.seed()</code>:</p>

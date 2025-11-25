@@ -237,7 +237,7 @@ O gráfico foi criado com a função `plotchisqteste()` do pacote `nhstplot`, pa
 
 #### Dados usados no exemplo
 
-O exemplo da @tbl-tab2x2, usado para mostrar a lógica do qui-quadrado, é um teste de independência ou associação. Ali, foi mostrado que não existe uma associação estatisticamente significativa (*p* > 0,05) entre acidentes automobilísticos e o sexo.\
+O exemplo da @tbl-tab2x2, usado para mostrar a lógica do qui-quadrado, é um teste de independência ou associação. Ali, foi mostrado que não existe uma associação estatisticamente significativa (*p* \> 0,05) entre acidentes automobilísticos e o sexo.\
 Como exercício, serão usados outros dados que necessitam mais manipulação, como treinamento do qui-quadrado de associação e do próprio R. Estes dados servirão para testar a hipótese de associação entre tabagismo e baixo peso ao nascer (\< 2500g).
 
 ##### Leitura e transformação dos dados
