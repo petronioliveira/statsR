@@ -59,6 +59,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -578,7 +579,7 @@ Figura&nbsp;10.1: Histograma da altura das gestantes com boxplot sobreposto.
 <section id="assimetria" class="level2" data-number="10.3">
 <h2 data-number="10.3" class="anchored" data-anchor-id="assimetria"><span class="header-section-number">10.3</span> Assimetria</h2>
 <p>A assimetria analisa a proximidade ou o afastamento de um conjunto de dados quantitativos em relação à distribuição normal. Mede o grau de afastamento de uma distribuição em relação a um eixo central (geralmente a média).</p>
-<p>Quando a curva é simétrica, a média, a mediana e a moda coincidem, num mesmo ponto, havendo um perfeito equilíbrio na distribuição. Quando o equilíbrio não acontece, isto é, a média, a mediana e a moda recaem em pontos diferentes da distribuição esta será assimétrica; enviesada a direita ou esquerda. podendo-se caracterizar como curvas assimétricas à direita ou à esquerda. Quando a distribuição é assimétrica à esquerda ou assimetria negativa, a cauda da curva localiza-se à esquerda, desviando a média para este lado (<a href="#fig-skew" class="quarto-xref">Figura&nbsp;<span>10.2</span></a>). Na assimetria positiva, ocorre o contrário, a cauda está localizada à direita e da mesma forma a média <span class="citation" data-cites="peat2014descriptive">(<a href="referencias.html#ref-peat2014descriptive" role="doc-biblioref">1</a>)</span>.</p>
+<p>Quando a curva é simétrica, a média, a mediana e a moda coincidem, num mesmo ponto, havendo um perfeito equilíbrio na distribuição. Quando o equilíbrio não acontece, isto é, a média, a mediana e a moda recaem em pontos diferentes da distribuição esta será assimétrica; enviesada a direita ou esquerda. podendo-se caracterizar como curvas assimétricas à direita ou à esquerda. Quando a distribuição é assimétrica à esquerda ou assimetria negativa, a cauda da curva localiza-se à esquerda, desviando a média para este lado (<a href="#fig-skew" class="quarto-xref">Figura&nbsp;<span>10.2</span></a>). Na assimetria positiva, ocorre o contrário, a cauda está localizada à direita e da mesma forma a média <span class="citation" data-cites="peat2014descriptive">Peat e Barton (<a href="referencias.html#ref-peat2014descriptive" role="doc-biblioref">2014</a>)</span>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-skew" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -598,7 +599,7 @@ Figura&nbsp;10.2: Assimetria
 <p>O <em>R</em> dispões de diversas maneiras para o cálculo do <em>coeficiente de assimetria</em>. O coeficiente de assimetria é um método numérico estatístico para medir a assimetria da distribuição ou conjunto de dados. Ele fala sobre a posição da maioria dos valores de dados na distribuição em torno do valor central.</p>
 <section id="cálculo-do-coeficiente-de-assimetria" class="level4" data-number="10.3.1.1">
 <h4 data-number="10.3.1.1" class="anchored" data-anchor-id="cálculo-do-coeficiente-de-assimetria"><span class="header-section-number">10.3.1.1</span> Cálculo do coeficiente de assimetria</h4>
-<p>Várias medidas de coeficientes de assimetria amostrais foram propostas. O coeficiente de assimetria pode ser calculado no <em>R</em>, usando a função <code>skewness()</code> do pacote <code>e1071</code> <span class="citation" data-cites="meyer2019package">(<a href="referencias.html#ref-meyer2019package" role="doc-biblioref">2</a>)</span>. Esta função usa os seguintes argumentos:</p>
+<p>Várias medidas de coeficientes de assimetria amostrais foram propostas. O coeficiente de assimetria pode ser calculado no <em>R</em>, usando a função <code>skewness()</code> do pacote <code>e1071</code> <span class="citation" data-cites="meyer2019package">Meyer et al. (<a href="referencias.html#ref-meyer2019package" role="doc-biblioref">2019</a>)</span>. Esta função usa os seguintes argumentos:</p>
 <ul>
 <li><strong>x</strong> <span class="math inline">\(\to\)</span> vetor numérico que contém os valores</li>
 <li><strong>na.rm</strong> <span class="math inline">\(\to\)</span> um valor lógico que indica se os valores NA devem ser eliminados antes que o cálculo prossiga.</li>
@@ -692,10 +693,10 @@ b_1= \frac {m_3}{s^3}
 <pre><code>[1] 0.1810209</code></pre>
 </div>
 </div>
-<p>Para amostras grandes, há muito pouca diferença entre as várias medidas <span class="citation" data-cites="joanes1998skewkurt">(<a href="referencias.html#ref-joanes1998skewkurt" role="doc-biblioref">3</a>)</span>. Todas as três medidas de assimetria são imparciais sob normalidade.</p>
+<p>Para amostras grandes, há muito pouca diferença entre as várias medidas <span class="citation" data-cites="joanes1998skewkurt">Joanes e Gill (<a href="referencias.html#ref-joanes1998skewkurt" role="doc-biblioref">1998</a>)</span>. Todas as três medidas de assimetria são imparciais sob normalidade.</p>
 <p><u>Interpretação do coeficiente de assimetria</u></p>
 <p>Quando a <span class="math inline">\(assimetria = 0\)</span>, tem-se uma distribuição simétrica e a média, a mediana e a moda coincidem; quando a <span class="math inline">\({assimetria} &lt; {0}\)</span>, <span class="math inline">\({média} &lt; {mediana} &lt; {moda}\)</span>, a distribuição tem <em>assimetria negativa</em> e quando a <span class="math inline">\({assimetria} &gt; {0}\)</span>, <span class="math inline">\({média} &gt; {mediana} &gt; {moda}\)</span>, a distribuição tem <em>assimetria positiva</em>.</p>
-<p>A <a href="#tbl-assimetria" class="quarto-xref">Tabela&nbsp;<span>10.1</span></a> sugere uma forma de interpretar o coeficiente de assimetria <span class="citation" data-cites="george2020asymmetry">(<a href="referencias.html#ref-george2020asymmetry" role="doc-biblioref">4</a>)</span>.</p>
+<p>A <a href="#tbl-assimetria" class="quarto-xref">Tabela&nbsp;<span>10.1</span></a> sugere uma forma de interpretar o coeficiente de assimetria <span class="citation" data-cites="george2020asymmetry">George e Mallery (<a href="referencias.html#ref-george2020asymmetry" role="doc-biblioref">2020</a>)</span>.</p>
 <div class="cell">
 <div id="tbl-assimetria" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -704,7 +705,7 @@ Tabela&nbsp;10.1: Interpretação do Coeficiente de Assimetria
 </figcaption>
 <div aria-describedby="tbl-assimetria-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div class="tabwid"><style>.cl-e3be4e9c{}.cl-e3b302e4{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-e3b30302{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-e3b7e8fe{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-e3b81720{width:2in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e3b81734{width:2in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e3b81735{width:2in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e3b81736{width:2in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-e3be4e9c"><thead><tr style="overflow-wrap:break-word;"><th class="cl-e3b81720"><p class="cl-e3b7e8fe"><span class="cl-e3b302e4">Coeficiente de assimetria</span></p></th><th class="cl-e3b81720"><p class="cl-e3b7e8fe"><span class="cl-e3b302e4">Assimetria</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-e3b81734"><p class="cl-e3b7e8fe"><span class="cl-e3b30302">-1 a +1</span></p></td><td class="cl-e3b81734"><p class="cl-e3b7e8fe"><span class="cl-e3b30302">leve</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-e3b81734"><p class="cl-e3b7e8fe"><span class="cl-e3b30302">-1 a -2 e +1 a +2</span></p></td><td class="cl-e3b81734"><p class="cl-e3b7e8fe"><span class="cl-e3b30302">moderada</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-e3b81735"><p class="cl-e3b7e8fe"><span class="cl-e3b30302">-2 a -3 e +2 a +3</span></p></td><td class="cl-e3b81735"><p class="cl-e3b7e8fe"><span class="cl-e3b30302">importante</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-e3b81736"><p class="cl-e3b7e8fe"><span class="cl-e3b30302">&lt; -3 ou &gt; +3</span></p></td><td class="cl-e3b81736"><p class="cl-e3b7e8fe"><span class="cl-e3b30302">grave</span></p></td></tr></tbody></table></div>
+<div class="tabwid"><style>.cl-a230f198{}.cl-a2200e96{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-a2200eb4{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-a2282ba8{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-a228cedc{width:2in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a228cee6{width:2in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a228cefa{width:2in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a228cf04{width:2in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-a230f198"><thead><tr style="overflow-wrap:break-word;"><th class="cl-a228cedc"><p class="cl-a2282ba8"><span class="cl-a2200e96">Coeficiente de assimetria</span></p></th><th class="cl-a228cedc"><p class="cl-a2282ba8"><span class="cl-a2200e96">Assimetria</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-a228cee6"><p class="cl-a2282ba8"><span class="cl-a2200eb4">-1 a +1</span></p></td><td class="cl-a228cee6"><p class="cl-a2282ba8"><span class="cl-a2200eb4">leve</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a228cee6"><p class="cl-a2282ba8"><span class="cl-a2200eb4">-1 a -2 e +1 a +2</span></p></td><td class="cl-a228cee6"><p class="cl-a2282ba8"><span class="cl-a2200eb4">moderada</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a228cefa"><p class="cl-a2282ba8"><span class="cl-a2200eb4">-2 a -3 e +2 a +3</span></p></td><td class="cl-a228cefa"><p class="cl-a2282ba8"><span class="cl-a2200eb4">importante</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a228cf04"><p class="cl-a2282ba8"><span class="cl-a2200eb4">&lt; -3 ou &gt; +3</span></p></td><td class="cl-a228cf04"><p class="cl-a2282ba8"><span class="cl-a2200eb4">grave</span></p></td></tr></tbody></table></div>
 </div>
 </div>
 </figure>
@@ -900,7 +901,7 @@ b_2=\frac{m_4}{s^4}-3
 <pre><code>[1] 0.1196907</code></pre>
 </div>
 </div>
-<p>Novamente, para amostras grandes, há muito pouca diferença entre as várias medidas, principalmente entre G2 e b2 <span class="citation" data-cites="joanes1998skewkurt">(<a href="referencias.html#ref-joanes1998skewkurt" role="doc-biblioref">3</a>)</span>.</p>
+<p>Novamente, para amostras grandes, há muito pouca diferença entre as várias medidas, principalmente entre G2 e b2 <span class="citation" data-cites="joanes1998skewkurt">Joanes e Gill (<a href="referencias.html#ref-joanes1998skewkurt" role="doc-biblioref">1998</a>)</span>.</p>
 </section>
 <section id="interpretação-do-coeficiente-de-curtose" class="level4" data-number="10.4.1.2">
 <h4 data-number="10.4.1.2" class="anchored" data-anchor-id="interpretação-do-coeficiente-de-curtose"><span class="header-section-number">10.4.1.2</span> Interpretação do coeficiente de curtose</h4>
@@ -968,18 +969,18 @@ Figura&nbsp;10.5: Histograma com curva normal
 
 <!-- -->
 
-<div id="refs" class="references csl-bib-body" role="list" style="display: none">
-<div id="ref-peat2014descriptive" class="csl-entry" role="listitem">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline">Peat J, Barton B. Descriptive statistics. Em: Medical statistics : a guide to SPSS, data analysis, and critical appraisal. New York, NY: John Wiley &amp; Sons; 2014. p. 24–51. </div>
-</div>
-<div id="ref-meyer2019package" class="csl-entry" role="listitem">
-<div class="csl-left-margin">2. </div><div class="csl-right-inline">Meyer D, Dimitriadou E, Hornik K, Weingessel A, Leisch F, Chang CC, et al. Package <span>«e1071»</span>. The R Journal. 2019;1–67. </div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-george2020asymmetry" class="csl-entry" role="listitem">
+George, Darren, e Paul Mallery. 2020. <span>«Descriptive Statistics»</span>. Em <em>IBM SPSS Statistics 26 Step by Step: A Simple Guide and Reference</em>, 114–20. New York, NY: Taylor &amp; Francis Group.
 </div>
 <div id="ref-joanes1998skewkurt" class="csl-entry" role="listitem">
-<div class="csl-left-margin">3. </div><div class="csl-right-inline">Joanes D, Gill C. Comparing Measures of Sample Skewness and Kurtosis. Journal of the Royal Statistical Society. 1998;47(1):183–9. </div>
+Joanes, DN, e CA Gill. 1998. <span>«Comparing Measures of Sample Skewness and Kurtosis»</span>. <em>Journal of the Royal Statistical Society</em> 47 (1): 183–89.
 </div>
-<div id="ref-george2020asymmetry" class="csl-entry" role="listitem">
-<div class="csl-left-margin">4. </div><div class="csl-right-inline">George D, Mallery P. Descriptive Statistics. Em: IBM SPSS Statistics 26 Step by Step: A Simple Guide and Reference. New York, NY: Taylor &amp; Francis Group; 2020. p. 114–20. </div>
+<div id="ref-meyer2019package" class="csl-entry" role="listitem">
+Meyer, David, Evgenia Dimitriadou, Kurt Hornik, Andreas Weingessel, Friedrich Leisch, Chih-Chung Chang, Chih-Chen Lin, e Maintainer David Meyer. 2019. <span>«Package <span>“e1071”</span>»</span>. <em>The R Journal</em>, 1–67.
+</div>
+<div id="ref-peat2014descriptive" class="csl-entry" role="listitem">
+Peat, Jennifer, e Belinda Barton. 2014. <span>«Descriptive statistics»</span>. Em <em>Medical statistics : a guide to SPSS, data analysis, and critical appraisal</em>, 24–51. New York, NY: John Wiley &amp; Sons.
 </div>
 </div>
 </section>

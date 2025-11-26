@@ -59,6 +59,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -646,7 +647,7 @@ t_{calculado}| \ge t_{crítico}| \to rejeita-se \quad H_{0}
 <p>Para determinar se existe uma diferença estatisticamente significativa entre as médias das notas de dois grupos independentes, será usado o teste <em>t</em> para duas amostras independentes, também conhecido como teste <em>t</em> de Student, baseado na distribuição de mesmo nome.</p>
 <section id="lógica-do-teste-t" class="level4" data-number="14.2.4.1">
 <h4 data-number="14.2.4.1" class="anchored" data-anchor-id="lógica-do-teste-t"><span class="header-section-number">14.2.4.1</span> Lógica do teste <em>t</em></h4>
-<p>O teste <em>t</em> compara as médias de duas amostras independentes, usando o erro padrão como métrica da diferença entre essas médias. Quanto maior o valor de <em>t</em> , maior a probabilidade de que as amostras pertençam a grupos diferentes, ocorrendo nessas circunstâncias a rejeição da hipótese nula <span class="citation" data-cites="pagano2000t_test">(<a href="referencias.html#ref-pagano2000t_test" role="doc-biblioref">1</a>)</span>.</p>
+<p>O teste <em>t</em> compara as médias de duas amostras independentes, usando o erro padrão como métrica da diferença entre essas médias. Quanto maior o valor de <em>t</em> , maior a probabilidade de que as amostras pertençam a grupos diferentes, ocorrendo nessas circunstâncias a rejeição da hipótese nula <span class="citation" data-cites="pagano2000t_test">Pagano e Kimberly (<a href="referencias.html#ref-pagano2000t_test" role="doc-biblioref">2000</a>)</span>.</p>
 <p>Calcula-se o teste <em>t</em> com a seguinte equação:</p>
 <p><span class="math display">\[
 t = \frac{(\bar{x}_1 - \bar{x}_2) - (\mu_1 - \mu_2)}{EP_{d}}
@@ -688,7 +689,7 @@ EP_d = \sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}
 <li>Deve haver distribuição normal. Entretanto, quando as amostras são grandes (teorema do limite central), isso não é muito importante;</li>
 <li>Exista homocedasticidade, ou seja, as variâncias dos grupos devem ser iguais.</li>
 </ol>
-<p>Violar o pressuposto de número 3 tem importância se os tamanhos dos grupos forem diferentes. Se os grupos tiverem o mesmo tamanho e a amostra for grande, este pressuposto torna-se menos importante, não preocupando muito se essa hipótese foi violada <span class="citation" data-cites="zimmerman2004note">(<a href="referencias.html#ref-zimmerman2004note" role="doc-biblioref">2</a>)</span>. O pressuposto tem mais importância em grupos pequenos e desiguais. Existe um teste, denominado <em>teste t de Welch</em> que corrige essa violação. É possível portanto, esquecer esse pressuposto e fazer o teste de Welch sempre.</p>
+<p>Violar o pressuposto de número 3 tem importância se os tamanhos dos grupos forem diferentes. Se os grupos tiverem o mesmo tamanho e a amostra for grande, este pressuposto torna-se menos importante, não preocupando muito se essa hipótese foi violada <span class="citation" data-cites="zimmerman2004note">Zimmerman (<a href="referencias.html#ref-zimmerman2004note" role="doc-biblioref">2004</a>)</span>. O pressuposto tem mais importância em grupos pequenos e desiguais. Existe um teste, denominado <em>teste t de Welch</em> que corrige essa violação. É possível portanto, esquecer esse pressuposto e fazer o teste de Welch sempre.</p>
 <p><u>Avaliação da normalidade</u></p>
 <p>Uma boa parte dos procedimentos estatísticos são testes paramétricos <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> com base na distribuição normal. Ou seja, se assume que a distribuição dos dados segue o modelo da distribuição normal. Se essa suposição não for atendida, a lógica por trás do teste de hipóteses pode ser violada.</p>
 <p>Pode-se verificar a normalidade de maneira visual, observando o comportamento dos dados através de gráficos como o próprio boxplot (<a href="#fig-bxpnotas" class="quarto-xref">Figura&nbsp;<span>14.1</span></a>), onde se observa que as medianas dos boxplots se encontra praticamente no centro das caixas. Outra forma, é o <em>gráfico Q-Q</em> (<a href="#fig-qqnotas" class="quarto-xref">Figura&nbsp;<span>14.2</span></a>). O <em>gráfico QQ</em> (ou gráfico quantil-quantil) desenha a correlação entre uma determinada amostra e a distribuição normal. Uma linha de referência de 45 graus também é plotada. Um gráfico Q-Q é um gráfico de dispersão criado plotando dois conjuntos de quantis um contra o outro. Se ambos os conjuntos de quantis vierem da mesma distribuição, observa-se os pontos formando uma linha aproximadamente reta. Se os valores caírem na diagonal do gráfico, a variável é normalmente distribuída. Os desvios da diagonal mostram desvios da normalidade. Para desenhar um gráfico Q-Q pode ser usado a função <code>ggqqplot ()</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> do pacote <code>ggpubr</code> que produz um gráfico QQ normal com uma linha de referência, acompanhada de area sombreada, correspondente ao IC95%.</p>
@@ -712,7 +713,7 @@ Figura&nbsp;14.2: Gráficos Q-Q
 <p>Observando os gráficos, verifica-se que a variável <code>notas</code> tem uma distribuição visualmente normal aceitável em ambas populações, pois o histograma se ajusta à curva normal e os gráficos Q-Q mostram que os dados seguem aproximadamente a linha diagonal.</p>
 <p>Outra maneira de analisar a normalidade é verificar se a distribuição como um todo se desvia de uma distribuição normal comparável. Para isso, usam-se <em>testes estatísticos de normalidade</em>. Os dois principais são o <em>teste de Shapiro-Wilk</em> e o <em>teste de Kolmogorov-Smirnov (K-S)</em>.</p>
 <p>Esses testes comparam os dados da amostra com um conjunto de valores normalmente distribuídos com a mesma média e desvio padrão. Se o teste não for significativo (<em>P</em> &gt; 0,05), informa-se que a distribuição da amostra não é significativamente diferente de uma distribuição normal. Se, no entanto, o teste for significativo (<em>P</em> <span class="math inline">\(\le\)</span> 0,05), a distribuição em questão será significativamente diferente de uma distribuição normal.</p>
-<p>O método de Shapiro-Wilk é amplamente recomendado para teste de normalidade <span class="citation" data-cites="razali2011power">(<a href="referencias.html#ref-razali2011power" role="doc-biblioref">3</a>)</span>, <span class="citation" data-cites="ghasemi2012normality">(<a href="referencias.html#ref-ghasemi2012normality" role="doc-biblioref">4</a>)</span>, <span class="citation" data-cites="yap2011comparisons">(<a href="referencias.html#ref-yap2011comparisons" role="doc-biblioref">5</a>)</span>.</p>
+<p>O método de Shapiro-Wilk é amplamente recomendado para teste de normalidade <span class="citation" data-cites="razali2011power">Razali, Wah, et al. (<a href="referencias.html#ref-razali2011power" role="doc-biblioref">2011</a>)</span>, <span class="citation" data-cites="ghasemi2012normality">Ghasemi e Zahediasl (<a href="referencias.html#ref-ghasemi2012normality" role="doc-biblioref">2012</a>)</span>, <span class="citation" data-cites="yap2011comparisons">Yap e Sim (<a href="referencias.html#ref-yap2011comparisons" role="doc-biblioref">2011</a>)</span>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sw <span class="ot">&lt;-</span> dados <span class="sc">%&gt;%</span> </span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(sexo) <span class="sc">%&gt;%</span></span>
@@ -730,7 +731,7 @@ Figura&nbsp;14.2: Gráficos Q-Q
 <p><u>Homogeneidade da Variância</u></p>
 <p>Na visualização da <a href="#fig-bxpnotas" class="quarto-xref">Figura&nbsp;<span>14.1</span></a>, nos dois grupos de alunos, observa-se que há, entre os limites inferior e superior, uma dispersão das notas em torno da região central. Esta dispersão parece ser semelhante nos grupos. Isto sugere que haja <em>homogeneidade das variâncias</em>.</p>
 <p>Portanto, homogeneidade da variância é o pressuposto de que a dispersão das medidas é aproximadamente igual em diferentes grupos de casos, ou que a dispersão dos valores são aproximadamente iguais em pontos diferentes da variável preditora.</p>
-<p>Além do aspecto visual, a homogeneidade da variância pode ser testada com o <em>teste de Levene</em>. Neste teste, a <span class="math inline">\(H_{0}\)</span> é todas as variâncias são iguais. No <em>R</em>, a função que calcula o teste é <code>leveneTest()</code> do pacote <code>car</code> <span class="citation" data-cites="fox2018car">(<a href="referencias.html#ref-fox2018car" role="doc-biblioref">6</a>)</span>. Os argumentos são:</p>
+<p>Além do aspecto visual, a homogeneidade da variância pode ser testada com o <em>teste de Levene</em>. Neste teste, a <span class="math inline">\(H_{0}\)</span> é todas as variâncias são iguais. No <em>R</em>, a função que calcula o teste é <code>leveneTest()</code> do pacote <code>car</code> <span class="citation" data-cites="fox2018car">Fox e Weisberg (<a href="referencias.html#ref-fox2018car" role="doc-biblioref">2019</a>)</span>. Os argumentos são:</p>
 <ul>
 <li><strong>y</strong> <span class="math inline">\(\to\)</span> variável de resposta para o método padrão ou um objeto <code>lm</code> ou <code>fórmula</code>. Se <code>y</code> for um objeto de modelo linear ou uma fórmula, as variáveis do lado direito do modelo devem ser todas fatores e devem ser completamente cruzadas;</li>
 <li><strong>group</strong> <span class="math inline">\(\to\)</span> fator que define os grupos;</li>
@@ -772,7 +773,7 @@ ratio of variances
 </section>
 <section id="execução-do-teste-t-de-student" class="level4" data-number="14.2.4.3">
 <h4 data-number="14.2.4.3" class="anchored" data-anchor-id="execução-do-teste-t-de-student"><span class="header-section-number">14.2.4.3</span> Execução do teste <em>t</em> de Student</h4>
-<p>Os pressupostos do teste não foram violados, portanto ele pode ser realizado com confiança. Será utilizado a função <code>t_test()</code> do pacote <code>rstatix</code> <span class="citation" data-cites="kassambara2022rstatix">(<a href="referencias.html#ref-kassambara2022rstatix" role="doc-biblioref">7</a>)</span> para calcular o teste <em>t</em> para amostras independentes. Ele fornece uma estrutura compatível com operador pipe %&gt;% (<em>pipe-friendly</em>) para executar testes <em>t</em> de uma e duas amostras. Para consultar os argumentos, consulte a <a href="13-testeHipoteses.html#sec-exeth1" class="quarto-xref"><span>Seção 13.5.3</span></a> ou a ajuda do <em>RStudio</em>.</p>
+<p>Os pressupostos do teste não foram violados, portanto ele pode ser realizado com confiança. Será utilizado a função <code>t_test()</code> do pacote <code>rstatix</code> <span class="citation" data-cites="kassambara2022rstatix">Kassambara (<a href="referencias.html#ref-kassambara2022rstatix" role="doc-biblioref">2022a</a>)</span> para calcular o teste <em>t</em> para amostras independentes. Ele fornece uma estrutura compatível com operador pipe %&gt;% (<em>pipe-friendly</em>) para executar testes <em>t</em> de uma e duas amostras. Para consultar os argumentos, consulte a <a href="13-testeHipoteses.html#sec-exeth1" class="quarto-xref"><span>Seção 13.5.3</span></a> ou a ajuda do <em>RStudio</em>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a> teste <span class="ot">&lt;-</span> dados <span class="sc">%&gt;%</span> rstatix<span class="sc">::</span><span class="fu">t_test</span>(<span class="at">formula =</span> notas <span class="sc">~</span> sexo,</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">detailed =</span> <span class="cn">TRUE</span>,</span>
@@ -850,7 +851,7 @@ Figura&nbsp;14.3: Boxplots comparando os dois grupos
 <p>Normalmente, em ensaios clínicos tem-se um grupo de tratamento e um grupo de controle. O grupo de tratamento é uma intervenção que se espera efetue um resultado específico. O valor do tamanho do efeito mostrará se a terapia teve um efeito pequeno, médio ou grande. Isso tem mais relevância do que simplesmente informar o tamanho do valor <em>P</em>.</p>
 <section id="sec-cohen" class="level4" data-number="14.2.6.1">
 <h4 data-number="14.2.6.1" class="anchored" data-anchor-id="sec-cohen"><span class="header-section-number">14.2.6.1</span> <em>d</em> de Cohen</h4>
-<p>Também conhecida como <em>diferença média padronizada</em>, o <em>d</em> de Cohen <span class="citation" data-cites="cohen1988power">(<a href="referencias.html#ref-cohen1988power" role="doc-biblioref">8</a>)</span> <span class="citation" data-cites="lindenau2012effect">(<a href="referencias.html#ref-lindenau2012effect" role="doc-biblioref">9</a>)</span> é uma medida adequada e bastante popular para encontrar a magnitude do efeito na comparação entre duas médias.</p>
+<p>Também conhecida como <em>diferença média padronizada</em>, o <em>d</em> de Cohen <span class="citation" data-cites="cohen1988power">Cohen (<a href="referencias.html#ref-cohen1988power" role="doc-biblioref">1988</a>)</span> <span class="citation" data-cites="lindenau2012effect">Lindenau e Guimaraes (<a href="referencias.html#ref-lindenau2012effect" role="doc-biblioref">2012</a>)</span> é uma medida adequada e bastante popular para encontrar a magnitude do efeito na comparação entre duas médias.</p>
 <p>Para calcular a diferença média padronizada se verifica a diferença entre as médias dos dois grupos e se divide pelo desvio padrão conjugado:</p>
 <p><span class="math display">\[
 d = \frac{(\bar{x}_1 - \bar{x}_2)}{s_{o}}
@@ -876,7 +877,7 @@ s_o =\sqrt \frac{(n_1 - 1)s_1^2 + (n_2 -1)s_2^2}{n_1 + n_2 - 2}
 <pre><code>[1] 1.125339</code></pre>
 </div>
 </div>
-<p>Bastante simples! Agora, como interpretar este resultado de d = 1,3 (arredondado)? Sua interpretação não é intuitiva, recomenda-se usar a <a href="#tbl-effect" class="quarto-xref">Tabela&nbsp;<span>14.1</span></a> para interpretar <span class="citation" data-cites="cohen1988power">(<a href="referencias.html#ref-cohen1988power" role="doc-biblioref">8</a>)</span>.</p>
+<p>Bastante simples! Agora, como interpretar este resultado de d = 1,3 (arredondado)? Sua interpretação não é intuitiva, recomenda-se usar a <a href="#tbl-effect" class="quarto-xref">Tabela&nbsp;<span>14.1</span></a> para interpretar <span class="citation" data-cites="cohen1988power">Cohen (<a href="referencias.html#ref-cohen1988power" role="doc-biblioref">1988</a>)</span>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">d =</span> <span class="fu">c</span>(<span class="st">"&lt; 0,2"</span>, <span class="st">"0,2 &lt; 0.5"</span>, </span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"0.5 &lt; 0.8"</span>, <span class="st">"&gt;= 0,8 "</span>),</span>
@@ -902,7 +903,7 @@ Tabela&nbsp;14.1: Tamanho do Efeito
 </figcaption>
 <div aria-describedby="tbl-effect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div class="tabwid"><style>.cl-f8575812{}.cl-f84b5fe4{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-f84b600c{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-f84f4a0a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-f84f8524{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f84f8538{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f84f8539{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f84f8542{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f84f8543{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-f8575812"><thead><tr style="overflow-wrap:break-word;"><th class="cl-f84f8524"><p class="cl-f84f4a0a"><span class="cl-f84b5fe4">d de Cohen</span></p></th><th class="cl-f84f8524"><p class="cl-f84f4a0a"><span class="cl-f84b5fe4">Interpretação</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-f84f8538"><p class="cl-f84f4a0a"><span class="cl-f84b600c">&lt; 0,2</span></p></td><td class="cl-f84f8538"><p class="cl-f84f4a0a"><span class="cl-f84b600c">insignificante</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f84f8539"><p class="cl-f84f4a0a"><span class="cl-f84b600c">0,2 &lt; 0.5</span></p></td><td class="cl-f84f8539"><p class="cl-f84f4a0a"><span class="cl-f84b600c">pequeno</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f84f8542"><p class="cl-f84f4a0a"><span class="cl-f84b600c">0.5 &lt; 0.8</span></p></td><td class="cl-f84f8542"><p class="cl-f84f4a0a"><span class="cl-f84b600c">médio</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f84f8543"><p class="cl-f84f4a0a"><span class="cl-f84b600c">&gt;= 0,8 </span></p></td><td class="cl-f84f8543"><p class="cl-f84f4a0a"><span class="cl-f84b600c">grande</span></p></td></tr></tbody></table></div>
+<div class="tabwid"><style>.cl-bee7fec6{}.cl-bedcf422{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-bedcf44a{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-bee231ee{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-bee25282{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bee2528c{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bee25296{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bee25297{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bee252a0{width:1.5in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-bee7fec6"><thead><tr style="overflow-wrap:break-word;"><th class="cl-bee25282"><p class="cl-bee231ee"><span class="cl-bedcf422">d de Cohen</span></p></th><th class="cl-bee25282"><p class="cl-bee231ee"><span class="cl-bedcf422">Interpretação</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-bee2528c"><p class="cl-bee231ee"><span class="cl-bedcf44a">&lt; 0,2</span></p></td><td class="cl-bee2528c"><p class="cl-bee231ee"><span class="cl-bedcf44a">insignificante</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-bee25296"><p class="cl-bee231ee"><span class="cl-bedcf44a">0,2 &lt; 0.5</span></p></td><td class="cl-bee25296"><p class="cl-bee231ee"><span class="cl-bedcf44a">pequeno</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-bee25297"><p class="cl-bee231ee"><span class="cl-bedcf44a">0.5 &lt; 0.8</span></p></td><td class="cl-bee25297"><p class="cl-bee231ee"><span class="cl-bedcf44a">médio</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-bee252a0"><p class="cl-bee231ee"><span class="cl-bedcf44a">&gt;= 0,8 </span></p></td><td class="cl-bee252a0"><p class="cl-bee231ee"><span class="cl-bedcf44a">grande</span></p></td></tr></tbody></table></div>
 </div>
 </div>
 </figure>
@@ -990,7 +991,7 @@ Tabela&nbsp;14.1: Tamanho do Efeito
 <p><u>Gráfico de barra de erro</u></p>
 <div class="cell" data-layout-align="center" data-tbl-cap="Gráfico de barra de erro comparando o grupo antes e depois">
 <div class="cell-output-display">
-<div id="fig-be" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" height="70%" width="70%">
+<div id="fig-be" class="quarto-float quarto-figure quarto-figure-center anchored" width="70%" height="70%" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-be-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="14-teste-t_files/figure-html/fig-be-1.png" id="fig-be" class="quarto-figure quarto-figure-center anchored figure-img" style="width:70.0%;height:70.0%">
@@ -1006,7 +1007,7 @@ Figura&nbsp;14.4
 <p><u>Boxplot</u></p>
 <div class="cell" data-layout-align="center" data-tbl-cap="Boxplots comparando o grupo antes e depois">
 <div class="cell-output-display">
-<div id="fig-bp" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" height="70%" width="70%">
+<div id="fig-bp" class="quarto-float quarto-figure quarto-figure-center anchored" width="70%" height="70%" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="14-teste-t_files/figure-html/fig-bp-1.png" id="fig-bp" class="quarto-figure quarto-figure-center anchored figure-img" style="width:70.0%;height:70.0%">
@@ -1022,7 +1023,7 @@ Figura&nbsp;14.5
 <p><u>Gráfico de linha</u></p>
 <div class="cell" data-layout-align="center" data-tbl-cap="Gráfico de linha comparando o grupo antes e depois">
 <div class="cell-output-display">
-<div id="fig-lin" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" height="70%" width="70%">
+<div id="fig-lin" class="quarto-float quarto-figure quarto-figure-center anchored" width="70%" height="70%" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-lin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="14-teste-t_files/figure-html/fig-lin-1.png" id="fig-lin" class="quarto-figure quarto-figure-center anchored figure-img" style="width:70.0%;height:70.0%">
@@ -1172,7 +1173,7 @@ s_{D}=\sqrt\frac{\Sigma(D_{i} - \bar{D})^2}{n - 1}
 </div>
 </div>
 <p>O teste de Shapiro-Wilk retorna um valor P &gt; 0,05, mostrando que a variável D que não se pode rejeitar a hipóteses nula de sua normalidade.</p>
-<p>Além disso, um gráfico Q-Q (<a href="#fig-qq" class="quarto-xref">Figura&nbsp;<span>14.7</span></a>) pode ser usado para avaliar a normalidade, com a função <code>ggqqplot()</code> do pacote <code>ggpubr</code> <span class="citation" data-cites="kassambara2022ggpubr">(<a href="referencias.html#ref-kassambara2022ggpubr" role="doc-biblioref">10</a>)</span> que produz um gráfico QQ normal com uma linha de referência, acompanhada de area sombreada, correspondente ao IC95%</p>
+<p>Além disso, um gráfico Q-Q (<a href="#fig-qq" class="quarto-xref">Figura&nbsp;<span>14.7</span></a>) pode ser usado para avaliar a normalidade, com a função <code>ggqqplot()</code> do pacote <code>ggpubr</code> <span class="citation" data-cites="kassambara2022ggpubr">Kassambara (<a href="referencias.html#ref-kassambara2022ggpubr" role="doc-biblioref">2022b</a>)</span> que produz um gráfico QQ normal com uma linha de referência, acompanhada de area sombreada, correspondente ao IC95%</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-qq" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -1271,36 +1272,36 @@ Figura&nbsp;14.8: Gráfico de linha mostrando a diferença na resposta ao cortic
 
 <!-- -->
 
-<div id="refs" class="references csl-bib-body" role="list" style="display: none">
-<div id="ref-pagano2000t_test" class="csl-entry" role="listitem">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline">Pagano M, Kimberly G. Comparison of Two Means. Em: Principles of Biostatistics. Second Edition. CRC Press; 2000. p. 262–72. </div>
-</div>
-<div id="ref-zimmerman2004note" class="csl-entry" role="listitem">
-<div class="csl-left-margin">2. </div><div class="csl-right-inline">Zimmerman DW. A note on preliminary tests of equality of variances. Br J Math Stat Psychol. 2004;57(1):173–81. </div>
-</div>
-<div id="ref-razali2011power" class="csl-entry" role="listitem">
-<div class="csl-left-margin">3. </div><div class="csl-right-inline">Razali NM, Wah YB, et al. Power comparisons of shapiro-wilk, kolmogorov-smirnov, lilliefors and anderson-darling tests. Journal of statistical modeling and analytics. 2011;2(1):21–33. </div>
-</div>
-<div id="ref-ghasemi2012normality" class="csl-entry" role="listitem">
-<div class="csl-left-margin">4. </div><div class="csl-right-inline">Ghasemi A, Zahediasl S. Normality tests for statistical analysis: a guide for non-statisticians. International journal of endocrinology and metabolism. 2012;10(2):486. </div>
-</div>
-<div id="ref-yap2011comparisons" class="csl-entry" role="listitem">
-<div class="csl-left-margin">5. </div><div class="csl-right-inline">Yap BW, Sim CH. Comparisons of various types of normality tests. Journal of Statistical Computation and Simulation. 2011;81(12):2141–55. </div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-cohen1988power" class="csl-entry" role="listitem">
+Cohen, Jacob. 1988. <em>Statistical power analysis for the behavioral sciences</em>. 2nd Edition. Routledge.
 </div>
 <div id="ref-fox2018car" class="csl-entry" role="listitem">
-<div class="csl-left-margin">6. </div><div class="csl-right-inline">Fox J, Weisberg S. An R Companion to Applied Regression [Internet]. Third. Thousand Oaks <span>CA</span>: Sage; 2019. Disponível em: <a href="https://socialsciences.mcmaster.ca/jfox/Books/Companion/">https://socialsciences.mcmaster.ca/jfox/Books/Companion/</a></div>
+Fox, John, e Sanford Weisberg. 2019. <em>An R Companion to Applied Regression</em>. Third. Thousand Oaks <span>CA</span>: Sage. <a href="https://socialsciences.mcmaster.ca/jfox/Books/Companion/">https://socialsciences.mcmaster.ca/jfox/Books/Companion/</a>.
+</div>
+<div id="ref-ghasemi2012normality" class="csl-entry" role="listitem">
+Ghasemi, Asghar, e Saleh Zahediasl. 2012. <span>«Normality tests for statistical analysis: a guide for non-statisticians»</span>. <em>International journal of endocrinology and metabolism</em> 10 (2). Brieflands: 486.
 </div>
 <div id="ref-kassambara2022rstatix" class="csl-entry" role="listitem">
-<div class="csl-left-margin">7. </div><div class="csl-right-inline">Kassambara A. rstatix: Pipe-Friendly Framework for Basic Statistical Tests [Internet]. 2022. Disponível em: <a href="https://CRAN.R-project.org/package=rstatix">https://CRAN.R-project.org/package=rstatix</a></div>
-</div>
-<div id="ref-cohen1988power" class="csl-entry" role="listitem">
-<div class="csl-left-margin">8. </div><div class="csl-right-inline">Cohen J. Statistical power analysis for the behavioral sciences. 2nd Edition. Routledge; 1988. </div>
-</div>
-<div id="ref-lindenau2012effect" class="csl-entry" role="listitem">
-<div class="csl-left-margin">9. </div><div class="csl-right-inline">Lindenau JD, Guimaraes LSP. Calculating the Effect Size in SPSS. Revista HCPA [Internet]. 2012;32(3):363–81. Disponível em: <a href="https://seer.ufrgs.br/hcpa">https://seer.ufrgs.br/hcpa</a></div>
+Kassambara, Alboukadel. 2022a. <em>rstatix: Pipe-Friendly Framework for Basic Statistical Tests</em>. <a href="https://CRAN.R-project.org/package=rstatix">https://CRAN.R-project.org/package=rstatix</a>.
 </div>
 <div id="ref-kassambara2022ggpubr" class="csl-entry" role="listitem">
-<div class="csl-left-margin">10. </div><div class="csl-right-inline">Kassambara A. ggpubr:’ggplot2’ based publication ready plots [R package ggpubr version 0.5.0] [Internet]. The Comprehensive R Archive Network. Comprehensive R Archive Network (CRAN); 2022. Disponível em: <a href="https://cloud.r-project.org/web/packages/ggpubr/index.html">https://cloud.r-project.org/web/packages/ggpubr/index.html</a></div>
+———. 2022b. <span>«ggpubr:’ggplot2’ based publication ready plots [R package ggpubr version 0.5.0]»</span>. <em>The Comprehensive R Archive Network</em>. Comprehensive R Archive Network (CRAN). <a href="https://cloud.r-project.org/web/packages/ggpubr/index.html">https://cloud.r-project.org/web/packages/ggpubr/index.html</a>.
+</div>
+<div id="ref-lindenau2012effect" class="csl-entry" role="listitem">
+Lindenau, Juliana D, e Luciano Santos Pinto Guimaraes. 2012. <span>«Calculating the Effect Size in SPSS»</span>. <em>Revista HCPA</em> 32 (3): 363–81. <a href="https://seer.ufrgs.br/hcpa">https://seer.ufrgs.br/hcpa</a>.
+</div>
+<div id="ref-pagano2000t_test" class="csl-entry" role="listitem">
+Pagano, Marcello, e Gauvreau Kimberly. 2000. <span>«Comparison of Two Means»</span>. Em <em>Principles of Biostatistics</em>, Second Edition, 262–72. CRC Press.
+</div>
+<div id="ref-razali2011power" class="csl-entry" role="listitem">
+Razali, Nornadiah Mohd, Yap Bee Wah, et al. 2011. <span>«Power comparisons of shapiro-wilk, kolmogorov-smirnov, lilliefors and anderson-darling tests»</span>. <em>Journal of statistical modeling and analytics</em> 2 (1): 21–33.
+</div>
+<div id="ref-yap2011comparisons" class="csl-entry" role="listitem">
+Yap, Bee Wah, e Chiaw Hock Sim. 2011. <span>«Comparisons of various types of normality tests»</span>. <em>Journal of Statistical Computation and Simulation</em> 81 (12). Taylor &amp; Francis: 2141–55.
+</div>
+<div id="ref-zimmerman2004note" class="csl-entry" role="listitem">
+Zimmerman, Donald W. 2004. <span>«A note on preliminary tests of equality of variances»</span>. <em>Br J Math Stat Psychol</em> 57 (1). Wiley Online Library: 173–81.
 </div>
 </div>
 </section>

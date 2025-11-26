@@ -59,6 +59,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -531,7 +532,7 @@ window.Quarto = {
 <section id="rstudio" class="level3" data-number="4.2.1">
 <h3 data-number="4.2.1" class="anchored" data-anchor-id="rstudio"><span class="header-section-number">4.2.1</span> RStudio</h3>
 <p>Um ambiente de desenvolvimento integrado (IDE - <em>Integrated Development Environment</em>) é uma ferramenta que facilita a escrita, execução e depuração de código.<br>
-O <em>RStudio</em> é o ambiente de desenvolvimento integrado mais utilizado com o R. Ele serve para facilitar a escrita, execução e depuração de código R, bem como para gerenciar projetos, visualizar dados e criar gráficos. O <em>RStudio</em> é um membro ativo da comunidade R. Foi fundado em 2009 por Joseph J. Allaire, engenheiro de software americano. O <em>RStudio</em>, inspirado pelas inovações dos usuários de R em ciência, educação e indústria, desenvolveu ferramentas gratuitas e abertas para facilitar o uso do R. O <em>RStudio</em> é escrito em linguagem C++ e foi inicialmente focado apenas na linguagem R. Com o tempo o desenvolveu suporte para <em>Python</em> e <em>VSCode</em>. Em 2022, para acompanhar essa mudança, foi anunciada a mudança do nome da empresa que o desenvolve para <a href="https://posit.co/">Posit</a> e, recentemente, introduzido um novo IDE, denominado <em>Positron</em> <span class="citation" data-cites="blog_2024">(<a href="referencias.html#ref-blog_2024" role="doc-biblioref">1</a>)</span>, um projeto inicial, com um ambiente semelhante ao <em>RStudio</em> e que continua em desenvolvimento. Talvez, no futuro, possa substituir o RStudio. Por enquanto, isso será difícil , pois o <em>Positron</em> não tem todas as funcionalidades do <em>RStudio</em> <span class="citation" data-cites="positron2025">(<a href="referencias.html#ref-positron2025" role="doc-biblioref">2</a>)</span>.</p>
+O <em>RStudio</em> é o ambiente de desenvolvimento integrado mais utilizado com o R. Ele serve para facilitar a escrita, execução e depuração de código R, bem como para gerenciar projetos, visualizar dados e criar gráficos. O <em>RStudio</em> é um membro ativo da comunidade R. Foi fundado em 2009 por Joseph J. Allaire, engenheiro de software americano. O <em>RStudio</em>, inspirado pelas inovações dos usuários de R em ciência, educação e indústria, desenvolveu ferramentas gratuitas e abertas para facilitar o uso do R. O <em>RStudio</em> é escrito em linguagem C++ e foi inicialmente focado apenas na linguagem R. Com o tempo o desenvolveu suporte para <em>Python</em> e <em>VSCode</em>. Em 2022, para acompanhar essa mudança, foi anunciada a mudança do nome da empresa que o desenvolve para <a href="https://posit.co/">Posit</a> e, recentemente, introduzido um novo IDE, denominado <em>Positron</em> <span class="citation" data-cites="blog_2024">Blog (<a href="referencias.html#ref-blog_2024" role="doc-biblioref">2024</a>)</span>, um projeto inicial, com um ambiente semelhante ao <em>RStudio</em> e que continua em desenvolvimento. Talvez, no futuro, possa substituir o RStudio. Por enquanto, isso será difícil , pois o <em>Positron</em> não tem todas as funcionalidades do <em>RStudio</em> <span class="citation" data-cites="positron2025">Software (<a href="referencias.html#ref-positron2025" role="doc-biblioref">2025</a>)</span>.</p>
 <section id="instalação-do-r-studio" class="level4" data-number="4.2.1.1">
 <h4 data-number="4.2.1.1" class="anchored" data-anchor-id="instalação-do-r-studio"><span class="header-section-number">4.2.1.1</span> Instalação do <em>R Studio</em></h4>
 <p>Para instalar o <em>RStudio</em> , acessar o <a href="https://www.rstudio.com/products/rstudio/download/"><strong>site</strong></a> e clicar em <em>Download</em> para obter a versão desejada. Recomenda-se a versão <em>RStudio Desktop</em> – <em>Open Source License</em> que é gratuita. Esta versão entrega as ferramentas integradas para o R.</p>
@@ -656,7 +657,7 @@ Figura&nbsp;4.6: Tutoriais do RStudio
 <li><p><strong>Arquivos (Files)</strong> - esta guia dá acesso ao diretório onde se encontram os seus arquivos. Um bom recurso do painel <em>Files</em> é que se pode usá-lo para definir seu diretório de trabalho. Para isso, clique em <em>More</em> e depois em <em>Set As Working Directory</em>.</p></li>
 <li><p><strong>Gráficos (Plots)</strong> - local onde ficam os gráficos gerados. Existem botões para abrir o gráfico em uma janela separada e exportar o gráfico como um <em>.pdf</em> ou <em>.jpeg</em>.</p></li>
 <li><p><strong>Pacotes (Packages)</strong> - mostra uma lista de todos os pacotes R instalados no seu computador e indica se eles estão atualmente carregados ou não. Pacotes que estão sendo executados na sessão atual, estão marcados, enquanto aqueles que estão instalados, mas ainda inativos, estão desmarcados.</p></li>
-<li><p><strong>Ajuda (Help)</strong> - menu de ajuda para as funções R. Você pode digitar o nome de uma função na janela de pesquisa (por exemplo, <code>histogram</code> ou usar o <code>?hist</code>), no <em>Console</em> ou no <em>R Script</em>, para procurar ajuda sobre uma função (<a href="#fig-ajuda" class="quarto-xref">Figura&nbsp;<span>4.7</span></a>)). A Ajuda no <em>R Studio</em> pode também ser acessada no menu <em>Help</em> da barra de ferramentas onde existem várias opções. Para complementar, alguns livros são muito uteis, como o <em>R Cookbook</em> <span class="citation" data-cites="chang2021cookbook">(<a href="referencias.html#ref-chang2021cookbook" role="doc-biblioref">3</a>)</span> ou <em>Using</em> R* for introductory statistics* <span class="citation" data-cites="verzani2004using">(<a href="referencias.html#ref-verzani2004using" role="doc-biblioref">4</a>)</span>. No entanto, na maioria das vezes a forma mais prática de conseguir ajuda com uma dúvida específica é a busca em fóruns na internet, como o <em>Stack Overflow</em>: <a href="https://stackoverflow.com/" class="uri">https://stackoverflow.com/</a>.</p></li>
+<li><p><strong>Ajuda (Help)</strong> - menu de ajuda para as funções R. Você pode digitar o nome de uma função na janela de pesquisa (por exemplo, <code>histogram</code> ou usar o <code>?hist</code>), no <em>Console</em> ou no <em>R Script</em>, para procurar ajuda sobre uma função (<a href="#fig-ajuda" class="quarto-xref">Figura&nbsp;<span>4.7</span></a>)). A Ajuda no <em>R Studio</em> pode também ser acessada no menu <em>Help</em> da barra de ferramentas onde existem várias opções. Para complementar, alguns livros são muito uteis, como o <em>R Cookbook</em> <span class="citation" data-cites="chang2021cookbook">Chang (<a href="referencias.html#ref-chang2021cookbook" role="doc-biblioref">2021</a>)</span> ou <em>Using</em> R* for introductory statistics* <span class="citation" data-cites="verzani2004using">Verzani (<a href="referencias.html#ref-verzani2004using" role="doc-biblioref">2004</a>)</span>. No entanto, na maioria das vezes a forma mais prática de conseguir ajuda com uma dúvida específica é a busca em fóruns na internet, como o <em>Stack Overflow</em>: <a href="https://stackoverflow.com/" class="uri">https://stackoverflow.com/</a>.</p></li>
 <li><p><strong>Apresentação (Presentation)</strong> – é visualizador de apresentações. Nas últimas versões do Rstudio, é possível com o Quarto, editar um código em R Markdown para construir uma apresentação. Não faz parte do objetivo deste livro desenvolver este assunto. É possível encontrar um tutorial em <a href="https://quarto.org/docs/get-started/hello/rstudio.html" class="uri">https://quarto.org/docs/get-started/hello/rstudio.html</a>.</p></li>
 </ol>
 <div class="cell" data-layout-align="center">
@@ -715,7 +716,7 @@ Figura&nbsp;4.8: Instalação do pacote ‘ggplot2’ usando a caixa de diálogo
 </section>
 <section id="sec-pacman" class="level4" data-number="4.2.2.4">
 <h4 data-number="4.2.2.4" class="anchored" data-anchor-id="sec-pacman"><span class="header-section-number">4.2.2.4</span> Instalando e carregando mais de um pacote</h4>
-<p>Uma das funções, atualmente, mais usadas para executar essa ação é fornecida pelo pacote <code>pacman</code> <span class="citation" data-cites="tyler2018pacman">(<a href="referencias.html#ref-tyler2018pacman" role="doc-biblioref">5</a>)</span>.</p>
+<p>Uma das funções, atualmente, mais usadas para executar essa ação é fornecida pelo pacote <code>pacman</code> <span class="citation" data-cites="tyler2018pacman">Rinker e Kurkiewicz (<a href="referencias.html#ref-tyler2018pacman" role="doc-biblioref">2018</a>)</span>.</p>
 <p>É interessante configurar o <code>pacman</code> para que ele esteja sempre disponível assim que o R é aberto. Isso é feito editando o arquivo chamado <code>.Rprofile</code>, que é carregado automaticamente toda vez que você inicia uma sessão do R. Para configurar o <code>pacman</code> no <code>.Rprofile</code>, abra-o no <em>RStudio</em>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">file.edit</span>(<span class="st">"~/.Rprofile"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1013,7 +1014,7 @@ Atenção
 <li><p><u>Lógico (logical)</u>: são usados para combinar declarações condicionais. Retorna: verdadeiro (TRUE) ou falso (FALSE). São escritos obrigatoriamente com letras maiúsculas sem aspas. São utilizados para indicar opções onde há apenas duas opções ou como resultado de um teste lógico.</p></li>
 </ol>
 <p>É a partir do conhecimento do tipo de classe que as funções sabem o que extamente fazer com um objeto. Por exemplo, não é possivel somar duas letras e se for feita a tentativa de somar “a” e “b”, o Rretorna um erro: <span style="color:red">Error in “a” + “b”: non-numeric argument to binary operator</span>.</p>
-<p>No R, os textos são escritos entre aspas simples ou duplas. As aspas servem para diferenciar nomes (objetos, funções, pacotes) de textos (letras e palavras). Os textos são muito comuns em variáveis categóricas e são popularmente chamados de <em>strings</em> ou <em>character</em>. Além desta classe, o R tem outras classes básicas que são a <em>numeric</em> e a <em>logical</em>. Um objeto de qualquer uma dessas classes é chamado de <em>objeto atômico</em>. Esse nome se deve ao fato de essas classes não se misturarem <span class="citation" data-cites="cursor2015livro">(<a href="referencias.html#ref-cursor2015livro" role="doc-biblioref">6</a>)</span>.</p>
+<p>No R, os textos são escritos entre aspas simples ou duplas. As aspas servem para diferenciar nomes (objetos, funções, pacotes) de textos (letras e palavras). Os textos são muito comuns em variáveis categóricas e são popularmente chamados de <em>strings</em> ou <em>character</em>. Além desta classe, o R tem outras classes básicas que são a <em>numeric</em> e a <em>logical</em>. Um objeto de qualquer uma dessas classes é chamado de <em>objeto atômico</em>. Esse nome se deve ao fato de essas classes não se misturarem <span class="citation" data-cites="cursor2015livro">(<a href="referencias.html#ref-cursor2015livro" role="doc-biblioref">Damiani et al. 2015</a>)</span>.</p>
 <p>Para saber qual o tipo de classe que um objeto pertence, basta usar a função <code>class()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>idade <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">6</span>, <span class="dv">7</span>)</span>
@@ -1191,7 +1192,7 @@ Figura&nbsp;4.12: Comparação da altura de mulheres em duas populações
 <p>Como não há nomes no objeto <code>n.filhos</code>, a saída é <code>NULL</code></p>
 <section id="indexação-de-vetores" class="level3" data-number="4.5.1">
 <h3 data-number="4.5.1" class="anchored" data-anchor-id="indexação-de-vetores"><span class="header-section-number">4.5.1</span> Indexação de vetores</h3>
-<p>Como os vetores são conjuntos <em>indexados</em>, pode-se dizer que cada valor dentro de um vetor tem uma <strong>posição</strong>. Essa posição é dada pela ordem em que os elementos foram colocados no momento em que o vetor foi criado. Isso nos permite acessar individualmente cada valor de um vetor <span class="citation" data-cites="cursor2015livro">(<a href="referencias.html#ref-cursor2015livro" role="doc-biblioref">6</a>)</span>.<br>
+<p>Como os vetores são conjuntos <em>indexados</em>, pode-se dizer que cada valor dentro de um vetor tem uma <strong>posição</strong>. Essa posição é dada pela ordem em que os elementos foram colocados no momento em que o vetor foi criado. Isso nos permite acessar individualmente cada valor de um vetor <span class="citation" data-cites="cursor2015livro">(<a href="referencias.html#ref-cursor2015livro" role="doc-biblioref">Damiani et al. 2015</a>)</span>.<br>
 Para acessar um determinado valor, basta colocar a posição do mesmo entre colchetes [ ]. Se há interesse em conhecer o número de filhos da quinta família, procede-se da seguinte forma:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>n.filhos[<span class="dv">5</span>]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1289,7 +1290,7 @@ Para acessar um determinado valor, basta colocar a posição do mesmo entre colc
 </section>
 <section id="sec-fatores" class="level2" data-number="4.6">
 <h2 data-number="4.6" class="anchored" data-anchor-id="sec-fatores"><span class="header-section-number">4.6</span> Fatores</h2>
-<p>A classe <code>factor</code> serve para designar categorias para um vetor. Essa classe é semelhante a um vetor da classe <code>character</code>, mas tem importancia maior na modelagem estatística e análise exploratóriade dados <span class="citation" data-cites="wickham2017factors">(<a href="referencias.html#ref-wickham2017factors" role="doc-biblioref">7</a>)</span>. Tanto números quanto caracteres podem ser convertidos em fatores usando a função <code>factor()</code>. Esses fatores podem não ser ordenados representado apenas diferentes categorias ou podem representar categorias ordenadas. A função <code>ordered()</code> gera fatores ordenados, em ordem crescente ou descrescente.</p>
+<p>A classe <code>factor</code> serve para designar categorias para um vetor. Essa classe é semelhante a um vetor da classe <code>character</code>, mas tem importancia maior na modelagem estatística e análise exploratóriade dados <span class="citation" data-cites="wickham2017factors">Wickham e Grolemund (<a href="referencias.html#ref-wickham2017factors" role="doc-biblioref">2017</a>)</span>. Tanto números quanto caracteres podem ser convertidos em fatores usando a função <code>factor()</code>. Esses fatores podem não ser ordenados representado apenas diferentes categorias ou podem representar categorias ordenadas. A função <code>ordered()</code> gera fatores ordenados, em ordem crescente ou descrescente.</p>
 <p>O vetor a seguir representa o tipo de parto ocorrido em 15 anscimentos, ond 1 = parto normal e 2 = parto cesáreo:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>tipoParto <span class="ot">&lt;-</span> <span class="fu">c</span> (<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>)</span>
@@ -1390,27 +1391,27 @@ $notas
 
 <!-- -->
 
-<div id="refs" class="references csl-bib-body" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-blog_2024" class="csl-entry" role="listitem">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline">Blog TJR. Positron vs rstudio – is it time to switch? [Internet]. R-bloggers. 2024. Disponível em: <a href="https://www.r-bloggers.com/2024/12/positron-vs-rstudio-is-it-time-to-switch/">https://www.r-bloggers.com/2024/12/positron-vs-rstudio-is-it-time-to-switch/</a></div>
-</div>
-<div id="ref-positron2025" class="csl-entry" role="listitem">
-<div class="csl-left-margin">2. </div><div class="csl-right-inline">Software P. Frequently asked questions [Internet]. Positron. Posit Software, PBC; 2025. Disponível em: <a href="https://positron.posit.co/faqs.html">https://positron.posit.co/faqs.html</a></div>
+Blog, The Jumping Rivers. 2024. <span>«Positron vs rstudio – is it time to switch?»</span> <em>R-bloggers</em>. <a href="https://www.r-bloggers.com/2024/12/positron-vs-rstudio-is-it-time-to-switch/">https://www.r-bloggers.com/2024/12/positron-vs-rstudio-is-it-time-to-switch/</a>.
 </div>
 <div id="ref-chang2021cookbook" class="csl-entry" role="listitem">
-<div class="csl-left-margin">3. </div><div class="csl-right-inline">Chang W. Cookbook for R. Cookbook for R. http://www.cookbook-r.com; 2021. </div>
-</div>
-<div id="ref-verzani2004using" class="csl-entry" role="listitem">
-<div class="csl-left-margin">4. </div><div class="csl-right-inline">Verzani J. Using R for introductory statistics. Chapman; Hall/CRC; 2004. </div>
-</div>
-<div id="ref-tyler2018pacman" class="csl-entry" role="listitem">
-<div class="csl-left-margin">5. </div><div class="csl-right-inline">Rinker TW, Kurkiewicz D. pacman: Package Management for R [Internet]. Buffalo, New York; 2018. Disponível em: <a href="http://github.com/trinker/pacman">http://github.com/trinker/pacman</a></div>
+Chang, Winston. 2021. <span>«Cookbook for R»</span>. Cookbook for R. http://www.cookbook-r.com.
 </div>
 <div id="ref-cursor2015livro" class="csl-entry" role="listitem">
-<div class="csl-left-margin">6. </div><div class="csl-right-inline">Damiani A, Milz B, Lente C, al et. Ciência de Dados em R [Internet]. R6 Consultoria; 2015. Disponível em: <a href="https://livro.curso-r.com/index.html">https://livro.curso-r.com/index.html</a></div>
+Damiani, Athos, Beatriz Milz, Caio Lente, e et al. 2015. <span>«Ciência de Dados em R»</span>. R6 Consultoria. <a href="https://livro.curso-r.com/index.html">https://livro.curso-r.com/index.html</a>.
+</div>
+<div id="ref-tyler2018pacman" class="csl-entry" role="listitem">
+Rinker, Tyler W., e Dason Kurkiewicz. 2018. <em>pacman: Package Management for R</em>. Buffalo, New York. <a href="http://github.com/trinker/pacman">http://github.com/trinker/pacman</a>.
+</div>
+<div id="ref-positron2025" class="csl-entry" role="listitem">
+Software, Posit. 2025. <span>«Frequently asked questions»</span>. <em>Positron</em>. Posit Software, PBC. <a href="https://positron.posit.co/faqs.html">https://positron.posit.co/faqs.html</a>.
+</div>
+<div id="ref-verzani2004using" class="csl-entry" role="listitem">
+Verzani, John. 2004. <em>Using R for introductory statistics</em>. Chapman; Hall/CRC.
 </div>
 <div id="ref-wickham2017factors" class="csl-entry" role="listitem">
-<div class="csl-left-margin">7. </div><div class="csl-right-inline">Wickham H, Grolemund G. 15 Factors|R for data science [Internet]. Welcome | R for Data Science. O’Reilly; 2017. Disponível em: <a href="https://r4ds.had.co.nz/factors.html">https://r4ds.had.co.nz/factors.html</a></div>
+Wickham, Hadley, e Garrett Grolemund. 2017. <span>«15 Factors|R for data science»</span>. <em>Welcome | R for Data Science</em>. O’Reilly. <a href="https://r4ds.had.co.nz/factors.html">https://r4ds.had.co.nz/factors.html</a>.
 </div>
 </div>
 </section>

@@ -59,6 +59,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -527,7 +528,7 @@ window.Quarto = {
 
 <section id="sec-dataframes" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="sec-dataframes"><span class="header-section-number">5.1</span> Dataframes no R</h2>
-<p>DataFrames são objetos de dados genéricos em formato tabular, onde os dados são organizados de maneira lógica em linha-e-coluna semelhante ao de uma planilha do Excel. O dataframe é uma estrutura bidimensional. Os DataFrames podem ser formados com objetos criados previamente, desde que tenham o mesmo comprimento <span class="citation" data-cites="zuur2009beginner">(<a href="referencias.html#ref-zuur2009beginner" role="doc-biblioref">1</a>)</span>.</p>
+<p>DataFrames são objetos de dados genéricos em formato tabular, onde os dados são organizados de maneira lógica em linha-e-coluna semelhante ao de uma planilha do Excel. O dataframe é uma estrutura bidimensional. Os DataFrames podem ser formados com objetos criados previamente, desde que tenham o mesmo comprimento <span class="citation" data-cites="zuur2009beginner">Zuur, Ieno, e Meesters (<a href="referencias.html#ref-zuur2009beginner" role="doc-biblioref">2009</a>)</span>.</p>
 <p>Uma das formas de criar um DataFrame no R é a partir de um conjunto de vetores como, por exemplo, este relacionados a 15 nascimentos em uma determinada maternidade:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>id <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>, <span class="dv">13</span>, <span class="dv">14</span>, <span class="dv">15</span>)</span>
@@ -639,11 +640,11 @@ window.Quarto = {
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"dadosNeonatos.RData"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>É possível salvar em outro tipo de extensão como Excel (<code>.xlsx</code>), Valores Separados por Vírgula (<code>.csv</code>), etc. O procedimento é o mesmo, mudando a função. Para salvar em uma extensão <code>.xlsx</code>,utiliza-se a função <code>write_xlsx ()</code> do pacote <code>writexl</code> <span class="citation" data-cites="ooms2022writexl">(<a href="referencias.html#ref-ooms2022writexl" role="doc-biblioref">2</a>)</span>:</p>
+<p>É possível salvar em outro tipo de extensão como Excel (<code>.xlsx</code>), Valores Separados por Vírgula (<code>.csv</code>), etc. O procedimento é o mesmo, mudando a função. Para salvar em uma extensão <code>.xlsx</code>,utiliza-se a função <code>write_xlsx ()</code> do pacote <code>writexl</code> <span class="citation" data-cites="ooms2022writexl">(<a href="referencias.html#ref-ooms2022writexl" role="doc-biblioref">Ooms 2022</a>)</span>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>writexl<span class="sc">::</span><span class="fu">write_xlsx</span>(dadosNeonatos, <span class="st">"dados/dadosNeonatos.xlsx"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Para salvar com a extensão <code>.csv</code>, usar a função <code>write.csv()</code> ou <code>write.csv2()</code> que faz parte do pacote <code>utils</code>, incluido no R base. A primeira função, usa <code>"."</code> para a separação dos decimais e <code>","</code> para separar as variáveis; a segunda função usa <code>","</code> para os decimais e <code>";"</code> para separar as variáveis, convenção do Excel para algumas localidades, como o Brasil <span class="citation" data-cites="write2022csv">(<a href="referencias.html#ref-write2022csv" role="doc-biblioref">3</a>)</span>. Portanto, uma maneira de salvar o arquivo é:</p>
+<p>Para salvar com a extensão <code>.csv</code>, usar a função <code>write.csv()</code> ou <code>write.csv2()</code> que faz parte do pacote <code>utils</code>, incluido no R base. A primeira função, usa <code>"."</code> para a separação dos decimais e <code>","</code> para separar as variáveis; a segunda função usa <code>","</code> para os decimais e <code>";"</code> para separar as variáveis, convenção do Excel para algumas localidades, como o Brasil <span class="citation" data-cites="write2022csv">(<a href="referencias.html#ref-write2022csv" role="doc-biblioref">Team 2022</a>)</span>. Portanto, uma maneira de salvar o arquivo é:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv2</span> (dadosNeonatos, <span class="st">"dados/dadosNeonatos.csv"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -692,7 +693,7 @@ Atenção
 <p>Toda vez que se importa um dataset, deve-se verificar atentamente a sua estrutura antes de dar seguimento as análises</p>
 </div>
 </div>
-<p>Recentemente, foi desenvolvido o pacote <code>readr</code>, incluído no conjunto de pacotes <code>tidyverse</code> <span class="citation" data-cites="wickham2019tidyverse">(<a href="referencias.html#ref-wickham2019tidyverse" role="doc-biblioref">4</a>)</span>, para lidar rapidamente com a leitura de grandes arquivos. O pacote fornece substituições para funções como <code>read.csv()</code>. As funções <code>read_csv()</code> e <code>read_csv2()</code> oferecidas pelo <code>readr</code> são análogas às do R base. Entretanto, são muito mais rápidas e fornecem mais recursos, como um método compacto para especificar tipos de coluna. Além disso, produzem <code>tibbles</code> (ver adiante, <a href="#sec-tibble" class="quarto-xref"><span>Seção 5.3</span></a>) que são mais reproduzíveis, pois as funções básicas do R herdam alguns comportamentos do sistema operacional e das variáveis de ambiente, portanto, o código de importação que funciona no seu computador pode não funcionar no de outra pessoa. Para usar a função é necessário instalar e ativar o pacote <code>readr</code>. A função <code>read_csv2()</code> será utilizada para criar um outro objeto de nome <code>recemNascidos</code>, mas o conjunto de dados a ser ativado é o mesmo (<code>dadosNeonatos</code>):</p>
+<p>Recentemente, foi desenvolvido o pacote <code>readr</code>, incluído no conjunto de pacotes <code>tidyverse</code> <span class="citation" data-cites="wickham2019tidyverse">Wickham et al. (<a href="referencias.html#ref-wickham2019tidyverse" role="doc-biblioref">2019</a>)</span>, para lidar rapidamente com a leitura de grandes arquivos. O pacote fornece substituições para funções como <code>read.csv()</code>. As funções <code>read_csv()</code> e <code>read_csv2()</code> oferecidas pelo <code>readr</code> são análogas às do R base. Entretanto, são muito mais rápidas e fornecem mais recursos, como um método compacto para especificar tipos de coluna. Além disso, produzem <code>tibbles</code> (ver adiante, <a href="#sec-tibble" class="quarto-xref"><span>Seção 5.3</span></a>) que são mais reproduzíveis, pois as funções básicas do R herdam alguns comportamentos do sistema operacional e das variáveis de ambiente, portanto, o código de importação que funciona no seu computador pode não funcionar no de outra pessoa. Para usar a função é necessário instalar e ativar o pacote <code>readr</code>. A função <code>read_csv2()</code> será utilizada para criar um outro objeto de nome <code>recemNascidos</code>, mas o conjunto de dados a ser ativado é o mesmo (<code>dadosNeonatos</code>):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">library</span>(readr)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a> recemNascidos <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">"dados/dadosNeonatos.csv"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -787,7 +788,7 @@ Figura&nbsp;5.2: Importando arquivos do excel com o RStudio
 <h2 data-number="5.3" class="anchored" data-anchor-id="sec-tibble"><span class="header-section-number">5.3</span> Tibble</h2>
 <p>A maneira mais comum de armazenar dados no R é usar <code>data.frames</code> ou <code>tibble</code>.</p>
 <p><em>Tibble</em> é um novo tipo de dataframe. É como se fosse um dataframe mais moderno. Ele mantém muitos recursos importantes do data frame original, mas remove muitos dos recursos desatualizados.</p>
-<p>A maioria dos pacotes do R usa dataframes tradicionais, entretanto é possível transformá-los para <code>tibble</code>, usando a função <code>as_tibble()</code>, incluída no pacote <code>tidyr</code> <span class="citation" data-cites="wickham2022tidyr">(<a href="referencias.html#ref-wickham2022tidyr" role="doc-biblioref">5</a>)</span>. O único propósito deste pacote é simplificar o processo de criação dados arrumados organizados (<code>tidy data</code>). A transformação de um dataframe tradicional em um <code>tibble</code>, é um procedimento rescomendável, em função da maior flexibilidade destes.</p>
+<p>A maioria dos pacotes do R usa dataframes tradicionais, entretanto é possível transformá-los para <code>tibble</code>, usando a função <code>as_tibble()</code>, incluída no pacote <code>tidyr</code> <span class="citation" data-cites="wickham2022tidyr">Wickham e Girlich (<a href="referencias.html#ref-wickham2022tidyr" role="doc-biblioref">2022</a>)</span>. O único propósito deste pacote é simplificar o processo de criação dados arrumados organizados (<code>tidy data</code>). A transformação de um dataframe tradicional em um <code>tibble</code>, é um procedimento rescomendável, em função da maior flexibilidade destes.</p>
 <p>Como exemplo deste procedimento, será usado o dataframes criado na <a href="#sec-dataframes" class="quarto-xref"><span>Seção 5.1</span></a>: <code>dadosNeonatos</code>.</p>
 <p>Este é um conjunto de dados da classe <code>data.frame</code>, contendo 15 observações de 7 variáveis (colunas), pode convetrtido a um <code>tibble</code>, usando a função <code>as.tibble()</code>:</p>
 <div class="cell">
@@ -835,9 +836,9 @@ Figura&nbsp;5.3: Ciclo da Ciência de Dados
 </div>
 </div>
 </div>
-<p>O pacote <code>tidyverse</code> é uma coleção de pacotes para a linguagem de programação R, pensada e desenvolvida para facilitar e otimizar o fluxo de trabalho em ciência de dados <span class="citation" data-cites="wickham2019tidyverse">(<a href="referencias.html#ref-wickham2019tidyverse" role="doc-biblioref">4</a>)</span>.<br>
+<p>O pacote <code>tidyverse</code> é uma coleção de pacotes para a linguagem de programação R, pensada e desenvolvida para facilitar e otimizar o fluxo de trabalho em ciência de dados <span class="citation" data-cites="wickham2019tidyverse">Wickham et al. (<a href="referencias.html#ref-wickham2019tidyverse" role="doc-biblioref">2019</a>)</span>.<br>
 Em vez de ser um pacote único, ele é um “meta-pacote”, o que significa que, ao instalá-lo, você instala vários pacotes menores que trabalham em conjunto.</p>
-<p>A filosofia principal por trás do <code>tidyverse</code> é a de dados “tidy” (arrumados ou organizados) <span class="citation" data-cites="wickham2014tidy">(<a href="referencias.html#ref-wickham2014tidy" role="doc-biblioref">6</a>)</span>, onde:</p>
+<p>A filosofia principal por trás do <code>tidyverse</code> é a de dados “tidy” (arrumados ou organizados) <span class="citation" data-cites="wickham2014tidy">Wickham (<a href="referencias.html#ref-wickham2014tidy" role="doc-biblioref">2014</a>)</span>, onde:</p>
 <ul>
 <li><p>Cada variável está em uma coluna.</p></li>
 <li><p>Cada observação está em uma linha.</p></li>
@@ -863,7 +864,7 @@ Em vez de ser um pacote único, ele é um “meta-pacote”, o que significa que
 <p>Os princípios fundamentais são:</p>
 <ol type="1">
 <li><p>Reutilizar estruturas de dados existentes.</p></li>
-<li><p>Organizar funções simples usando o <code>pipe</code>.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. Esse operador, introduzido por Stefan Milton Bache no pacote <code>magrittr</code> <span class="citation" data-cites="bache2022magritt">(<a href="referencias.html#ref-bache2022magritt" role="doc-biblioref">7</a>)</span>, permite encadear múltiplas operações em uma sequência clara e legível, de forma que a saída de uma função se torna a entrada da próxima. Isso torna o código mais fácil de ler e entender, eliminando a necessidade de criar muitas variáveis intermediárias. O <code>pipe</code> pode ser acionado digitando <code>%&gt;%</code> ou usando o atalho <code>ctrl + shift + M</code>. <a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p></li>
+<li><p>Organizar funções simples usando o <code>pipe</code>.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. Esse operador, introduzido por Stefan Milton Bache no pacote <code>magrittr</code> <span class="citation" data-cites="bache2022magritt">Bache e Wickham (<a href="referencias.html#ref-bache2022magritt" role="doc-biblioref">2022</a>)</span>, permite encadear múltiplas operações em uma sequência clara e legível, de forma que a saída de uma função se torna a entrada da próxima. Isso torna o código mais fácil de ler e entender, eliminando a necessidade de criar muitas variáveis intermediárias. O <code>pipe</code> pode ser acionado digitando <code>%&gt;%</code> ou usando o atalho <code>ctrl + shift + M</code>. <a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p></li>
 <li><p>Usar uma sintaxe consistente: As funções dos pacotes tidyverse seguem uma lógica de nomeação e de argumentos parecida, facilitando a memorização e o uso.</p></li>
 <li><p>Projetado com foco nos seres humanos, priorizando a eficiência do programador.</p></li>
 </ol>
@@ -902,7 +903,7 @@ Conflito de funções ao carregar tidyverse
 </section>
 <section id="sec-dplyr" class="level2" data-number="5.5">
 <h2 data-number="5.5" class="anchored" data-anchor-id="sec-dplyr"><span class="header-section-number">5.5</span> Pacote dplyr</h2>
-<p>Um dos pacotes de maior utilidade abarcado pelo <code>tidyverse</code> é o <code>dplyr</code>. Ele permite realizar transformação dos dados de uma forma simples e eficiente. O uso dos verbos <code>dplyr</code>, aliado ao operador <code>pipe</code>, tendem a tornar os scripts mais “enxutos” e elegantes <span class="citation" data-cites="wickham2015dplyr">(<a href="referencias.html#ref-wickham2015dplyr" role="doc-biblioref">8</a>)</span>.<br>
+<p>Um dos pacotes de maior utilidade abarcado pelo <code>tidyverse</code> é o <code>dplyr</code>. Ele permite realizar transformação dos dados de uma forma simples e eficiente. O uso dos verbos <code>dplyr</code>, aliado ao operador <code>pipe</code>, tendem a tornar os scripts mais “enxutos” e elegantes <span class="citation" data-cites="wickham2015dplyr">Wickham et al. (<a href="referencias.html#ref-wickham2015dplyr" role="doc-biblioref">2015</a>)</span>.<br>
 As principais funções do <code>dplyr</code> são:</p>
 <ul>
 <li><code>select()</code> - seleciona colunas<br>
@@ -922,7 +923,7 @@ As principais funções do <code>dplyr</code> são:</p>
 </section>
 <section id="sec-dadosMater" class="level2" data-number="5.6">
 <h2 data-number="5.6" class="anchored" data-anchor-id="sec-dadosMater"><span class="header-section-number">5.6</span> Dataframe <code>dadosMater.xlsx</code></h2>
-<p>O arquivo <code>dadosMater.xlsx</code> é um dataframe constituído por dados de 1568 partos consecutivos do Hospital Geral de Caxias do Sul (HGCS) <a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> , durante um estudo sobre infecções congênitas <span class="citation" data-cites="madi2010prevalence">(<a href="referencias.html#ref-madi2010prevalence" role="doc-biblioref">9</a>)</span>. Para baixar esses dados, clique <a href="https://github.com/petronioliveira/Arquivos/blob/main/dadosMater.xlsx">aqui</a> e faça o <em>download</em> para o diretório de trabalho, para uso posterior.</p>
+<p>O arquivo <code>dadosMater.xlsx</code> é um dataframe constituído por dados de 1568 partos consecutivos do Hospital Geral de Caxias do Sul (HGCS) <a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> , durante um estudo sobre infecções congênitas <span class="citation" data-cites="madi2010prevalence">Madi et al. (<a href="referencias.html#ref-madi2010prevalence" role="doc-biblioref">2010</a>)</span>. Para baixar esses dados, clique <a href="https://github.com/petronioliveira/Arquivos/blob/main/dadosMater.xlsx">aqui</a> e faça o <em>download</em> para o diretório de trabalho, para uso posterior.</p>
 <section id="leitura-dos-dados" class="level3" data-number="5.6.1">
 <h3 data-number="5.6.1" class="anchored" data-anchor-id="leitura-dos-dados"><span class="header-section-number">5.6.1</span> Leitura dos dados</h3>
 <p>Para ler arquivos do Excel (<code>.xlsx</code>), o pacote ideal é o <code>readxl</code>, que também faz parte do <code>tidyverse</code>. Ele é leve, rápido e não depende do Excel instalado. A função a ser usada é <code>read_excel()</code>. O objeto <code>mater</code> será utilizado para receber os dados:</p>
@@ -1409,7 +1410,7 @@ Exercício
 </section>
 <section id="pacote-forcats" class="level2" data-number="5.7">
 <h2 data-number="5.7" class="anchored" data-anchor-id="pacote-forcats"><span class="header-section-number">5.7</span> Pacote forcats()</h2>
-<p>O pacote <code>forcats()</code> é uma das maravilhas do <code>tidyverse</code> voltada exclusivamente para o tratamento de variáveis categóricas no R — ou seja, os fatores. O nome vem de “<em>for categorical variables</em>”, e ele foi criado para resolver os desafios que surgem ao lidar com fatores, especialmente em visualizações e modelagens <span class="citation" data-cites="damiani2022forcats">(<a href="referencias.html#ref-damiani2022forcats" role="doc-biblioref">10</a>)</span>.</p>
+<p>O pacote <code>forcats()</code> é uma das maravilhas do <code>tidyverse</code> voltada exclusivamente para o tratamento de variáveis categóricas no R — ou seja, os fatores. O nome vem de “<em>for categorical variables</em>”, e ele foi criado para resolver os desafios que surgem ao lidar com fatores, especialmente em visualizações e modelagens <span class="citation" data-cites="damiani2022forcats">Damiani et al. (<a href="referencias.html#ref-damiani2022forcats" role="doc-biblioref">2022</a>)</span>.</p>
 <p>A finalidade do pacote <code>forcats()</code>:</p>
 <p>Oferece funções intuitivas e poderosas para:</p>
 <ul>
@@ -1454,7 +1455,7 @@ As principais funções doforcats() são:</p></li>
 </section>
 <section id="manipulação-de-datas" class="level2" data-number="5.8">
 <h2 data-number="5.8" class="anchored" data-anchor-id="manipulação-de-datas"><span class="header-section-number">5.8</span> Manipulação de datas</h2>
-<p>Originalmente, todos os que trabalham com o R queixavam-se de como era frustrante trabalhar com datas. Era um processo que causava grande perda de tempo nas análises. O pacote <code>lubridate</code> <span class="citation" data-cites="grolemund2011dates">(<a href="referencias.html#ref-grolemund2011dates" role="doc-biblioref">11</a>)</span> foi criado para simplificar ao máximo a leitura de datas e extração de informações das mesmas.</p>
+<p>Originalmente, todos os que trabalham com o R queixavam-se de como era frustrante trabalhar com datas. Era um processo que causava grande perda de tempo nas análises. O pacote <code>lubridate</code> <span class="citation" data-cites="grolemund2011dates">Grolemund e Wickham (<a href="referencias.html#ref-grolemund2011dates" role="doc-biblioref">2011</a>)</span> foi criado para simplificar ao máximo a leitura de datas e extração de informações das mesmas.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1464,11 +1465,11 @@ Para evitar confusões e verificar que as funções corretas estão sendo usadas
 <div class="cell">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-11-25"</code></pre>
+<pre><code>[1] "2025-11-26"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">now</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-11-25 21:06:17 -03"</code></pre>
+<pre><code>[1] "2025-11-26 20:05:56 -03"</code></pre>
 </div>
 </div>
 <section id="convertendo-strings-ou-caractere-para-data" class="level3" data-number="5.8.1">
@@ -1584,19 +1585,19 @@ Para evitar confusões e verificar que as funções corretas estão sendo usadas
 </div>
 <div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">week</span>(data)            <span class="co"># Extrai a semana</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 47</code></pre>
+<pre><code>[1] 48</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">day</span>(data)             <span class="co"># Extrai o dia</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 25</code></pre>
+<pre><code>[1] 26</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">minute</span>(data)          <span class="co"># Extrai o minuto</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 6</code></pre>
+<pre><code>[1] 5</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">second</span>(data)          <span class="co"># Extrai o segundo</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 18.16846</code></pre>
+<pre><code>[1] 56.45342</code></pre>
 </div>
 </div>
 <p>Para verificar o número de dias tem em um determinado mês, usa-se a função <code>days_in_month()</code>:</p>
@@ -1671,39 +1672,39 @@ Para evitar confusões e verificar que as funções corretas estão sendo usadas
 
 <!-- -->
 
-<div id="refs" class="references csl-bib-body" role="list" style="display: none">
-<div id="ref-zuur2009beginner" class="csl-entry" role="listitem">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline">Zuur AF, Ieno EN, Meesters EH. Getting Data into R. Em: A Beginner’s Guide to R. Springer; 2009. p. 29–56. </div>
-</div>
-<div id="ref-ooms2022writexl" class="csl-entry" role="listitem">
-<div class="csl-left-margin">2. </div><div class="csl-right-inline">Ooms J. writexl: Export Data Frames to Excel ’xlsx’ Format [Internet]. 2022. Disponível em: <a href="https://CRAN.R-project.org/package=writexl">https://CRAN.R-project.org/package=writexl</a></div>
-</div>
-<div id="ref-write2022csv" class="csl-entry" role="listitem">
-<div class="csl-left-margin">3. </div><div class="csl-right-inline">Team RC. write.table: Data Output/CSV files [Internet]. DataCamp; 2022. Disponível em: <a href="https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/write.table">https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/write.table</a></div>
-</div>
-<div id="ref-wickham2019tidyverse" class="csl-entry" role="listitem">
-<div class="csl-left-margin">4. </div><div class="csl-right-inline">Wickham H, Averick M, Bryan J, Chang W, et al. Welcome to the Tidyverse. Journal of Open Source Software. 2019;4(43):1686. </div>
-</div>
-<div id="ref-wickham2022tidyr" class="csl-entry" role="listitem">
-<div class="csl-left-margin">5. </div><div class="csl-right-inline">Wickham H, Girlich M. tidyr: Tidy Messy Data [Internet]. 2022. Disponível em: <a href="https://CRAN.R-project.org/package=tidyr">https://CRAN.R-project.org/package=tidyr</a></div>
-</div>
-<div id="ref-wickham2014tidy" class="csl-entry" role="listitem">
-<div class="csl-left-margin">6. </div><div class="csl-right-inline">Wickham H. Tidy Data. Journal of Statistical Software. 2014;59(10):11–23. </div>
-</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-bache2022magritt" class="csl-entry" role="listitem">
-<div class="csl-left-margin">7. </div><div class="csl-right-inline">Bache SM, Wickham H. magrittr: A Forward-Pipe Operator for R. 2022. </div>
-</div>
-<div id="ref-wickham2015dplyr" class="csl-entry" role="listitem">
-<div class="csl-left-margin">8. </div><div class="csl-right-inline">Wickham H, François R, Henry L, Müller K, et al. dplyr: A grammar of data manipulation. R package version 04. 2015;3:156. </div>
-</div>
-<div id="ref-madi2010prevalence" class="csl-entry" role="listitem">
-<div class="csl-left-margin">9. </div><div class="csl-right-inline">Madi JM, Souza R da S de, Araujo BF de, Oliveira Filho PF, et al. Prevalence of toxoplasmosis, HIV, syphilis and rubella in a population of puerperal women using Whatman 903<span></span> filter paper. The Brazilian Journal of Infectious Diseases. 2010;14(1):24–9. </div>
+Bache, Stefan Milton, e Hadley Wickham. 2022. <em>magrittr: A Forward-Pipe Operator for R</em>.
 </div>
 <div id="ref-damiani2022forcats" class="csl-entry" role="listitem">
-<div class="csl-left-margin">10. </div><div class="csl-right-inline">Damiani A, Milz B, Lente C, Outros. O pacote forcats [Internet]. Ciência de Dados em R. R6 Consultoria; 2022. Disponível em: <a href="https://livro.curso-r.com/7-6-forcats.html#o-que-s%C3%A3o-fatores">https://livro.curso-r.com/7-6-forcats.html#o-que-s%C3%A3o-fatores</a></div>
+Damiani, Athos, Beatriz Milz, Caio Lente, e Outros. 2022. <span>«O pacote forcats»</span>. <em>Ciência de Dados em R</em>. R6 Consultoria. <a href="https://livro.curso-r.com/7-6-forcats.html#o-que-s%C3%A3o-fatores">https://livro.curso-r.com/7-6-forcats.html#o-que-s%C3%A3o-fatores</a>.
 </div>
 <div id="ref-grolemund2011dates" class="csl-entry" role="listitem">
-<div class="csl-left-margin">11. </div><div class="csl-right-inline">Grolemund G, Wickham H. Dates and Times Made Easy with lubridate. Journal of Statistical Software [Internet]. 2011;40(3):1–25. Disponível em: <a href="https://www.jstatsoft.org/v40/i03/">https://www.jstatsoft.org/v40/i03/</a></div>
+Grolemund, Garrett, e Hadley Wickham. 2011. <span>«Dates and Times Made Easy with lubridate»</span>. <em>Journal of Statistical Software</em> 40 (3): 1–25. <a href="https://www.jstatsoft.org/v40/i03/">https://www.jstatsoft.org/v40/i03/</a>.
+</div>
+<div id="ref-madi2010prevalence" class="csl-entry" role="listitem">
+Madi, José Mauro, Ricardo da Silva de Souza, Breno Fauth de Araujo, Petrônio Fagundes Oliveira Filho, et al. 2010. <span>«Prevalence of toxoplasmosis, HIV, syphilis and rubella in a population of puerperal women using Whatman 903<span></span> filter paper»</span>. <em>The Brazilian Journal of Infectious Diseases</em> 14 (1). Elsevier: 24–29.
+</div>
+<div id="ref-ooms2022writexl" class="csl-entry" role="listitem">
+Ooms, Jeroen. 2022. <em>writexl: Export Data Frames to Excel ’xlsx’ Format</em>. <a href="https://CRAN.R-project.org/package=writexl">https://CRAN.R-project.org/package=writexl</a>.
+</div>
+<div id="ref-write2022csv" class="csl-entry" role="listitem">
+Team, R Core. 2022. <span>«write.table: Data Output/CSV files»</span>. DataCamp. <a href="https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/write.table">https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/write.table</a>.
+</div>
+<div id="ref-wickham2014tidy" class="csl-entry" role="listitem">
+Wickham, Hadley. 2014. <span>«Tidy Data»</span>. <em>Journal of Statistical Software</em> 59 (10): 11–23.
+</div>
+<div id="ref-wickham2019tidyverse" class="csl-entry" role="listitem">
+Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, et al. 2019. <span>«Welcome to the Tidyverse»</span>. <em>Journal of Open Source Software</em> 4 (43): 1686.
+</div>
+<div id="ref-wickham2015dplyr" class="csl-entry" role="listitem">
+Wickham, Hadley, Romain François, Lionel Henry, Kirill Müller, et al. 2015. <span>«dplyr: A grammar of data manipulation»</span>. <em>R package version 0.4</em> 3: 156.
+</div>
+<div id="ref-wickham2022tidyr" class="csl-entry" role="listitem">
+Wickham, Hadley, e Maximilian Girlich. 2022. <em>tidyr: Tidy Messy Data</em>. <a href="https://CRAN.R-project.org/package=tidyr">https://CRAN.R-project.org/package=tidyr</a>.
+</div>
+<div id="ref-zuur2009beginner" class="csl-entry" role="listitem">
+Zuur, Alain F, Elena N Ieno, e Erik HWG Meesters. 2009. <span>«Getting Data into R»</span>. Em <em>A Beginner’s Guide to R</em>, 29–56. Springer.
 </div>
 </div>
 </section>

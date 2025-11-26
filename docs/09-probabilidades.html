@@ -59,6 +59,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -517,20 +518,20 @@ window.Quarto = {
 </section>
 <section id="introdução" class="level2" data-number="9.2">
 <h2 data-number="9.2" class="anchored" data-anchor-id="introdução"><span class="header-section-number">9.2</span> Introdução</h2>
-<p>A teoria das probabilidades é a base sobre a qual a estatística é desenvolvida. Os jogos de azar deram um grande impulso ao conhecimento da moderna teoria das probabilidades, principalmente, pelo trabalho de Blaise Pascal (1623-1662), em parceria com Pierre de Fermat (1601-1665). Eles foram estimulados por um escritor francês e matemático amador, Antoine Gombaud (1607-1684), conhecido como Chevalier de Méré, que era muito interessado em jogos de azar <span class="citation" data-cites="debnath2015short">(<a href="referencias.html#ref-debnath2015short" role="doc-biblioref">1</a>)</span>.</p>
+<p>A teoria das probabilidades é a base sobre a qual a estatística é desenvolvida. Os jogos de azar deram um grande impulso ao conhecimento da moderna teoria das probabilidades, principalmente, pelo trabalho de Blaise Pascal (1623-1662), em parceria com Pierre de Fermat (1601-1665). Eles foram estimulados por um escritor francês e matemático amador, Antoine Gombaud (1607-1684), conhecido como Chevalier de Méré, que era muito interessado em jogos de azar <span class="citation" data-cites="debnath2015short">Debnath e Basu (<a href="referencias.html#ref-debnath2015short" role="doc-biblioref">2015</a>)</span>.</p>
 <p>A Teoria das probabilidades permite que seja possível modelar populações, experimentos ou qualquer situação que possa ser considerada aleatória. Estes modelos possibilitam fazer inferência sobre populações a partir da observação de uma amostra dessa população. Ao usar apenas uma parte da população, inevitavelmente, é cometido um erro, o <strong>erro amostral</strong>. Este erro amostral pode ser dimensionado pela teoria das probabilidades.</p>
-<p>Existem duas interpretações alternativas de probabilidades: a <strong>frequentista</strong> e a <strong>bayesiana</strong> <span class="citation" data-cites="menezes2004probabilidade">(<a href="referencias.html#ref-menezes2004probabilidade" role="doc-biblioref">2</a>)</span>. Neste livro, será discutida, basicamente, a definição de probabilidade frequentista. O processo bayesiano de formulação de um modelo probabilístico faz uso do conhecimento subjetivo, estabelecendo uma especificação <strong>a priori</strong>, combinado com a informação objetiva ou empírica. A teoria bayesiana é a estrutura integradora dessas duas fontes de informação, derivando como resultado a distribuição <strong>a posteriori</strong> dos parâmetros de interesse. Na <a href="21-testesDiag.html#sec-diagbayes" class="quarto-xref"><span>Seção 21.2</span></a>, sobre análise de testes diagnósticos, serão abordados alguns aspectos relacionados à teoria bayesiana em medicina.</p>
+<p>Existem duas interpretações alternativas de probabilidades: a <strong>frequentista</strong> e a <strong>bayesiana</strong> <span class="citation" data-cites="menezes2004probabilidade">Menezes (<a href="referencias.html#ref-menezes2004probabilidade" role="doc-biblioref">2004</a>)</span>. Neste livro, será discutida, basicamente, a definição de probabilidade frequentista. O processo bayesiano de formulação de um modelo probabilístico faz uso do conhecimento subjetivo, estabelecendo uma especificação <strong>a priori</strong>, combinado com a informação objetiva ou empírica. A teoria bayesiana é a estrutura integradora dessas duas fontes de informação, derivando como resultado a distribuição <strong>a posteriori</strong> dos parâmetros de interesse. Na <a href="21-testesDiag.html#sec-diagbayes" class="quarto-xref"><span>Seção 21.2</span></a>, sobre análise de testes diagnósticos, serão abordados alguns aspectos relacionados à teoria bayesiana em medicina.</p>
 </section>
 <section id="processo-aleatório" class="level2" data-number="9.3">
 <h2 data-number="9.3" class="anchored" data-anchor-id="processo-aleatório"><span class="header-section-number">9.3</span> Processo aleatório</h2>
 <p>Um processo ou experimento é dito <strong>aleatório</strong> quando em uma situação se sabe quais os resultados que podem acontecer, mas não se sabe qual resultado particular irá acontecer. Por exemplo, quando uma moeda é lançada, se conhece que a probabilidade de o desfecho <code>cara</code> ocorrer é de 50%, mas se desconhece o que irá ocorrer até que a moeda esteja no chão.</p>
-<p>O número de caras que podem surgir em vários lançamentos da moeda é chamado de <strong>variável aleatória</strong>, ou seja, uma variável que pode assumir mais de um valor com determinadas probabilidades <span class="citation" data-cites="pagano2000random">(<a href="referencias.html#ref-pagano2000random" role="doc-biblioref">3</a>)</span>. Da mesma forma, um dado lançado pode mostrar seis faces, numeradas de um a seis, com igual probabilidade de 16,7%. Portanto, quando a probabilidade é associada a todos os conjuntos de valores possíveis de uma variável, diz-se que ela é aleatória. O conjunto de todos os possíveis resultados de um experimento aleatório é denominado <strong>espaço amostral</strong>.</p>
+<p>O número de caras que podem surgir em vários lançamentos da moeda é chamado de <strong>variável aleatória</strong>, ou seja, uma variável que pode assumir mais de um valor com determinadas probabilidades <span class="citation" data-cites="pagano2000random">Pagano e Kimberly (<a href="referencias.html#ref-pagano2000random" role="doc-biblioref">2000</a>)</span>. Da mesma forma, um dado lançado pode mostrar seis faces, numeradas de um a seis, com igual probabilidade de 16,7%. Portanto, quando a probabilidade é associada a todos os conjuntos de valores possíveis de uma variável, diz-se que ela é aleatória. O conjunto de todos os possíveis resultados de um experimento aleatório é denominado <strong>espaço amostral</strong>.</p>
 <p>Na área da saúde, trabalha-se com uma infinidade de variáveis aleatórias, por exemplo, o número de filhos de uma mulher, o número de mortos diários em uma epidemia, o número de vacinados em uma campanha, etc. Essas variáveis são variáveis aleatórias discretas, pois apenas permitem ser quantificadas por processo de contagem. Por outro lado, o peso ou a altura de uma mulher são ditos variáveis aleatórias contínuas, pois podem assumir qualquer valor real entre uma medida e outra, dependendo da precisão do aparelho usado.</p>
 <p>Em geral, variáveis aleatórias são representadas por letras maiúsculas, como X, Y e Z e sua a probabilidade, por exemplo, pode ser denotada por: <span class="math inline">\(P(X)\)</span>.</p>
 </section>
 <section id="definição-frequentista" class="level2" data-number="9.4">
 <h2 data-number="9.4" class="anchored" data-anchor-id="definição-frequentista"><span class="header-section-number">9.4</span> Definição frequentista</h2>
-<p>A probabilidade se relaciona a eventos futuros ou que ainda não ocorreram, desta forma a probabilidade pode ser entendida como uma medida de incerteza em relação ao evento. A probabilidade de um evento ocorrer, em determinadas circunstâncias, pode ser definida como a proporção de vezes que o evento é observado quando o experimento é repetido um número infinitamente grande de vezes <span class="citation" data-cites="menezes2004probabilidade">(<a href="referencias.html#ref-menezes2004probabilidade" role="doc-biblioref">2</a>)</span>. Pode-se dizer que a visão frequentista define a probabilidade como uma <strong>frequência de longo prazo</strong>.</p>
+<p>A probabilidade se relaciona a eventos futuros ou que ainda não ocorreram, desta forma a probabilidade pode ser entendida como uma medida de incerteza em relação ao evento. A probabilidade de um evento ocorrer, em determinadas circunstâncias, pode ser definida como a proporção de vezes que o evento é observado quando o experimento é repetido um número infinitamente grande de vezes <span class="citation" data-cites="menezes2004probabilidade">Menezes (<a href="referencias.html#ref-menezes2004probabilidade" role="doc-biblioref">2004</a>)</span>. Pode-se dizer que a visão frequentista define a probabilidade como uma <strong>frequência de longo prazo</strong>.</p>
 <p>A chamada <strong>Lei dos Grandes Números</strong> diz que à medida que múltiplas observações são coletadas, a proporção observada de ocorrências de um determinado desfecho, após <em>n</em> ensaios, converge para a probabilidade real P desse desfecho. Ou seja, quanto mais vezes for repetido uma experiência, a melhor estimativa de probabilidade tende a ocorrer. Suponha que seja lançada uma moeda honesta repetidas vezes. Por definição, essa é uma moeda que tem <span class="math inline">\(P(cara)=0,5\)</span>. O que se observaria? O autor fez 20 lançamentos seguidos com uma mesma moeda e obteve o seguinte resultado, onde 1 = cara (<a href="#fig-moeda20" class="quarto-xref">Figura&nbsp;<span>9.1</span></a>):</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -725,7 +726,7 @@ Z =\frac{x-\mu}{\sigma}
 </li>
 <li><span class="math inline">\(\sigma\)</span> <span class="math inline">\(\to\)</span> desvio padrão da variável <em>X</em></li>
 </ul>
-<p>Qualquer distribuição de uma variável aleatória normal pode ser padronizada, usando o escore <em>Z</em>. Isto permite que se calcule a probabilidade de se encontrar determinados intervalos de valores <span class="citation" data-cites="gonzalez2021normal">(<a href="referencias.html#ref-gonzalez2021normal" role="doc-biblioref">4</a>)</span>.</p>
+<p>Qualquer distribuição de uma variável aleatória normal pode ser padronizada, usando o escore <em>Z</em>. Isto permite que se calcule a probabilidade de se encontrar determinados intervalos de valores <span class="citation" data-cites="gonzalez2021normal">Gonzalez (<a href="referencias.html#ref-gonzalez2021normal" role="doc-biblioref">2021</a>)</span>.</p>
 <p>Como exemplo, se retornará à <code>altura</code> das mulheres. É, praticamente, impossível saber o valor da média populacional, por isso. costuma-se usar a média aritmética como um estimador da média populacional. Dessa forma, a variável <code>dados$altura</code> poderá utilizada com estimativa da média populacional. Em primeiro lugar, se construirá um <code>tibble</code> de nome <code>resumo</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a> resumo <span class="ot">&lt;-</span> dados <span class="sc">%&gt;%</span> </span>
@@ -751,7 +752,7 @@ Z =\frac{x-\mu}{\sigma}
 </div>
 </div>
 <p>Esta mulher está distante praticamente 2 desvios padrão acima da média da sua população. Portanto, ela é considerada alta. Por que?</p>
-<p>Para responder a essa pergunta, há necessidade de calcular a probabilidade de encontrar uma mulher com esta altura, nesta população. Primeiro, calcula-se a probabilidade de encontrar uma mulher com esta altura, nesta amostra. No <em>R</em>, existem as funções <code>dnorm()</code>, <code>pnorm()</code> e <code>qnorm()</code>, que permitem calcular a densidade de probabilidade, a distribuição cumulativa e a função quantílica da distribuição normal para um conjunto de valores. Além dessas, há a função <code>rnorm()</code> que permite obter observações aleatórias que seguem uma distribuição normal <span class="citation" data-cites="jain_2022norm">(<a href="referencias.html#ref-jain_2022norm" role="doc-biblioref">5</a>)</span>.</p>
+<p>Para responder a essa pergunta, há necessidade de calcular a probabilidade de encontrar uma mulher com esta altura, nesta população. Primeiro, calcula-se a probabilidade de encontrar uma mulher com esta altura, nesta amostra. No <em>R</em>, existem as funções <code>dnorm()</code>, <code>pnorm()</code> e <code>qnorm()</code>, que permitem calcular a densidade de probabilidade, a distribuição cumulativa e a função quantílica da distribuição normal para um conjunto de valores. Além dessas, há a função <code>rnorm()</code> que permite obter observações aleatórias que seguem uma distribuição normal <span class="citation" data-cites="jain_2022norm">Jain (<a href="referencias.html#ref-jain_2022norm" role="doc-biblioref">2022</a>)</span>.</p>
 <section id="função-pnorm" class="level4" data-number="9.7.2.1">
 <h4 data-number="9.7.2.1" class="anchored" data-anchor-id="função-pnorm"><span class="header-section-number">9.7.2.1</span> Função pnorm()</h4>
 <p>A função <code>pnorm()</code> fornece a <em>Função de Distribuição Cumulativa</em> (CDF) da distribuição Normal, que é a probabilidade de que a variável <em>X</em> contenha um valor menor ou igual a <em>x</em>.</p>
@@ -892,16 +893,16 @@ Figura&nbsp;9.7: Função densidade de probabilidade
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">10</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  0.08599523 -1.70634733  0.17023847  0.43831660 -1.31684970 -0.93784888
- [7]  0.81621194 -0.86608919 -1.45167301  2.50706185</code></pre>
+<pre><code> [1]  0.599325697 -0.008650917  0.621054748 -0.164778977  0.426813300
+ [6]  0.340520121  0.164759763  0.278024993  0.598394899  0.450817092</code></pre>
 </div>
 </div>
 <p>No entanto, deve-se notar que, se uma “semente” (<code>seed</code>) não for especificada, a saída não será reproduzível, ou seja, cada vez que o comando for executado, retornará um novo conjunto de observações:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">10</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] -1.45738156  1.64595853 -0.99492096  0.18270155  0.48354688 -2.08916557
- [7] -1.04381607 -0.08937427 -1.17737721  0.63215540</code></pre>
+<pre><code> [1]  0.6953052  1.1639248 -1.1070730  0.4276448 -0.8708725  1.2195978
+ [7] -0.9782252 -1.0831273 -0.2754233  0.1553821</code></pre>
 </div>
 </div>
 <p>Cada vez que este comando for reproduzido, retornará uma nova série de 10 números diferentes do anterior. Para tornar o código reproduzível, retornando o mesmo conjunto de valores, deve-se usar uma “semente” (<em>seed</em>), usando a função <em>set.seed()</em>, cujo argumento é um número que identificará a série gerada, no exemplo, pela função <code>rnorm()</code>. O valor do número (“semente”) não é importante, é apenas um identificador. Para ilustrar, será construído dois conjuntos de 10 números que serão recebidos pelos objetos <em>x</em> e <em>y</em>. Para gerar o conjunto de números <em>x</em>, será usado o número <code>123</code> como “semente”. A “semente” funciona como uma espécie de marca. Para o <em>y</em> não será usado a função <code>set.seed()</code>:</p>
@@ -1237,7 +1238,7 @@ Figura&nbsp;9.14: Probabilidade de uma mulher com 150 cmm pertencer a uma popula
 <section id="distribuição-binomial" class="level2" data-number="9.8">
 <h2 data-number="9.8" class="anchored" data-anchor-id="distribuição-binomial"><span class="header-section-number">9.8</span> Distribuição Binomial</h2>
 <p>A distribuição normal padrão é apenas um dos exemplos de distribuição de probabilidade. Uma boa parte das situações se ajustam a ela. Entretanto, diversas situações reais muitas vezes se aproximam de outras distribuições estocásticas definidas por algumas hipóteses. Daí a importância de se conhecer e manipular algumas destas distribuições. Entre elas, a <strong>distribuição binomial</strong>.</p>
-<p>Quando um experimento aleatório resulta em um de dois, mutuamente exclusivos, desfechos, tais como vivo/morto, positivo/negativo, sim/não, masculino/feminino é denominado de <em>Ensaio de Bernoulli</em>. Recebeu esta denominação em homenagem ao matemático suíço, Jacob Bernoulli (1654-1705), considerado fundador do cálculo e da teoria da probabilidade <span class="citation" data-cites="robertson2022bernoulli">(<a href="referencias.html#ref-robertson2022bernoulli" role="doc-biblioref">6</a>)</span>.</p>
+<p>Quando um experimento aleatório resulta em um de dois, mutuamente exclusivos, desfechos, tais como vivo/morto, positivo/negativo, sim/não, masculino/feminino é denominado de <em>Ensaio de Bernoulli</em>. Recebeu esta denominação em homenagem ao matemático suíço, Jacob Bernoulli (1654-1705), considerado fundador do cálculo e da teoria da probabilidade <span class="citation" data-cites="robertson2022bernoulli">Robertson e O’Connor (<a href="referencias.html#ref-robertson2022bernoulli" role="doc-biblioref">2022</a>)</span>.</p>
 <p>A distribuição de frequências que descreve as proporções de um ensaio de Bernoulli, chama-se <strong>Distribuição Binomial</strong>. A probabilidade binomial dá a probabilidade de determinado desfecho ocorrer em determinado número de ensaios independentes. Uma sequência de ensaios de Bernoulli forma um <strong>Processo de Bernoulli</strong>.</p>
 <p>A distribuição binomial é importante para variáveis discretas. Existem poucas condições que precisam ser atendidas para distribuição binomial:</p>
 <ul>
@@ -1442,7 +1443,7 @@ Figura&nbsp;9.16: Distribuição binomial para P (x = 4) com n = 5 e p = 0,50
 <li>a probabilidade é constante em cada intervalo</li>
 </ul>
 <p>Ela é utilizada para modelar eventos discretos que ocorrem com pouca frequência no tempo ou espaço, por isso é algumas vezes denominada de <em>distribuição de eventos raros</em>. Pode-se usar a distribuição de Poisson como uma aproximação da distribuição Binomial quando <em>n</em>, o número de tentativas, for grande e <em>p</em> ou (1 – <em>p</em>) for pequeno (eventos raros).</p>
-<p>Um bom princípio básico é usar a distribuição de Poisson quando <span class="math inline">\(n \ge 20\)</span> e <span class="math inline">\(n \times p\)</span> ou <span class="math inline">\(n \times (1- p)\)</span> &lt; 5% <span class="citation" data-cites="fisher1993poisson">(<a href="referencias.html#ref-fisher1993poisson" role="doc-biblioref">7</a>)</span>. Nessas condições, a probabilidade que uma variável aleatória <em>X</em> adote um valor <em>x</em> é</p>
+<p>Um bom princípio básico é usar a distribuição de Poisson quando <span class="math inline">\(n \ge 20\)</span> e <span class="math inline">\(n \times p\)</span> ou <span class="math inline">\(n \times (1- p)\)</span> &lt; 5% <span class="citation" data-cites="fisher1993poisson">Fisher e Van Belle (<a href="referencias.html#ref-fisher1993poisson" role="doc-biblioref">1993</a>)</span>. Nessas condições, a probabilidade que uma variável aleatória <em>X</em> adote um valor <em>x</em> é</p>
 <p><span class="math display">\[
 P(X = x) = \frac {e^{-\lambda} \times \lambda^x}{x!}
 \]</span></p>
@@ -1466,27 +1467,27 @@ P(X = x) = \frac {e^{-\lambda} \times \lambda^x}{x!}
 
 <!-- -->
 
-<div id="refs" class="references csl-bib-body" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-debnath2015short" class="csl-entry" role="listitem">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline">Debnath L, Basu K. A short history of probability theory and its applications. International Journal of Mathematical Education in Science and Technology. 2015;46(1):13–39. </div>
-</div>
-<div id="ref-menezes2004probabilidade" class="csl-entry" role="listitem">
-<div class="csl-left-margin">2. </div><div class="csl-right-inline">Menezes RX de. Introdução à Probabilidade. Em: Massad E, Menezes RX de, Silveira PSP, Ortega NRS, editores. Métodos Quantitativos em Medicina. Barueri, São Paulo: Editora Manole Ltda.; 2004. p. 151–87. </div>
-</div>
-<div id="ref-pagano2000random" class="csl-entry" role="listitem">
-<div class="csl-left-margin">3. </div><div class="csl-right-inline">Pagano M, Kimberly G. Theoretical Probability Distributions. Em: Principles of Biostatistics. Second Edition. CRC Press; 2000. p. 162. </div>
-</div>
-<div id="ref-gonzalez2021normal" class="csl-entry" role="listitem">
-<div class="csl-left-margin">4. </div><div class="csl-right-inline">Gonzalez JCS. Normal distribution in R [Internet]. R CODER. 2021. Disponível em: <a href="https://r-coder.com/">https://r-coder.com/</a></div>
-</div>
-<div id="ref-jain_2022norm" class="csl-entry" role="listitem">
-<div class="csl-left-margin">5. </div><div class="csl-right-inline">Jain S. A Guide to dnorm, pnorm, rnorm, and qnorm in R [Internet]. GeeksforGeeks. 2022. Disponível em: <a href="https://www.geeksforgeeks.org/">https://www.geeksforgeeks.org/</a></div>
-</div>
-<div id="ref-robertson2022bernoulli" class="csl-entry" role="listitem">
-<div class="csl-left-margin">6. </div><div class="csl-right-inline">Robertson E, O’Connor J. Jacob (Jacques) Bernoulli [Internet]. Maths History. School of Mathematics; Statistics, University of St Andrews; 2022. Disponível em: <a href="https://mathshistory.st-andrews.ac.uk/Biographies/Bernoulli_Jacob/">https://mathshistory.st-andrews.ac.uk/Biographies/Bernoulli_Jacob/</a></div>
+Debnath, Lokenath, e Kanadpriya Basu. 2015. <span>«A short history of probability theory and its applications»</span>. <em>International Journal of Mathematical Education in Science and Technology</em> 46 (1). Taylor &amp; Francis: 13–39.
 </div>
 <div id="ref-fisher1993poisson" class="csl-entry" role="listitem">
-<div class="csl-left-margin">7. </div><div class="csl-right-inline">Fisher LD, Van Belle G. Poisson Random Variables. Em: Biostatistics: A Methodology for the Health Sciences. New York, NY: John Wiley &amp; Sons; 1993. p. 211–8. </div>
+Fisher, Lloyd D., e Gerald Van Belle. 1993. <span>«Poisson Random Variables»</span>. Em <em>Biostatistics: A Methodology for the Health Sciences</em>, 211–18. New York, NY: John Wiley &amp; Sons.
+</div>
+<div id="ref-gonzalez2021normal" class="csl-entry" role="listitem">
+Gonzalez, José Carlos Soage. 2021. <span>«Normal distribution in R»</span>. <em>R CODER</em>. <a href="https://r-coder.com/">https://r-coder.com/</a>.
+</div>
+<div id="ref-jain_2022norm" class="csl-entry" role="listitem">
+Jain, Sandeep. 2022. <span>«A Guide to dnorm, pnorm, rnorm, and qnorm in R»</span>. <em>GeeksforGeeks</em>. <a href="https://www.geeksforgeeks.org/">https://www.geeksforgeeks.org/</a>.
+</div>
+<div id="ref-menezes2004probabilidade" class="csl-entry" role="listitem">
+Menezes, Renée Xavier de. 2004. <span>«Introdução à Probabilidade»</span>. Em <em>Métodos Quantitativos em Medicina</em>, editado por Eduardo Massad, Renée Xavier de Menezes, Paulo Sérgio Panse Silveira, e Neli Regina Siqueira Ortega, 151–87. Barueri, São Paulo: Editora Manole Ltda.
+</div>
+<div id="ref-pagano2000random" class="csl-entry" role="listitem">
+Pagano, Marcello, e Gauvreau Kimberly. 2000. <span>«Theoretical Probability Distributions»</span>. Em <em>Principles of Biostatistics</em>, Second Edition, 162. CRC Press.
+</div>
+<div id="ref-robertson2022bernoulli" class="csl-entry" role="listitem">
+Robertson, Edmund, e John O’Connor. 2022. <span>«Jacob (Jacques) Bernoulli»</span>. <em>Maths History</em>. School of Mathematics; Statistics, University of St Andrews. <a href="https://mathshistory.st-andrews.ac.uk/Biographies/Bernoulli_Jacob/">https://mathshistory.st-andrews.ac.uk/Biographies/Bernoulli_Jacob/</a>.
 </div>
 </div>
 </section>

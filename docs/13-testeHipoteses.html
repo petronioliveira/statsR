@@ -59,6 +59,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -553,8 +554,8 @@ Pergunta motivadora
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(dados)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>tibble [200 × 2] (S3: tbl_df/tbl/data.frame)
- $ sexo  : Factor w/ 2 levels "Masculino","Feminino": 1 2 1 2 1 2 2 2 2 1 ...
- $ pesoRN: num [1:200] 3200 3275 3905 2960 2755 ...</code></pre>
+ $ sexo  : Factor w/ 2 levels "Masculino","Feminino": 2 1 2 1 1 2 1 2 2 1 ...
+ $ pesoRN: num [1:200] 2975 3790 2895 3600 3610 ...</code></pre>
 </div>
 </div>
 <p>Este conjunto de dados fica restrito, portanto, a 200 casos, contendo duas variáveis <code>sexo</code> e <code>pesoRN</code>, necessárias neste capítulo e assim resumidas:</p>
@@ -569,22 +570,22 @@ Pergunta motivadora
 <pre><code># A tibble: 2 × 4
   sexo          n media    dp
   &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
-1 Masculino   114 3281.  468.
-2 Feminino     86 3091.  430.</code></pre>
+1 Masculino    99 3286.  389.
+2 Feminino    101 3184.  450.</code></pre>
 </div>
 </div>
-<p>Esta amostra de 114 meninos e 86 meninas, informa que os meninos têm, em média, 3281 g ao nascer e as meninas 3091 g. Esta diferença de peso entre os sexos pode ter ocorrido devido ao acaso. Portanto, há necessidade de realizar um teste de hipóteses para tomar uma decisão sobre o parâmetro populacional. Esta diferença é grande o suficiente para rejeitar a hipótese de igualdade entre os pesos e concluir que existe uma diferença real entre eles?</p>
+<p>Esta amostra de 99 meninos e 101 meninas, informa que os meninos têm, em média, 3286 g ao nascer e as meninas 3184 g. Esta diferença de peso entre os sexos pode ter ocorrido devido ao acaso. Portanto, há necessidade de realizar um teste de hipóteses para tomar uma decisão sobre o parâmetro populacional. Esta diferença é grande o suficiente para rejeitar a hipótese de igualdade entre os pesos e concluir que existe uma diferença real entre eles?</p>
 </section>
 </section>
 <section id="introdução" class="level2" data-number="13.3">
 <h2 data-number="13.3" class="anchored" data-anchor-id="introdução"><span class="header-section-number">13.3</span> Introdução</h2>
-<p>No capítulo anterior, foi discutido aspectos relacionados à estimação, que se constitui, junto com o teste de hipótese, em procedimentos básicos da <em>estatística inferencial</em>. Em um teste de hipóteses, testa-se uma teoria ou crença sobre um parâmetro populacional <span class="citation" data-cites="kelen1988hypothesis">(<a href="referencias.html#ref-kelen1988hypothesis" role="doc-biblioref">1</a>)</span>. Na maioria das vezes, como mencionado anteriormente, obtém-se informações a partir de uma amostra em função da impossibilidade ou dificuldade de se conseguir essas informações a partir da população. Portanto, extrapolar ou estender os resultados, obtidos de uma amostra, para a população, significa aceitá-los como representações adequadas da mesma.</p>
-<p>Sabe-se que as estimativas amostrais diferem dos valores reais (populacionais) e o objetivo dos testes de hipóteses é estabelecer a probabilidade de essa diferença ser explicada pelo acaso. O teste de hipóteses fornece um sistema referencial para a tomada de decisão sobre a adequação ou não dos dados amostrais serem representativos de uma população. Este sistema referencial é a distribuição de probabilidade do evento observado <span class="citation" data-cites="menezes2004hipoteses">(<a href="referencias.html#ref-menezes2004hipoteses" role="doc-biblioref">2</a>)</span>.</p>
+<p>No capítulo anterior, foi discutido aspectos relacionados à estimação, que se constitui, junto com o teste de hipótese, em procedimentos básicos da <em>estatística inferencial</em>. Em um teste de hipóteses, testa-se uma teoria ou crença sobre um parâmetro populacional <span class="citation" data-cites="kelen1988hypothesis">Kelen, Brown, e Ashton (<a href="referencias.html#ref-kelen1988hypothesis" role="doc-biblioref">1988</a>)</span>. Na maioria das vezes, como mencionado anteriormente, obtém-se informações a partir de uma amostra em função da impossibilidade ou dificuldade de se conseguir essas informações a partir da população. Portanto, extrapolar ou estender os resultados, obtidos de uma amostra, para a população, significa aceitá-los como representações adequadas da mesma.</p>
+<p>Sabe-se que as estimativas amostrais diferem dos valores reais (populacionais) e o objetivo dos testes de hipóteses é estabelecer a probabilidade de essa diferença ser explicada pelo acaso. O teste de hipóteses fornece um sistema referencial para a tomada de decisão sobre a adequação ou não dos dados amostrais serem representativos de uma população. Este sistema referencial é a distribuição de probabilidade do evento observado <span class="citation" data-cites="menezes2004hipoteses">Menezes e Burattini (<a href="referencias.html#ref-menezes2004hipoteses" role="doc-biblioref">2004a</a>)</span>.</p>
 <p>Inicialmente é importante fazer uma distinção entre <strong>hipótese de pesquisa</strong> e <strong>hipótese estatística</strong>. Uma hipótese de pesquisa é uma afirmação que expressa a relação esperada entre as variáveis de um estudo científico. Ela é baseada em uma pergunta de pesquisa e serve para orientar a coleta e análise dos dados. Uma hipótese de pesquisa pode ser confirmada ou refutada pelos resultados do estudo. Um exemplo de hipótese de pesquisa é: “O tabagismo durante a gestação interfere sobre o peso dos conceptos”. Uma hipótese de pesquisa corresponde àquilo que se quer acreditar sobre o mundo. Uma hipótese estatística é uma afirmação relacionada aos parâmetros de uma população. Baseia-se em uma hipótese de pesquisa e serve para testar a validade da mesma usando técnicas estatísticas. Uma hipótese estatística pode ser aceita ou rejeitada com um certo nível de confiança. A hipótese estatística deve ter uma relação clara com as hipóteses de pesquisa Por exemplo: “A média de peso dos recém-nascidos de mães fumantes é menor do que o das não fumantes”; “A média de peso dos recém-nascidos masculinos é igual ao peso dos recém-nascidos femininos”, ou ainda, “A média de peso dos recém-nascidos masculinos é diferente do peso dos recém-nascidos femininos”. Todos esses exemplos são legítimos de uma hipótese estatística porque são afirmações sobre um parâmetro populacional e estão significativamente relacionados à hipótese de pesquisa.</p>
 </section>
 <section id="hipótese-nula-e-alternativa" class="level2" data-number="13.4">
 <h2 data-number="13.4" class="anchored" data-anchor-id="hipótese-nula-e-alternativa"><span class="header-section-number">13.4</span> Hipótese nula e alternativa</h2>
-<p>Em função da hipótese de pesquisa, mencionada anteriormente, foram gerados os dados do exemplo. A hipótese de pesquisa corresponde ao que se quer acreditar, “o sexo interfere no peso dos neonatos”. Para refutar ou não essa afirmação constrói-se um teste de hipótese para verificar se ela é compatível ou não com os dados disponíveis <span class="citation" data-cites="guyatt1995basic">(<a href="referencias.html#ref-guyatt1995basic" role="doc-biblioref">3</a>)</span>.</p>
+<p>Em função da hipótese de pesquisa, mencionada anteriormente, foram gerados os dados do exemplo. A hipótese de pesquisa corresponde ao que se quer acreditar, “o sexo interfere no peso dos neonatos”. Para refutar ou não essa afirmação constrói-se um teste de hipótese para verificar se ela é compatível ou não com os dados disponíveis <span class="citation" data-cites="guyatt1995basic">Guyatt et al. (<a href="referencias.html#ref-guyatt1995basic" role="doc-biblioref">1995</a>)</span>.</p>
 <p>No teste de hipóteses (TH), existem dois tipos de hipóteses, definidas como:</p>
 <p><strong>Hipótese nula</strong>(<span class="math inline">\(H_{0}\)</span>): hipótese que afirma a não existência de diferença entre os grupos e, portanto, a diferença observada é atribuível ao acaso. É a hipótese a ser testada, aquela que se busca afastar, demonstrando que é, provavelmente <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, falsa, não válida. É denotada como:</p>
 <p><span class="math display">\[
@@ -688,7 +689,7 @@ P(rejeitar \quad H_{0}|H_{0} \quad verdadeira) = \alpha
 P(não \quad rejeitar \quad H_{0}|H_{0} \quad falsa) = \beta
 \]</span></p>
 <p>Na construção de um teste de hipótese, o erro tipo II é considerado menos grave que o erro tipo I. Entretanto, ele é bastante importante. Tradicionalmente, adota-se o limite de 0,10 a 0,20 para o erro tipo II.</p>
-<p>Na <a href="#fig-erros" class="quarto-xref">Figura&nbsp;<span>13.2</span></a> estão resumidas as possíveis consequências na tomada de decisão em um teste de hipótese <span class="citation" data-cites="fletcher2014acaso">(<a href="referencias.html#ref-fletcher2014acaso" role="doc-biblioref">4</a>)</span>.</p>
+<p>Na <a href="#fig-erros" class="quarto-xref">Figura&nbsp;<span>13.2</span></a> estão resumidas as possíveis consequências na tomada de decisão em um teste de hipótese <span class="citation" data-cites="fletcher2014acaso">Fletcher, Fletcher, e Fletcher (<a href="referencias.html#ref-fletcher2014acaso" role="doc-biblioref">2014</a>)</span>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-erros" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -707,7 +708,7 @@ Figura&nbsp;13.2: Tomada de decisão e erros
 </section>
 <section id="sec-exeth1" class="level3" data-number="13.5.3">
 <h3 data-number="13.5.3" class="anchored" data-anchor-id="sec-exeth1"><span class="header-section-number">13.5.3</span> Exemplo (continuação)</h3>
-<p>Continuando com o exemplo da <a href="#sec-exeth" class="quarto-xref"><span>Seção 13.4.1</span></a>, aceita-se que os pesos dos recém-nascidos de ambas as amostras tenham distribuição normal e que as variâncias são semelhantes. Apesar de o desvio padrão (<span class="math inline">\(\sigma\)</span>) da <code>população-alvo</code> ser conhecido (468, 430g), será suposto que ele é desconhecido <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Portanto, o teste <em>t</em> de amostras independentes será o teste escolhido como o teste estatístico. A hipótese alternativa é bilateral e o <span class="math inline">\(\alpha\)</span> = 0,05.<br>
+<p>Continuando com o exemplo da <a href="#sec-exeth" class="quarto-xref"><span>Seção 13.4.1</span></a>, aceita-se que os pesos dos recém-nascidos de ambas as amostras tenham distribuição normal e que as variâncias são semelhantes. Apesar de o desvio padrão (<span class="math inline">\(\sigma\)</span>) da <code>população-alvo</code> ser conhecido (389, 450g), será suposto que ele é desconhecido <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Portanto, o teste <em>t</em> de amostras independentes será o teste escolhido como o teste estatístico. A hipótese alternativa é bilateral e o <span class="math inline">\(\alpha\)</span> = 0,05.<br>
 A distribuição <em>t</em> é dependente dos grau de liberdade, que para duas amostras independentes é igual <span class="math inline">\(gl=n_1+n_2-2\)</span>. Para os dados em uso, tem-se:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a> n1 <span class="ot">&lt;-</span> resumo<span class="sc">$</span>n[<span class="dv">1</span>]</span>
@@ -751,25 +752,25 @@ A distribuição <em>t</em> é dependente dos grau de liberdade, que para duas a
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>teste</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 15
-  estimate estimate1 estimate2 .y.   group1 group2    n1    n2 statistic       p
-*    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-1     190.     3281.     3091. peso… Mascu… Femin…   114    86      2.98 0.00329
+  estimate estimate1 estimate2 .y.    group1 group2    n1    n2 statistic      p
+*    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;  &lt;dbl&gt;
+1     102.     3286.     3184. pesoRN Mascu… Femin…    99   101      1.71 0.0886
 # ℹ 5 more variables: df &lt;dbl&gt;, conf.low &lt;dbl&gt;, conf.high &lt;dbl&gt;, method &lt;chr&gt;,
 #   alternative &lt;chr&gt;</code></pre>
 </div>
 </div>
-<p>A saída do teste mostra uma estatística de teste <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> igual a 2.977. Esta é maior do que o <em>t_crítico</em> = 1.972, consequentemente, rejeita-se a hipótese nula e conclui-se, com uma confiança de 95%, que existe uma diferença estatisticamente significativa no peso dos recém-nascidos entre os sexos. Esta diferença é em média igual a 190 g (IC95%: 64, 316), <span class="math inline">\(peso_{meninos} &gt; peso_{meninas}\)</span>.</p>
+<p>A saída do teste mostra uma estatística de teste <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> igual a 1.711. Esta é maior do que o <em>t_crítico</em> = 1.972, consequentemente, rejeita-se a hipótese nula e conclui-se, com uma confiança de 95%, que existe uma diferença estatisticamente significativa no peso dos recém-nascidos entre os sexos. Esta diferença é em média igual a 102 g (IC95%: -16, 219), <span class="math inline">\(peso_{meninos} &gt; peso_{meninas}\)</span>.</p>
 </section>
 </section>
 <section id="sec-valorp" class="level2" data-number="13.6">
 <h2 data-number="13.6" class="anchored" data-anchor-id="sec-valorp"><span class="header-section-number">13.6</span> Valor <em>p</em> do teste</h2>
 <p>Nas seções anteriores, foi discutido um procedimento onde se encontrou o valor de probabilidade tal que uma dada hipótese nula é rejeitada ou não é rejeitada, de acordo com o nível de significância, <span class="math inline">\(\alpha\)</span>, fixado, pelo pesquisador, no início da pesquisa.</p>
-<p>Essa abordagem do valor de probabilidade, mais comumente chamada de abordagem do valor <em>p</em>, fornece esse valor. Uma vez realizada a pesquisa, o pesquisador calcula a <em>probabilidade de obter um resultado tão ou mais extremo que o observado, uma vez que a hipótese nula é verdadeira</em>. O valor <em>p</em> também é conhecido como <em>nível descritivo do teste</em> <span class="citation" data-cites="menezes2004testes">(<a href="referencias.html#ref-menezes2004testes" role="doc-biblioref">5</a>)</span>.</p>
+<p>Essa abordagem do valor de probabilidade, mais comumente chamada de abordagem do valor <em>p</em>, fornece esse valor. Uma vez realizada a pesquisa, o pesquisador calcula a <em>probabilidade de obter um resultado tão ou mais extremo que o observado, uma vez que a hipótese nula é verdadeira</em>. O valor <em>p</em> também é conhecido como <em>nível descritivo do teste</em> <span class="citation" data-cites="menezes2004testes">Menezes e Burattini (<a href="referencias.html#ref-menezes2004testes" role="doc-biblioref">2004b</a>)</span>.</p>
 <p>O objetivo de um teste estatístico é transformar em probabilidade a magnitude do desvio verificado em relação ao valor esperado, fornecendo o valor <em>p</em>. A partir daí pode-se, também, definir a regra de decisão, usando esse valor <em>p</em>. Toma-se o valor predeterminado (em geral, 0,05) de <span class="math inline">\(\alpha\)</span> e, então, compara-se o valor <em>p</em> com <span class="math inline">\(\alpha\)</span> e toma-se a decisão. Usando essa abordagem, rejeita-se a <span class="math inline">\(H_{0}\)</span> se o valor <em>p</em> &lt; <span class="math inline">\(\alpha\)</span> e não se rejeita se o valor <em>p</em> &gt; <span class="math inline">\(\alpha\)</span>. Costuma-se dizer que se o valor <em>p</em> &lt; <span class="math inline">\(\alpha\)</span>, o resultado é significativo e não significativo quando <em>p</em> &gt; <span class="math inline">\(\alpha\)</span>.</p>
 <p>Uma boa parte dos pesquisadores, principalmente no início da carreira, ficam empolgados pelo conhecimento do valor <em>p</em>. Entretanto, deve ser sempre lembrado que encontrar o valor <em>p</em> não é o único foco da pesquisa. O foco deve estar dirigido ao <em>tamanho do efeito</em> (<em>effect size</em>). O valor <em>p</em> obtido pelo teste estatístico, vai informar apenas sobre a probabilidade de se cometer erro ao rejeitar ou não rejeitar a hipóteses nula.</p>
 <section id="exemplo-continuação" class="level3" data-number="13.6.1">
 <h3 data-number="13.6.1" class="anchored" data-anchor-id="exemplo-continuação"><span class="header-section-number">13.6.1</span> Exemplo (continuação)</h3>
-<p>O teste realizado, <code>t_test()</code>, fornece o valor <em>p</em> = 0.00329. Este valor é menor do que <span class="math inline">\(\alpha\)</span> e leva as mesmas conclusões da <a href="#sec-exeth1" class="quarto-xref"><span>Seção 13.5.3</span></a>.</p>
+<p>O teste realizado, <code>t_test()</code>, fornece o valor <em>p</em> = 0.0886. Este valor é menor do que <span class="math inline">\(\alpha\)</span> e leva as mesmas conclusões da <a href="#sec-exeth1" class="quarto-xref"><span>Seção 13.5.3</span></a>.</p>
 </section>
 </section>
 <section id="poder-do-teste" class="level2" data-number="13.7">
@@ -814,12 +815,12 @@ Existem diferentes métodos para calcular o poder do teste, dependendo do tipo d
 </ul>
 <section id="exemplo-continuação-1" class="level3" data-number="13.7.1">
 <h3 data-number="13.7.1" class="anchored" data-anchor-id="exemplo-continuação-1"><span class="header-section-number">13.7.1</span> Exemplo (continuação)</h3>
-<p>O teste <em>t</em> retornou um resultado significativo, com valor de t = 2.977 &gt; 1.972, com <em>p</em> = 0.00329. Um resultado significativo não informa sobre a magnitude do efeito. Para isso, lançamos mão do teste <em>d</em> de Cohen que pode ser calculado, usando a função <code>cohensD()</code> do pacote <code>lsr</code>:</p>
+<p>O teste <em>t</em> retornou um resultado significativo, com valor de t = 1.711 &gt; 1.972, com <em>p</em> = 0.0886. Um resultado significativo não informa sobre a magnitude do efeito. Para isso, lançamos mão do teste <em>d</em> de Cohen que pode ser calculado, usando a função <code>cohensD()</code> do pacote <code>lsr</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> lsr<span class="sc">::</span><span class="fu">cohensD</span> (<span class="at">data =</span> dados, <span class="at">formula =</span> pesoRN <span class="sc">~</span> sexo)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>d</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.4201677</code></pre>
+<pre><code>[1] 0.2416912</code></pre>
 </div>
 </div>
 <p>Na <a href="14-teste-t.html#sec-cohen" class="quarto-xref"><span>Seção 14.2.6.1</span></a>, se entrará em maiores detalhes, por enquanto, será assumido que a magnitude do efeito é pequena.</p>
@@ -846,35 +847,35 @@ Existem diferentes métodos para calcular o poder do teste, dependendo do tipo d
      Two-sample t test power calculation 
 
               n = 150
-              d = 0.4201677
+              d = 0.2416912
       sig.level = 0.05
-          power = 0.9522471
+          power = 0.5503163
     alternative = two.sided
 
 NOTE: n is number in *each* group</code></pre>
 </div>
 </div>
-<p>A saída mostra que no lugar do <code>NULL</code>, aparece o poder do teste estatístico. Ou seja, o poder foi de 0.952 , consequentemente, como <span class="math inline">\(\beta = 1 – Poder\)</span>, então, <span class="math inline">\(\beta\)</span> = 0.048.</p>
+<p>A saída mostra que no lugar do <code>NULL</code>, aparece o poder do teste estatístico. Ou seja, o poder foi de 0.55 , consequentemente, como <span class="math inline">\(\beta = 1 – Poder\)</span>, então, <span class="math inline">\(\beta\)</span> = 0.45.</p>
 <p>O poder geralmente é definido em 0,80 (ou 0,90). Isto significa que se existirem efeitos verdadeiros a serem encontrados em 100 estudos diferentes com 80% de poder, apenas 80 em 100 testes estatísticos irão realmente detectá-los. Se não for garantido poder suficiente, é possível que nenhum efeito seja detectado, por isso, deve-se calcular o tamanho amostral necessário, antes de iniciar qualquer estudo, para garantir o poder pretendido.</p>
 
 
 <!-- -->
 
-<div id="refs" class="references csl-bib-body" role="list" style="display: none">
-<div id="ref-kelen1988hypothesis" class="csl-entry" role="listitem">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline">Kelen GD, Brown CB, Ashton J. Statistical reasoning in clinical trials: hypothesis testing. Am J Emerg Med. 1988;1(1):52–61. </div>
-</div>
-<div id="ref-menezes2004hipoteses" class="csl-entry" role="listitem">
-<div class="csl-left-margin">2. </div><div class="csl-right-inline">Menezes RX de, Burattini MN. Testes de Hipótese e intervalos de Confiança. Em: Massad E, Menezes RX de, Silveira PSP, Ortega NRS, editores. Métodos Quantitativos em Medicina. Barueri, São Paulo: Editora Manole Ltda.; 2004. p. 225–41. </div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-fletcher2014acaso" class="csl-entry" role="listitem">
+Fletcher, Robert H, Suzanne W Fletcher, e Grant S Fletcher. 2014. <span>«Acaso»</span>. Em <em>Epidemiologia Clínica: Elementos Essenciais</em>, Quinta Edição, 108–9. Artmed Editora.
 </div>
 <div id="ref-guyatt1995basic" class="csl-entry" role="listitem">
-<div class="csl-left-margin">3. </div><div class="csl-right-inline">Guyatt G, Jaeschke R, Heddle N, et al. Basic statistics for clinicians: 1. Hypothesis testing. CMAJ: Canadian Medical Association Journal. 1995;152(1):27. </div>
+Guyatt, Gordon, Roman Jaeschke, Nancy Heddle, et al. 1995. <span>«Basic statistics for clinicians: 1. Hypothesis testing.»</span> <em>CMAJ: Canadian Medical Association Journal</em> 152 (1). Canadian Medical Association: 27.
 </div>
-<div id="ref-fletcher2014acaso" class="csl-entry" role="listitem">
-<div class="csl-left-margin">4. </div><div class="csl-right-inline">Fletcher RH, Fletcher SW, Fletcher GS. Acaso. Em: Epidemiologia Clínica: Elementos Essenciais. Quinta Edição. Artmed Editora; 2014. p. 108–9. </div>
+<div id="ref-kelen1988hypothesis" class="csl-entry" role="listitem">
+Kelen, Gabor D., Charles B. Brown, e James Ashton. 1988. <span>«Statistical reasoning in clinical trials: hypothesis testing»</span>. <em>Am J Emerg Med</em> 1 (1). W.B. Saunders Company: 52–61.
+</div>
+<div id="ref-menezes2004hipoteses" class="csl-entry" role="listitem">
+Menezes, Renée Xavier de, e Marcelo Nascimento Burattini. 2004a. <span>«Testes de Hipótese e intervalos de Confiança»</span>. Em <em>Métodos Quantitativos em Medicina</em>, editado por Eduardo Massad, Renée Xavier de Menezes, Paulo Sérgio Panse Silveira, e Neli Regina Siqueira Ortega, 225–41. Barueri, São Paulo: Editora Manole Ltda.
 </div>
 <div id="ref-menezes2004testes" class="csl-entry" role="listitem">
-<div class="csl-left-margin">5. </div><div class="csl-right-inline">Menezes RX de, Burattini MN. Testes de Hipótese e intervalos de Confiança. Em: Massad E, Menezes RX de, Silveira PSP, Ortega NRS, editores. Métodos Quantitativos em Medicina. Barueri, São Paulo: Editora Manole Ltda.; 2004. p. 225–41. </div>
+———. 2004b. <span>«Testes de Hipótese e intervalos de Confiança»</span>. Em <em>Métodos Quantitativos em Medicina</em>, editado por Eduardo Massad, Renée Xavier de Menezes, Paulo Sérgio Panse Silveira, e Neli Regina Siqueira Ortega, 225–41. Barueri, São Paulo: Editora Manole Ltda.
 </div>
 </div>
 </section>

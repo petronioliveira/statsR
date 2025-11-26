@@ -5,78 +5,100 @@
 ```{r}
 #| message: false
 #| warning: false
-pacman::p_load(caret, 
+pacman::p_load(Amelia, 
+               caret, 
                dplyr,
+               corrplot,
                flextable,
-               ggeffects,
                ggplot2,
+               gtsummary,
                knitr,
-               mice,
-               patchwork,
                performance,
                pROC,
+               quesrionr,
                readxl,
                sjPlot)
 ```
 
 ## Introduçao
 
-A **regressão logística** (também conhecida como *regressão logit* ou *modelo logit*) foi desenvolvida, em 1958, como um a extensão do modelo linear pelo estatístico britânico David Cox (1924-2022) @cox1958regression. Pertence a uma família, denominada *Modelo Linear Generalizado* (GLM) e é um modelo de regressão em que o desfecho *Y* é categórico.
+Os dois tipos de regressão mais comuns são a **regressão linear** e a **regressão logística**. A regressão linear é utilizada quando a variável dependente é **quantitativa e contínua**, enquanto a regressão logística é utilizada quando a variável dependente é **qualitativa (categórica)**.
 
-A regressão logística permite estimar a probabilidade de uma resposta categórica com base em uma ou mais variáveis preditoras (*X*). Possibilita informar se a presença de um preditor aumenta (ou diminui) a probabilidade de um determinado desfecho em uma porcentagem específica. No caso em que *Y* é binário - ou seja, assume apenas dois valores, `0` e `1`, que representam desfechos como aprovação/reprovação, sim/não, vivo/morto ou saudável/doente, tem-se a **regressão logística binária**.
+A **regressão logística binária** é utilizada quando o objetivo é estimar a **probabilidade** de um indivíduo pertencer a uma das duas categorias possíveis (o desfecho binário, 0 ou 1), dada uma ou mais variáveis independentes ou preditoras (de qualquer tipo). A regressão logística binária é uma abordagem classificatória que estima a relação entre uma **variável dependente dicotômica** e um conjunto de preditores. Foi desenvolvida, em 1958, como um a extensão do modelo linear pelo estatístico britânico David Cox [@cox1958regression]. Pertence a uma família, denominada *Modelo Linear Generalizado* (GLM).
 
-Na regressão logística binária, as variáveis que afetam a probabilidade do resultado são medidas como *Odds Ratio*, que são chamadas de **Odds Ratios ajustadas** @peat2014adjusted.
+## Função Logistica ou Função logit {#sec-logisticfunction}
 
-Na regressão linear, os valores das variáveis desfecho são preditos a partir de uma ou mais variáveis explicativas. Na regressão logística, uma vez que o desfecho é binário, a probabilidade de o desfecho ocorrer é calculada com base nos valores das variáveis explicativas. A regressão logística é semelhante à regressão linear na medida em que uma equação de regressão pode ser usada para prever a probabilidade de ocorrência de um desfecho. No entanto, a equação de regressão logística é expressa em termos logarítmicos (ou logits) e, portanto, os coeficientes de regressão devem ser convertidos para serem interpretados.
-
-Embora as variáveis explicativas ou preditores no modelo possam ser variáveis contínuas ou categóricas, a regressão logística é mais adequada para medir os efeitos das exposições ou variáveis explicativas que são variáveis binárias. Variáveis contínuas podem ser incluídas, mas a regressão logística produzirá uma estimativa de risco para cada unidade de medida. Assim, a suposição de que o efeito de risco é linear sobre cada unidade da variável deve ser atendida e a relação não deve ser curva ou ter um ponto de corte sobre o qual o efeito ocorre. Além disso, as interações entre variáveis explicativas podem ser incluídas [@peat2014adjusted]. Os casos em que a variável dependente tem mais de duas categorias de resultados podem ser analisados com *regressão logística multinomial*, não mostrada neste livro.
-
-## Função Logistica {#sec-logisticfunction}
-
-Na regressão logística, para a estimação dos coeficientes (coeficientes $\beta$) das variáveis independentes, utiliza-se o modelo logit @hair2009analise:
+A regressão linear simples (RLS) estima a relação entre uma **variável dependente** **quantitativa contínua (Y)** e uma **variável explicativa contínua** **(X)**. Por exemplo, a relação entre o **Comprimento (Y)** e a **Idade (X)** de crianças é estimada pelo método dos *Mínimos Quadrados Ordinários* (MQO) e descrita pela equação da reta de regressão. Esta reta tenta predizer a variável resposta contínua a partir de uma variável preditora também contínua (@fig-reglinear).
 
 $$
-logit_{i} = ln(\frac{p}{1-p})=b_{0} + b_{1}x_{1} +...+ b_{n}x_{n}
-$$ ou
-
+y = \beta_{0} + \beta_{1} \times x
 $$
-logit_{i} = ln(\frac{p}{1-p})=e^{b_{0} + b_{1}x_{1} +...+ b_{n}x_{n}}
-$$
-
-onde *p* é a probabilidade de desfecho.
-
-A **função logística** transforma valores entre $-\infty$ a $+\infty$ em valores entre 0 e 1, de modo que os números que especificam as probabilidades estarão entre 0 e 1. Esse termo logarítmico é chamado de $log_{OR}$ (razão de chances logarítmica) ou *logit*. As chances (*odds*) associadas a alguma probabilidade são $p/(1-p)$, o que é evidente se for entendido que um evento com chances *a* para *b* significa que em $a+b$ tentativas independentes e identicamente distribuídas, espera-se um sucesso. Portanto, a probabilidade de sucesso deve ser $a/(a+b)$.
-
-Invertendo, se a probabilidade de sucesso é $a/(a+b)$, então a razão se torna $[a/(a+b)]/[1-a/(a+b)]$ ou $a/b$, que é a razão de chances ou *odds ratio*.
-
-Para concluir o modelo, é necesário especificar a distribuição do desfecho $Y_{i}$. Ela é binomial com probabilidade de sucesso *p*, de modo que nenhum parâmetro extra, como um desvio padrão, é necessário @verzani2014reglog.
-
-A regressão logística frequentemente utiliza a curva logística (@fig-curvalog) para assim representar a relação entre a variável dependente e as independentes. Os valores previstos, portanto permanecem entre 0 e 1, sendo definidos pelos coeficientes estimados.
 
 ```{r}
-#| label: fig-curvalog
 #| echo: false
-#| fig.align: "center"
 #| out.width: "50%"
-#| message: false
-#| warning: false
-#| fig-cap: "Curva de Regressão Logística Geral"
- knitr::include_graphics("https://imgur.com/mBRglgO.png")
+#| label: fig-reglinear
+#| fig.align: 'center'
+#| fig-cap: "Regressão Linear Simples"
+ knitr::include_graphics("https://i.imgur.com/rNwzZIq.png")
 ```
 
-A estimação dos coeficientes na regressão logística, diferentemente da regressão múltipla que utiliza o método dos mínimos quadrados, é realizada através da **máxima verossimilhança**. Este método busca encontrar as estimativas mais prováveis dos coeficientes e maximizar a probabilidade de ocorrência de um evento. A qualidade do ajuste do modelo é avaliada pelo “pseudo” $R^2$ e pela análise da precisão preditiva (matriz de confusão).
+[Limitação da RLS para Desfechos Binários]{.underline}
 
-O valor da verossimilhança (*likelihood*) é semelhante ao procedimento das somas dos quadrados na regressão múltipla, estimando o quão bem o método de máxima verossimilhança se ajusta ao modelo. O ajuste da estimação do modelo é dado pelo valor de -2 vezes o logaritmo da verossimilhança (-2LL), sendo que, quanto menor este valor, melhor o modelo @stoltzfus2011logistic.
+Agora, se o objetivo é estimar o impacto da idade de um paciente na probabilidade de ele ter ou não um determinado desfecho (por exemplo, uma doença). A `idade` é uma variável preditora contínua, mas o desfecho (`doença`) é uma variável categórica dicotômica, assumindo apenas os valores 0 (não) e 1 (sim) (@fig-outcomebin).
 
-## Pressupostos da regressão logística
+```{r}
+#| echo: false
+#| out.width: "50%"
+#| label: fig-outcomebin
+#| fig.align: 'center'
+#| fig-cap: "Relação de uma variável desfecho dicotômica e uma variável preditora contínua."
+ knitr::include_graphics("https://i.imgur.com/WrDPQNQ.png")
+```
 
-Para garantir que a regressão seja adequada, para melhorar a precisão do modelo, assumimos quatro pressupostos principais:
+Se for ajustada uma reta de regressão aos pontos usando o método dos Mínimos Quadrados Ordinários, o gráfico (@fig-fittingline) terá o seguinte aspecto: A reta de regressão se estende abaixo de 0 e acima de 1 em relação ao eixo Y.
 
-1.  **Independência dos dados**: o valor de uma observação não influencia ou afeta o valor de outras observações. Este é o pressuposto básico.
-2.  **Linearidade dos dados**: a relação entre as variáveis independentes e a curva logística da variável dependente é considerada linear (quanto mais/menos de uma, mais/menos de outra). A linearidade dos dados pode ser verificada graficamente observando a dispersão dos resíduos com os valores previstos pela regressão.
-3.  **Independência dos erros/resíduos**: os erros (resíduos) não devem possuir correlação. Este pressuposto pode ser testado pelo teste de Durbin-Watson (veja a @sec-dw) e observando o gráfico quantil-quantil (Q-Q) dos resíduos padronizados.
-4.  **Homogeneidade de Variância dos erros/resíduos**: os erros devem ter média zero e desvio padrão constante ao longo das observações. Similar ao teste de Levene, mas aplicado aos resíduos da regressão. Pode ser testado usando o Teste de Breusch-Pagan (veja a @sec-BP).
-5.  **Ausência de Multicolinearidade**: multicolinearidade é a ocorrência de alta correlação entre duas ou mais variáveis independentes e pode levar a resultados distorcidos. Em geral, a multicolinearidade pode fazer com que os intervalos de confiança se ampliem, ou até mudar o sinal de influência das variáveis independentes (de positivo para negativo, por exemplo). Portanto, as inferências estatísticas de uma regressão com multicolinearidade não são confiáveis. Pode ser testado usando o Fator de Inflação de Variância (*Variance Inflation Factor* – VIF, veja a @sec-vif).
+```{r}
+#| echo: false
+#| out.width: "50%"
+#| label: fig-fittingline
+#| fig.align: 'center'
+#| fig-cap: "Reta de regressão quando a variável desfecho é dicotômica."
+ knitr::include_graphics("https://i.imgur.com/Fit9SSq.png")
+```
+
+No entanto, a variável Y (Probabilidade de Doença) não pode assumir valores fora do limite de 0 e 1. Além disso, a variável desfecho dicotômica viola os pressupostos de normalidade e homoscedasticidade dos erros, pois segue a Distribuição de Bernoulli. Em consequência, a regressão linear não é adequada nessa situação.
+
+[A Solução: A Função Logit]{.underline}
+
+A solução é usar a **regressão logística binária**, que lida com essas limitações, usando uma função de ligação (link function) que transforma a probabilidade em um valor que pode ser modelado linearmente (e que pode variar de - a +. A função de ligação utilizada no modelo de regressão logística é a Logit (ou função logística), que resulta em uma curva em forma de 'S' chamada curva sigmoide (@fig-logit):
+
+$$
+logit_i = \ln\left(\frac{p}{1-p}\right)
+$$
+
+```{r}
+#| echo: false
+#| out.width: "50%"
+#| label: fig-logit
+#| fig.align: 'center'
+#| fig-cap: "Curva de regressão logística."
+ knitr::include_graphics("https://i.imgur.com/lmI4IdG.png")
+```
+
+O termo $\frac{p}{1-p}$ é a Razão de Chances (*Odds Ratio*), que representa a razão entre a probabilidade de ocorrência do evento (*p*) e a probabilidade de sua não ocorrência ($1-p$). O **logit** é o logaritmo natural dessa razão de chances. Na regressão logística, o logit é modelado como uma função linear dos preditores, permitindo a estimação dos coeficientes ($\beta$):
+
+$$
+logit_{i} = \ln\left(\frac{p}{1-p}\right) = \beta_{0} + \beta_{1}x_{1} + \dots + \beta_{n}x_{n}
+$$
+
+[Retornando à probabilidade *p*]{.underline}
+
+Através de manipulação algébrica, podemos isolar p para obter a probabilidade do evento Y=1 (sucesso) diretamente, garantindo que o valor final sempre esteja entre 0 e 1:
+
+$$
+p = \frac{e^{\beta_{0} + \beta_{1}x_{1} + \dots + \beta_{n}x_{n}}}{1 + e^{\beta_{0} + \beta_{1}x_{1} + \dots + \beta_{n}x_{n}}}
+$$
 
 ## Dados para o exemplo
 
@@ -94,7 +116,7 @@ O RMS Titanic (@fig-titanic), considerado o navio inafundável de sua época, so
  knitr::include_graphics("https://imgur.com/54il14d.png")
 ```
 
-O Titanic partiu em sua primeira e única viagem com 1 316 passageiros a bordo: 325 na primeira classe, 285 na segunda e 706 na terceira. Deles, 922 embarcaram em Southampton, 274 em Cherbourg-Octeville na França e 120 em Queenstown na Irlanda. Além desses passageiros, havia 908 tripulantes, totalizando m 2224 pessoas. O número total de mortos mais aceito é 1514, quase 70% dos que embarcaram na viagem [@wiki:xxx].
+O Titanic partiu em sua primeira e única viagem com 1316 passageiros a bordo: 325 na primeira classe, 285 na segunda e 706 na terceira. Deles, 922 embarcaram em Southampton, 274 em Cherbourg-Octeville, na França, e 120 em Queenstown, na Irlanda. Além desses passageiros, havia 908 tripulantes, totalizando m 2224 pessoas. O número total de mortos mais aceito é 1514, quase 70% dos que embarcaram na viagem [@wiki:xxx].
 :::
 
 Os dados de 1309 passageiros estão em um arquivo denominado `dadosTitanic.xlsx`, obtido no pacote `titanic`, modificado estruturalmente e traduzido, sem alterar os dados, para chegar a este arquivo que pode ser baixado [aqui](https://github.com/petronioliveira/Arquivos/blob/main/dadosTitanic.xlsx). Possui 1309 observações e 12 variáveis:
@@ -124,761 +146,1134 @@ dadosTitanic <- readxl::read_excel("dados/dadosTitanic.xlsx")
 
 ### Explorando e preparando os dados
 
-Dê uma olhada nas variáveis do banco de dados. Para essa ação, pode-se usar a função `str()`:
+Para observar as variáveis do banco de dados, pode-se usar a função `str()`:
 
 ```{r}
 str(dadosTitanic)
 ```
 
-Observa-se que se tem um *tibble* com 1309 linhas (casos = passageiros) e 12 colunas (variáveis). Algumas dessas variáveis não terão utilidade para a análise de regressão logística: por exemplo, a coluna índice (`id`), o nome do passageiro, o número do ticket de embarque, a tarifa, o número da cabine e o porto de embarque. Elas serão removidas do banco de dados, usando a função `select()` do pacote `dplyr` (veja a @sec-dadosMater):
+A saída exibe um *tibble* com 1309 linhas (casos = passageiros) e 12 colunas (variáveis).
+
+#### Remoção de variáveis irrelevantes
+
+Algumas dessas variáveis não terão utilidade para a análise de regressão logística: por exemplo, a coluna índice (`id`), o nome do passageiro, o número do ticket de embarque e o número da cabine. Elas serão removidas do banco de dados, usando a função `select()` do pacote `dplyr` (@sec-dadosMater):
 
 ```{r}
 dadosTitanic <- dplyr::select(dadosTitanic, 
-                              -c(id, nome, ticket, tarifa, cabine, porto_embarque))
+                              -c(id, nome, ticket, cabine))
 ```
 
-### Verificando e tratando os dados omissos
+#### Conversão de variáveis para fatores
 
-Para verificar os NAs no banco de dados, pode-se usar o comando que soma os dados faltantes em cada coluna do banco de dados:
+Algumas variáveis estão classificadas como numéricas (`classe`, `sexo`, `porto_embarque` e `sobreviveu`), mas são fatores. Esta modificação será realizada, usando a função `mutate()` do pacote `dplyr`:
 
 ```{r}
-colSums(is.na(dadosTitanic))
+#| message: false
+
+library(dplyr)
+dadosTitanic <- dadosTitanic %>%
+  mutate(sexo = factor(sexo)) %>%
+  mutate(classe = factor(classe)) %>% 
+  mutate(porto_embarque = factor(porto_embarque)) %>% 
+  mutate(sobreviveu = factor(sobreviveu))
+
+str(dadosTitanic)
 ```
 
-A coluna da variável `idade` contém 263 valores faltantes, ou seja, 20% estão ausentes. A melhor forma de tratar dados faltantes depende de diversos fatores, como @Prabhakaran_2016 :
+#### Divisão dos dados em Treino e Teste
 
--   *Mecanismo de geração dos dados faltantes*: Por que os dados estão faltando? É aleatório, relacionado a outras variáveis ou a alguma característica da população?\
--   *Quantidade de dados faltantes*: 263 valores faltantes representam uma proporção considerável dos dados (20%).\
+A divisão dos dados em conjuntos de `treino` e `teste` é uma prática frequente em aprendizado de regressão logística. Serve para avaliar a performance de um modelo de forma imparcial precisa. O conjunto `treino` é a parte dos dados que o modelo utiliza para aprender as relações entre as variáveis independentes e a variável dependente. O modelo analisa esses dados para encontrar os melhores coeficientes que descrevem a relação entre as variáveis. O conjunto `teste` é a parte dos dados que o modelo não analisou durante o treinamento. Ele é utilizado para avaliar a capacidade do modelo de fazer previsões em novos dados. Ao comparar as previsões do modelo com os valores reais no conjunto `teste`, pode-se medir a sua precisão e generalização. Essa técnica é utilizada para evitar o excesso de ajuste dos dadosconhecido como *overfitting* [@subramanian2013over], estimar a acurácia do modelo e comparação de modelos. A divisão mais comum é 70% para treinamento e 30% para teste, mas essa proporção pode variar dependendo do tamanho do conjunto de dados e da complexidade do problema.
+
+```{r}
+#| message: false
+#| warning: false
+# Definindo a semente para reprodutibilidade (essencial)
+set.seed(123)
+
+# Embaralhando os dados
+dados_embaralhados <- dadosTitanic[sample(nrow(dadosTitanic)),]
+
+# Dividindo os dados em treino e teste
+library(caret)
+trainIndex <- createDataPartition(dados_embaralhados$classe, p = 0.7, list = FALSE)
+treino <- dados_embaralhados[trainIndex, ]
+teste  <- dados_embaralhados[-trainIndex, ]
+
+# Observar o tamanho das amostras
+dim(treino)
+dim(teste)
+```
+
+#### Verificação e tratamento dos dados faltantes
+
+O próximo passo é investigar dados faltantes (NA) ou valores vazios[^2] em cada conjunto separadamente. Isso garante que o tratamento seja feito corretamente sem contaminar o teste.
+
+[^2]: Deve-se fazer isso, pois algumas vezes, o R não interpreta espaços vazios como NA.
+
+Para verificar os dados faltantes e espaços vazios (strings "") no banco de dados, pode-se usar o comando que soma os dados faltantes e espaços vazios em cada coluna do banco de dados:
+
+[Verificar valores faltantes]{.underline}
+
+```{r}
+# Contagem de valores faltantes por variável
+colSums(is.na(treino))
+colSums(is.na(teste))
+```
+
+[Verificar valores vazios]{.underline} (strings "")
+
+```{r}
+colSums(treino == "")
+colSums(teste == "")
+```
+
+No subconjunto `treino`, existem 175 NAs na variável `idade`, um NA na variável `tarifa` e dois na variável `porto_embarque`; no subconjunto `teste`, têm 88 NAs na variável `idade`. Não existem espaços vazios em nenhum dos subconjuntos.
+
+Uma visualização rápida (@fig-amelia1, @fig-amelia2) pode ser feita com a função `missmap()` do pacote `Amelia`:
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: true
+#| out.width: "70%"
+#| label: fig-amelia1
+#| fig.align: 'center'
+#| fig-cap: "Dados faltantes no subconjunto treino"
+library(Amelia)   
+missmap(treino, main = "")
+```
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: true
+#| out.width: "70%"
+#| label: fig-amelia2
+#| fig.align: 'center'
+#| fig-cap: "Dados faltantes no subconjunto teste"
+library(Amelia)   
+missmap(teste, main = "")
+```
+
+[Tratamento dos dados faltantes]{.underline}
+
+A melhor forma de tratar dados faltantes depende de diversos fatores [@Prabhakaran_2016], como:
+
+-   *Mecanismo de geração dos dados faltantes*: Por que os dados estão faltando? É aleatório, relacionado a outras variáveis ou a alguma característica da população?
+-   *Quantidade de dados faltantes*: 263 valores faltantes representam uma proporção considerável dos dados (20%).
 -   *Impacto na análise*: Como a presença de dados faltantes pode afetar os resultados da sua análise?
 
 O que fazer?
 
 1)  **Exclusão de casos**:
 
-<!-- -->
-
 a.  *Listwise deletion*: Remover todas as observações com algum dado faltante. Não recomendado neste caso, pois você perderia uma quantidade significativa de dados.
 b.  *Pairwise deletion*: Utilizar todas as observações disponíveis para cada análise. Pode gerar resultados inconsistentes.
 
-<!-- -->
-
 2)  **Imputação**:
 
-<!-- -->
-
-a.  *Imputação por média, mediana ou moda*: Substituir os valores faltantes pela média, mediana ou moda da variável. Simples, mas pode subestimar a variância.\
-b.  *Imputação por regressão*: Utilizar um modelo de regressão para prever os valores faltantes com base em outras variáveis. Mais preciso, mas pode ser enviesado se o modelo não for adequado.\
-c.  *Imputação múltipla*: Criar múltiplos conjuntos de dados, cada um com diferentes valores imputados, e combinar os resultados das análises. Método mais robusto e permite estimar a incerteza.\
+a.  *Imputação por média, mediana ou moda*: Substituir os valores faltantes pela média, mediana ou moda da variável. Simples, mas pode subestimar a variância.
+b.  *Imputação por regressão*: Utilizar um modelo de regressão para prever os valores faltantes com base em outras variáveis. Mais preciso, mas pode ser enviesado se o modelo não for adequado.
+c.  *Imputação múltipla*: Criar múltiplos conjuntos de dados, cada um com diferentes valores imputados, e combinar os resultados das análises. Método mais robusto e permite estimar a incerteza.
 d.  *Imputação por K-Nearest Neighbors*: Substituir os valores faltantes pela média dos *k* vizinhos mais próximos. Útil para dados numéricos e pode capturar padrões locais.
 
-Considerando a quantidade de dados faltantes e a natureza da variável `idade`, a imputação múltipla é uma excelente opção. Ela permite lidar com a incerteza associada aos valores imputados e fornece uma estimativa mais precisa dos parâmetros do modelo. Para isso, será usada a função `mice()` do pacote `mice` (*Multivariate Imputation by Chained Equations*) @van2011mice para fazer a imputação múltipla. O argumento `m = 5` se refere ao número de múltiplas imputações (cinco é o padrão); `method = “pmm”` é o método de imputação, onde se usa a correspondência da média preditiva (*predictive mean matching* – dados numéricos) como método de imputação. O método `pmm` garante que os valores imputados sejam próximos de valores reais do conjunto de dados, mantendo a coerência estatística. A função `mice()` produz várias cópias completas de *dataframe*, cada uma com diferentes imputações dos dados ausentes. Essa transformação será atribuída a um objeto de nome `dados`.
+Inicialmente, será removido os valores omissos nas variáveis `tarifa` e `porto_embarque`, no subconjunto `treino`:
 
 ```{r}
-#| label: mice
+treino <- treino[-which(is.na(treino$tarifa)),]
+treino <- treino[-which(is.na(treino$porto_embarque)),]
+```
+
+Dessa forma, permanecem os valores faltantes na variáveis `idade` em ambos subconjuntos. Será feita a imputação, usando a mediana por ser uma estratégia simples.
+
+```{r}
+treino$idade[is.na(treino$idade)] <- median(treino$idade, na.rm=TRUE)
+teste$idade[is.na(teste$idade)] <- median(teste$idade, na.rm=TRUE)
+```
+
+Novamente, se usarão as funções `colSums(is.na())` e `str()`para pesquisar se existem dados faltantes:
+
+```{r}
+# Contagem de valores faltantes por variável
+colSums(is.na(treino))
+colSums(is.na(teste))
+```
+
+Os dados (treino e teste) não apresentam mais dados faltantes e estão pronts para serem usados na análise.
+
+::: callout-warning
+## Importante
+
+Após o tratamento dos dados, tem-se dois conjuntos de dados que servirão para:
+
+1.  **Treino** - que será usado para realizar a regressão logística. Corresponde a aproximadamente 70% dos dados originais.\
+2.  **Teste** - que será usado para avaliar a performance do modelo e a sua capacidade de predição.\
+3.  **Variável dependente** ou resposta: `sobreviveu`\
+4.  **Variáveis explicativas ou preditoras**: as demais variáveis\
+5.  O **objetivo da análise** é gerar um modelo de regressão logística capaz de predizer qual a probabilidade de um passageiro com determinasdas características sobreviver ao naugráfio do Titanic, ocorrido em 14 de abril de 1912
+:::
+
+## Construção do modelo de Regressão Logística
+
+Antes de criar o modelo, alguns passos são importantes:
+
+1)  Verificar se existe **correlação entre as variáveis numéricas**, para evitar problemas de multicolinearidade, pois se as variáveis forem altamente correlacionadas pode causar:
+
+-   [Coeficientes instáveis]{.underline} (pequenas mudanças nos dados podem gerar grandes variações nos coeficientes estimados);
+
+-   [Torna difícil o entendimento]{.underline} o efeito individual de cada variável sobre a probabilidade do desfecho;
+
+-   [Redução da precisão estatística,]{.underline} pois aumentam os erros padrão dos coeficientes, podendo tornar variáveis significativas aparaentemente insignificantes.
+
+Para isso, deve-se avaliar a correlação de Pearson entre as variáveis numéricas. Valores acima de 0,8 ou abaixo de -0,8 são preocupantes.
+
+```{r}
+# Selecionar apenas as variáveis numéricas
+dados_numericos <- treino[c("idade", "irco", "pafi", "tarifa")]
+
+# Calcula a matriz de correlação de Pearson
+matriz_cor <- cor(dados_numericos, use = "all.obs", method = "pearson")
+
+# Exibe a matriz
+print(matriz_cor)
+```
+
+É possível visualizar essa matriz com a função `corrplot`(@fig-corrplot)
+
+```{r}
+#| label: fig-corrplot
+#| echo: true
+#| fig.align: "center"
+#| out.width: "60%"
+#| out.height: "60%"
 #| message: false
 #| warning: false
-dados <- mice::mice(dadosTitanic, m=5, method="pmm")
+#| fig-cap: "Matriz de correlação"
+
+library(corrplot)
+
+# Visualiza a matriz de correlação
+corrplot(matriz_cor, method = "circle", type = "upper", tl.cex = 0.8)
 ```
 
-A seguir, cria-se um novo dataframe com os dados imputados, usando a função `complete()`, também do pacote `mice`. Essa função retorna um ou vários desses conjuntos de dados, sendo que o padrão é o primeiro. Este novo conjunto de dados será atribuído ao objeto `dados_completos`. O comando escolhe a primeira imputação:
+2)  Verificar se há observações incompletas, apesar de todo tratamento dos dados faltantes ou vazios:
 
 ```{r}
-dados_completos <- mice::complete(dados, 1) 
+# Se todas informações forem completas, retorna FALSE
+any(!complete.cases(treino))
 ```
 
-#### Analizando os `dados_completos`
-
-Novamente, se usará as funções `colSums(is.na())` e `str()`:
+3)  Verificar se existe um desbalanceamento preocupante, ou seja, quando uma das classes do desfecho reperesenta menos de 10% dos casos (desfecho raro), pois pode comprometer a preformance e a interpretação do modelo, reduzindo a capacidade preditiva.
 
 ```{r}
-colSums(is.na(dados_completos))
-str(dados_completos)
+tab <- table(treino$sobreviveu)
+tab
+prop.table(tab)
 ```
 
-Agora, existem 1309 observações e 7 variáveis. Os dados faltantes não estão mais presentes, foram substituídos.
+### Modelos de Regressão Logística
 
-### Outras transformações necessárias
+#### Modelo 1 - modelo completo
 
-Ainda há necessidade de outras transformações, pois verifica-se que existem variáveis classificadas como numéricas (`classe`, `sexo` e a variável desfecho `sobreviveu`), mas que são fatores. Esta modificação será realizada, usando a função `mutate()` do pacote `dplyr`(veja a @sec-dadosMater):
+O modelo 1 (`mod1`) será construído com o subconjunto `treino`, usando a função nativa `glm()` – **g**eneralized **l**inear **m**odel - usada para aplicar uma regressão logística no *R*. Sua funcionalidade é idêntica à função `lm()` da regressão linear. Necessita alguns argumentos:
 
-```{r}
-#| message: false
-dados_completos <- dados_completos %>%
-  mutate(sexo = factor(sexo)) %>%
-  mutate(classe = factor(classe)) %>% 
-  mutate(sobreviveu = factor(sobreviveu))
-
-str(dados_completos)
-```
-
-Finalmente, os dados estão prontos para se iniciar a análise de regressão logística [^24-reglogbin-2].
-
-[^24-reglogbin-2]: Todo esse processo foi realizado com objetivo didático, para revisar a realização de manipulação de dados no R
-
-## Construção do Modelo de Regressão Logística
-
-### Divisão dos dados em Treino e Teste
-
-A divisão dos dados em conjuntos de *treino* e *teste* é uma prática frequente em aprendizado de regressão logística. Serve para avaliar a performance de um modelo de forma imparcial precisa. O conjunto de Treino é a parte dos dados que o modelo utiliza para aprender as relações entre as variáveis independentes e a variável dependente. O modelo analisa esses dados para encontrar os melhores coeficientes que descrevem a relação entre as variáveis. O conjunto de Teste é a parte dos dados que o modelo não analisou durante o treinamento. Ele é utilizado para avaliar a capacidade do modelo de fazer previsões em novos dados. Ao comparar as previsões do modelo com os valores reais no conjunto de teste, podemos medir a sua precisão e generalização. Essa técnica é utilizada para evitar o excesso de ajuste dos dados (*overfitting*) @subramanian2013over, estimar a acurácia do modelo e comparação de modelos. A divisão mais comum é 70% para treinamento e 30% para teste, mas essa proporção pode variar dependendo do tamanho do conjunto de dados e da complexidade do problema.
-
-```{r}
-# Definindo a semente para reprodutibilidade
-set.seed(123)
-
-# Embaralhando os dados
-dados_completos <- dados_completos %>% sample_frac(size = 1)
-
-# Definindo o ponto de corte para treino
-split_index <- round(0.7 * nrow(dados_completos))
-
-# Dividindo os dados
-dadosTreino <- dados_completos %>% slice(1:split_index)
-dadosTeste <- dados_completos %>% slice((split_index + 1):n())
-
-# Visualizando o tamanho das amostras
-dim(dadosTreino)
-dim(dadosTeste)
-
-# Explorando a estrutura dos dadosTreino
-str (dadosTreino)
-str(dadosTeste)
-```
-
-A função `sample_frac()` do pacote `dplyr` tem a função de embaralhar os dados para garantir a aleatoriedade; o argumento `size =1` significa a fração de linhas selecionadas (0 e 1), sendo 1 (u)m equivalente a 100% das linhas. A função `slice()`, também do pacote `dplyr`, primeiro seleciona as primeiras 70% observações para treino e as últimas 30% para teste. Por último, a função `str()`, visualiza os `dadosTreino` que serão utilizados na construção do modelo de regressão logística.
-
-### Modelo de Regressão Logística {#sec-modreglog}
-
-Inicialmente, serão usados os `dadosTreino` para criar o modelo de regressão logística.
-
-No modelo, a variável resposta ou desfecho é representada por `sobreviveu`; todas as outras variáveis são variáveis explicativas.
-
-A função nativa `glm()` – **g**eneralized **l**inear **m**odel - é usada para aplicar uma regressão logística no *R*. Sua funcionalidade é idêntica à função `lm()` da regressão linear. Necessita alguns argumentos:
-
--   **formula** $\to$ objeto da classe *formula*. Um preditor típico tem o formato `resposta \~ preditor` em que `resposta`, na regressão logística binária, é uma variável dicotômica e o `preditor` pode ser uma série de variáveis numéricas ou categóricas;
+-   **formula** $\to$ objeto da classe *formula*. Um preditor típico tem o formato `resposta ~ preditor` em que `resposta`, na regressão logística binária, é uma variável dicotômica e o `preditor` pode ser uma série de variáveis numéricas ou categóricas;
 
 -   **family** $\to$ uma descrição da distribuição de erro e função de *link* a ser usada no modelo `glm`, pode ser uma *string* que nomeia uma função de *family*. O padrão é `family = gaussian()`. No caso da regressão logística binária, `family = binomial()` ou `family = binomial (link =”logit”)`. Para outras informações, use `help(glm)` ou `help(family)`;
 
 -   **data** $\to$ banco de dados.
 
-Dentro dos parênteses da função `glm()`, são fornecidas informações essenciais sobre o modelo. À esquerda do til `(~)`, encontra-se a variável dependente, que deve ser codificada como 0 e 1 para que a função a interprete corretamente como binária. Após o til, são listadas as variáveis preditoras. Quando se utiliza um ponto (`~.`), isso indica a inclusão de todas as variáveis preditoras disponíveis. Já o uso do asterisco (`*`) entre duas variáveis preditoras especifica que, além dos efeitos principais, também deve ser considerado um termo de interação entre elas. No exemplo apresentado, essa análise, inicialmente, não será solicitada. Por fim, após a vírgula, define-se que a distribuição utilizada é a binomial. Como a função `glm` usa `logit` como link padrão para uma variável de desfecho binomial, não há necessidade de especificá-lo explicitamente no modelo.
+Dentro dos parênteses da função `glm()`, são fornecidas informações essenciais sobre o modelo. À esquerda do til `(~)`, encontra-se a variável dependente, que deve estar codificada como 0 e 1 para que a função a interprete corretamente como binária. Após o til, são listadas as variáveis preditoras. Quando se utiliza um ponto (`~.`), isso indica a inclusão de todas as variáveis preditoras disponíveis. Já o uso do asterisco (`*`) entre duas variáveis preditoras especifica que, além dos efeitos principais, também deve ser considerado um termo de interação entre elas. No exemplo apresentado, nesta análise inicial, não será solicitada os efeitos da interação. Por fim, após a vírgula, define-se que a distribuição utilizada é a binomial. Como a função `glm` usa `logit` como link padrão para uma variável de desfecho binomial, não há necessidade de especificá-lo explicitamente no modelo.
 
-O modelo inicial de regressão logística do tipo entrada forçada (`enter`), método padrão de conduzir uma regressão, que consiste em simplesmente colocar todos os preditores no modelo de regressão em um bloco e estimar parâmetros para cada um @field2012logit. O dataframe `dadosTreino.xlsx` será usado com todos os preditores dentro da função. O objeto criado será denominado de `modelo1`.
+O modelo inicial de regressão logística do tipo **entrada forçada** (`enter`), método padrão de conduzir uma regressão, que consiste em simplesmente colocar todos os preditores no modelo de regressão em um bloco (modelo completo) e estimar parâmetros para cada um [@field2012logit]. O dataframe `treino` será usado com todos os preditores dentro da função. O objeto criado será denominado de `mod1`.
 
 ```{r}
-modelo1 <- glm(sobreviveu ~., 
-               data = dadosTreino, 
+mod1 <- glm(sobreviveu ~., 
+               data = treino, 
                family = binomial(link = "logit"))
-
-summary(modelo1)
 ```
 
-#### Interpretação dos Coeficientes
+A saída da função `glm()` fornece os coeficientes, da mesma forma como na regressão linear, que estima o efeito das variáveis preditoras sobre a *chance* de ocorrência do desfecho (no exemplo, sucesso = 1).
 
-Em uma regressão logística, a resposta que está sendo modelada é o `log(odds)` ou `logit` de que o desfecho é igual a 1. Os coeficientes de regressão fornecem a mudança no `log(odds)` no desfecho para a mudança de uma unidade na variável preditora, mantendo todas as outras variáveis preditivas constantes @hosmer2013applied.
+[Interpretação Coeficientes]{.underline} 
 
-Na saída da função `summary()`, são produzidos os coeficientes da regressão na coluna `Estimate`, associados ao respectivos desvio padrão dos resíduos (`Std. Error`), o valor `z` (estatística de Wald) e os valores do *p* (`Pr(>|t|`). Importante destacar que a hipótese nula dos coeficientes da regressão é de que “os coeficientes são nulos/zeros”. Então, os valores *P* devem ser interpretados como a probabilidade de se observar valores de coeficientes tão extremos dado que a hipótese nula é verdadeira. Estes coeficientes estão modelando a probabilidade do evento desfecho (`sobreviveu`) ocorrer com base nas variáveis explicativas: `sexo`, `idade`, `classe` do passageiro, número de irmãos/conjuges a bordo (`irco`) e número de pais/filhos a bordo (`pafi`) . Os coeficientes da regressão representam o impacto de cada variável explicativa na probabilidade de sobrevivência.
+Os coeficientes podem ser interpretados da seguinte maneira [@anderson2023coeficientes]:
 
-Nas *variáveis contínuas* , para cada aumento de uma unidade na `idade`, por exemplo, o $log(odds)$ de sobreviver `1 = sim` (versus `0 = não`) diminui, pois o coeficiente é negativo, em `r modelo1$coefficients[5]`.
+-   **Coeficiente positivo (**$\beta \gt 0$) : Aumenta o log das chances do evento ocorrer. Ou seja, aumenta a probabilidade de desfecho = 1, mantendo as outras variáveis constantes.
 
-Para *variáveis categóricas*, o desempenho de cada categoria é avaliado em relação a uma categoria de base. A categoria de base para a variável `sexo` é o sexo feminino (primeira categoria que aparece quando se observa os níveis) e para a classe do passageiro é a 1ª classe.
+-   **Coeficiente negativo (**$\beta \lt 0$) : Diminui o log das chances do evento ocorrer. Ou seja, *reduz a probabilidade de desfecho = 1*, mantendo as outras variáveis constantes.
+
+-   **Coeficiente zero (**$\beta = 0$) : A variável não tem efeito sobre o desfecho.
+
+[Interpretação das outras métricas]{.underline}
+
+O *Null deviance* representa o quão bem a variável resposta é prevista por um modelo que inclui apenas o intercepto e não as variáveis independentes. Representa o erro do modelo sem preditores. Seria como dizer: "Qual o erro se eu apenas chutar a média geral?";
+
+O *Residual deviance* mostra quão bem a variável de resposta é prevista por um modelo que inclui todas as variáveis. Representa o erro do modelo com preditores. Quanto menor o *Residual Deviance* em relação ao *Null Deviance*, melhor o modelo ajusta os dados. No `mod1`, o *Residual Deviance* é igual a 708.95, bem menor que o *Null Deviance* (1207.42), ou seja, o modelo está explicando bem os dados. A diferença entre os dois (1207.42 − 708.95 = 498.47) indica o ganho de ajuste ao incluir as variáveis. Quanto maior essa redução, melhor o modelo. Podemos testar essa diferença com um teste qui-quadrado para verificar se a melhora é estatisticamente significativa:
 
 ```{r}
-levels(dadosTreino$sexo)
-levels(dadosTreino$classe)
+anova(mod1, test="Chisq")
 ```
 
-Resumindo:
+O teste estatístico compara o *Null Deviance* (modelo com apenas o intercepto) com a *Residual Deviance* (modelo com preditores), usando o teste qui-quadrado para verificar se a inclusão das variáveis melhora significativamente o ajuste. Se o valor *p* for menor que 0.05, pode-se concluir que o modelo com preditores é significativamente melhor que o modelo nulo até a inclusão da variável irco. A partir daí a inclusão de novas variáveis não melhora estatisticamente o modelo.
 
--   **(Intercept)**: Representa o `log(odds)` de sobreviver para um indivíduo com todas as variáveis explicativas iguais a zero (ou a sua categoria de referência). No contexto do Titanic, seria um indivíduo do sexo feminino, com idade zero e da 1ª classe. Não tem interpretação prática direta, nesse caso, pois não há passageiros com idade zero. Serve como ponto de partida para comparar os outros coeficientes.\
--   **classe2**: O coeficiente negativo indica que os passageiros da segunda classe tinham menor probabilidade de sobreviver comparados aos da primeira classe (a categoria de referência).\
--   **classe3**: O coeficiente negativo) indica que os passageiros da terceira classe tinham muito menor probabilidade de sobreviver comparados aos da primeira classe.
--   **sexomasc**: O coeficiente negativo indica que ser do sexo masculino diminui significativamente a probabilidade de sobreviver, comparado a ser do sexo feminino (a categoria de referência). Ou seja, os homens tinham menos chances de sobreviver.\
--   **idade**: O coeficiente negativo indica que cada aumento de um ano na idade diminui ligeiramente a probabilidade de sobreviver. Isso sugere que as crianças tinham mais chances de sobreviver do que os adultos.\
--   **irco** : Ter mais irmãos ou cônjuges a bordo reduziu a chance de sobrevivência.
--   **pafi**: O número de pais ou filhos a bordo não teve um efeito estatisticamente significativo na sobrevivência (valor *p* alto).
+O *AIC (Akaike Information Criterion)* é uma medida estatística de ajuste que penaliza o modelo logístico pelo número de variáveis preditivas. Um modelo com valor mínimo de AIC é considerado um modelo bem ajustado. Um AIC = 728.95 isolado é difícil de interpretar, pois é útil para comparar modelos, quanto menor, melhor. Útil quando se testa diferentes combinações de variáveis.
 
-[Outras métricas da saída do sumário do modelo]{.underline}
-
--   **Significância estatística**: o R, para facilitar, informa com asteriscos quais variáveis possuem coeficientes estatisticamente significativos: \* para *p* $\lt 0,05$ , \*\* para *p* $\lt 0,01$, e \*\*\* para *p* $\lt 0,001$.\
--   **Deviance residual**: Indica o ajuste do modelo; quanto menor, melhor.\
--   **AIC (Critério de Informação de Akaike)** [^24-reglogbin-3]: Ajuda a comparar modelos; quanto menor, melhor o ajuste e a simplicidade.
-
-[^24-reglogbin-3]: É fundamentado na *teoria da informação*, teoria matemática da informação que estuda a quantificação, armazenamento e comunicação da informação. Quando um modelo estatístico é usado para representar um determinado processo, a representação nunca será exata, ou seja, o modelo nunca será perfeito e certamente algumas informações serão perdidas. O AIC estima a quantidade relativa de informação perdida por um determinado modelo: quanto menos informações um modelo perde, maior a qualidade desse modelo e menor a pontuação AIC.
-
-#### Avaliação do impacto com a função anova()
-
-Além de interpretar os coeficientes, mostrados na saída do sumário do modelo gerado pela função `glm()`, pode-se usar a função `anova()` para observar o impacto da adição de cada variável no modelo:
+Para ver todo o resultado do modelo, executa-se a função `summary()`:
 
 ```{r}
-anova(modelo1, test='Chisq')
+summary(mod1)
 ```
 
-[Principais pontos]{.underline}
+[Uso do Odds Ratio (OR) na interpretação dos coeficientes]{.underline}
 
--   **NULL Deviance**: Representa o desvio do modelo sem preditores (modelo apenas com o intercepto).
--   **Residual Deviance**: Indica o desvio do modelo conforme as variáveis são adicionadas. Um menor valor de deviance indica um melhor ajuste.
--   **Pr(\>Chi)**: Valor *p* do teste qui-quadrado para cada variável, verificando se sua inclusão melhora significativamente o modelo.
-
-[Interpretação das variáveis]{.underline}
-
--   **classe**: A inclusão da classe do passageiro reduz significativamente o desvio (*deviance*), indicando que a classe é um preditor importante.
--   **sexo**: O sexo é a variável que mais reduz o desvio, confirmando que ser mulher aumentava a chance de sobrevivência.
--   **idade**: A idade tem um efeito significativo na sobrevivência, mas menor que classe e sexo
--   **irco**: Número de irmãos/cônjuges tem um impacto relevante.
--   **pafi**: O número de pais/filhos a bordo não melhora significativamente o modelo (*p* \> 0.05), sugerindo que essa variável não tem grande impacto na sobrevivência.
-
-[Conclusão]{.underline}
-
-O modelo sugere que `classe`, `sexo`, `idade` e `irco` (número de irmãos/cônjuges) são fatores relevantes para prever a sobrevivência. Por outro lado, número de pais/filhos não tem um impacto significativo. Isso pode indicar que ter viajado com crianças não afetou tanto a probabilidade de sobrevivência.
-
-#### Uso do Odds Ratio (OR) na interpretação dos coeficientes
-
-Numericamente, os coeficientes de regressão logística não são facilmente interpretáveis em escala bruta, pois estão representados como `log (odds)` ou `logit` . Para tornar mais simples, pode-se inverter a transformação logística exponenciando os coeficientes ($e^x$). Isso faz com que os coeficientes se transformem em razões de chance (*odds ratio*), ficando mais intuitivos facilitando a interpretação. Isso é realizado pela função `exp()` e pela função `confint()`, que retorna os intervalos de confiança de 95%:
-
-```{r}
-odds_ratio1 <- round (exp(cbind(OR = coef(modelo1), confint(modelo1))), 3)
-print(odds_ratio1)
-```
-
-Observando, novamente, a variável `idade`, vê-se que à medida que ela aumenta, reduz a chance de sobrevivência no naufrágio do Titanic. A *OR* nos informa que a cada aumento de uma unidade na `idade`, há uma diminuição na chance de sobrevivência (`sobreviveu = 1`) de $1 – OR \times 100$%, ou seja, uma diminuição de `r (1 - odds_ratio1[5, 1]) * 100`%.\
-Para o sexo masculino, há uma diminuição (coeficiente negativo) na chance de sobrevivência. O fato de ser homem reduz em `r (1 - odds_ratio1[4, 1]) * 100`% a chance de sobreviver.\
-Para a 3ª classe, comparada à 1ª classe, há uma diminuição de `r (1 - odds_ratio1[3, 1]) * 100`% na chance de sobrevivência. Da mesma forma a 2ª classe, comparada à 1ª classe, tem uma diminuição de `r (1 - odds_ratio1[2, 1]) * 100`%% na chance de sobrevivência [^24-reglogbin-4].
-
-[^24-reglogbin-4]: Veja mais detalhes sobre *Odds Ratio* na @sec-or.
-
-### Visualização da regressão logística
-
-Uma maneira interessante de visualizar a regressão logística, pode ser feita usando a função `plot_model()` do pacote `sjPlot` @ludecke2018sjplot. Essa função, como padrão, produz um gráfico de floresta (*forest plot*), onde é possível visualizar as variáveis no eixo vertical e o tamanho do efeito (OR), os coeficientes, no eixo horizontal (@fig-forest). Além disso, coeficientes positivos são representados com a cor azul e negativos em vermelho; e os intervalos de confiança 95% como uma linha ao redor do valor médio do coeficiente (ponto). Ao se especificar o tipo como `std` em `plot_model()`, o gráfico de floresta produzido utiliza os valores padronizados em desvios padrões.
-
-```{r}
-#| label: fig-forest
-#| echo: true
-#| fig.align: "center"
-#| out.width: "80%"
-#| out.height: "80%"
-#| message: false
-#| warning: false
-#| fig-cap: "Gráfico de Floresta dos Coeficientes de uma Regressão Logística em formato Odds Ratio"
-
-forest_raw <- plot_model(modelo1)
-forest_std <- plot_model(modelo1, type = "std")
-
-library(patchwork)
-wrap_plots(forest_raw, forest_std, nrow = 2)
-```
-
-### Remoção de variáveis não significativas
-
-A variável `pafi` mostrou-se não significativa no ajuste do `modelo1` e será removida da análise:
-
-```{r}
-modelo2 <- glm(sobreviveu ~ classe + sexo + idade + irco, family = binomial(link = 'logit'), data=dadosTreino)
-summary(modelo2)
-```
-
-Da mesma forma que com o `modelo1`, pode-se calcular, para tornar a interpretação mais intutiva, as *OR*:
-
-```{r}
-odds.ratio2 = exp(cbind(OddsRatio = coef(modelo2),confint(modelo2)))
-print(odds.ratio2)
-```
-
-Quando se compara os dois modelos para ver se houve uma melhora no ajuste, é interessante observar os AICs.
-
-```{r}
-aic <- AIC(modelo1, modelo2)
-aic
-```
-
-O `modelo1` tem uma AIC (`r round(aic[1, 2],2)`) discretamente maior que a do `modelo2` (`r round(aic[2, 2],2)`). Isto indica que o ajuste do `modelo2` é um pouco melhor (teve menos informação perdida no ajuste), entretanto, esta ligeira melhora não modifica a interpretação.A função `anova()`, que a diferença entre os modelos não é significativa (*p* \> 0.05):
-
-```{r}
-anova(modelo1, modelo2, test = "Chisq")
-```
-
-Os dois modelo têm a mesma interpretação, mas o `modelo2` ajusta melhor os dados.
-
-### Modelo de regressão e interação
-
-A interação entre variáveis pode ser crucial em modelos de regressão logística, pois pode revelar padrões que não são evidentes ao analisar cada variável separadamente. Usar interações pode tornar o modelo mais informativo, mas também mais complexo. Por isso, é sempre bom verificar métricas como AIC ou testes estatísticos para ver se a inclusão da interação realmente melhora a previsão.
-
-Será construído um gráfico (@fig-interacao)), usando o pacote `ggeffects` e sua função `ggpredict()` @ludecke2018ggeffects. Este calcula os efeitos marginais a partir de modelos estatísticos e retorna o resultado como estruturas de dados organizadas. Essas estruturas de dados estão prontas para serem usadas com o pacote `ggplot2`. Os efeitos marginais podem ser calculados para muitos modelos diferentes, incluindo termos de interação. Junto será criado o modelo de interação (`modelo3`)
-
-```{r}
-#| label: fig-interacao
-#| echo: true
-#| fig.align: "center"
-#| out.width: "80%"
-#| out.height: "80%"
-#| message: false
-#| warning: false
-#| fig-cap: "Gráfico de linha da interação sexo:classe"
-titanic_df <- dadosTreino %>%
-  dplyr::select(- pafi) %>%
-  mutate(classe = factor(classe, levels = c(1, 2, 3), 
-                         labels = c("1ª Classe", "2ª Classe", "3ª Classe"))) 
-titanic_df <- dadosTreino %>%
-  dplyr::select(- pafi) %>%
-  mutate(classe = factor(classe, levels = c(1, 2, 3), 
-                         labels = c("1ª Classe", "2ª Classe", "3ª Classe"))) 
-
-modelo3 <- glm(sobreviveu ~ sexo * classe + idade + irco, data = titanic_df, family = "binomial")
-summary(modelo3)
-
-pred_effects <- ggpredict(modelo3, terms = c("classe", "sexo"))
-
-
-plot(pred_effects, show_data = FALSE, connect_lines = T) +
-  labs(x = "Classe do Passageiro",
-       y = "Probabilidade Predita de Sobrevivência",
-       title = "Interação entre Sexo e Classe na Sobrevivência do Titanic", 
-       color = "Sexo") +
-  theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5, face = "bold"),
-        legend.position = "right") +
-  # Ajustar limites do eixo Y para probabilidades (0 a 1)
-  scale_y_continuous(limits = c(0, 1), breaks = seq(0, 1, 0.1),
-                     expand = expansion(add = c(0,0.05)))
-```
-
-O gráfico da @fig-interacao sugere uma interação entre `classe` e `sexo` na taxa de sobrevivência.
-
-#### Interpretação dos coeficientes gerados no modelo com interação
-
-Interpretar os coeficientes do modelo de interação em conjunto com o gráfico da @fig-interacao é fundamental. Os coeficentes são em escala **logit** e, para melhor interpretá-lo, há necessidade de exponenciá-los:
-
-```{r}
-odds_ratios <- exp(cbind(OddsRatio = coef(modelo3), confint(modelo3)))
-```
-
-O modelo com interação (`modelo3`) apresentou uma ajuste um pouco melhor, comparado com modelo sem interação (`modelo2`). Para a comparação, pode-se usar o AIC de ambos os modelos:
-
-```{r}
-aic <- AIC(modelo2, modelo3)
-aic
-```
-
-A saída mostra que existe uma diferença de `r round(aic[1, 2],2) - round(aic[2, 2],2)` pontos. Isso é uma forte evidência que o modelo com a interação melhora o ajuste.\
-O coeficiente de interação positivo como `r modelo3$coefficients[8]` não significa que homens da 3ª classe têm alta probabilidade de sobreviver. Significa que o efeito negativo de ser homem na 3ª classe é menos grave (ou a relação da classe com a sobrevivência é diferente para homens) do que seria previsto apenas pelos efeitos principais `sexomasc` e 3ª Classe somados linearmente. É uma correção para a relação aditiva simples.\
-O gráfico mostra claramente que homens da 3ª classe têm uma probabilidade predita de sobrevivência bem baixa, que é a mais baixa de todas as categorias.
-
-Desta forma, a interpretação é semelhante a que foi mostrada com o modelo sem interação:
-
--   Ser mulher é um fator de sobrevivência extremamente forte.\
--   Ser da 1ª classe é um fator de sobrevivência positivo.\
--   Idade avançada e ter mais irmãos/cônjuges são fatores negativos para a sobrevivência.\
--   Existe uma interação significativa onde a penalidade de ser homem (em termos de chances de sobrevivência) é diferente entre as classes, sendo muito mais forte nas classes superiores e menos acentuada (mas ainda presente) na 3ª classe (onde as chances já são globalmente baixas para todos, mas a queda de chances para mulheres da 3ª classe é mais drástica que para homens entre 2ª e 3ª).
-
-Portanto, deve-se manter o modelo com a interação (`modelo3`). Ele é mais preciso e oferece uma compreensão mais detalhada das complexas relações entre sexo, classe e sobrevivência (ajustado por `idade` e `irco`).
-
-Para finalizar, será mostrada, na @fig-taxas, as taxas reais de sobrevivência, para comparar com a @fig-interacao, indicando que os homens da 3ª classe tiveram uma baixa taxa de sobrevivência, mesmo com o modelo de interação tenha mostrado um coeficiente positivo. Isto apenas mostra que atenuou o efeito.
-
-```{r}
-#| label: fig-taxas
-#| echo: true
-#| fig.align: "center"
-#| out.width: "60%"
-#| out.height: "60%"
-#| message: false
-#| warning: false
-#| fig-cap: "Proporção de sobrevivência por sexo e classe"
-
-# Converter a variável "sobreviveu" para numérica, se necessário
-ggplot(dadosTreino, 
-       aes(x = classe, 
-           fill = factor(sobreviveu))) +
-  geom_bar(position = "fill") +
-  facet_wrap(~ sexo) +
-  labs(title = "Proporção de sobrevivência por sexo e classe",
-       x = "Classe do passageiro", 
-       y = "Proporção",
-       fill = "Sobrevivência") +
-  theme_minimal()
-```
-
-Para comparar os modelos, estatisticamente, pode-se usar a função `anova()` do pacote `car`:
-
-```{r}
-anova <- anova(modelo2, modelo3, test = "Chisq")
-anova
-```
-
-A ANOVA mostra um valor *p* muito baixo, indicando uma diferença estatisricamente signficativa entre os modelos.
-
-### Curva ROC para comparar os modelos {#sec-compararoc}
-
-A curva ROC é um gráfico permite explicar o desempenho do modelo avaliando a taxa de verdadeiros positivos (sensibilidade) versus a taxa de falsos positivos ($1 - especificidade$). A AUC (Área sob a Curva ROC) indica a qualidade do modelo (veja também a @sec-rocurve):
-
--   $AUC \approx 0.5$ $\to$ O modelo não tem poder preditivo (equivalente ao puro acaso).\
--   $AUC \gt 0.7$ $\to$ Modelo razoável.\
--   $AUC \gt 0.8$ $\to$ Modelo muito bom.
--   $AUC \gt 0.9$ $\to$ Excelebte desempenho.
-
-#### Predição da variável desfecho nos modelos
-
-```{r}
-prob_pred <- predict(modelo2, type = "response")
-prob_pred_int <- predict(modelo3, type = "response")
-```
-
-#### Crição de um objeto ROC
+Numericamente, os coeficientes de regressão logística não são facilmente interpretáveis em escala bruta, pois estão representados como `log (odds)` ou `logit` . Para tornar mais simples, inverte-se a transformação logística, exponenciando os coeficientes (`exp(coeficiente)`). Isso faz com que os coeficientes se transformem em **razões de chance** (*odds ratio*), ficando mais intuitivos facilitando a interpretação. Isso pode ser realizado pela função `odds.ratio()` do pacote `questionr` [@barnier2025questior], que retorna as OR e seus intervalos de confiança de 95%, além dos respectivos valores *p*:
 
 ```{r}
 #| message: false
 #| warning: false
-
-roc2<- roc(response = dadosTreino$sobreviveu, predictor = prob_pred) 
-roc3 <- roc(response = dadosTreino$sobreviveu, predictor = prob_pred_int)
+library(questionr)
+odds.ratio(mod1)
 ```
 
-#### Plotar a curva ROC
+Quando o OR é menor que 1, significa que o evento (no exemplo: sobrevivência) é menos provável no grupo em questão comparado ao grupo de referência. Para interpretar em termos percentuais:
+
+$$
+\text{Redução percentual} = \left(1 - OR  \right) \times 100
+$$
+
+Ou seja, considerando os passageiros da 2ª classe, tem-se que $1 - 0.46 = 0.54 \times 100 = 54$%. Assim, os passageiros da 2ª classe tem 54% menos chance de sobreviver que os da 1ª classe (nível de referência ); o da 3ª classe tem 84% menos chance de sobreviver que os da 1ª classe. Para saber o nível de referência, basta usar a função `levels()` da seguinte maneira:
 
 ```{r}
-#| label: fig-comparemod
-#| echo: true
-#| fig.align: "center"
-#| out.width: "60%"
-#| out.height: "60%"
+levels(treino$classe)
+```
+
+Quando o OR é maior que 1, o evento é mais provável no grupo em questão. A interpretação muda:
+
+$$
+\text{Aumento percentual} = \left(OR - 1 \right) \times 100
+$$
+
+Considerando a variável preditora `tarifa`, cujo OR = 1.003, tem-se $1.003 - 1 = 0.003 \times 100 = 0.3$. Ou seja, um aumento de 0,3% na sobrevivência. Um valor muito pequeno que se mostrou sem significância estatística (*p* = 0.2218).\
+Os homens têm $1 - 0.03 = 0.97 \times 100 = 97$% menos chance de sobreviver do que as mulheres.
+
+Qual a chance das mulheres sobreviverem em relação aos homens?
+
+Para responder essa pergunta, basta inverter a OR. Assim, as mulheres têm $1/0.03 \approx$ `r round(1/0.03, 0)` vezes mais chance de sobreviver que os homens.\
+
+A idade (variável numérica) mostra que o aumento da idade diminuiu a sobrevivência; para cada ano a mais de idade a chance de sobrevivência reduz em $1 - 0.97 = 0.03 \times 100 = 3$%. Ter irmãos/cônjuges (variável `irco`) a bordo reduz a chance de sobrevivência em $1 - 0.72 = 0.28 \times 100 = 28$%. As demais variáveis não tiveram um efeito significativo. 
+
+#### Modelo 2 - modelo simples
+
+No ajuste realizado no modelo 1, apenas as variáveis `classe`, `sexo`, `idade` e `irco` foram significativas. Neste novo modelo (`mod2`), essas variáveis permanecem e as não significativas são removidas.
+
+```{r}
+mod2 <- glm(sobreviveu ~ classe + sexo + idade + irco,
+            data = treino, family = binomial(link = "logit"))
+summary(mod2)
+```
+
+A saída do `summary()` mostra que os coeficientes permaneceram apresentando significância estatística.
+
+[Razão de Chances do modelo 2]{.underline}
+
+Usando a mesma função, usada para o `mod1`, calcula-se as OR para o `mod2`:
+
+```{r}
 #| message: false
 #| warning: false
-#| fig-cap: "Comparação das curvas ROC(modelo sem interação = preto; modelo com interação vermelho)"
-plot(roc2, 
-     main = "Curva ROC", 
-     print.auc = TRUE, 
-     legacy.axes=TRUE,
-     print.auc.y = 0.2,
-     ylab="Sensibilidade",
-     xlab="1 - Especificidade")
-
-plot(roc3, 
-     main = "",
-     col="tomato",
-     print.auc = TRUE, 
-     legacy.axes=TRUE,
-     print.auc.y = 0.1,
-     add =TRUE)
+library(questionr)
+odds.ratio(mod2)
 ```
 
-As curvas ROC (@fig-comparemod) são muito semelhantes, com AUCs muito próximos.
+Os passageiros da 2ª classe, tem, agora, $1 - 0.38 = 0.62 \times 100 = 62$% menos chance de sobreviver que os da 1ª classe (nível de referência); o da 3ª classe tem 87% menos chance de sobreviver que os da 1ª classe. Esses valores e os restantes não diferem muito dos do `mod1`.
 
-### Avaliação do Modelo de Regressão Logística
+Como o AIC do `mod2`(727.07) é menor que o do `mod1`(728.95) é possível dizer que houve uma melhora no ajuste, apesar de a diferença ser muito pequena.
 
-#### Matriz de Confusão
+Entretanto, outros modelos são possíveis.
 
-Primeiro foi feito o treinamento com o conjunto de dados dadosTreino. Agora, comparam-se as previsões (`pred_class`) com os valores reais (`dadosTeste$sobreviveu`). Para isso será necessário a função `confusionMatrix()` do pacote `caret`.
+#### Modelo 3
 
-[Fazendo previsões (probabilidades)]{.underline}
+A partir do modelo completo (`mod1`), será criado um terceiro modelo, selecionando as variáveis automaticamente, usando a função `step()`. Usando o argumento `direction = "backward"`, a função realiza a **eliminação regressiva** — ou seja, começa com o modelo completo e vai retirando variáveis uma a uma. Avalia o impacto de **remover cada variável** individualmente. Remove a variável cuja retirada melhora o critério de ajuste (em geral, AIC) e vai repetindo o processo até que nenhuma remoção adicional melhore o modelo. Considerando ajuste e simplicidade , quanto menor o AIC, melhor o modelo.
 
 ```{r}
-dadosTeste <- dadosTeste %>%
-  dplyr::select(- pafi) %>%
-  mutate(classe = factor(classe, levels = c(1, 2, 3), 
-                         labels = c("1ª Classe", "2ª Classe", "3ª Classe"))) 
-
-set.seed(234)
-pred_prob <- predict(modelo3, newdata = dadosTeste, type = "response")
+mod3 <- step(mod1, direction = "backward") 
+summary(mod3)
 ```
 
-A seguir, converte-se as probabilidades em classes (fatores):
+Este terceiro modelo chega a um AIC = AIC: 726.11, melhor que os anteriores e incluindo a variável `pafi`.
+
+## Seleção do Modelo
+
+Existem várias maneiras de verificar qual o modelo apresenta um melhor ajuste.
+
+### Deviance
+
+O *Deviance* mede o quão bem o modelo se ajusta aos dados observados. Ele é baseado na log-verossimilhança (*log-likelihood* -LL) e funciona como uma medida de erro:
+
+• **Deviance nulo**: Representa o erro do modelo sem preditores, apenas com intercepto.
+
+$$
+D_{null} = 2 \times \left(LL_{\text{modelo saturado}} - LL_{\text{modelo nulo}}\right)
+$$
+
+Onde o **modelo saturado** é um modelo teórico que se ajusta perfeitamente os dados - a log-verossimilhança é máxima possível e o **modelo nulo** é o modelo que só usa a média da resposta (sem preditores) e serve como base de comparação.
+
+• **Deviance residual:** Representa o erro do modelo **com preditores**.
+
+$$
+D_{residual} = 2 \times \left(LL_{\text{modelo saturado}} - LL_{\text{modelo proposto}}\right)
+$$
+
+Se a **null deviance** é pequena, o modelo nulo já explica bem os dados; Se a **deviance residual** é muito menor que a null deviance, o modelo proposto melhora o ajuste. A diferença entre elas pode ser testada com um teste qui-quadrado.
+
+Como os modelos são aninhados (um é uma versão mais simples do outro), pode-se compará-los, usando a função `anova()`. Assumindo que o $mod2 \subset mod3 \subset mod1$, ou seja, `mod2` tem menos preditores que `mod3`, que tem menos que `mod1`. A hipótese nula deste teste é que os modelos são equivalentes.
 
 ```{r}
-pred_class <- ifelse(pred_prob > 0.5, 1, 0)
-pred_class <- factor(pred_class, levels = c(0, 1))
+anova(mod2, mod3, mod1, test="Chisq")
 ```
 
-[Criando a matriz de confusão]{.underline}
+O argumento poderia ser `test ="LRT"`. Ambos testes calculam a diferença entre as deviances dos modelos e comparam essa diferença com uma distribuição qui-quadrado para obter o valor *p*.
 
-```{r message=FALSE}
+A *Tabela de Deviance* mostra a inclusão das variável `pafi` no `mod3`, melhora o modelo, mas não de forma estatisticamente significativa ao nível de 5% (*p* \> 0.05), embora seja marginalmente significativa ao nível de 10% (*p* \< 0.10).\
+A inclusão de `Parch` e `Fare` no `mod1` não melhora significativamente o modelo (*p* \> 0.05).
+
+[Concluindo]{.underline}: Os modelos têm, a grosso modo, Deviances muito próximos e a diferença não é significativa (valor *p* \> 0,05 no teste de razão de verossimilhança), e pode-se aceitar que eles têm desempenho equivalente. Entretanto, o `mod2` (*model 1* na tabela de Deviance) é o mais simples, mais parcimonioso. Portanto, seria o mais adequado para seguir a análise.
+
+Pode-se, também, usar um critério empírico que compara o Deviance residual com os **graus de liberdade**:
+
+$$
+\frac{D_{residual}}{n-k}
+$$
+
+Onde *n* = número de observações e *k* = número de **parâmetros**, incluindo o intercepto.
+
+Considerando o `mod2`, temos 4 variáveis explicativas (`classe` + `sexo` + `idade` + `irco`), mas cada uma pode gerar mais um parâmetro, dependendo da codificação (por ex.: `classe` com 3 níveis $\to$ 2 parâmetros; `sexo` com dois níveis $\to$ 1 parâmetro). Além disso, o modelo inclui um intercepto, então o total de parametros *k* é:
+
+-   `classe`: 2 parâmetros (niveis 2 e 3)\
+-   `sexo`: 1 parâmetro (masculino)\
+-   `idade`: 1 parâmetro (numérica)\
+-   `irco`: 1 parâmetro (numérica)\
+-   `Intercepto`: 1
+
+$$
+\frac{715.07}{889-6} = \frac{790.88}{883} \approx 0.810
+$$
+
+Esse valor $<1$ indica que o modelo está ajustado de forma adequada — ou seja, o erro médio por grau de liberdade é baixo. Os outros modelos também têm valoes $<1$. Como visto anteriormente, eles não são muito diferentes em relação ao ajuste.
+
+### AIC (Akaike Information Criterion)
+
+O *AIC* é uma medida estatística de ajuste que penaliza o modelo logístico pelo número de variáveis preditivas. Um modelo com valor mínimo de AIC é considerado um modelo bem ajustado. Desta forma o AIC serve para comparar modelos;
+
+```{r}
+AIC(mod1)
+AIC(mod2)
+AIC(mod3)
+```
+
+Existe uma melhora do AIC do `mod1` para o `mod2` e deste para o `mod3`. O teste estatístico (anova) mostrou que estatisticamente os modelos podem ser considerados equivalentes.
+
+Assim, até aqui, baseado no princípio da simplicidade com eficácia (parcimônia), segue-se com o `mod2`. Entretanto, em um modelo mais complexo existe a possibilidade de interação entre variáveis.
+
+### Modelo 4: Interação
+
+Uma interação ocorre quando a relação entre as variáveis preditora e desfecho depende do valor ou do nível assumido por outra variável preditora.\
+No exemplo em estudo, poderia haver uma interação se, por exemplo, a relação entre `classe` do passageiro e `sobrevivência` ao naufrágio dependesse do `sexo`. Ou seja, passageiros de uma mesma classe no navio podem ter diferentes probabilidades de sobrevivência se forem de sexos diferentes. Diante dessa possibilidade, será ajustado um novo modelo (`mod4`), incluindo a interação `classe * sexo`.
+
+```{r}
+mod4 <- glm(
+  sobreviveu ~ classe * sexo + idade + irco,
+  data = treino,
+  family = binomial(link = "logit"))
+
+summary(mod4)
+```
+
+Comparando esse novo modelo com o modelo 2 (`mod2`):
+
+```{r}
+AIC(mod2, mod4)
+
+anova(mod2, mod4, test="Chisq")
+```
+
+conclui-se que houve uma melhora significativa `mod2` quando se inclui a interação.
+
+[Interpretação das OR do modelo de interação]{.underline}
+
+Como foi visto anteriormente, o cálculo das Odds Ratios (OR) e seus respectivos Intervalos de Confiança (IC~95%~) é fundamental para interpretar o efeito de cada preditor.
+
+```{r}
+#| message: false
+#| warning: false
+library(questionr)
+odds.ratio(mod4)
+```
+
+[Interpretação dos Efeitos Singulares (Significativos)]{.underline}:
+
+-   **Idade**: OR = 0.963. Para cada aumento de um ano na idade, as chances de sobrevivência são 0.963 vezes menores (ou reduzem cerca de 3.7%), mantendo todas as outras variáveis constantes.
+-   **classe3** (vs. classe1, para Mulheres): OR = 0.0173. Para uma mulher na 3ª Classe, as chances de sobrevivência são 98% menores do que para uma mulher na 1ª Classe.
+-   **sexomasc** (vs. Feminino, na Classe 1): OR = 0.005. Para o homem na 1ª Classe, as chances de sobrevivência são mínimas em relação a uma mulher na 1ª Classe.
+
+[Interpretação da Interação (`classe * sexo`)]{.underline}
+
+Como o termo de interação `classe3:sexomasc` é **significativo**, isso confirma que o efeito do sexo é **diferente** na Classe 3 em comparação com a Classe 1.
+
+O **OR** final para homens na Classe 3 (vs. Mulheres na Classe 1) é calculado multiplicando os ORs relevantes:
+
+$$
+\text{OR}_{\text{H, C3 vs. M, C1}} = \text{OR}_{\text{C3}} \times \text{OR}_{\text{H}} \times \text{OR}_{\text{C3:H}}
+$$
+
+Usando os resultados:
+
+$$
+\text{OR}_{\text{H, C3 vs. M, C1}} \approx 0.005 \times 0.0173 \times 15.1 \approx {0.00131}
+$$
+
+A OR de interação de 15.1 significa que a desvantagem extremamente alta de ser homem é parcialmente abrandada (multiplicada por 15.1) quando ele está na 3ª Classe. Apesar disso, o efeito total para um homem na 3ª Classe ainda representa uma chance de sobrevivência de quase zero comparada à mulher na 1ª Classe.
+
+[Preditoras Não Significativas]{.underline}
+
+Os termos `irco`, `classe2`, e `classe2:sexomasc` não são estatisticamente significativos, pois seus IC~95%~ incluem o valor 1.0. A diferença de chance de sobrevivência entre a 1ª Classe e a 2ª Classe (para mulheres) e a interação `classe2:sexomasc` não são estatisticamente significativas.
+
+O modelo `mod4` é estatisticamente robusto, parcimonioso e possui uma Qualidade do Ajuste aceitável, **representando um bom modelo** . portanto, melhor modelo é aquele que inclui:
+
+-   `classe`,
+-   `idade`,
+-   `sexo`,
+-   `irco` e
+-   a interação entre `classe` e `sexo`.
+
+#### Tabela tab_model()
+
+Também é possível comparar facilmente os modelos, usando o AIC com a função `tab_model()`, disponível no pacote `sjPlot`:
+
+```{r}
+#| label: tbl-tabmodel
+#| tbl-cap: "Comparação entre o modelo sem interação e o Modelo com interação"
+#| echo: false
+#| message: false
+#| warning: false
+
+sjPlot::tab_model(mod2, mod4,
+  dv.labels = c("Modelo sem interação", "Modelo com interação"),
+  show.ci = FALSE,
+  show.aic = TRUE,
+  show.r2 = TRUE,
+  p.style = "stars")           
+```
+
+A @tbl-tabmodel mostra a compação dos `mod2` (modelo sem interação) e `mod4` (modelo com interação). Observa-se que o AIC no modelo com interação é bem menor, indicando que interação melhorou o ajuste.
+
+O $R^2$ Tjur (também chamado de coeficiente de discriminação) é um dos chamados pseudo-$R^2$ usados em regressão logística. Ele mede o quanto o modelo consegue distinguir entre os grupos da variável resposta binária (por exemplo, quem sobreviveu vs. quem não sobreviveu). Proposto por Tjur [@tjur2009coefficients], é uma alternativa simples e intuitiva aos pseudo-$R^2$ de Cox & Snell, Nagelkerke ou McFadden [@franca2023pseudor]. A definição matemática é a diferença entre a média das probabilidades previstas para os casos com resposta = 1 (positivos), e a média das probabilidades previstas para os casos com resposta = 0 (negativos).
+
+$$
+\mathrm{R}_{Tjur}^{2} =\overline{p}_{y=1}-\overline{p}_{y=0}
+$$
+
+```{r}
+# Probabilidades previstas
+prob <- predict(mod4, type = "response")
+
+# Médias condicionais
+mean_p_y1 <- mean(prob[treino$sobreviveu == 1], na.rm = TRUE)
+mean_p_y0 <- mean(prob[treino$sobreviveu == 0], na.rm = TRUE)
+
+print(c(mean_p_y1, mean_p_y0))
+
+# R² Tjur
+R2_Tjur <- mean_p_y1 - mean_p_y0
+
+R2_Tjur
+```
+
+O modelo prevê em média 0.69 de probabilidade de sobrevivência para quem realmente sobreviveu e 0.18 para quem não sobreviveu, resultando num $\mathrm{R}_{Tjur}^{2} = 0.51$. Isso significa que o modelo tem uma boa capacidade de discriminar entre sobreviventes e não sobreviventes.
+
+-   Se o modelo não tem poder discriminativo, as médias das probabilidades previstas para os dois grupos serão muito próximas → $\mathrm{R}_{Tjur}^{2}$ ≈ 0.
+
+-   Se o modelo separa bem os grupos, a média das probabilidades para os positivos será alta e para os negativos será baixa → $\mathrm{R}_{Tjur}^{2}$ próximo de 1.
+
+-   Valores típicos em regressão logística raramente chegam perto de 1; um $\mathrm{R}_{Tjur}^{2}$ de 0.3–0.5 já indica um modelo com boa capacidade discriminativa.
+
+Pode-se calcular o $\mathrm{R}_{Tjur}^{2}$, usando a função `r2_tjur()` do pacote `performance` [@easystats2025R2Tjur].
+
+```{r}
+#| message: false
+#| warning: false
+library(performance)
+r2_tjur(mod4)
+```
+
+Isto significa, como dito, uma boa capacidade de dicriminação. Entretanto, não confundir com o $R^2$ da regressão linear, pois o $\mathrm{R}_{Tjur}^{2}$ mede a capacidade discriminação, ou seja, quão bem o modelo separa os dois grupos da resposta binária. Enquanto o $R^2$ (Coeficiente de determinação), mede a proporção da variância da variável dependente que é explicada pelo modelo.
+
+### Multicolinearidade
+
+A **multicolinearidade** ocorre quando duas ou mais variáveis preditoras estão altamente correlacionadas, o que infla o erro padrão dos coeficientes, tornando-os instáveis. Para verificar a multicolinearidade, pode-se usar o **Fator de Inflação da Variância (VIF)** através da função `check_collinearity()` do pacote `performance`, pois fornece análise mais clara da colinearidade em modelos GLM com interações quando comparada a função `vif()` do pacote `car`.
+
+```{r}
+library(performance)
+check_collinearity(mod4)
+```
+
+Se o VIF \< 5 geralmente é aceitável e o modelo deve ser mantido. Um VIF acima de 10 é uma preocupação significativa e deve ser considerada a remoção de uma das variáveis correlacionadas. Quando o VIF se encontra enter 5 e 10 é uma preocupalçao moderada e a decisão depende do contexto. Pode-se manter o modelo, mas estar ciente da instabilidade potencial.
+
+A interação `classe * sexo` gera redundância matemática com os termos principais, inflando os VIFs. Isso não invalida o modelo, mas indica que os coeficientes podem ser instáveis (mudam a amostra for alterada ou houver inclusão/exclusão de variáveis). O modelo ainda é utilizável, mas os coeficientes devem ser interpretados com cautela, especialmente os de `classe` e da interação `classe:sexo`.
+
+Concluindo e levando em consideração o valor do VIF ajustado:
+
+-   `idade` e `irco` $\to$ seguros, sem colinearidade (VIF ajustado \< 5).\
+-   `classe`, `sexo` e `classe:sexo` $\to$ apresentam colinearidade moderada/alta, mas ainda abaixo do limiar crítico (10).
+
+O modelo continua válido, mas os efeitos principais e de interação devem ser interpretados com cuidado.
+
+::: callout-important
+## Conclusão sobre os modelos
+
+Foram ajustados dois modelos de regressão logística: um modelo simples, contendo apenas os efeitos principais, e um modelo com interação entre as variáveis classe e sexo. O modelo com interação apresentou melhor ajuste (menor AIC e deviance), além de indicar que o efeito do sexo depende da classe, especialmente na terceira classe, onde os homens tiveram probabilidade significativamente menor de sobrevivência. Contudo, a inclusão da interação elevou os valores de VIF, revelando colinearidade moderada a alta entre os termos principais e o termo de interação. Essa situação pode comprometer a estabilidade dos coeficientes e dificultar a interpretação direta dos efeitos. Por esse motivo, optou-se por apresentar ambos os modelos: o **modelo simples**, mais parcimonioso e estável, para interpretação dos efeitos principais; e o **modelo com interação**, para evidenciar a dependência entre as variáveis e o ganho em capacidade explicativa, ainda que com maior complexidade.
+
+O modelo com interação entre `classe` e `sexo` apresentou melhor ajuste estatístico, mas elevou os índices de colinearidade, indicando menor estabilidade dos coeficientes. Já o modelo simples mostrou-se mais parcimonioso e estável. Assim, ambos foram considerados: o modelo sem interação para interpretação dos efeitos principais e o modelo com interação para evidenciar dependências entre variáveis.
+:::
+
+## Avaliação preditiva com os dados de teste
+
+### Qualidade do modelo
+
+Normalmente, o objetivo da construção de um modelo é ser capaz de prever, com a maior acurácia possível, a variável resposta para novos dados. Uma boa maneira de avaliar a acurácia de um modelo é monitorar seu desempenho em novos dados (`teste`) e contar com que frequência ele prevê o resultado correto.
+
+Suponha que, se a probabilidade de o paciente sobreviver for inferior a 50%, será considerado que o resultado previsto é **não sobrevivência**; caso contrário, o resultado previsto é sucesso, o paciente **sobreviveu**.
+
+Inicialmente, constroi-se uma tabela de contingência comparando o desempenho do modelo, usando os dados observados nos dados `teste`:
+
+```{r}
+# Criar um vetor de probabilidades previstas no dataframe teste
+prob_mod2 <- predict(mod2, newdata = teste, type = "response")
+prob_mod4 <- predict(mod4, newdata = teste, type = "response")
+
+# Classificação binária (ponto de corte 0.5) ----
+pred_mod2 <- ifelse(prob_mod2 >= 0.5, 1, 0)
+pred_mod4 <- ifelse(prob_mod4 >= 0.5, 1, 0)
+
+# Transformar as predições em fatores e colocar rótulos
+pred_mod2  <- factor(pred_mod2,
+                     levels = c(0, 1))
+pred_mod4  <- factor(pred_mod4,
+                     levels = c(0, 1))
+
+# Comparar o resultado observado com o resultado previsto
+tab2 <- table(observado = teste$sobreviveu,
+              previsto  = pred_mod2)
+tab4 <- table(observado = teste$sobreviveu,
+              previsto  = pred_mod4)
+
+# Mostrar resultados
+tab2
+tab4
+```
+
+A partir da tabela de contingência (tab2) dos resultados previstos e observados, verifica-se que o modelo 2:
+
+-   previu corretamente que 228 passageiros que não sobreviveram.\
+-   previu incorretamente 31 passageiros que não sobreviveram.\
+-   previu incorretamente que 17 passageiros que sobreviveram, e\
+-   previu corretamente 110 passageiros que sobreviveram.
+
+A partir da tabela de contingência (tab4) dos resultados previstos e observados, verifica-se que o modelo 4:
+
+-   previu corretamente que 233 passageiros que não sobreviveram.\
+-   previu incorretamente 34 passageiros que não sobreviveram.\
+-   previu incorretamente que 17 passageiros que sobreviveram, e\
+-   previu corretamente 107 passageiros que sobreviveram.
+
+A porcentagem de previsões corretas, também chamada de **acurácia**, é a soma das previsões corretas (verdadeiros positivos + verdadeiros negativos) dividida pelo número total de previsões:
+
+$$
+acurácia = \frac{VP + VN}{VP + VN + FP + FN}
+$$
+
+Usando a tabela de contingência `tab2`:
+
+```{r}
+acuracia2 <- sum(diag(tab2)) / sum(tab2)
+acuracia2
+```
+
+O modelo tem uma alta acurácia (86%), isso indica um bom desempenho geral. Um modelo é considerado razoavelmente bom se a acurácia do modelo for superior a 70%.
+
+Usando a tabela de contingência `tab4`:
+
+```{r}
+acuracia4 <- sum(diag(tab4)) / sum(tab4)
+acuracia4
+```
+
+O modelo tem uma alta acurácia (87%), isso indica um bom desempenho geral.
+
+Ambos modelos apresentam uma boa acurácia!
+
+Embora a acurácia seja a maneira mais intuitiva e fácil de medir o desempenho preditivo de um modelo, ela apresenta algumas desvantagens, principalmente porque há necessidade de escolher um limiar arbitrário (aqui foi escolhido 50%) a partir do qual uma nova observação é classificada como 1 ou 0. Poderia ser escolhido outro limite e os resultados seriam diferentes!
+
+Usando uma matriz de confusão, através da função `confusionMatrix()` do pacote `caret` pode-se calcular a acurácia e outras métricas de avaliação da qualidade (validade) do modelo :
+
+```{r}
+#| message: false
+#| warning: false
 library(caret)
-conf_matrix <- confusionMatrix(pred_class, 
-                               dadosTeste$sobreviveu, 
-                               positive ="1")
-print(conf_matrix)
+conf_matrix2 <- confusionMatrix(pred_mod2, teste$sobreviveu,
+                positive = "1")
+print(conf_matrix2)
+
+conf_matrix4 <- confusionMatrix(pred_mod4, teste$sobreviveu,
+                positive = "1")
+print(conf_matrix4)
 ```
 
-A tabela de contingência do início da matriz de confusão, mostra a comparação dos dados preditos e os dados reais (reference) e o significado de cada célula, onde *Classe 0* representa negativo e *Classe 1*, positivo.
+A **Sensibilidade (Recall)** é a proporção de verdadeiros positivos (VP) identificados corretamente. . É obtida pela fórmula:
 
-A **Acurácia** (`r round(conf_matrix$overall[1],3)*100`%) é a proporção de previsões corretas. O modelo tem uma alta acurácia, isso indica um bom desempenho geral. Um modelo é considerado razoavelmente bom se a precisão do modelo for superior a 70%.\
-A **Sensibilidade (Recall)** é a proporção de verdadeiros positivos (VP) identificados corretamente. O modelo o modelo identifica corretamete `r round(conf_matrix$byClass[1], 3)*100`% dos verdadeiros positivos.\
-A **Especificidade** é a proporção de verdadeiros negativos(VN). O modelo reconhece `r round(conf_matrix$byClass[2], 3)*100`% dos verdadeiros negativos.\
-O **Valor P** (*McNemar’s Test*) testa se há viés significativo na classificação dos erros. O valor alto (*P* = `r round(conf_matrix$overall[7], 3)`) sugere que os erros entre classes não são estatisticamente diferentes.\
-O **Kappa** mede concordância ajustada para a distribuição dos dados. Um valor próximo de 1 indica boa concordância entre previsões e valores reais.\
+$$
+sensibilidade = \frac{VP}{VP + FN}
+$$
+
+O `mod2` identifica corretamete 70,2% e o `mod4` 75,9% dos verdadeiros positivos. Isto significa que apresentam 29,8% e 24,1% de falsos negativos. São valores que dependendo do contexto podem exigir atenção, principalmente na área da saúde. Entre os modelos, o mod4 gera menos falsos negativos, houve um pequeno avanço. A análise deve ser feita em conjunto com outras métricas.
+
+A **Especificidade** é a proporção de verdadeiros negativos(VN). A fórmula para calcular a especificidade é:
+
+$$
+especificidade = \frac{VN}{FP + VN}
+$$
+
+O `mod2` reconhece 91.2% dos verdadeiros negativos e o mod4, 93,2%. Ambos tem uma baixa taxa de falos positivos.
+
+O **Valor P do Teste de McNemar** testa se há viés significativo na classificação dos erros. O valor alto (*p* = 0.2718), no `mod2` sugere que os erros entre classes não são estatisticamente diferentes. Já no `mod4`, o valor *p* \< 0.05, indica que ele não é neutro nos erros, não erra de forma aleatória, mas sim enviesada. Isso pode ser problemático quando os falsos negativos forem graves (por ex.: área da saúde) e aí o modelo pode ser inadequado. Isso não invalida o `mod4`, mas mostra que ele precisa ser avaliado com cuidado quanto ao tipo de erro que gera. Avaliar outras métricas junto (sensibilidade, especificidade, AUC).
+
+O **Kappa** mede concordância ajustada para a distribuição dos dados. Um valor próximo de 1 indica boa concordância entre previsões e valores reais.
+
 O **escore F1** (não listado diretamente) representa o equilíbrio entre precisão e recall. Pode ser obtido pela equação:
 
 $$
-F1 = 2 \times \frac{VPN \times sensibilidade}{VPN + sensibilidade}
-$$\
-Ou consultando `conf_matrix$byClass[7]` (`r round(conf_matrix$byClass[7], 3)*100`%).
+F_{1} = 2 \times \frac{VPP \times sensibilidade}{VPP + sensibilidade} 
+$$
 
-A **Precisão (VPP)** é a proporção de previsões positivas que estavam corretas, também denomonada de valor preditivo positivo (VPP). A precisão do modelo é igual `r round(conf_matrix$byClass[5], 3)*100`, é considerada um valor alto.
-
-#### Uso da curva ROC para avaliar o modelo
-
-Avaliar um modelo de Regressão Logística no R, usando a curva ROC/AUC também é bem direto (veja @sec-compararoc e @sec-rocurve). É uma abordagem bastante poderosa que permite visualizar os grupos no mesmo gráfico.
-
-[Obtenção das probabilidades de predição]{.underline}
-
-Para se obter uma curva ROC, há necessidade das probabilidades previstas pelo modelo para a classe positiva (no exemplo, o nível 1 da variável `sobreviveu`).
+Ou consultando:
 
 ```{r}
-# Probabilidades de predição no conjunto de teste
-# O argumento 'type = "response"' garante que serão obtidas as probabilidades
-prob_pred_teste <- predict(modelo3, newdata = dadosTeste, type = "response")
+conf_matrix2$byClass[7]
 
-# Probabilidades de predição no conjunto de treino
-prob_pred_treino <- predict(modelo3,type = "response")
+conf_matrix4$byClass[7]
 ```
 
-[Criação de objetos ROC]{.underline}
+Ambos os modelos têm $F_{1}\approx 0.81$, o que indica bom equilíbrio entre sensibilidade e precisão. A diferença entre eles é mínima (0.0017), mostrando que em termos de qualidade preditiva global, os dois modelos são praticamente equivalentes.
 
-A seguir, serão criados os objetos ROC necessários para a construção das curvas ROC e calcular a área sob a curva (AUC):
+A **Precisão** é a proporção de previsões positivas que estavam corretas, também denominada de **valor preditivo positivo** (VPP). A precisão do `mod2` é igual 83.3% e do mod4 86.3%, ambas são consideradas valores altos.
 
-```{r message=FALSE, warning=FALSE}
-roc_obj_treino <- roc(response = dadosTreino$sobreviveu, predictor = prob_pred_treino) 
-roc_obj_teste <- roc(response = dadosTeste$sobreviveu, predictor = prob_pred_teste) 
+### AUC e curva ROC
 
-auc_valor_treino <- auc(roc_obj_treino)
-auc_valor_teste <- auc(roc_obj_teste)
-```
+Outra forma comum de avaliar a qualidade de um modelo é calcular a **AUC** (Área Sob a Curva) e traçar a **curva ROC** (Característica de Operação do Receptor). A curva ROC mostra a relação entre **sensibilidade(recall)** e **1 - especificidade (FP)** para diferentes limiares de classificação. A AUC resume a curva ROC em um único número (quanto mais próximo de 1, melhor o modelo). A curva ROC/AUC pode ser calculada com os dados treino, mas tende a ser otimista, já que o modelo foi ajustado nesses dados. O ideal é usar os dados teste (ou de validação), porque mede o desempenho em dados não vistos, refletindo a capacidade de generalização do modelo.
 
-[Visualização da curva ROC]{.underline}
-
-Com as informações obtidas, pode-se visualizar a curva ROC. Para criar um gráfico mais atraente, será usado, agora, o pacote `ggplot2`.\
-inicialmente, serão criados dataframes com os dados para serem usados na função `ggplot()`:
+Isso pode ser facilmente alcançado graças à função `roc()` e `ggroc()` do pacote `pROC` associado ao `ggplot2`:
 
 ```{r}
-# Uma coluna chamada Model é adicionada para identificar qual curva pertence a qual modelo
-
-# # Dataframe dos dados treino
-dados_roc_treino <- data.frame(
-  TFP = 1 - roc_obj_treino$specificities,
-  TVP = roc_obj_treino$sensitivities,
-  Model = "Treino")
-
-# Dataframe dos dados teste
-dados_roc_teste <- data.frame(
-  TFP = 1 - roc_obj_teste$specificities,
-  TVP = roc_obj_teste$sensitivities,
-  Model = "Teste")
-
-dados_roc_combinados <- rbind(dados_roc_treino, dados_roc_teste)
-```
-
-Usando estes dois dataframes, obtemos a @fig-compareroc
-
-```{r}
-#| label: fig-compareroc
-#| echo: true
-#| fig.align: "center"
-#| out.width: "60%"
-#| out.height: "60%"
-#| message: false
 #| warning: false
-#| fig-cap: "Desempenho do modelo treino e do modelo teste"
+#| message: false
+#| echo: true
+#| out.width: "70%"
+#| label: fig-auc2-4
+#| fig.align: 'center'
+#| fig-cap: "Comparação do modelo simples com o modelo com interação"
 
-ggplot(dados_roc_combinados, 
-       aes(x = TFP, y = TVP, color = Model)) +
-  geom_line(size = 1.2) +
-  geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "navy", size = 0.5) +
-  labs(title = "Comparação de Curvas ROC",
-       x = "Taxa de Falsos Positivos (TFP)",
-       y = "Taxa de Verdadeiros Positivos (TVP)",
-       color = "Dados") + # Legenda para as cores
-  annotate("text", x = 0.6, y = 0.2, label = paste("AUC Teste =", round(auc_valor_teste, 2)),
-           color = "tomato", size = 4) +
-  annotate("text", x = 0.6, y = 0.1, label = paste("AUC Treino =", round(auc_valor_treino, 2)),
-           color = "steelblue", size = 4) +
-  scale_color_manual(values = c("Teste" = "tomato",
-                                "Treino" = "steelblue")) +
-  theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5))
+library(pROC)
+library(ggplot2)
+
+# Gerar objetos ROC
+roc_mod2 <- roc(teste$sobreviveu, prob_mod2)
+roc_mod4 <- roc(teste$sobreviveu, prob_mod4)
+
+# Calcular AUCs
+auc_mod2 <- auc(roc_mod2)
+auc_mod4 <- auc(roc_mod4)
+
+# Lista para ggroc
+roc_list <- list("Modelo simples" = roc_mod2,
+                 "Modelo interação" = roc_mod4)
+
+# Plot com ggplot2
+ggroc(roc_list, legacy.axes = TRUE) +
+  labs(title = "Curvas ROC",
+       x = "1 - Especificidade (Taxa de Falsos Positivos)",
+       y = "Sensibilidade (Taxa de Verdadeiros Positivos)") +
+  scale_color_manual(values = c("blue", "red")) +
+  theme_minimal() +
+  theme(legend.title = element_blank()) +
+  annotate("text", x = 0.6, y = 0.2,
+           label = paste0("AUC simples: ", round(auc_mod2, 3)),
+           color = "blue", size = 4) +
+  annotate("text", x = 0.6, y = 0.1,
+           label = paste0("AUC interação: ", round(auc_mod4, 3)),
+           color = "red", size = 4) +
+  theme(legend.position = "none")
 ```
 
-A **Curva ROC** mostra o quão bem seu modelo distingue entre as classes positiva e negativa em diferentes limites de classificação. Uma curva que se aproxima do canto superior esquerdo indica um modelo com bom poder de discriminação.
+A AUC (Área sob a Curva ROC) indica a qualidade do modelo (veja também a Seção 21.6):
 
-A **AUC (Area Under the Curve)** é um resumo numérico desse desempenho. Um valor de AUC de 1 significa um modelo perfeito, enquanto 0.5 indica um modelo que se comporta aleatoriamente (como jogar uma moeda para classificar). Quanto maior a AUC, melhor o desempenho geral do seu modelo em separar as classes. Em geral, uma AUC acima de 0.7 é considerada razoável, acima de 0.8 é boa e acima de 0.9 é excelente.
+-   $AUC \approx 0.5$: O modelo não tem poder preditivo (equivalente ao puro acaso).
+-   $AUC > 0.7$: Modelo razoável.
+-   $AUC > 0.8$: Modelo muito bom.
+-   $AUC > 0.9$: Excelebte desempenho
 
-A AUC Teste = `r round(auc_valor_teste, 2)` é considerada **excelente**. Isso significa que o modelo tem uma capacidade muito alta de distinguir entre as classes positiva e negativa no conjunto de dados não visto (teste). Uma AUC Treino = `r round(auc_valor_treino, 2)` também é um desempenho muito forte. A diferença entre as duas é mínima (`r round((auc_valor_teste - auc_valor_treino), 2)`). Isso é um sinal extremamente positivo. Significa que o modelo não está sofrendo de:
+Usando as métricas de validade, a curva ROC e a AUC, conclui-se que:
 
--   **Overfitting** (sobreajuste): Se houvesse *overfitting*, a AUC de treino seria significativamente mais alta que a AUC de teste, indicando que o modelo "memorizou" os dados de treino e não generaliza bem para dados novos.\
--   **Underfitting** (subajuste): Se houvesse *underfitting*, ambas as AUCs seriam baixas, indicando que o modelo não aprendeu os padrões nos dados.
+Após a avaliação dos modelos ajustados, observou-se que o modelo com interação entre classe e sexo (`mod4`) apresentou melhor ajuste estatístico, com menor AIC e deviance, além de capturar nuances importantes entre as variáveis. No entanto, esse modelo também apresentou colinearidade moderada e padrão de erro enviesado, conforme indicado pelo teste de McNemar (*p* < 0,05), o que pode comprometer a estabilidade dos coeficientes e a neutralidade preditiva. Por outro lado, o modelo simples (*mod2*) demonstrou desempenho preditivo praticamente equivalente, com AUC ligeiramente superior (0,919 vs. 0,918), menor colinearidade e maior robustez interpretativa. Diante disso, optou-se por priorizar o modelo simples para fins de interpretação e comunicação dos resultados, mantendo o modelo com interação como referência complementar para análise de padrões específicos
 
-Concluindo o modelo de regressão logística apresentou um excelente desempenho e está generalizando muito bem para novos dados. A performance consistente entre treino e teste é um indicativo de um modelo robusto e confiável para a tarefa de classificação.
-
-#### Outras avaliações do modelo {#sec-vif}
-
-[Linearidade e Colinearidade]{.underline}
-
-Esta suposição pode ser testada de diversas maneiras. O pacote `performance` (moderno e abrangente), usando a função `check_model()` faz várias verificações que inclui a linearidade de forma visual (@fig-linearidade) e @fig-linearidade2), para preditores contínuos através de resíduos parciais. Serão avaliados os dois modelos (`modelo2` e `modelo3`)
-
-```{r  message=FALSE, warning=FALSE, echo=TRUE, eval=FALSE}
-
-plot(check_model(modelo2, residual_type = "normal"))
-```
+### Comparar duas curvas ROC (treino vs teste)
 
 ```{r}
-#| label: fig-linearidade
+#| warning: false
+#| message: false
+#| echo: true
+#| out.width: "70%"
+#| label: fig-treino_teste
+#| fig.align: 'center'
+#| fig-cap: "Comparação do modelo simples com o modelo com interação"
+
+library(pROC)
+library(ggplot2)
+
+# Probabilidades previstas no treino e teste
+prob_treino <- predict(mod4, newdata = treino, type = "response")
+prob_teste  <- predict(mod4, newdata = teste, type = "response")
+
+# Curvas ROC
+roc_treino <- roc(treino$sobreviveu, prob_treino)
+roc_teste  <- roc(teste$sobreviveu, prob_teste)
+
+# AUC e IC95% para treino
+auc_treino <- auc(roc_treino)
+ci_treino  <- ci.auc(roc_treino)
+
+# AUC e IC95% para teste
+auc_teste <- auc(roc_teste)
+ci_teste  <- ci.auc(roc_teste)
+
+# Criar textos para anotação
+texto_treino <- paste0("Treino: AUC = ", round(auc_treino, 3),
+                       " (IC95%: ", round(ci_treino[1], 3), "-",
+                       round(ci_treino[3], 3), ")")
+
+texto_teste <- paste0("Teste: AUC = ", round(auc_teste, 3),
+                      " (IC95%: ", round(ci_teste[1], 3), "-",
+                      round(ci_teste[3], 3), ")")
+
+# Plotar ambas curvas ROC com ggroc
+ggroc(list(Treino = roc_treino, Teste = roc_teste), aes = c("color")) +
+  theme_minimal() +
+  labs(title = "Curvas ROC - Treino vs Teste",
+       y = "Sensibilidade",
+       x = "1 - Especificidade") +
+  scale_color_manual(values = c("blue", "red")) +
+  annotate("text", x = 0.6, y = 0.2, label = texto_treino,
+           hjust = 0, size = 4, color = "blue") +
+  annotate("text", x = 0.6, y = 0.1, label = texto_teste,
+           hjust = 0, size = 4, color = "red") +
+  theme(legend.position = "none")
+```
+
+Além de observar visualmente, pode-se realizar um teste estatístico (Teste de Delong) para verificar se a diferença entre as AUCs das curvas tem significância estatística:
+
+```{r}
+#| warning: false
+#| message: false
+
+library(pROC)
+
+# Probabilidades previstas no treino e teste
+prob_treino <- predict(mod4, newdata = treino, type = "response")
+prob_teste  <- predict(mod4, newdata = teste, type = "response")
+
+# Curvas ROC
+roc_treino <- roc(treino$sobreviveu, prob_treino)
+roc_teste  <- roc(teste$sobreviveu, prob_teste)
+
+# Comparação estatística com teste de DeLong
+teste_delong <- roc.test(roc_treino, roc_teste, method = "delong")
+
+# Resultado
+teste_delong
+```
+
+A saída do teste retorna um valor *p* = 0.1421 (< 0.05) indicando que a diferença entre os AUCs é estatisticamente não significativa. Os modelo apresentam AUCs semelhantes em ambos dados.
+
+## Relato dos resultados
+
+> Para avaliar a capacidade de generalização do modelo, foram comparadas as curvas ROC obtidas nos conjuntos de treino e teste. O modelo apresentou AUC de 0,888 no treino (IC95%: 0,864–0,913) e AUC de 0,918 no teste (IC95%: 0,887–0,949), indicando desempenho superior nos dados não vistos. A sobreposição dos intervalos de confiança sugere que a diferença pode não ser estatisticamente significativa, mas reforça a robustez do modelo. O Teste de Delong confirma que a diferença não é estatisticamente significativa (*p* = 0.1421), A curva ROC do teste posicionou-se mais próxima do canto superior esquerdo, evidenciando maior capacidade discriminativa e ausência de sobreajuste (*overfitting*). Esses resultados demonstram que o modelo é confiável e apresenta boa performance preditiva fora da amostra de treinamento.
+
+Pode-se também relatar os resultados de uma regressão logística binária usando uma tabela (@tbl-finalreg) gerada, por exemplo, pela função `tbl_regression()` do pacote `gtsummary` @sec-gtsummary.
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: true
+#| label: tbl-finalreg
+#| fig.align: 'center'
+#| tbl-cap: "Resultados da Regressão Logística Binária - modelo com interação"
+
+library(gtsummary)
+library(purrr)  # para partial, opcional
+
+tbl_regression(
+  mod4,
+  exponentiate = TRUE,
+  label = list(
+    classe ~ "Classe",
+    sexo   ~ "Sexo",
+    idade  ~ "Idade",
+    `classe:sexo` ~ "Interação Classe × Sexo"),
+  estimate_fun = partial(style_sigfig, digits = 3)) %>%
+  modify_header(
+    label ~ "**Variável**",
+    p.value ~ "**Valor p**") 
+```
+
+## Exercícios
+
+::: callout-note
+## Exercício 1
+
+Para fins ilustrativos, suponha-se agora que se deseja prever a probabilidade de um "novo" passageiro sobreviver. Esse passageiro seja uma mulher de 35 anos, que comprou bilhete de viagem na terceira classe e viaja com o marido.
+
+[Solução]{.underline}
+
+```{r}
+# Criar um novo dataframe para o novo passageiro
+novo_passageiro1 <- data.frame(
+  idade = 35,
+  sexo = factor("fem", levels = levels(teste$sexo)),
+  classe = factor(3, levels = levels(teste$classe)),
+  irco = 1)
+
+# Predição com erro padrão no modelo simples
+pred_mod2 <- predict(mod2, newdata = novo_passageiro1, type = "link", se.fit = TRUE)
+
+# Intervalo de confiança no espaço do logit
+ic_logit_mod2 <- c(
+  pred_mod2$fit - 1.96 * pred_mod2$se.fit,
+  pred_mod2$fit + 1.96 * pred_mod2$se.fit)
+
+# Transformar para probabilidade
+ic_prob_mod2 <- plogis(ic_logit_mod2)
+pred_prob_mod2 <- plogis(pred_mod2$fit)
+
+# Predição com erro padrão no modelo com interação
+pred_mod4 <- predict(mod4, newdata = novo_passageiro1, type = "link", se.fit = TRUE)
+
+ic_logit_mod4 <- c(
+  pred_mod4$fit - 1.96 * pred_mod4$se.fit,
+  pred_mod4$fit + 1.96 * pred_mod4$se.fit)
+
+ic_prob_mod4 <- plogis(ic_logit_mod4)
+pred_prob_mod4 <- plogis(pred_mod4$fit)
+
+# Mostrar resultados, usando a função cat() e sprintf()
+# Modelo simples (mod2)
+cat(sprintf("Modelo simples (mod2): %.3f IC95%%: %.3f %.3f\n", 
+            pred_prob_mod2, ic_prob_mod2[1], ic_prob_mod2[2]))
+
+# Modelo com interação (mod4)
+cat(sprintf("Modelo com interação (mod4): %.3f IC95%%: %.3f %.3f\n", 
+            pred_prob_mod4, ic_prob_mod4[1], ic_prob_mod4[2]))
+```
+:::
+
+::: callout-note
+## Exercício 2
+
+Calcular a probabilidade de sobreviver do esposo dessa passageira. Ele tem 40 anos.
+
+[Solução]{.underline}
+
+```{r}
+# Criar um novo dataframe para o novo passageiro
+novo_passageiro2 <- data.frame(
+  idade = 40,
+  sexo = factor("masc", levels = levels(teste$sexo)),
+  classe = factor(3, levels = levels(teste$classe)),
+  irco = 1)
+
+# Predição com erro padrão no modelo simples
+pred_mod2 <- predict(mod2, newdata = novo_passageiro2, type = "link", se.fit = TRUE)
+
+# Intervalo de confiança no espaço do logit
+ic_logit_mod2 <- c(
+  pred_mod2$fit - 1.96 * pred_mod2$se.fit,
+  pred_mod2$fit + 1.96 * pred_mod2$se.fit)
+
+# Transformar para probabilidade
+ic_prob_mod2 <- plogis(ic_logit_mod2)
+pred_prob_mod2 <- plogis(pred_mod2$fit)
+
+# Predição com erro padrão no modelo com interação
+pred_mod4 <- predict(mod4, newdata = novo_passageiro2, type = "link", se.fit = TRUE)
+
+ic_logit_mod4 <- c(
+  pred_mod4$fit - 1.96 * pred_mod4$se.fit,
+  pred_mod4$fit + 1.96 * pred_mod4$se.fit)
+
+ic_prob_mod4 <- plogis(ic_logit_mod4)
+pred_prob_mod4 <- plogis(pred_mod4$fit)
+
+# Mostrar resultados, usando a função cat() e sprintf()
+# Modelo simples (mod2)
+cat(sprintf("Modelo simples (mod2): %.3f IC95%%: %.3f %.3f\n", 
+            pred_prob_mod2, ic_prob_mod2[1], ic_prob_mod2[2]))
+
+# Modelo com interação (mod4)
+cat(sprintf("Modelo com interação (mod4): %.3f IC95%%: %.3f %.3f\n", 
+            pred_prob_mod4, ic_prob_mod4[1], ic_prob_mod4[2]))
+```
+:::
+
+::: callout-note
+## Exercício 3
+
+Suponha-se que se deseja prever a probabilidade de um "novo" passageiro sobreviver. Esse passageiro é uma mulher de 35 anos, que comprou bilhete de viagem na primeira classe e viaja com o marido
+
+[Solução]{.underline}
+
+```{r}
+# Criar um novo dataframe para o novo passageiro
+novo_passageiro3 <- data.frame(
+  idade = 35,
+  sexo = factor("fem", levels = levels(teste$sexo)),
+  classe = factor(1, levels = levels(teste$classe)),
+  irco = 1)
+
+# Predição com erro padrão no modelo simples
+pred_mod2 <- predict(mod2, newdata = novo_passageiro3, type = "link", se.fit = TRUE)
+
+# Intervalo de confiança no espaço do logit
+ic_logit_mod2 <- c(
+  pred_mod2$fit - 1.96 * pred_mod2$se.fit,
+  pred_mod2$fit + 1.96 * pred_mod2$se.fit)
+
+# Transformar para probabilidade
+ic_prob_mod2 <- plogis(ic_logit_mod2)
+pred_prob_mod2 <- plogis(pred_mod2$fit)
+
+# Predição com erro padrão no modelo com interação
+pred_mod4 <- predict(mod4, newdata = novo_passageiro3, type = "link", se.fit = TRUE)
+
+ic_logit_mod4 <- c(
+  pred_mod4$fit - 1.96 * pred_mod4$se.fit,
+  pred_mod4$fit + 1.96 * pred_mod4$se.fit)
+
+ic_prob_mod4 <- plogis(ic_logit_mod4)
+pred_prob_mod4 <- plogis(pred_mod4$fit)
+
+# Mostrar resultados, usando a função cat() e sprintf()
+# Modelo simples (mod2)
+cat(sprintf("Modelo simples (mod2): %.3f IC95%%: %.3f %.3f\n", 
+            pred_prob_mod2, ic_prob_mod2[1], ic_prob_mod2[2]))
+
+# Modelo com interação (mod4)
+cat(sprintf("Modelo com interação (mod4): %.3f IC95%%: %.3f %.3f\n", 
+            pred_prob_mod4, ic_prob_mod4[1], ic_prob_mod4[2]))
+```
+:::
+
+::: callout-note
+## Exercício 4
+
+Quala a probabilidade de sobreviver do esposo, 40 anos, da mulher do esxercício 3?
+
+[Solução]{.underline}
+
+```{r}
+# Criar um novo dataframe para o novo passageiro
+novo_passageiro4 <- data.frame(
+  idade = 40,
+  sexo = factor("masc", levels = levels(teste$sexo)),
+  classe = factor(1, levels = levels(teste$classe)),
+  irco = 1)
+
+# Predição com erro padrão no modelo simples
+pred_mod2 <- predict(mod2, newdata = novo_passageiro4, type = "link", se.fit = TRUE)
+
+# Intervalo de confiança no espaço do logit
+ic_logit_mod2 <- c(
+  pred_mod2$fit - 1.96 * pred_mod2$se.fit,
+  pred_mod2$fit + 1.96 * pred_mod2$se.fit)
+
+# Transformar para probabilidade
+ic_prob_mod2 <- plogis(ic_logit_mod2)
+pred_prob_mod2 <- plogis(pred_mod2$fit)
+
+# Predição com erro padrão no modelo com interação
+pred_mod4 <- predict(mod4, newdata = novo_passageiro4, type = "link", se.fit = TRUE)
+
+ic_logit_mod4 <- c(
+  pred_mod4$fit - 1.96 * pred_mod4$se.fit,
+  pred_mod4$fit + 1.96 * pred_mod4$se.fit)
+
+ic_prob_mod4 <- plogis(ic_logit_mod4)
+pred_prob_mod4 <- plogis(pred_mod4$fit)
+
+# Mostrar resultados, usando a função cat() e sprintf()
+# Modelo simples (mod2)
+cat(sprintf("Modelo simples (mod2): %.3f IC95%%: %.3f %.3f\n", 
+            pred_prob_mod2, ic_prob_mod2[1], ic_prob_mod2[2]))
+
+# Modelo com interação (mod4)
+cat(sprintf("Modelo com interação (mod4): %.3f IC95%%: %.3f %.3f\n", 
+            pred_prob_mod4, ic_prob_mod4[1], ic_prob_mod4[2]))
+```
+:::
+
+::: callout-note
+## Comentário sobre os exercícios
+
+Foi verificado que os modelos são estatisticamente válidos. Isso dá segurança para confiar nas estimativas geradas. Mesmo que os modelos `mod2` (simples) e `mod4` (com interação) tenham dado estimativas diferentes de sobrevivência, isso não quer dizer que essas diferenças sejam realmente significativas. Quando se observa os intervalos de confiança de 95% na @tbl-tabmodelos, ve-se que eles se sobrepõem em todos os casos. Isso quer dizer que, apesar de um modelo prever uma chance um pouco maior ou menor, essa diferença está dentro da margem de erro — ou seja, pode ter acontecido só por variação natural dos dados. O modelo com interação até se saiu melhor no teste geral (aquele que compara o desempenho dos dois), mas quando se olha para cada passageiro individual, não dá pra afirmar com segurança que um modelo está “mais certo” que o outro. Por isso, é importante considerar não só o número da previsão, mas também o intervalo de confiança que vem junto com ela
+
+```{r}
+#| label: tbl-tabmodelos
 #| echo: false
-#| fig.align: "center"
-#| out.width: "100%"
 #| message: false
 #| warning: false
-#| fig-cap: "Avaliação do modelo com foco na linearidade"
- knitr::include_graphics("https://imgur.com/t4WqHJA.png")
+#| out.width: "80%"
+#| tbl-cap: "Previsões com os modelos simples e com interação"
+
+library(flextable)
+Exercicio <- c("1", "", "2", "", "3", "", "4", "")
+Idade <-  c(35, 40, 35, 40, 35, 40, 35, 40)
+Sexo <-  c("fem", "masc", "fem", "masc", "fem", "masc", "fem", "masc")
+Classe <- c("3ª", "1ª", "3ª", "1ª", "3ª", "1ª", "3ª", "1ª")
+Nirco <- c(1, 1, 1, 1, 1, 1, 1, 1)
+Modelo <- c("mod2", "mod4", "mod2", "mod4", "mod2", "mod4", "mod2", "mod4")
+Estimativa <- c(0.585, 0.465, 0.037, 0.054, 0.914, 0.980, 0.236, 0.178)
+IC95 <- c("0.494–0.672", "0.365–0.567", "0.023–0.059", "0.034, 0.085", "0.870–0.944", "0.924–0.995", "0.164–0.303", "0.119–0.217")
+
+df <- data.frame(Exercicio, Idade, Sexo, Classe, Nirco, Modelo, Estimativa, IC95)
+
+library(flextable)
+tab <- flextable(df) %>%
+  set_header_labels(
+    Exercicio = "Exercício",
+    Idade = "Idade",
+    Sexo = "Sexo",
+    Classe = "Classe",
+    Nirco = "Nº irmãos/cônjuges",
+    Modelo = "Modelo",
+    Estimativa = "Estimativa",
+    IC95 = "IC95%"
+  ) %>%
+  autofit() %>%
+  theme_booktabs() %>%
+  align(align = "center", part = "all") %>%
+  bold(part = "header")
+
+tab
 ```
+:::
 
-O `modelo3` (com interação sexo:classe) que em outras testagens ele teve um melhor ajuste, será avaliado:
+*It's frightening, but that's roughly what happened. It's the voice of numbers!*
 
-```{r}
-#| echo: true
-#| eval: false
-#| message: false
-#| warning: false
-
-plot(check_model(modelo3, residual_type = "normal"))
-```
-
-```{r}
-#| label: fig-linearidade2
-#| echo: false
-#| fig.align: "center"
-#| out.width: "100%"
-#| message: false
-#| warning: false
-#| fig-cap: "Avaliação do modelo com interação com foco na linearidade"
-knitr::include_graphics("https://i.imgur.com/hH8aPw7.png")
-```
-
-Os gráficos gerados incluem diversas verificações fundamentais que devem ser observadas comparativamente nas @fig-linearidade e @fig-linearidade2.
-
--   **Verificação preditiva posterior** (*Posterior Predictive Check*) – Compara os dados observados com os preditos pelo modelo. Os intervalos do modelo devem incluir os pontos observados. Comparando os dois modelos, os pontos observados os parecem ter um alinhamento dos intervalos preditivos semelhantes.
-
--   **Resíduos agrupados** (*Binned Residuals*) – Avalia se há padrões nos resíduos. Pontos vermelhos indicam desvios que podem sugerir problemas de ajuste. Aqui, o modelo de interação tem uma maior quantidade de pontos fora do intervalo de erro.
-
--   **Observações Influentes** (*Influential Observations*) – Identifica pontos com alta influência no modelo, o que pode indicar necessidade de ajustes ou remoção de *outliers*. Ambos os modelos não parecem ter pontos pontos influentes. A inclusão da interação não impactou muito quais observações têm maior peso sobre o modelo.
-
--   **Colinearidade** – Exibe o VIF (Fator de Inflação da Variância) das variáveis preditoras. Valores altos (acima de 5) podem indicar problemas de multicolinearidade. Na comparação dos dois modelos, este é um ponto importante, pois com a introdução da interação, os VIFs ficaram elevados. Pode significar que as variáveis interagem de forma redundante, prejudicando a interpretação dos coeficientes. O VIF pode ser também obtido para cada variável, usando a função `vif()` do pacote `car`:
-
-```{r}
-vif_valores <- car::vif(modelo2)
-print(vif_valores)
-
-vif_valores2 <- car::vif(modelo3)
-print(vif_valores2)
-```
-
--   **Normalidade dos Resíduos** (*Normality of Residuals*) – Usa um gráfico Q-Q para verificar se os resíduos seguem uma distribuição normal. Desvios sistemáticos podem sinalizar problemas. Ambos, como era de esperar, parecem não ter uma distribuição normal. Entretanto, ao contrário da regressão linear, a regressão logística não assume a normalidade dos resíduos. Os resíduos de um modelo de regressão logística não se distribuem normalmente, pois a variável resposta é binária (0 ou 1) e o modelo prediz probabilidades.
-
-Concluindo, com esses resultados, parece que a interação `sexo:classe` não agregou muito ao modelo. Ela aumentou a colinearidade e fez os resíduos se tornarem menos confiáveis, sem impacto positivo claro nas previsões.
-
-[Razão de Verossimilhança]{.underline}
-
-Em estatística, a verossimilhança (**Likelihood**) de um modelo é uma medida da probabilidade de observar os dados amostrais que temos, dada uma certa configuração dos parâmetros do modelo. Em outras palavras, ela nos diz quão "provável" é que o modelo, com seus coeficientes estimados, tenha gerado os dados que observamos.
-
-No contexto da regressão logística, os parâmetros do modelo (os coeficientes $\beta$) são estimados usando o método de **máxima verossimilhança** (veja também @sec-logisticfunction). Esse método busca encontrar os valores dos coeficientes que maximizam a probabilidade de que os eventos observados (por exemplo, "sucesso" ou "fracasso" da variável dependente) tenham ocorrido.
-
-A **razão de verossimilhança (-2LL)**, ou mais precisamente, **-2 vezes o logaritmo da verossimilhança**, é uma medida de desajuste do modelo. É uma transformação do valor da verossimilhança que é mais conveniente para cálculos e interpretação.
-
-Matematicamente, ela é expressa como:$$-2LL=-2 \times ln(L)$$ Onde:
-
--   L é a verossimilhança do modelo
--   ln é o logaritmo natural
-
-Quanto **menor** o valor de -2LL, **melhor** é o ajuste do modelo aos dados. Isso ocorre porque um modelo com um bom ajuste tem uma verossimilhança (L) maior, e como -2LL envolve o logaritmo negativo da verossimilhança, um L maior resulta em um -2LL menor.
-
-A importância do -2LL reside principalmente em sua utilização para realizar o **Teste da Razão de Verossimilhança (Likelihood Ratio Test)**. Este teste compara a qualidade do ajuste de dois modelos:
-
-1.  **Modelo Nulo (ou Modelo Base)**: Um modelo mais simples, geralmente contendo apenas a constante (intercepto), sem as variáveis preditoras de interesse.
-2.  **Modelo Proposto**: O modelo completo que se está testando, que inclui as variáveis preditoras.
-
-O teste da razão de verossimilhança calcula a diferença entre o -2LL do modelo nulo e o -2LL do modelo proposto:
-
-$$G = (-2LL _{Modelo \ Nulo}) - (-2LL_{Modelo \ Proposto})$$ Essa estatística G segue uma distribuição qui-quadrado ($\chi^2$) com graus de liberdade iguais à diferença no número de parâmetros entre os dois modelos.Um valor G grande e estatisticamente significativo (com um p-valor baixo), indica que o modelo proposto se ajusta significativamente melhor aos dados do que o modelo nulo (sem as variáveis preditoras). Isso sugere que as variáveis independentes no modelo contribuem para explicar a variável dependente.\
-O -2LL do modelo nulo (`Null deviance`) e do modelo proposto (`Residual deviance`) podem ser verificados através de:
-
-```{r}
-modelo2$null.deviance
-modelo2$deviance
-```
-
-O cálculo da estatística G (Teste da Razão de Verossimilhança) pode ser obtido, como visto pela diferença entre deviance do modelo nulo e do modelo ajustado:
-
-```{r}
-estatistica_G <- modelo2$null.deviance - modelo2$deviance 
-print(estatistica_G)
-
-# Graus de liberdade para o teste G
-df_G <- modelo2$df.null - modelo2$df.residual
-print(df_G)
-
-# Teste de significância 
-valor_p <- format(1 - pchisq(estatistica_G, 
-                             df = df_G), 
-                  sientific = TRUE)
-print(valor_p)
-```
-
-O valor *P* é extremamente baixo, isso é interpretado como uma diferença altamente significativa entre os modelos. No contexto de teste de verossimilhança, isso sugere que o modelo mais complexo se ajusta significativamente melhor do que o modelo nulo.
-
-[Estatística $R^2$]{.underline}
-
-**R ao quadrado** é uma métrica útil para a avaliação da regressão linear simples e múltipla, mas não tem o mesmo significado na regressão logística.\
-Os estatísticos criaram análogos do $R^2$ para regressão logística referidas, coletivamente, como **pseudo R ao quadrado**. Este não tem a mesma interpretação, na medida em que não é simplesmente a proporção da variância explicada pelo modelo.\
-Existem muitas maneiras diferentes de calcular um $R^2$ para regressão logística e nenhum consenso sobre qual é a melhor. Os dois métodos mais frequentemente relatados em softwares estatísticos são um proposto por McFadden @mcfadden1974conditional e outro por Cox-Snell @CoxSnell1989analysis. Também é bastante relatado o de Nagelkerke @nagelkerke1991note. Os valores mais altos indicam um melhor ajuste do modelo.
-
-O $R^2$ de McFadden é uma versão, baseada no *log-likelihood* para o modelo somente com o intercepto e o modelo estimado completo. O $R^2$ de Cox e Snell é baseado no l*og-likelihood* para o modelo em comparação com o *log-likelihood* para um modelo basal. No entanto, com resultados categóricos, tem um valor máximo teórico inferior a 1, mesmo para um modelo "perfeito".\
-O $R^2$ de Nagelkerke é uma versão ajustada do $R^2$ de Cox e Snell que ajusta a escala da estatística para cobrir todo o intervalo de 0 a 1.\
-Pode-se obter os vários valores de $R^2$, usando a função `PseudoR2()` do pacote `DescTools`:
-
-```{r message=FALSE, warning=FALSE}
-library(DescTools)
-PseudoR2(modelo2, which =c("Nagelkerke", "McFadden", "CoxSnell"))
-```
-
-Como se verifica, na Saída do código, todos os valores de $R^2$ diferem ligeiramente, mas podem ser usados como medidas de tamanho de efeito para o modelo. Então, basicamente, o pseudo R quadrado pode ser interpretado como $R^2$, mas não se espera que seja tão grande. Uma regra prática, bastante útil é que o pseudo R quadrado de McFadden variando de 0,2 a 0,4 indica um ajuste muito bom do modelo @mcfadden2021quantitative.
-
-[Pesquisa de valores atípicos e pontos de alavancagem]{.underline}
-
-Um *outlier* é uma observação que não é bem prevista pelo modelo de regressão ajustado (ou seja, tem um grande resíduo positivo ou negativo). Uma observação com um alto valor de alavancagem possui uma combinação incomum de valores preditores. Ou seja, é um *outlier* no espaço do preditor.\
-Uma observação influente é uma observação que tem um impacto desproporcional na determinação dos parâmetros do modelo. As observações influentes são identificadas usando uma estatística chamada *distância de Cook* ou *D de Cook*.
-
-A identificação dos *outliers* é feita essencialmente através dos resíduos padronizados @bobbitt2020residuals, com a função `rstandard()`:
-
-```{r}
-residuos_p <- rstandard(modelo2)
-summary(residuos_p)
-```
-
-Em uma amostra normalmente distribuída, ao redor de 95% dos valores estão entre –1,96 e +1,96, 99% deve estar entre –2,58 e +2,58 e quase todos (99,9%) devem situar-se entre –3,09 e +3,09. Portanto, resíduos padronizados com um valor absoluto maior que 3 são motivo de preocupação porque em uma amostra média é improvável que aconteça um valor tão alto por acaso [@field2012outliers]. Na Saída da função `rstandard()`, observa-se que os valores estão dentro de –3 e +3.
-
-Essa avaliação pode ser acompanhada de um gráfico diagnóstico, usando a função `plot()` para o modelo `modelo2`(para maiores detalhes veja as @sec-graphdiag e @sec-BP).
-
-```{r}
-#| label: fig-graph5
-#| echo: true
-#| fig.align: "center"
-#| out.width: "60%"
-#| out.height: "60%"
-#| message: false
-#| warning: false
-#| fig-cap: "Gráfico diagnóstico dos resíduos e pontos de alavancagem."
-plot (modelo2, which = 5)
-```
-
-São produzidos vários gráficos com a função `plot()`, mas o foco é o gráfico 5 (@fig-graph5) que confirma os achados de não existirem valores atípicos que comprometam o ajuste do modelo. A @fig-linearidade exibe um gráfico igual, sem mostrar as distância s de Cook.
-
-Para a análise dos pontos influentes, pode-se verificar os pontos de alavancagem (`leverage`) com a função `hatvalues()` do pacote `stats`, incluído no R base.
-
-```{r}
-hat <- hatvalues(modelo2)
-summary (hat)
-```
-
-Os valores de alavancagem podem estar entre 0 (indicando que o caso não tem qualquer influência) e 1 (indicando que o caso tem grande influência). Se nenhum caso exercer influência indevida sobre o modelo, se espera que todos os valores de alavancagem estivessem próximos do valor médio. Alguns autores @hoaglin1978hat, recomendam investigar casos com valores superiores a duas vezes a média (`r 2*mean(hat)`) como ponto de corte para identificar casos com influência indevida. Alguns valores ($\sim$ 5%) estão acima de duas vezes a média, o que se pode considerar pouco. Principalmente, porque o maior valor está bem longe do valor igual a 1 (`r max(hat)`). É interessante fazer a análise, observando junto a *distância de Cook* para ver se um ponto é um *outlier* significativo.
-
-```{r}
-cook <- cooks.distance(modelo2)
-summary (cook)
-```
-
-Se a distância de Cook é $\lt$ 1, não há necessidade real de excluir esses valores, uma vez que não tem um grande efeito na análise de regressão @stevens1984outliers. Na @fig-graph5), verifica-se que os casos mais distantes não alcançam a distância de Cook.

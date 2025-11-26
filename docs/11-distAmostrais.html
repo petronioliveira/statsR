@@ -59,6 +59,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -628,14 +629,14 @@ Para a média amostral <span class="math inline">\(\bar{x}\)</span>, <span class
 \sigma_{\bar{x}} = \frac {\sigma}{\sqrt{n}}
 \]</span></p>
 <p>A dispersão da distribuição amostral da média é menor do que dispersão da distribuição populacional correspondente, como mostrado acima. Em outras palavras, <span class="math inline">\(\sigma_{\bar{x}} &lt; \sigma\)</span>. Isso é visível na fórmula do <span class="math inline">\(\sigma_{\bar{x}}\)</span> . Quando <em>n</em> é maior que 1, o que geralmente é verdadeiro, o denominador em <span class="math inline">\(\frac {\sigma}{\sqrt{n}}\)</span> é maior que 1. Desta forma, <span class="math inline">\(\sigma_{\bar{x}}\)</span> é menor que <span class="math inline">\(\sigma\)</span>. O desvio padrão da distribuição amostral da média diminui à medida que o tamanho amostral aumenta.</p>
-<p>Sempre que o <em>n</em> for grande, em geral &gt; 30 <span class="citation" data-cites="pagano2000sampling">(<a href="referencias.html#ref-pagano2000sampling" role="doc-biblioref">1</a>)</span>, pode ser assumido que a distribuição será uma curva normal e que o desvio padrão da amostra (<em>s</em>) é um estimador não enviesado do desvio padrão populacional (<span class="math inline">\(\sigma\)</span>). Então, o erro padrão da média (<span class="math inline">\(\sigma_{\bar{x}}\)</span>) pode ser estimado pelo <span class="math inline">\(EP_{\bar{x}}\)</span>:</p>
+<p>Sempre que o <em>n</em> for grande, em geral &gt; 30 <span class="citation" data-cites="pagano2000sampling">Pagano e Gavreau (<a href="referencias.html#ref-pagano2000sampling" role="doc-biblioref">2000</a>)</span>, pode ser assumido que a distribuição será uma curva normal e que o desvio padrão da amostra (<em>s</em>) é um estimador não enviesado do desvio padrão populacional (<span class="math inline">\(\sigma\)</span>). Então, o erro padrão da média (<span class="math inline">\(\sigma_{\bar{x}}\)</span>) pode ser estimado pelo <span class="math inline">\(EP_{\bar{x}}\)</span>:</p>
 <p><span class="math display">\[
 EP_{\bar{x}} = \frac {s}{\sqrt{n}}
 \]</span></p>
 </section>
 <section id="sec-tcl" class="level2" data-number="11.5">
 <h2 data-number="11.5" class="anchored" data-anchor-id="sec-tcl"><span class="header-section-number">11.5</span> Teorema do Limite Central (TCL)</h2>
-<p>Na maioria das vezes, a população da qual as amostras são extraídas não é normalmente distribuída. Em tais casos, a forma da distribuição amostral de X é inferida de um teorema muito importante chamado <em>teorema do limite central</em>. De acordo com este teorema para um grande tamanho de amostra (em geral, acima de 30), a distribuição amostral da média é aproximadamente normal, independentemente da forma da distribuição da população <span class="citation" data-cites="pagano2000sampling">(<a href="referencias.html#ref-pagano2000sampling" role="doc-biblioref">1</a>)</span>. Esta aproximação tornar-se-á mais acurada à medida que aumenta o tamanho amostral:</p>
+<p>Na maioria das vezes, a população da qual as amostras são extraídas não é normalmente distribuída. Em tais casos, a forma da distribuição amostral de X é inferida de um teorema muito importante chamado <em>teorema do limite central</em>. De acordo com este teorema para um grande tamanho de amostra (em geral, acima de 30), a distribuição amostral da média é aproximadamente normal, independentemente da forma da distribuição da população <span class="citation" data-cites="pagano2000sampling">Pagano e Gavreau (<a href="referencias.html#ref-pagano2000sampling" role="doc-biblioref">2000</a>)</span>. Esta aproximação tornar-se-á mais acurada à medida que aumenta o tamanho amostral:</p>
 <ul>
 <li>a média da distribuição amostral, <span class="math inline">\(\mu_{\bar{x}}\)</span>, é igual a média populacional, <span class="math inline">\(\mu\)</span>;</li>
 <li>desvio padrão da distribuição amostral, <span class="math inline">\(\sigma_{\bar{x}}\)</span>, é igual a <span class="math inline">\(\frac {\sigma}{\sqrt{n}}\)</span>;</li>
@@ -876,9 +877,9 @@ Exercício
 
 <!-- -->
 
-<div id="refs" class="references csl-bib-body" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-pagano2000sampling" class="csl-entry" role="listitem">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline">Pagano M, Gavreau K. The Central Limit Theorem. Em: Principles of Biostatistics. Second Edition. Pacific Grove, CA: Duxbury; 2000. p. 197–8. </div>
+Pagano, Marcello, e Kimberlee Gavreau. 2000. <span>«The Central Limit Theorem»</span>. Em <em>Principles of Biostatistics</em>, Second Edition, 197–98. Pacific Grove, CA: Duxbury.
 </div>
 </div>
 </section>

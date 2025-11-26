@@ -70,20 +70,8 @@ format:
     citeproc: true
     reference-location: document
 
-  pdf:
-    documentclass: scrbook
-    toc: true
-    number-sections: true
-    keep-tex: true
-    fig-cap-location: bottom
-    tbl-cap-location: top
-    include-in-header: preambulo.tex
-    citation-mode: "continuous"
-    citeproc: true
-    reference-location: document
-
 bibliography: referencias.bib
-csl: styles/vancouver.csl
+csl: chicago.csl
 lang: pt
 
 freeze: false  

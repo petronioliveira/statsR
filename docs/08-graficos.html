@@ -59,6 +59,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -532,9 +533,9 @@ window.Quarto = {
 </header>
 
 
-<p>Para descrever os dados e visualizar o que está acontecendo, recomenda-se utilizar um gráfico adequado. O que é adequado depende principalmente do tipo de dados, bem como das características particulares do que se quer explorar. Além disso, um gráfico em um relatório sempre é um fator de “impacto”. Ou seja, pode ter um efeito positivo no leitor ou fazê-lo abandonar a leitura. Finalmente, um gráfico de frequência pode ser utilizado para ilustrar, explicar uma situação complexa onde palavras ou uma tabela podem ser confusos, extensos ou de outro modo insuficiente. Por outro lado, deve-se evitar usar gráficos onde poucas palavras expressam claramente o que se quer mostrar. Aconselha-se que, ao analisar os dados, é importante inspecioná-los como se fossem uma imagem, uma fotografia, ver como eles se parecem, qual o seu aspecto, e só então pensar em interpretar os aspectos vitais da estatística <span class="citation" data-cites="field2012graphs">(<a href="referencias.html#ref-field2012graphs" role="doc-biblioref">1</a>)</span>.<br>
+<p>Para descrever os dados e visualizar o que está acontecendo, recomenda-se utilizar um gráfico adequado. O que é adequado depende principalmente do tipo de dados, bem como das características particulares do que se quer explorar. Além disso, um gráfico em um relatório sempre é um fator de “impacto”. Ou seja, pode ter um efeito positivo no leitor ou fazê-lo abandonar a leitura. Finalmente, um gráfico de frequência pode ser utilizado para ilustrar, explicar uma situação complexa onde palavras ou uma tabela podem ser confusos, extensos ou de outro modo insuficiente. Por outro lado, deve-se evitar usar gráficos onde poucas palavras expressam claramente o que se quer mostrar. Aconselha-se que, ao analisar os dados, é importante inspecioná-los como se fossem uma imagem, uma fotografia, ver como eles se parecem, qual o seu aspecto, e só então pensar em interpretar os aspectos vitais da estatística <span class="citation" data-cites="field2012graphs">Field, Miles, e Field (<a href="referencias.html#ref-field2012graphs" role="doc-biblioref">2012</a>)</span>.<br>
 O R básico fornece uma grande variedade de funções para visualizar dados, elas de uma maneira relativamente simples permitem a construção de gráficos que facilitam a interpretação tanto de variáveis categórica como numéricas. Existe uma farta bibliografia para a construção de gráficos, utilizando o R básico, mas a <a href="https://r-graph-gallery.com/">The R Graph Gallery</a> responde a maioria das dúvidas, apesar de ter seu foco em <code>tidyverse</code> (veja <a href="05-manipulandoDados.html#sec-tidyverse" class="quarto-xref"><span>Seção 5.4</span></a>) e <code>ggplot2.</code><br>
-Neste livro, a ênfase será no pacote <code>ggplot2</code> <span class="citation" data-cites="wickham2016ggplot2">(<a href="referencias.html#ref-wickham2016ggplot2" role="doc-biblioref">2</a>)</span>. Este pacote é uma ferramenta extremamente versátil que oferece uma estrutura com grande flexibilidade para exibir os dados através de gráficos. O <code>gpglot2</code> não é apenas uma instrumento para criar gráficos, mas uma maneira de pensar sobre a visualização de dados de uma forma mais estruturada e poderosa.</p>
+Neste livro, a ênfase será no pacote <code>ggplot2</code> <span class="citation" data-cites="wickham2016ggplot2">Wickham (<a href="referencias.html#ref-wickham2016ggplot2" role="doc-biblioref">2016</a>)</span>. Este pacote é uma ferramenta extremamente versátil que oferece uma estrutura com grande flexibilidade para exibir os dados através de gráficos. O <code>gpglot2</code> não é apenas uma instrumento para criar gráficos, mas uma maneira de pensar sobre a visualização de dados de uma forma mais estruturada e poderosa.</p>
 <section id="pacotes-necessários-neste-capítulo" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="pacotes-necessários-neste-capítulo"><span class="header-section-number">8.1</span> Pacotes necessários neste capítulo</h2>
 <p>Certifique-se que estes pacotes estejam instalados e carregados, utilizando o pacote <code>pacman</code> (consulte a <a href="04-introducaoR.html#sec-pacman" class="quarto-xref"><span>Seção 4.2.2.4</span></a>):</p>
@@ -592,7 +593,7 @@ Neste livro, a ênfase será no pacote <code>ggplot2</code> <span class="citatio
 </section>
 <section id="sec-ggplot2" class="level2" data-number="8.3">
 <h2 data-number="8.3" class="anchored" data-anchor-id="sec-ggplot2"><span class="header-section-number">8.3</span> Pacote ggplot2</h2>
-<p>O <code>ggplot2</code> é um pacote da linguagem R voltado para a visualização de dados, oferecendo uma abordagem poderosa e elegante baseada na <em>Gramática dos Gráficos</em> <span class="citation" data-cites="wickham2010layered">(<a href="referencias.html#ref-wickham2010layered" role="doc-biblioref">3</a>)</span>.</p>
+<p>O <code>ggplot2</code> é um pacote da linguagem R voltado para a visualização de dados, oferecendo uma abordagem poderosa e elegante baseada na <em>Gramática dos Gráficos</em> <span class="citation" data-cites="wickham2010layered">Wickham (<a href="referencias.html#ref-wickham2010layered" role="doc-biblioref">2010</a>)</span>.</p>
 <section id="sec-grammar" class="level3" data-number="8.3.1">
 <h3 data-number="8.3.1" class="anchored" data-anchor-id="sec-grammar"><span class="header-section-number">8.3.1</span> Gramática dos Gráficos</h3>
 <p>O R base usa funções específicas para a construção de um gráfico, por exemplo, <code>hist()</code> para criar um histograma ou a função plot() que é uma função mais genérica que produz um gráfico de dispersão, no R, quando são passados a ela dois vetores numéricos ou boxplots quando são fornecidos dados categóricos.</p>
@@ -665,7 +666,7 @@ Figura&nbsp;8.1: Gráfico de dispersão produzido com uma função específica p
 <li><code>position_dodge()</code>: coloque barras sobrepostas (ou boxplots) lado a lado.</li>
 </ul></li>
 <li><p><strong>Facetas (Facets)</strong>: Permitem criar múltiplos subgráficos baseados em uma ou mais variáveis categóricas. É uma ótima maneira de explorar as relações entre diferentes grupos de dados de forma visual (<a href="#fig-scatter11" class="quarto-xref">Figura&nbsp;<span>8.15</span></a>).</p></li>
-<li><p><strong>Temas (Themes)</strong>: Controlam a aparência geral do gráfico, como a cor de fundo, a fonte, as linhas da grade e a aparência dos títulos. O <code>ggplot2</code> permite construir gráficos complexos camada por camada, possibilitando a criação de gráficos sofisticados <span class="citation" data-cites="wickham2023ggplot2">(<a href="referencias.html#ref-wickham2023ggplot2" role="doc-biblioref">4</a>)</span>. Em cada uma das camadas deve-se ter preocupação em controlar os componentes do gráfico.</p></li>
+<li><p><strong>Temas (Themes)</strong>: Controlam a aparência geral do gráfico, como a cor de fundo, a fonte, as linhas da grade e a aparência dos títulos. O <code>ggplot2</code> permite construir gráficos complexos camada por camada, possibilitando a criação de gráficos sofisticados <span class="citation" data-cites="wickham2023ggplot2">Wickham, Navarro, e Pedersen (<a href="referencias.html#ref-wickham2023ggplot2" role="doc-biblioref">2023</a>)</span>. Em cada uma das camadas deve-se ter preocupação em controlar os componentes do gráfico.</p></li>
 </ul>
 </section>
 <section id="vantagens-do-ggplot2" class="level3" data-number="8.3.2">
@@ -1017,7 +1018,7 @@ Exercício
 </section>
 <section id="pacote-rcolorbrewer" class="level5" data-number="8.4.6.2.2">
 <h5 data-number="8.4.6.2.2" class="anchored" data-anchor-id="pacote-rcolorbrewer"><span class="header-section-number">8.4.6.2.2</span> Pacote RColorBrewer</h5>
-<p>Existem outros pacotes, como o <code>RColorBrewer</code>, que oferecem paletas visualmente agradáveis e podem facilmente ser exploradas. Por alguns, é considerado uma ferramenta indispensável para gerenciar cores com R <span class="citation" data-cites="holtz2025colorbrewer">(<a href="referencias.html#ref-holtz2025colorbrewer" role="doc-biblioref">5</a>)</span>. Para visualizar (<a href="#fig-colorbrewer" class="quarto-xref">Figura&nbsp;<span>8.12</span></a>) as paletas do pacote <code>RColorBrewer</code>.</p>
+<p>Existem outros pacotes, como o <code>RColorBrewer</code>, que oferecem paletas visualmente agradáveis e podem facilmente ser exploradas. Por alguns, é considerado uma ferramenta indispensável para gerenciar cores com R <span class="citation" data-cites="holtz2025colorbrewer">Holtz (<a href="referencias.html#ref-holtz2025colorbrewer" role="doc-biblioref">2025</a>)</span>. Para visualizar (<a href="#fig-colorbrewer" class="quarto-xref">Figura&nbsp;<span>8.12</span></a>) as paletas do pacote <code>RColorBrewer</code>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1069,7 +1070,7 @@ Figura&nbsp;8.13: Gráfico de dispersão com cores personalizadas usando o RColo
 </section>
 <section id="paleta-paletteer" class="level5" data-number="8.4.6.2.3">
 <h5 data-number="8.4.6.2.3" class="anchored" data-anchor-id="paleta-paletteer"><span class="header-section-number">8.4.6.2.3</span> Paleta paletteer</h5>
-<p>O pacote <code>paletteer</code> no R reúne um grande número de paletas de cores de diversos pacotes do R dedicados a cores. Fornece uma interface simples e consistente para acessar essas paletas, facilitando o trabalho. Oferece mais de 2000 paletas de cores de vários pacotes do R, como <code>ggthemes</code>, <code>wesanderson</code>, <code>lisa</code>, <code>scico</code>, entre outros. Tudo acessível por uma interface simples e poderosa, facilitando a criação de visualizações bonitas e informativas <span class="citation" data-cites="hvitfeldt2024paletteer">(<a href="referencias.html#ref-hvitfeldt2024paletteer" role="doc-biblioref">6</a>)</span>.<br>
+<p>O pacote <code>paletteer</code> no R reúne um grande número de paletas de cores de diversos pacotes do R dedicados a cores. Fornece uma interface simples e consistente para acessar essas paletas, facilitando o trabalho. Oferece mais de 2000 paletas de cores de vários pacotes do R, como <code>ggthemes</code>, <code>wesanderson</code>, <code>lisa</code>, <code>scico</code>, entre outros. Tudo acessível por uma interface simples e poderosa, facilitando a criação de visualizações bonitas e informativas <span class="citation" data-cites="hvitfeldt2024paletteer">Hvitfeldt (<a href="referencias.html#ref-hvitfeldt2024paletteer" role="doc-biblioref">2024</a>)</span>.<br>
 Todas as paletas podem ser acessadas a partir das três funções <code>paletteer_c()</code>, <code>paletteer_d()</code> e <code>paletteer_dynamic()</code> usando a sintaxe: <code>nome_do_pacote::nome_da_paleta</code> <a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>.</p>
 <p>Paletas discretas são paletas com um número fixo de cores. Elas são úteis para visualizar dados categóricos. Por exemplo, uma paleta que vai do vermelho ao laranja, do verde ao preto é uma paleta discreta.</p>
 <p>Exemplo com a paleta <code>nbapalettes::supersonics_holiday</code>, mapeando os pontos em um tamanho maior (<code>size = 7</code>) para chamar atenção das cores.</p>
@@ -2153,24 +2154,24 @@ Dica prática
 
 <!-- -->
 
-<div id="refs" class="references csl-bib-body" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-field2012graphs" class="csl-entry" role="listitem">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline">Field A, Miles J, Field Z. Exploring data with graphs. Em: Discovering statistics using R. Sage Publications, Ltd; 2012. p. 117. </div>
-</div>
-<div id="ref-wickham2016ggplot2" class="csl-entry" role="listitem">
-<div class="csl-left-margin">2. </div><div class="csl-right-inline">Wickham H. ggplot2: Elegant Graphics for Data Analysis [Internet]. Springer-Verlag New York; 2016. Disponível em: <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a></div>
-</div>
-<div id="ref-wickham2010layered" class="csl-entry" role="listitem">
-<div class="csl-left-margin">3. </div><div class="csl-right-inline">Wickham H. A layered grammar of graphics. Journal of Computational and Graphical Statistics. 2010;19(1):3–28. </div>
-</div>
-<div id="ref-wickham2023ggplot2" class="csl-entry" role="listitem">
-<div class="csl-left-margin">4. </div><div class="csl-right-inline">Wickham H, Navarro D, Pedersen TL. ggplot2: Elegant Graphics for Data Analysis (3e) [Internet]. 2023. Disponível em: <a href="http://www.new.pmean.com/ggplot2-book/">http://www.new.pmean.com/ggplot2-book/</a></div>
+Field, Andy, Jeremy Miles, e Zoë Field. 2012. <span>«Exploring data with graphs»</span>. Em <em>Discovering statistics using R</em>, 117. Sage Publications, Ltd.
 </div>
 <div id="ref-holtz2025colorbrewer" class="csl-entry" role="listitem">
-<div class="csl-left-margin">5. </div><div class="csl-right-inline">Holtz Y. R Color Brewer’s palettes [Internet]. – the R Graph Gallery. 2025. Disponível em: <a href="https://r-graph-gallery.com/38-rcolorbrewers-palettes.html">https://r-graph-gallery.com/38-rcolorbrewers-palettes.html</a></div>
+Holtz, Yan. 2025. <span>«R Color Brewer’s palettes»</span>. <em>– the R Graph Gallery</em>. <a href="https://r-graph-gallery.com/38-rcolorbrewers-palettes.html">https://r-graph-gallery.com/38-rcolorbrewers-palettes.html</a>.
 </div>
 <div id="ref-hvitfeldt2024paletteer" class="csl-entry" role="listitem">
-<div class="csl-left-margin">6. </div><div class="csl-right-inline">Hvitfeldt E. Use any color palette with paletteer [Internet]. The R Graph Gallery. 2024. Disponível em: <a href="https://r-graph-gallery.com/package/paletteer.html">https://r-graph-gallery.com/package/paletteer.html</a></div>
+Hvitfeldt, Emil. 2024. <span>«Use any color palette with paletteer»</span>. <em>The R Graph Gallery</em>. <a href="https://r-graph-gallery.com/package/paletteer.html">https://r-graph-gallery.com/package/paletteer.html</a>.
+</div>
+<div id="ref-wickham2010layered" class="csl-entry" role="listitem">
+Wickham, Hadley. 2010. <span>«A layered grammar of graphics»</span>. <em>Journal of Computational and Graphical Statistics</em> 19 (1). Taylor &amp; Francis: 3–28.
+</div>
+<div id="ref-wickham2016ggplot2" class="csl-entry" role="listitem">
+———. 2016. <em>ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.
+</div>
+<div id="ref-wickham2023ggplot2" class="csl-entry" role="listitem">
+Wickham, Hadley, Danielle Navarro, e Thomas Lin Pedersen. 2023. <em>ggplot2: Elegant Graphics for Data Analysis (3e)</em>. <a href="http://www.new.pmean.com/ggplot2-book/">http://www.new.pmean.com/ggplot2-book/</a>.
 </div>
 </div>
 </section>

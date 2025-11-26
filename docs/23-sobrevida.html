@@ -59,6 +59,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -520,16 +521,16 @@ window.Quarto = {
 <p>Quando, em um estudo de sobrevida, os pacientes que saem do estudo ou que não vivenciam o evento são chamados de observações <em>censuradas</em>.</p>
 <p>Esses tempos de sobrevida censurados subestimam o verdadeiro (mas desconhecido) tempo para o evento. Quando o evento (supondo que ocorreria) está além do final do período de acompanhamento, a censura costuma ser chamada de censura à direita.</p>
 <p>A censura também pode ocorrer quando se observa a presença de um evento, mas não se sabe onde começou. Por exemplo, considere um estudo que investigue o tempo para a recorrência de um câncer após a remoção cirúrgica do tumor primário. Se os pacientes forem examinados 3 meses após a cirurgia e já tinham recorrência, então o tempo de sobrevida será censurado a esquerda, porque o tempo real (desconhecido) de recorrência ocorreu menos de 3 meses após a cirurgia.</p>
-<p>Os dados de tempo do evento também podem ser censurados em intervalos, o que significa que os indivíduos entram e saem da observação. Se considerarmos o exemplo anterior e os pacientes também forem examinados aos 6 meses, aqueles que estão livres da doença aos 3 meses e perdem o acompanhamento entre 3 e 6 meses são considerados censurados no intervalo. A maioria dos dados de sobrevivência incluem observações censuradas à direita <span class="citation" data-cites="clark2003survival">(<a href="referencias.html#ref-clark2003survival" role="doc-biblioref">1</a>)</span>.</p>
+<p>Os dados de tempo do evento também podem ser censurados em intervalos, o que significa que os indivíduos entram e saem da observação. Se considerarmos o exemplo anterior e os pacientes também forem examinados aos 6 meses, aqueles que estão livres da doença aos 3 meses e perdem o acompanhamento entre 3 e 6 meses são considerados censurados no intervalo. A maioria dos dados de sobrevivência incluem observações censuradas à direita <span class="citation" data-cites="clark2003survival">Clark et al. (<a href="referencias.html#ref-clark2003survival" role="doc-biblioref">2003</a>)</span>.</p>
 </section>
 <section id="método-de-kaplan-meier" class="level2" data-number="23.4">
 <h2 data-number="23.4" class="anchored" data-anchor-id="método-de-kaplan-meier"><span class="header-section-number">23.4</span> Método de Kaplan-Meier</h2>
-<p>O método de Kaplan-Meier (KM) é um método não paramétrico usado para estimar a probabilidade de sobrevivência a partir dos tempos de sobrevivência observados <span class="citation" data-cites="kaplan1958nonparametric">(<a href="referencias.html#ref-kaplan1958nonparametric" role="doc-biblioref">2</a>)</span>.</p>
+<p>O método de Kaplan-Meier (KM) é um método não paramétrico usado para estimar a probabilidade de sobrevivência a partir dos tempos de sobrevivência observados <span class="citation" data-cites="kaplan1958nonparametric">Kaplan e Meier (<a href="referencias.html#ref-kaplan1958nonparametric" role="doc-biblioref">1958</a>)</span>.</p>
 <p>A função de sobrevida é a probabilidade de sobreviver a pelo menos um determinado ponto no tempo e o gráfico desta probabilidade é a curva de sobrevida. O método de sobrevida de Kaplan-Meier pode ser usado para comparar as curvas de sobrevida de dois ou mais grupos, como comparar um grupo tratado a um grupo não tratado (placebo), ou homens comparados a mulheres.</p>
 <p>A curva de sobrevida KM, um gráfico da probabilidade de sobrevida de Kaplan-Meier em relação ao tempo, fornece um resumo útil dos dados que podem ser usados para estimar medidas como a <em>mediana de sobrevida</em>.</p>
 <section id="pressupostos-do-método-de-kaplan-meier" class="level3" data-number="23.4.1">
 <h3 data-number="23.4.1" class="anchored" data-anchor-id="pressupostos-do-método-de-kaplan-meier"><span class="header-section-number">23.4.1</span> Pressupostos do método de Kaplan-Meier</h3>
-<p>Os pressupostos para o uso da análise de sobrevida são as seguintes <span class="citation" data-cites="peat2014survival">(<a href="referencias.html#ref-peat2014survival" role="doc-biblioref">3</a>)</span>:</p>
+<p>Os pressupostos para o uso da análise de sobrevida são as seguintes <span class="citation" data-cites="peat2014survival">Peat e Barton (<a href="referencias.html#ref-peat2014survival" role="doc-biblioref">2014</a>)</span>:</p>
 <ul>
 <li>os participantes devem ser independentes, ou seja, cada participante aparece apenas uma vez no grupo;</li>
 <li>os grupos devem ser independentes, ou seja, cada participante está apenas em um grupo;</li>
@@ -539,7 +540,7 @@ window.Quarto = {
 <li>as perspectivas de sobrevida dos participantes permanecem constantes, ou seja, os participantes inscritos no início ou no final do estudo devem ter as mesmas perspectivas de sobrevida;</li>
 <li>a probabilidade de censura não está relacionada à probabilidade do evento.</li>
 </ul>
-<p>Como em todas as análises, se o número total de pacientes em qualquer grupo for pequeno, digamos menos de 30 participantes em cada grupo, os erros padrão em torno das estatísticas resumidas serão grandes e, portanto, as estimativas de sobrevida serão imprecisas. Para estudos de sobrevida, recomenda-se fazer o cálculo do tamanho amostral previamente. O R dispõe de um pacote que possibilita este cálculo, o <code>powerSurvEpi</code> <span class="citation" data-cites="qiu2015powersurvepi">(<a href="referencias.html#ref-qiu2015powersurvepi" role="doc-biblioref">4</a>)</span>.</p>
+<p>Como em todas as análises, se o número total de pacientes em qualquer grupo for pequeno, digamos menos de 30 participantes em cada grupo, os erros padrão em torno das estatísticas resumidas serão grandes e, portanto, as estimativas de sobrevida serão imprecisas. Para estudos de sobrevida, recomenda-se fazer o cálculo do tamanho amostral previamente. O R dispõe de um pacote que possibilita este cálculo, o <code>powerSurvEpi</code> <span class="citation" data-cites="qiu2015powersurvepi">Qiu et al. (<a href="referencias.html#ref-qiu2015powersurvepi" role="doc-biblioref">2015</a>)</span>.</p>
 </section>
 <section id="dados-do-exemplo" class="level3" data-number="23.4.2">
 <h3 data-number="23.4.2" class="anchored" data-anchor-id="dados-do-exemplo"><span class="header-section-number">23.4.2</span> Dados do exemplo</h3>
@@ -599,7 +600,7 @@ Tratamento  0  1
 </section>
 <section id="tabela-de-sobrevida" class="level3" data-number="23.4.3">
 <h3 data-number="23.4.3" class="anchored" data-anchor-id="tabela-de-sobrevida"><span class="header-section-number">23.4.3</span> Tabela de Sobrevida</h3>
-<p>Deve-se calcular as estimativas de sobrevida de Kaplan-Meier que servirão para a construção da Curva de Sobrevida de cada tratamento. Para isso, pode-se usar a função <code>survfit()</code> do pacote <code>survival</code><span class="citation" data-cites="therneau2015survival">(<a href="referencias.html#ref-therneau2015survival" role="doc-biblioref">5</a>)</span>. Seus principais argumentos incluem:</p>
+<p>Deve-se calcular as estimativas de sobrevida de Kaplan-Meier que servirão para a construção da Curva de Sobrevida de cada tratamento. Para isso, pode-se usar a função <code>survfit()</code> do pacote <code>survival</code><span class="citation" data-cites="therneau2015survival">Therneau et al. (<a href="referencias.html#ref-therneau2015survival" role="doc-biblioref">2015</a>)</span>. Seus principais argumentos incluem:</p>
 <ul>
 <li>objeto de sobrevida, criado usando a função <code>Surv()</code>, aninhada na função <code>survfit()</code></li>
 <li>e o conjunto de dados contendo as variáveis.</li>
@@ -675,7 +676,7 @@ Figura&nbsp;23.1: Curva de sobrevida comparando dois grupos de tratamento
 </div>
 </div>
 </div>
-<p>Outra maneira, mais sofisticada, de produzir a curva de KM é usando a função <code>ggsurvplot()</code>, incluída no pacote <code>survminer</code> <span class="citation" data-cites="kassambara2021survminer">(<a href="referencias.html#ref-kassambara2021survminer" role="doc-biblioref">6</a>)</span> que utiliza o pacote <code>ggplot2</code> (<a href="#fig-survival1" class="quarto-xref">Figura&nbsp;<span>23.2</span></a>)</p>
+<p>Outra maneira, mais sofisticada, de produzir a curva de KM é usando a função <code>ggsurvplot()</code>, incluída no pacote <code>survminer</code> <span class="citation" data-cites="kassambara2021survminer">Kassambara et al. (<a href="referencias.html#ref-kassambara2021survminer" role="doc-biblioref">2021</a>)</span> que utiliza o pacote <code>ggplot2</code> (<a href="#fig-survival1" class="quarto-xref">Figura&nbsp;<span>23.2</span></a>)</p>
 <p>Com essa função é possível mostrar:</p>
 <ul>
 <li>os intervalos de confiança de 95% da função de sobrevida, usando o argumento <code>conf.int = TRUE</code>;</li>
@@ -710,7 +711,7 @@ Figura&nbsp;23.2: Curva de sobrevida comparando dois grupos de tratamento, usand
 </div>
 </div>
 </div>
-<p>O teste <code>Log Rank</code> pondera todos os pontos de tempo igualmente e é a estatística de sobrevida mais usada <span class="citation" data-cites="bland2004logrank">(<a href="referencias.html#ref-bland2004logrank" role="doc-biblioref">7</a>)</span>. O teste de log rank é um teste não paramétrico, que não faz suposições sobre as distribuições de sobrevivência. Os pressupostos deste teste são os mesmos do método de Kaplan-Meier. No exemplo, o valor <em>p</em> do teste é fornecido na <a href="#fig-survival1" class="quarto-xref">Figura&nbsp;<span>23.2</span></a> e é igual a 0,083, ou seja, acima de 0,05, indicando não rejeição da <span class="math inline">\(H_{0}\)</span>. A hipótese nula diz que não há diferença na sobrevivência entre os dois grupos.</p>
+<p>O teste <code>Log Rank</code> pondera todos os pontos de tempo igualmente e é a estatística de sobrevida mais usada <span class="citation" data-cites="bland2004logrank">Bland e Altman (<a href="referencias.html#ref-bland2004logrank" role="doc-biblioref">2004</a>)</span>. O teste de log rank é um teste não paramétrico, que não faz suposições sobre as distribuições de sobrevivência. Os pressupostos deste teste são os mesmos do método de Kaplan-Meier. No exemplo, o valor <em>p</em> do teste é fornecido na <a href="#fig-survival1" class="quarto-xref">Figura&nbsp;<span>23.2</span></a> e é igual a 0,083, ou seja, acima de 0,05, indicando não rejeição da <span class="math inline">\(H_{0}\)</span>. A hipótese nula diz que não há diferença na sobrevivência entre os dois grupos.</p>
 <p>Essencialmente, o teste de log rank compara o número observado de eventos em cada grupo com o que seria esperado se a hipótese nula fosse verdadeira (ou seja, se as curvas de sobrevivência fossem idênticas). A estatística de log rank é aproximadamente distribuída como uma estatística de teste qui-quadrado.</p>
 <p>A função <code>survdiff()</code>, também do pacote <code>survival</code>, pode ser usada para calcular o teste de log-rank comparando duas ou mais curvas de sobrevida e pode ser usado da seguinte forma:</p>
 <div class="cell">
@@ -807,27 +808,27 @@ Score (logrank) test = 3.06  on 1 df,   p=0.08</code></pre>
 
 <!-- -->
 
-<div id="refs" class="references csl-bib-body" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-bland2004logrank" class="csl-entry" role="listitem">
+Bland, J Martin, e Douglas G Altman. 2004. <span>«The logrank test»</span>. <em>BMJ</em> 328 (7447). British Medical Journal Publishing Group: 1073.
+</div>
 <div id="ref-clark2003survival" class="csl-entry" role="listitem">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline">Clark TG, Bradburn MJ, Love SB, Altman DG. Survival analysis Part I: basic concepts and first analyses. British Journal of Cancer. 2003;89(2):232–8. </div>
+Clark, Taane G, Michael J Bradburn, Sharon B Love, e Douglas G Altman. 2003. <span>«Survival analysis Part I: basic concepts and first analyses»</span>. <em>British Journal of Cancer</em> 89 (2). Nature Publishing Group: 232–38.
 </div>
 <div id="ref-kaplan1958nonparametric" class="csl-entry" role="listitem">
-<div class="csl-left-margin">2. </div><div class="csl-right-inline">Kaplan EL, Meier P. Nonparametric Estimation from Incomplete Observations. Journal of the American Statistical Association. 1958;53(282):457–81. </div>
-</div>
-<div id="ref-peat2014survival" class="csl-entry" role="listitem">
-<div class="csl-left-margin">3. </div><div class="csl-right-inline">Peat J, Barton B. Survival analyses. Em: Medical statistics : a guide to SPSS, data analysis, and critical appraisal. New York, NY: John Wiley &amp; Sons; 2014. p. 352–3. </div>
-</div>
-<div id="ref-qiu2015powersurvepi" class="csl-entry" role="listitem">
-<div class="csl-left-margin">4. </div><div class="csl-right-inline">Qiu W, Chavarro J, Lazarus R, Rosner B, Ma J. powerSurvEpi: Power and Sample Size Calculation for Survival Analysis of Epidemiological Studies. R package version 00. 2015;9. </div>
-</div>
-<div id="ref-therneau2015survival" class="csl-entry" role="listitem">
-<div class="csl-left-margin">5. </div><div class="csl-right-inline">Therneau T et al. A package for Survival Analysis in R. R package version. 2015;2(7). </div>
+Kaplan, Edward L, e Paul Meier. 1958. <span>«Nonparametric Estimation from Incomplete Observations»</span>. <em>Journal of the American Statistical Association</em> 53 (282). Taylor &amp; Francis: 457–81.
 </div>
 <div id="ref-kassambara2021survminer" class="csl-entry" role="listitem">
-<div class="csl-left-margin">6. </div><div class="csl-right-inline">Kassambara A, Kosinski M, Biecek P, Fabian S. Survminer: Drawing Survival Curves Using ggplot2. URL https://CRAN R-project org/package= survminer R package version 04. 2021;9. </div>
+Kassambara, Alboukadel, Marcin Kosinski, Przemyslaw Biecek, e Scheipl Fabian. 2021. <span>«Survminer: Drawing Survival Curves Using ggplot2»</span>. <em>URL https://CRAN. R-project. org/package= survminer. R package version 0.4</em> 9.
 </div>
-<div id="ref-bland2004logrank" class="csl-entry" role="listitem">
-<div class="csl-left-margin">7. </div><div class="csl-right-inline">Bland JM, Altman DG. The logrank test. BMJ. 2004;328(7447):1073. </div>
+<div id="ref-peat2014survival" class="csl-entry" role="listitem">
+Peat, Jennifer, e Belinda Barton. 2014. <span>«Survival analyses»</span>. Em <em>Medical statistics : a guide to SPSS, data analysis, and critical appraisal</em>, 352–53. New York, NY: John Wiley &amp; Sons.
+</div>
+<div id="ref-qiu2015powersurvepi" class="csl-entry" role="listitem">
+Qiu, W, J Chavarro, R Lazarus, B Rosner, e J Ma. 2015. <span>«powerSurvEpi: Power and Sample Size Calculation for Survival Analysis of Epidemiological Studies»</span>. <em>R package version 0.0</em> 9.
+</div>
+<div id="ref-therneau2015survival" class="csl-entry" role="listitem">
+Therneau, Terry et al. 2015. <span>«A package for Survival Analysis in R»</span>. <em>R package version</em> 2 (7).
 </div>
 </div>
 </section>

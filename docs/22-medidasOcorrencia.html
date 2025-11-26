@@ -59,6 +59,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -560,7 +561,7 @@ prevalência = \frac{número \ de \ casos \ conhecidos \ da \ doença}{total \ d
         301        1067        1368 </code></pre>
 </div>
 </div>
-<p>Além de relatar a estimativa pontual da frequência da doença, é importante fornecer uma indicação da incerteza em torno dessa estimativa pontual. A função <code>epi.conf()</code>, do pacote <code>epiR</code> <span class="citation" data-cites="stevenson2022epir">(<a href="referencias.html#ref-stevenson2022epir" role="doc-biblioref">1</a>)</span>, permite calcular intervalos de confiança para prevalência, motivo da escolha dessa função.</p>
+<p>Além de relatar a estimativa pontual da frequência da doença, é importante fornecer uma indicação da incerteza em torno dessa estimativa pontual. A função <code>epi.conf()</code>, do pacote <code>epiR</code> <span class="citation" data-cites="stevenson2022epir">, Sergeant, et al. (<a href="referencias.html#ref-stevenson2022epir" role="doc-biblioref">2022</a>)</span>, permite calcular intervalos de confiança para prevalência, motivo da escolha dessa função.</p>
 <p>A função <code>epi.conf()</code> usa os seguintes argumentos:</p>
 <ul>
 <li><strong>dat</strong> <span class="math inline">\(\longrightarrow\)</span> matriz ou tabela;</li>
@@ -641,7 +642,7 @@ TI = \frac{4}{32,5} \times 1000 = \frac{123}{1000\ pessoas-ano}
 <section id="exemplo-1" class="level4" data-number="22.2.2.1">
 <h4 data-number="22.2.2.1" class="anchored" data-anchor-id="exemplo-1"><span class="header-section-number">22.2.2.1</span> Exemplo</h4>
 <p>Aparentemente, pessoas cegas tem uma menor incidência de câncer e esse efeito parece ser mais pronunciado em pessoas totalmente cegas do que em pessoas com deficiência visual grave.</p>
-<p>Para testar essa hipótese, foi identificada uma coorte de 1.567 pessoas totalmente cegas e 13.292 sujeitos com deficiência visual grave. As informações sobre a incidência de câncer foram obtidas do Registro Sueco de Câncer <span class="citation" data-cites="feychting1998reduced">(<a href="referencias.html#ref-feychting1998reduced" role="doc-biblioref">2</a>)</span>. Foram diagnosticados de 136 casos de câncer em 22050 pessoas-ano em risco totalmente cegas e 1709 casos de câncer em 127650 pessoas-anos em risco com deficiência visual grave.</p>
+<p>Para testar essa hipótese, foi identificada uma coorte de 1.567 pessoas totalmente cegas e 13.292 sujeitos com deficiência visual grave. As informações sobre a incidência de câncer foram obtidas do Registro Sueco de Câncer <span class="citation" data-cites="feychting1998reduced">Feychting, Osterlund, e Ahlbom (<a href="referencias.html#ref-feychting1998reduced" role="doc-biblioref">1998</a>)</span>. Foram diagnosticados de 136 casos de câncer em 22050 pessoas-ano em risco totalmente cegas e 1709 casos de câncer em 127650 pessoas-anos em risco com deficiência visual grave.</p>
 <p>A taxa de incidência pode ser calculada, usando-se a mesma função <code>epi.conf()</code>, usada para o cálculo da prevalência, mudando o argumento <code>ctype = “prevalence”</code> para <code>ctype = “inc.rate”</code>, conforme recomendado:</p>
 <p><u>Pessoas totalmente cegas</u></p>
 <p>Inicialmente, contrói-se a matriz:</p>
@@ -693,7 +694,7 @@ n3 13.38817 12.76088 14.03832</code></pre>
 </section>
 <section id="relação-entre-prevalência-e-incidência" class="level4" data-number="22.2.2.2">
 <h4 data-number="22.2.2.2" class="anchored" data-anchor-id="relação-entre-prevalência-e-incidência"><span class="header-section-number">22.2.2.2</span> Relação entre prevalência e incidência</h4>
-<p>A incidência é uma medida de risco. A prevalência, por não levar em consideração o tempo de duração da doença (<em>t</em>), não tem esta capacidade. Em uma população onde a situação da doença encontra-se em estado estacionário (ou seja, sem grandes migrações ou mudanças ao longo do tempo na incidência/prevalência), a relação entre prevalência e incidência e duração da doença pode ser expressa pela seguinte fórmula <span class="citation" data-cites="szklo2019measuring">(<a href="referencias.html#ref-szklo2019measuring" role="doc-biblioref">3</a>)</span>:</p>
+<p>A incidência é uma medida de risco. A prevalência, por não levar em consideração o tempo de duração da doença (<em>t</em>), não tem esta capacidade. Em uma população onde a situação da doença encontra-se em estado estacionário (ou seja, sem grandes migrações ou mudanças ao longo do tempo na incidência/prevalência), a relação entre prevalência e incidência e duração da doença pode ser expressa pela seguinte fórmula <span class="citation" data-cites="szklo2019measuring">Szklo e Nieto (<a href="referencias.html#ref-szklo2019measuring" role="doc-biblioref">2019d</a>)</span>:</p>
 <p><span class="math display">\[
 prevalência \ pontual = incidência \times duração \ da \ doença \ (t)
 \]</span></p>
@@ -783,7 +784,7 @@ Exposição sim não Sum
       Sum  60  60 120</code></pre>
 </div>
 </div>
-<p>A OR será obtida utilizando a função <code>epi.2by2()</code> do pacote <code>epiR</code> <span class="citation" data-cites="stevenson2022epir">(<a href="referencias.html#ref-stevenson2022epir" role="doc-biblioref">1</a>)</span>. Esta função tem os seguintes argumentos:</p>
+<p>A OR será obtida utilizando a função <code>epi.2by2()</code> do pacote <code>epiR</code> <span class="citation" data-cites="stevenson2022epir">, Sergeant, et al. (<a href="referencias.html#ref-stevenson2022epir" role="doc-biblioref">2022</a>)</span>. Esta função tem os seguintes argumentos:</p>
 <ul>
 <li><strong>dat</strong> <span class="math inline">\(\longrightarrow\)</span> tabela de contingência <span class="math inline">\(2 \times 2\)</span>;</li>
 <li><strong>method</strong> <span class="math inline">\(\longrightarrow\)</span> as opções são “cohort.count”, “cohort.time”, “case.control” ou “cross.sectional”.;</li>
@@ -856,7 +857,7 @@ Figura&nbsp;22.3: Igreja de Oswego, 1940
 </div>
 </div>
 </div>
-<p>As taxas de ataque (incidência) foram calculadas para aqueles que comeram e não comeram cada um dos 14 itens alimentares consumidos na ceia <span class="citation" data-cites="gross1976oswego">(<a href="referencias.html#ref-gross1976oswego" role="doc-biblioref">4</a>)</span>. O pacote <code>epitools</code> <span class="citation" data-cites="aragon2020epitools">(<a href="referencias.html#ref-aragon2020epitools" role="doc-biblioref">5</a>)</span> contém os dados desta investigação no arquivo <code>oswego</code>.</p>
+<p>As taxas de ataque (incidência) foram calculadas para aqueles que comeram e não comeram cada um dos 14 itens alimentares consumidos na ceia <span class="citation" data-cites="gross1976oswego">Gross (<a href="referencias.html#ref-gross1976oswego" role="doc-biblioref">1976</a>)</span>. O pacote <code>epitools</code> <span class="citation" data-cites="aragon2020epitools">Aragon (<a href="referencias.html#ref-aragon2020epitools" role="doc-biblioref">2020</a>)</span> contém os dados desta investigação no arquivo <code>oswego</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(oswego)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(oswego)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -941,7 +942,7 @@ Fisher exact test that OR = 1: Pr&gt;chi2 = &lt;0.001
 </section>
 <section id="odds-ratio-vs-risco-relativo" class="level3" data-number="22.3.3">
 <h3 data-number="22.3.3" class="anchored" data-anchor-id="odds-ratio-vs-risco-relativo"><span class="header-section-number">22.3.3</span> <em>Odds Ratio</em> vs Risco Relativo</h3>
-<p>A OR não deve ser entendida como uma medida aproximada do RR, exceto para doenças raras (doenças, em geral com prevalência menor do que 10%). Caso contrário, a OR tenderá a superestimar a magnitude da associação e o OR afasta-se da hipótese nula da não associação (OR =1), independentemente de ser um fator de risco ou de proteção. A discrepância (d)<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> entre as estimativas do RR e OR pode ser definido como a razão entre o OR e o RR estimados <span class="citation" data-cites="szklo2019associations">(<a href="referencias.html#ref-szklo2019associations" role="doc-biblioref">6</a>)</span>. Em outras palavras, a discrepância corresponde a uma proporção do RR <span class="citation" data-cites="davies1998can">(<a href="referencias.html#ref-davies1998can" role="doc-biblioref">7</a>)</span>.</p>
+<p>A OR não deve ser entendida como uma medida aproximada do RR, exceto para doenças raras (doenças, em geral com prevalência menor do que 10%). Caso contrário, a OR tenderá a superestimar a magnitude da associação e o OR afasta-se da hipótese nula da não associação (OR =1), independentemente de ser um fator de risco ou de proteção. A discrepância (d)<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> entre as estimativas do RR e OR pode ser definido como a razão entre o OR e o RR estimados <span class="citation" data-cites="szklo2019associations">Szklo e Nieto (<a href="referencias.html#ref-szklo2019associations" role="doc-biblioref">2019a</a>)</span>. Em outras palavras, a discrepância corresponde a uma proporção do RR <span class="citation" data-cites="davies1998can">Davies, Crombie, e Tavakoli (<a href="referencias.html#ref-davies1998can" role="doc-biblioref">1998</a>)</span>.</p>
 <p><span class="math display">\[
 d = \frac {1- p_{não \ exp}}{1- p_{exp}}= \frac{\frac{c}{c + d}}{\frac{a}{a + b}}
 \]</span></p>
@@ -949,7 +950,7 @@ d = \frac {1- p_{não \ exp}}{1- p_{exp}}= \frac{\frac{c}{c + d}}{\frac{a}{a + b
 <p><span class="math display">\[
 OR = RR \times d
 \]</span></p>
-<p>Para finalizar, uma comparação entre OR e RR é mostrada na <a href="#tbl-magnitude" class="quarto-xref">Tabela&nbsp;<span>22.2</span></a> <span class="citation" data-cites="hopkins2016scales">(<a href="referencias.html#ref-hopkins2016scales" role="doc-biblioref">8</a>)</span>.</p>
+<p>Para finalizar, uma comparação entre OR e RR é mostrada na <a href="#tbl-magnitude" class="quarto-xref">Tabela&nbsp;<span>22.2</span></a> <span class="citation" data-cites="hopkins2016scales">Hopkins (<a href="referencias.html#ref-hopkins2016scales" role="doc-biblioref">2016</a>)</span>.</p>
 <div class="cell">
 <div id="tbl-magnitude" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -958,7 +959,7 @@ Tabela&nbsp;22.2: Força de associação do RR comparado com a OR.
 </figcaption>
 <div aria-describedby="tbl-magnitude-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div class="tabwid"><style>.cl-5185f4a2{}.cl-517fbf7e{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-517fbf92{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-518246c2{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-51825de2{width:0.727in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-51825de3{width:1.253in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-51825dec{width:0.727in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-51825ded{width:1.253in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-51825dee{width:0.727in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-51825df6{width:1.253in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-51825df7{width:0.727in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-51825df8{width:1.253in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-51825df9{width:0.727in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-51825e00{width:1.253in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-51825e01{width:0.727in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-51825e02{width:1.253in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-5185f4a2"><thead><tr style="overflow-wrap:break-word;"><th class="cl-51825de2"><p class="cl-518246c2"><span class="cl-517fbf7e">OR</span></p></th><th class="cl-51825de2"><p class="cl-518246c2"><span class="cl-517fbf7e">RR</span></p></th><th class="cl-51825de3"><p class="cl-518246c2"><span class="cl-517fbf7e">Magnitude</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-51825dec"><p class="cl-518246c2"><span class="cl-517fbf92">1,0</span></p></td><td class="cl-51825dec"><p class="cl-518246c2"><span class="cl-517fbf92">1,0</span></p></td><td class="cl-51825ded"><p class="cl-518246c2"><span class="cl-517fbf92">insignificante</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-51825dee"><p class="cl-518246c2"><span class="cl-517fbf92">1,5</span></p></td><td class="cl-51825dee"><p class="cl-518246c2"><span class="cl-517fbf92">1,2</span></p></td><td class="cl-51825df6"><p class="cl-518246c2"><span class="cl-517fbf92">pequena</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-51825dee"><p class="cl-518246c2"><span class="cl-517fbf92">3,5</span></p></td><td class="cl-51825dee"><p class="cl-518246c2"><span class="cl-517fbf92">1,9</span></p></td><td class="cl-51825df6"><p class="cl-518246c2"><span class="cl-517fbf92">moderada</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-51825df7"><p class="cl-518246c2"><span class="cl-517fbf92">9,0</span></p></td><td class="cl-51825df7"><p class="cl-518246c2"><span class="cl-517fbf92">3,0</span></p></td><td class="cl-51825df8"><p class="cl-518246c2"><span class="cl-517fbf92">grande</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-51825df7"><p class="cl-518246c2"><span class="cl-517fbf92">32</span></p></td><td class="cl-51825df7"><p class="cl-518246c2"><span class="cl-517fbf92">5,7</span></p></td><td class="cl-51825df8"><p class="cl-518246c2"><span class="cl-517fbf92">muito grande</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-51825df9"><p class="cl-518246c2"><span class="cl-517fbf92">360</span></p></td><td class="cl-51825df9"><p class="cl-518246c2"><span class="cl-517fbf92">19</span></p></td><td class="cl-51825e00"><p class="cl-518246c2"><span class="cl-517fbf92">quase perfeita</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-51825e01"><p class="cl-518246c2"><span class="cl-517fbf92">infinito</span></p></td><td class="cl-51825e01"><p class="cl-518246c2"><span class="cl-517fbf92">infinito</span></p></td><td class="cl-51825e02"><p class="cl-518246c2"><span class="cl-517fbf92">perfeita</span></p></td></tr></tbody></table></div>
+<div class="tabwid"><style>.cl-4187e3fa{}.cl-4177b3b8{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-4177b3d6{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-417f3944{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-417f7b8e{width:0.727in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-417f7ba2{width:1.253in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-417f7bac{width:0.727in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-417f7bad{width:1.253in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-417f7bb6{width:0.727in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-417f7bc0{width:1.253in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-417f7bca{width:0.727in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-417f7bcb{width:1.253in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-417f7bd4{width:0.727in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-417f7bd5{width:1.253in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-417f7bde{width:0.727in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-417f7be8{width:1.253in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-4187e3fa"><thead><tr style="overflow-wrap:break-word;"><th class="cl-417f7b8e"><p class="cl-417f3944"><span class="cl-4177b3b8">OR</span></p></th><th class="cl-417f7b8e"><p class="cl-417f3944"><span class="cl-4177b3b8">RR</span></p></th><th class="cl-417f7ba2"><p class="cl-417f3944"><span class="cl-4177b3b8">Magnitude</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-417f7bac"><p class="cl-417f3944"><span class="cl-4177b3d6">1,0</span></p></td><td class="cl-417f7bac"><p class="cl-417f3944"><span class="cl-4177b3d6">1,0</span></p></td><td class="cl-417f7bad"><p class="cl-417f3944"><span class="cl-4177b3d6">insignificante</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-417f7bb6"><p class="cl-417f3944"><span class="cl-4177b3d6">1,5</span></p></td><td class="cl-417f7bb6"><p class="cl-417f3944"><span class="cl-4177b3d6">1,2</span></p></td><td class="cl-417f7bc0"><p class="cl-417f3944"><span class="cl-4177b3d6">pequena</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-417f7bb6"><p class="cl-417f3944"><span class="cl-4177b3d6">3,5</span></p></td><td class="cl-417f7bb6"><p class="cl-417f3944"><span class="cl-4177b3d6">1,9</span></p></td><td class="cl-417f7bc0"><p class="cl-417f3944"><span class="cl-4177b3d6">moderada</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-417f7bca"><p class="cl-417f3944"><span class="cl-4177b3d6">9,0</span></p></td><td class="cl-417f7bca"><p class="cl-417f3944"><span class="cl-4177b3d6">3,0</span></p></td><td class="cl-417f7bcb"><p class="cl-417f3944"><span class="cl-4177b3d6">grande</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-417f7bca"><p class="cl-417f3944"><span class="cl-4177b3d6">32</span></p></td><td class="cl-417f7bca"><p class="cl-417f3944"><span class="cl-4177b3d6">5,7</span></p></td><td class="cl-417f7bcb"><p class="cl-417f3944"><span class="cl-4177b3d6">muito grande</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-417f7bd4"><p class="cl-417f3944"><span class="cl-4177b3d6">360</span></p></td><td class="cl-417f7bd4"><p class="cl-417f3944"><span class="cl-4177b3d6">19</span></p></td><td class="cl-417f7bd5"><p class="cl-417f3944"><span class="cl-4177b3d6">quase perfeita</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-417f7bde"><p class="cl-417f3944"><span class="cl-4177b3d6">infinito</span></p></td><td class="cl-417f7bde"><p class="cl-417f3944"><span class="cl-4177b3d6">infinito</span></p></td><td class="cl-417f7be8"><p class="cl-417f3944"><span class="cl-4177b3d6">perfeita</span></p></td></tr></tbody></table></div>
 </div>
 </div>
 </figure>
@@ -990,7 +991,7 @@ Cenário
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Em um estudo transversal <span class="citation" data-cites="madi2010prevalence">(<a href="referencias.html#ref-madi2010prevalence" role="doc-biblioref">9</a>)</span>, foi verificada a prevalência de infecções congênitas entre as puérperas com idade igual ou acima de 20 anos comparadas às mulheres com menos de 20 anos (adolescentes). A hipótese foi de que as adolescentes tinham uma prevalência maior de infecções.</p>
+<p>Em um estudo transversal <span class="citation" data-cites="madi2010prevalence">Madi et al. (<a href="referencias.html#ref-madi2010prevalence" role="doc-biblioref">2010</a>)</span>, foi verificada a prevalência de infecções congênitas entre as puérperas com idade igual ou acima de 20 anos comparadas às mulheres com menos de 20 anos (adolescentes). A hipótese foi de que as adolescentes tinham uma prevalência maior de infecções.</p>
 </div>
 </div>
 <p>Parte dos dados estão no arquivo <code>dadosMater.xlsx</code>, que contém, como já mencionado, informações de 1368 nascimentos. Entre essas, tem-se a idade das mães (<code>idadeMae</code>) e se foi diagnosticada infecção congênita (<code>infCong</code>).</p>
@@ -1066,7 +1067,7 @@ Fisher exact test that OR = 1: Pr&gt;chi2 = &lt;0.001
 <section id="risco-atribuível" class="level3" data-number="22.4.1">
 <h3 data-number="22.4.1" class="anchored" data-anchor-id="risco-atribuível"><span class="header-section-number">22.4.1</span> Risco Atribuível</h3>
 <p>O <em>Risco Atribuível</em> (RA) possui características de medida de impacto. O RA, ao invés de concentrar-se na associação em si, refere-se mais às consequências e às repercussões da exposição sobre a ocorrência do desfecho.</p>
-<p>O RA é a medida do excesso ou acréscimo absoluto de risco que pode ser atribuído à exposição <span class="citation" data-cites="szklo2019ar">(<a href="referencias.html#ref-szklo2019ar" role="doc-biblioref">10</a>)</span>. Com o RA é possível estimar o número de casos que podem ser prevenidos se a exposição for eliminada e assim estimar a magnitude do impacto, em termos de saúde pública, imposto por esta exposição.</p>
+<p>O RA é a medida do excesso ou acréscimo absoluto de risco que pode ser atribuído à exposição <span class="citation" data-cites="szklo2019ar">Szklo e Nieto (<a href="referencias.html#ref-szklo2019ar" role="doc-biblioref">2019b</a>)</span>. Com o RA é possível estimar o número de casos que podem ser prevenidos se a exposição for eliminada e assim estimar a magnitude do impacto, em termos de saúde pública, imposto por esta exposição.</p>
 <p>O risco de desenvolver o desfecho (incidência) está aumentado em RA nos indivíduos expostos em comparação com os que não estão expostos. Nos estudos de coorte, costuma-se usar mais a expressão <em>Risco Atribuível</em> ou <em>Diferença de Risco</em>. Nos ensaios clínicos, usa-se mais a expressão <em>Redução Absoluta do Risco</em> (RAR), pois se espera que a intervenção reduza o risco.</p>
 <p>Calcula-se o RA ou a RAR pela diferença absoluta entre as incidências dos expostos e não expostos:</p>
 <p><span class="math display">\[
@@ -1135,7 +1136,7 @@ RAP = \left(\frac{5,57 - 1}{5,57}\right) \times 100 = 82,05\%
 <h3 data-number="22.4.2" class="anchored" data-anchor-id="redução-relativa-do-risco"><span class="header-section-number">22.4.2</span> Redução Relativa do Risco</h3>
 <p>Quando se avalia um tratamento ou alguma intervenção em que se suponha haver uma redução do risco — por exemplo, o uso da aspirina para reduzir a ocorrência de infarto agudo do miocárdio —, o termo <em>Risco Atribuível</em> é substituído por <em>Redução do Risco Atribuível</em> e é calculado da mesma forma apresentada na equação do Risco Atribuível.</p>
 <p>Neste caso, ao invés de usar o Risco Atribuível Proporcional (RAP), onde se pressupõe que a exposição é um fator de risco para a doença e o RR <span class="math inline">\(&lt;\)</span> 1, usa-se a <em>Redução Relativa do Risco</em>, pois a exposição é supostamente um fator protetor, como se espera que ocorra nos ensaios clínicos.</p>
-<p>Esta medida, análoga ao RAP, é também chamada de <em>Eficácia</em>, definida como a proporção da incidência nos indivíduos não tratados (por exemplo, o grupo controle) que é reduzida pela intervenção <span class="citation" data-cites="szklo2019rrr">(<a href="referencias.html#ref-szklo2019rrr" role="doc-biblioref">11</a>)</span>.</p>
+<p>Esta medida, análoga ao RAP, é também chamada de <em>Eficácia</em>, definida como a proporção da incidência nos indivíduos não tratados (por exemplo, o grupo controle) que é reduzida pela intervenção <span class="citation" data-cites="szklo2019rrr">Szklo e Nieto (<a href="referencias.html#ref-szklo2019rrr" role="doc-biblioref">2019c</a>)</span>.</p>
 <p>O cálculo da <strong>Redução Relativa do Risco</strong> (RRR) é semelhante ao Risco Atribuível Proporcional (RAP), onde a incidência nos expostos é a incidência no grupo que recebeu a intervenção (ou taxa de eventos no grupo tratamento) e a incidência nos não expostos é incidência nos controles (ou taxa de eventos nos controles – TEC). Como se supõe que a incidência nos controles seja maior que a incidência no grupo de tratamento, a equação fica:</p>
 <p><span class="math display">\[
 RRR = \left(\frac{I_{controle} - I_{tratamento}}{I_{controle}}\right) \times 100
@@ -1144,7 +1145,7 @@ RRR = \left(\frac{I_{controle} - I_{tratamento}}{I_{controle}}\right) \times 100
 <p><span class="math display">\[
 RRR = \left(1 - RR\right) \times 100
 \]</span></p>
-<p>O <em>Physicians’ Health Study</em> <span class="citation" data-cites="steering1989final">(<a href="referencias.html#ref-steering1989final" role="doc-biblioref">12</a>)</span> é um ensaio clinico randomizado controlado, duplo cego, desenhado com o objetivo de determinar se uma dose baixa de aspirina (325 mg a cada 48 horas) diminui a mortalidade cardiovascular e se o betacaroteno reduz a incidência de câncer. Participaram deste estudo 22071 indivíduos por uma média de 60,2 meses.</p>
+<p>O <em>Physicians’ Health Study</em> <span class="citation" data-cites="steering1989final">Physicians’ Health Study Research Group* (<a href="referencias.html#ref-steering1989final" role="doc-biblioref">1989</a>)</span> é um ensaio clinico randomizado controlado, duplo cego, desenhado com o objetivo de determinar se uma dose baixa de aspirina (325 mg a cada 48 horas) diminui a mortalidade cardiovascular e se o betacaroteno reduz a incidência de câncer. Participaram deste estudo 22071 indivíduos por uma média de 60,2 meses.</p>
 <p>O estudo do componente aspirina mostrou os seguintes resultados (<a href="#tbl-aspirina" class="quarto-xref">Tabela&nbsp;<span>22.4</span></a>):</p>
 <div class="cell" data-layout-align="center">
 <div id="tbl-aspirina" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-layout-align="center">
@@ -1179,7 +1180,7 @@ RR = \frac{0,0126}{0,0217} = 0,58
 RRR = \left(1 - 0,58\right) \times 100 = 42\%
 \]</span></p>
 <p>Ou seja, houve uma redução de 42% no risco de IAM no grupo que usou aspirina e a conclusão dos autores foi que este ensaio clínico demonstrou, em relação à prevenção primária de doença cardiovascular, uma diminuição no risco de IAM.</p>
-<p>Estes cálculos podem ser realizados com a função <code>risks()</code> do pacote <code>MKmisc</code> <span class="citation" data-cites="kohl2019package">(<a href="referencias.html#ref-kohl2019package" role="doc-biblioref">13</a>)</span>. Esta função calcula o risco relativo (RR), odds ratio (OR), redução relativa do risco (RRR) e outras estatísticas epidemiológicas, como RAR, NNT.</p>
+<p>Estes cálculos podem ser realizados com a função <code>risks()</code> do pacote <code>MKmisc</code> <span class="citation" data-cites="kohl2019package">Kohl (<a href="referencias.html#ref-kohl2019package" role="doc-biblioref">2019</a>)</span>. Esta função calcula o risco relativo (RR), odds ratio (OR), redução relativa do risco (RRR) e outras estatísticas epidemiológicas, como RAR, NNT.</p>
 <p>A função <code>risks()</code> usa como argumento:</p>
 <ul>
 <li><strong>p0</strong> <span class="math inline">\(\longrightarrow\)</span> incidência do desfecho de interesse no grupo não exposto;</li>
@@ -1204,14 +1205,14 @@ RRR = \left(1 - 0,58\right) \times 100 = 42\%
 <p><span class="math display">\[
 NNT = \frac{1}{RAR} = \frac{1}{I_{não \ expostos} - I_{expostos}}
 \]</span></p>
-<p>No exemplo do <em>Physicians’ Health Study</em> <span class="citation" data-cites="steering1989final">(<a href="referencias.html#ref-steering1989final" role="doc-biblioref">12</a>)</span>, o RAR igual a:</p>
+<p>No exemplo do <em>Physicians’ Health Study</em> <span class="citation" data-cites="steering1989final">Physicians’ Health Study Research Group* (<a href="referencias.html#ref-steering1989final" role="doc-biblioref">1989</a>)</span>, o RAR igual a:</p>
 <p><span class="math display">\[
 RA = \left|I_{expostos} - I_{não \ expostos}\right| = \left|0,0126 - 0,0217\right| = 0,0091
 \]</span></p>
 <p><span class="math display">\[
 NNT = \frac{1}{0,0091} = 109,89 \simeq 110
 \]</span></p>
-<p>Pode-se calcular os IC<sub>95%</sub>, calculando o NNT para os limites do RAR usando a seguinte equação <span class="citation" data-cites="bender2001calculating">(<a href="referencias.html#ref-bender2001calculating" role="doc-biblioref">14</a>)</span>:</p>
+<p>Pode-se calcular os IC<sub>95%</sub>, calculando o NNT para os limites do RAR usando a seguinte equação <span class="citation" data-cites="bender2001calculating">Bender (<a href="referencias.html#ref-bender2001calculating" role="doc-biblioref">2001</a>)</span>:</p>
 <p><span class="math display">\[
 IC_{95\%} \longrightarrow RAR \pm z_{\left({1 - \frac{\alpha}{2}}\right)} \times EP_{RAR}
 \]</span> Onde,</p>
@@ -1324,7 +1325,7 @@ NND = \frac{1}{ARA} = \frac{1}{I_{expostos} - I_{não \ expostos}}
 \]</span></p>
 <section id="exemplo-5" class="level4" data-number="22.4.4.1">
 <h4 data-number="22.4.4.1" class="anchored" data-anchor-id="exemplo-5"><span class="header-section-number">22.4.4.1</span> Exemplo</h4>
-<p>No <em>Physicians’ Health Study</em> <span class="citation" data-cites="steering1989final">(<a href="referencias.html#ref-steering1989final" role="doc-biblioref">12</a>)</span> sobre o uso de aspirina na prevenção de IAM, foi verificado também os efeitos colaterais da aspirina, como acidentes vasculares cerebrais (AVC), <a href="#tbl-avc" class="quarto-xref">Tabela&nbsp;<span>22.5</span></a>.</p>
+<p>No <em>Physicians’ Health Study</em> <span class="citation" data-cites="steering1989final">Physicians’ Health Study Research Group* (<a href="referencias.html#ref-steering1989final" role="doc-biblioref">1989</a>)</span> sobre o uso de aspirina na prevenção de IAM, foi verificado também os efeitos colaterais da aspirina, como acidentes vasculares cerebrais (AVC), <a href="#tbl-avc" class="quarto-xref">Tabela&nbsp;<span>22.5</span></a>.</p>
 <div class="cell" data-layout-align="center">
 <div id="tbl-avc" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-layout-align="center">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1371,48 +1372,48 @@ Tabela&nbsp;22.5: Physicians’ Health Study, componente aspirina e AVC.
 
 <!-- -->
 
-<div id="refs" class="references csl-bib-body" role="list" style="display: none">
-<div id="ref-stevenson2022epir" class="csl-entry" role="listitem">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline">Mark, Sergeant E, et al. epiR: Tools for the Analysis of Epidemiological Data [Internet]. 2022. Disponível em: <a href="https://CRAN.R-project.org/package=epiR">https://CRAN.R-project.org/package=epiR</a></div>
-</div>
-<div id="ref-feychting1998reduced" class="csl-entry" role="listitem">
-<div class="csl-left-margin">2. </div><div class="csl-right-inline">Feychting M, Osterlund B, Ahlbom A. Reduced cancer incidence among the blind. Epidemiology. 1998;9(5):490–4. </div>
-</div>
-<div id="ref-szklo2019measuring" class="csl-entry" role="listitem">
-<div class="csl-left-margin">3. </div><div class="csl-right-inline">Szklo M, Nieto FJ. Measuring Disease Occurrence. Em: Epidemiology: beyond the basics. Fourth Edition. Burlington, MA: Jones &amp; Bartlett Learning; 2019. p. 80–1. </div>
-</div>
-<div id="ref-gross1976oswego" class="csl-entry" role="listitem">
-<div class="csl-left-margin">4. </div><div class="csl-right-inline">Gross M. Oswego County revisited. Public health reports. 1976;91(2):168. </div>
-</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-aragon2020epitools" class="csl-entry" role="listitem">
-<div class="csl-left-margin">5. </div><div class="csl-right-inline">Aragon TJ. epitools: Epidemiology Tools [Internet]. 2020. Disponível em: <a href="https://CRAN.R-project.org/package=epitools">https://CRAN.R-project.org/package=epitools</a></div>
-</div>
-<div id="ref-szklo2019associations" class="csl-entry" role="listitem">
-<div class="csl-left-margin">6. </div><div class="csl-right-inline">Szklo M, Nieto FJ. Measuring Associations Between Exposures and Outcomes. Em: Epidemiology: beyond the basics. Fourth Edition. Burlington, MA: Jones &amp; Bartlett Learning; 2019. p. 88–94. </div>
-</div>
-<div id="ref-davies1998can" class="csl-entry" role="listitem">
-<div class="csl-left-margin">7. </div><div class="csl-right-inline">Davies HTO, Crombie IK, Tavakoli M. When can odds ratios mislead? BMJ. 1998;316(7136):989–91. </div>
-</div>
-<div id="ref-hopkins2016scales" class="csl-entry" role="listitem">
-<div class="csl-left-margin">8. </div><div class="csl-right-inline">Hopkins WG. A Scale of Magnitudes for Effect Statistics [Internet]. A New View of Statistics. Sportscience; 2016. Disponível em: <a href="http://www.sportsci.org/resource/stats/index.html">http://www.sportsci.org/resource/stats/index.html</a></div>
-</div>
-<div id="ref-madi2010prevalence" class="csl-entry" role="listitem">
-<div class="csl-left-margin">9. </div><div class="csl-right-inline">Madi JM, Souza R da S de, Araujo BF de, Oliveira Filho PF, et al. Prevalence of toxoplasmosis, HIV, syphilis and rubella in a population of puerperal women using Whatman 903<span></span> filter paper. The Brazilian Journal of Infectious Diseases. 2010;14(1):24–9. </div>
-</div>
-<div id="ref-szklo2019ar" class="csl-entry" role="listitem">
-<div class="csl-left-margin">10. </div><div class="csl-right-inline">Szklo M, Nieto FJ. Measuring Associations Between Exposures and Outcomes. Em: Epidemiology: beyond the basics. Fourth Edition. Burlington, MA: Jones &amp; Bartlett Learning; 2019. p. 84–102. </div>
-</div>
-<div id="ref-szklo2019rrr" class="csl-entry" role="listitem">
-<div class="csl-left-margin">11. </div><div class="csl-right-inline">Szklo M, Nieto FJ. Measuring Associations Between Exposures and Outcomes. Em: Epidemiology: beyond the basics. Fourth Edition. Burlington, MA: Jones &amp; Bartlett Learning; 2019. p. 97–8. </div>
-</div>
-<div id="ref-steering1989final" class="csl-entry" role="listitem">
-<div class="csl-left-margin">12. </div><div class="csl-right-inline">Physicians’ Health Study Research Group* SC of the. Final report on the aspirin component of the ongoing Physicians’ Health Study. New England Journal of Medicine. 1989;321(3):129–35. </div>
-</div>
-<div id="ref-kohl2019package" class="csl-entry" role="listitem">
-<div class="csl-left-margin">13. </div><div class="csl-right-inline">Kohl M. Package <span>«MKmisc»</span> [Internet]. 2019. Disponível em: <a href="https://github.com/stamats/MKmisc">https://github.com/stamats/MKmisc</a></div>
+Aragon, Tomas J. 2020. <span>«epitools: Epidemiology Tools»</span>. <a href="https://CRAN.R-project.org/package=epitools">https://CRAN.R-project.org/package=epitools</a>.
 </div>
 <div id="ref-bender2001calculating" class="csl-entry" role="listitem">
-<div class="csl-left-margin">14. </div><div class="csl-right-inline">Bender R. Calculating confidence intervals for the number needed to treat. Controlled clinical trials. 2001;22(2):102–10. </div>
+Bender, Ralf. 2001. <span>«Calculating confidence intervals for the number needed to treat»</span>. <em>Controlled clinical trials</em> 22 (2). Elsevier: 102–10.
+</div>
+<div id="ref-davies1998can" class="csl-entry" role="listitem">
+Davies, Huw Talfryn Oakley, Iain Kinloch Crombie, e Manouche Tavakoli. 1998. <span>«When can odds ratios mislead?»</span> <em>BMJ</em> 316 (7136). British Medical Journal Publishing Group: 989–91.
+</div>
+<div id="ref-feychting1998reduced" class="csl-entry" role="listitem">
+Feychting, Maria, Bill Osterlund, e Anders Ahlbom. 1998. <span>«Reduced cancer incidence among the blind»</span>. <em>Epidemiology</em> 9 (5). LWW: 490–94.
+</div>
+<div id="ref-gross1976oswego" class="csl-entry" role="listitem">
+Gross, Michael. 1976. <span>«Oswego County revisited.»</span> <em>Public health reports</em> 91 (2). SAGE Publications: 168.
+</div>
+<div id="ref-hopkins2016scales" class="csl-entry" role="listitem">
+Hopkins, Will G. 2016. <span>«A Scale of Magnitudes for Effect Statistics»</span>. <em>A New View of Statistics</em>. Sportscience. <a href="http://www.sportsci.org/resource/stats/index.html">http://www.sportsci.org/resource/stats/index.html</a>.
+</div>
+<div id="ref-kohl2019package" class="csl-entry" role="listitem">
+Kohl, Matthias. 2019. <span>«Package <span>“MKmisc”</span>»</span>. <a href="https://github.com/stamats/MKmisc">https://github.com/stamats/MKmisc</a>.
+</div>
+<div id="ref-madi2010prevalence" class="csl-entry" role="listitem">
+Madi, José Mauro, Ricardo da Silva de Souza, Breno Fauth de Araujo, Petrônio Fagundes Oliveira Filho, et al. 2010. <span>«Prevalence of toxoplasmosis, HIV, syphilis and rubella in a population of puerperal women using Whatman 903<span></span> filter paper»</span>. <em>The Brazilian Journal of Infectious Diseases</em> 14 (1). Elsevier: 24–29.
+</div>
+<div id="ref-stevenson2022epir" class="csl-entry" role="listitem">
+Mark, Evan Sergeant, et al. 2022. <em>epiR: Tools for the Analysis of Epidemiological Data</em>. <a href="https://CRAN.R-project.org/package=epiR">https://CRAN.R-project.org/package=epiR</a>.
+</div>
+<div id="ref-steering1989final" class="csl-entry" role="listitem">
+Physicians’ Health Study Research Group*, Steering Committee of the. 1989. <span>«Final report on the aspirin component of the ongoing Physicians’ Health Study»</span>. <em>New England Journal of Medicine</em> 321 (3). Mass Medical Soc: 129–35.
+</div>
+<div id="ref-szklo2019associations" class="csl-entry" role="listitem">
+Szklo, Moyses, e F Javier Nieto. 2019a. <span>«Measuring Associations Between Exposures and Outcomes»</span>. Em <em>Epidemiology: beyond the basics</em>, Fourth Edition, 88–94. Burlington, MA: Jones &amp; Bartlett Learning.
+</div>
+<div id="ref-szklo2019ar" class="csl-entry" role="listitem">
+———. 2019b. <span>«Measuring Associations Between Exposures and Outcomes»</span>. Em <em>Epidemiology: beyond the basics</em>, Fourth Edition, 84–102. Burlington, MA: Jones &amp; Bartlett Learning.
+</div>
+<div id="ref-szklo2019rrr" class="csl-entry" role="listitem">
+———. 2019c. <span>«Measuring Associations Between Exposures and Outcomes»</span>. Em <em>Epidemiology: beyond the basics</em>, Fourth Edition, 97–98. Burlington, MA: Jones &amp; Bartlett Learning.
+</div>
+<div id="ref-szklo2019measuring" class="csl-entry" role="listitem">
+———. 2019d. <span>«Measuring Disease Occurrence»</span>. Em <em>Epidemiology: beyond the basics</em>, Fourth Edition, 80–81. Burlington, MA: Jones &amp; Bartlett Learning.
 </div>
 </div>
 </section>
