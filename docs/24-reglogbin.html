@@ -811,7 +811,7 @@ Figura&nbsp;24.2: Titanic parado em Queenstown, 11 de abril.de 1912
  $ sobreviveu: Factor w/ 2 levels "0","1": 2 1 1 1 2 1 2 2 2 1 ...
  $ classe    : Factor w/ 3 levels "1","2","3": 3 1 2 3 1 1 2 2 3 1 ...
  $ sexo      : Factor w/ 2 levels "fem","masc": 2 2 2 2 1 2 1 1 1 2 ...
- $ idade     : num  44 47 30 40.5 44 45 0.92 24 22 37 ...
+ $ idade     : num  44 47 30 40.5 44 45 0.92 24 22 45.5 ...
  $ irco      : num  0 0 0 0 0 0 1 1 2 0 ...
  $ pafi      : num  0 0 0 0 0 0 2 1 0 0 ...</code></pre>
 </div>
@@ -821,7 +821,7 @@ Figura&nbsp;24.2: Titanic parado em Queenstown, 11 de abril.de 1912
  $ sobreviveu: Factor w/ 2 levels "0","1": 1 2 1 2 2 1 1 2 1 1 ...
  $ classe    : Factor w/ 3 levels "1","2","3": 1 3 3 3 1 2 3 1 3 3 ...
  $ sexo      : Factor w/ 2 levels "fem","masc": 2 1 2 2 1 2 1 1 2 1 ...
- $ idade     : num  30 18 7 25 60 30 1 22 51 28 ...
+ $ idade     : num  30 18 7 25 60 30 38 22 51 28 ...
  $ irco      : num  1 0 4 0 1 1 3 0 0 0 ...
  $ pafi      : num  2 0 1 0 0 1 1 2 0 0 ...</code></pre>
 </div>
@@ -854,21 +854,21 @@ glm(formula = sobreviveu ~ ., family = binomial(link = "logit"),
 
 Coefficients:
              Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)  4.171883   0.424308   9.832  &lt; 2e-16 ***
-classe2     -1.193470   0.279535  -4.269 1.96e-05 ***
-classe3     -2.223977   0.267226  -8.322  &lt; 2e-16 ***
-sexomasc    -3.567161   0.221029 -16.139  &lt; 2e-16 ***
-idade       -0.032648   0.007659  -4.263 2.02e-05 ***
-irco        -0.417290   0.114605  -3.641 0.000271 ***
-pafi        -0.085290   0.115166  -0.741 0.458949    
+(Intercept)  4.346017   0.429947  10.108  &lt; 2e-16 ***
+classe2     -1.266426   0.283316  -4.470 7.82e-06 ***
+classe3     -2.412514   0.283457  -8.511  &lt; 2e-16 ***
+sexomasc    -3.619086   0.224415 -16.127  &lt; 2e-16 ***
+idade       -0.035288   0.007379  -4.783 1.73e-06 ***
+irco        -0.410678   0.114505  -3.587 0.000335 ***
+pafi        -0.087386   0.118229  -0.739 0.459831    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
     Null deviance: 1210.44  on 915  degrees of freedom
-Residual deviance:  714.01  on 909  degrees of freedom
-AIC: 728.01
+Residual deviance:  708.86  on 909  degrees of freedom
+AIC: 722.86
 
 Number of Fisher Scoring iterations: 5</code></pre>
 </div>
@@ -877,7 +877,7 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <h4 data-number="24.6.2.1" class="anchored" data-anchor-id="interpretação-dos-coeficientes"><span class="header-section-number">24.6.2.1</span> Interpretação dos Coeficientes</h4>
 <p>Em uma regressão logística, a resposta que está sendo modelada é o <code>log(odds)</code> ou <code>logit</code> de que o desfecho é igual a 1. Os coeficientes de regressão fornecem a mudança no <code>log(odds)</code> no desfecho para a mudança de uma unidade na variável preditora, mantendo todas as outras variáveis preditivas constantes <span class="citation" data-cites="hosmer2013applied">(<a href="referencias.html#ref-hosmer2013applied" role="doc-biblioref">11</a>)</span>.</p>
 <p>Na saída da função <code>summary()</code>, são produzidos os coeficientes da regressão na coluna <code>Estimate</code>, associados ao respectivos desvio padrão dos resíduos (<code>Std. Error</code>), o valor <code>z</code> (estatística de Wald) e os valores do <em>p</em> (<code>Pr(&gt;|t|</code>). Importante destacar que a hipótese nula dos coeficientes da regressão é de que “os coeficientes são nulos/zeros”. Então, os valores <em>P</em> devem ser interpretados como a probabilidade de se observar valores de coeficientes tão extremos dado que a hipótese nula é verdadeira. Estes coeficientes estão modelando a probabilidade do evento desfecho (<code>sobreviveu</code>) ocorrer com base nas variáveis explicativas: <code>sexo</code>, <code>idade</code>, <code>classe</code> do passageiro, número de irmãos/conjuges a bordo (<code>irco</code>) e número de pais/filhos a bordo (<code>pafi</code>) . Os coeficientes da regressão representam o impacto de cada variável explicativa na probabilidade de sobrevivência.</p>
-<p>Nas <em>variáveis contínuas</em> , para cada aumento de uma unidade na <code>idade</code>, por exemplo, o <span class="math inline">\(log(odds)\)</span> de sobreviver <code>1 = sim</code> (versus <code>0 = não</code>) diminui, pois o coeficiente é negativo, em -0.0326484.</p>
+<p>Nas <em>variáveis contínuas</em> , para cada aumento de uma unidade na <code>idade</code>, por exemplo, o <span class="math inline">\(log(odds)\)</span> de sobreviver <code>1 = sim</code> (versus <code>0 = não</code>) diminui, pois o coeficiente é negativo, em -0.0352884.</p>
 <p>Para <em>variáveis categóricas</em>, o desempenho de cada categoria é avaliado em relação a uma categoria de base. A categoria de base para a variável <code>sexo</code> é o sexo feminino (primeira categoria que aparece quando se observa os níveis) e para a classe do passageiro é a 1ª classe.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(dadosTreino<span class="sc">$</span>sexo)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -930,9 +930,9 @@ Terms added sequentially (first to last)
 NULL                     915    1210.44              
 classe  2    63.38       913    1147.06 1.728e-14 ***
 sexo    1   401.14       912     745.92 &lt; 2.2e-16 ***
-idade   1    12.04       911     733.88 0.0005215 ***
-irco    1    19.31       910     714.57 1.108e-05 ***
-pafi    1     0.55       909     714.01 0.4565044    
+idade   1    17.39       911     728.53 3.048e-05 ***
+irco    1    19.12       910     709.41 1.229e-05 ***
+pafi    1     0.55       909     708.86     0.458    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
@@ -965,18 +965,18 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(odds_ratio1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                OR  2.5 %  97.5 %
-(Intercept) 64.837 28.842 152.464
-classe2      0.303  0.174   0.521
-classe3      0.108  0.063   0.181
-sexomasc     0.028  0.018   0.043
-idade        0.968  0.953   0.982
-irco         0.659  0.520   0.815
-pafi         0.918  0.730   1.147</code></pre>
+(Intercept) 77.170 34.009 183.806
+classe2      0.282  0.160   0.488
+classe3      0.090  0.051   0.154
+sexomasc     0.027  0.017   0.041
+idade        0.965  0.951   0.979
+irco         0.663  0.523   0.820
+pafi         0.916  0.724   1.153</code></pre>
 </div>
 </div>
-<p>Observando, novamente, a variável <code>idade</code>, vê-se que à medida que ela aumenta, reduz a chance de sobrevivência no naufrágio do Titanic. A <em>OR</em> nos informa que a cada aumento de uma unidade na <code>idade</code>, há uma diminuição na chance de sobrevivência (<code>sobreviveu = 1</code>) de <span class="math inline">\(1 – OR \times 100\)</span>%, ou seja, uma diminuição de 3.2%.<br>
-Para o sexo masculino, há uma diminuição (coeficiente negativo) na chance de sobrevivência. O fato de ser homem reduz em 97.2% a chance de sobreviver.<br>
-Para a 3ª classe, comparada à 1ª classe, há uma diminuição de 89.2% na chance de sobrevivência. Da mesma forma a 2ª classe, comparada à 1ª classe, tem uma diminuição de 69.7%% na chance de sobrevivência <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
+<p>Observando, novamente, a variável <code>idade</code>, vê-se que à medida que ela aumenta, reduz a chance de sobrevivência no naufrágio do Titanic. A <em>OR</em> nos informa que a cada aumento de uma unidade na <code>idade</code>, há uma diminuição na chance de sobrevivência (<code>sobreviveu = 1</code>) de <span class="math inline">\(1 – OR \times 100\)</span>%, ou seja, uma diminuição de 3.5%.<br>
+Para o sexo masculino, há uma diminuição (coeficiente negativo) na chance de sobrevivência. O fato de ser homem reduz em 97.3% a chance de sobreviver.<br>
+Para a 3ª classe, comparada à 1ª classe, há uma diminuição de 91% na chance de sobrevivência. Da mesma forma a 2ª classe, comparada à 1ª classe, tem uma diminuição de 71.8%% na chance de sobrevivência <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
 </section>
 </section>
 <section id="visualização-da-regressão-logística" class="level3" data-number="24.6.3">
@@ -1016,20 +1016,20 @@ glm(formula = sobreviveu ~ classe + sexo + idade + irco, family = binomial(link 
 
 Coefficients:
              Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)  4.104338   0.413276   9.931  &lt; 2e-16 ***
-classe2     -1.187064   0.279443  -4.248 2.16e-05 ***
-classe3     -2.213914   0.266821  -8.297  &lt; 2e-16 ***
-sexomasc    -3.532793   0.215076 -16.426  &lt; 2e-16 ***
-idade       -0.032159   0.007618  -4.221 2.43e-05 ***
-irco        -0.439918   0.111067  -3.961 7.47e-05 ***
+(Intercept)  4.281177   0.419892  10.196  &lt; 2e-16 ***
+classe2     -1.260622   0.283300  -4.450 8.60e-06 ***
+classe3     -2.401283   0.282917  -8.488  &lt; 2e-16 ***
+sexomasc    -3.583641   0.218213 -16.423  &lt; 2e-16 ***
+idade       -0.034901   0.007356  -4.745 2.09e-06 ***
+irco        -0.434702   0.110519  -3.933 8.38e-05 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
     Null deviance: 1210.44  on 915  degrees of freedom
-Residual deviance:  714.57  on 910  degrees of freedom
-AIC: 726.57
+Residual deviance:  709.41  on 910  degrees of freedom
+AIC: 721.41
 
 Number of Fisher Scoring iterations: 5</code></pre>
 </div>
@@ -1043,12 +1043,12 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(odds.ratio2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              OddsRatio       2.5 %       97.5 %
-(Intercept) 60.60261380 27.53690109 139.41030140
-classe2      0.30511569  0.17513367   0.52448516
-classe3      0.10927212  0.06407984   0.18266665
-sexomasc     0.02922317  0.01892514   0.04402731
-idade        0.96835278  0.95379619   0.98274720
-irco         0.64408939  0.51159862   0.79149465</code></pre>
+(Intercept) 72.32554433 32.50264737 168.89247261
+classe2      0.28347753  0.16138085   0.49068846
+classe3      0.09060166  0.05138899   0.15604489
+sexomasc     0.02777439  0.01786645   0.04208011
+idade        0.96570053  0.95165983   0.97953901
+irco         0.64745756  0.51464841   0.79460883</code></pre>
 </div>
 </div>
 <p>Quando se compara os dois modelos para ver se houve uma melhora no ajuste, é interessante observar os AICs.</p>
@@ -1057,11 +1057,11 @@ irco         0.64408939  0.51159862   0.79149465</code></pre>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>aic</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        df      AIC
-modelo1  7 728.0125
-modelo2  6 726.5669</code></pre>
+modelo1  7 722.8633
+modelo2  6 721.4141</code></pre>
 </div>
 </div>
-<p>O <code>modelo1</code> tem uma AIC (728.01) discretamente maior que a do <code>modelo2</code> (726.57). Isto indica que o ajuste do <code>modelo2</code> é um pouco melhor (teve menos informação perdida no ajuste), entretanto, esta ligeira melhora não modifica a interpretação.A função <code>anova()</code>, que a diferença entre os modelos não é significativa (<em>p</em> &gt; 0.05):</p>
+<p>O <code>modelo1</code> tem uma AIC (722.86) discretamente maior que a do <code>modelo2</code> (721.41). Isto indica que o ajuste do <code>modelo2</code> é um pouco melhor (teve menos informação perdida no ajuste), entretanto, esta ligeira melhora não modifica a interpretação.A função <code>anova()</code>, que a diferença entre os modelos não é significativa (<em>p</em> &gt; 0.05):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modelo1, modelo2, <span class="at">test =</span> <span class="st">"Chisq"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1070,8 +1070,8 @@ modelo2  6 726.5669</code></pre>
 Model 1: sobreviveu ~ classe + sexo + idade + irco + pafi
 Model 2: sobreviveu ~ classe + sexo + idade + irco
   Resid. Df Resid. Dev Df Deviance Pr(&gt;Chi)
-1       909     714.01                     
-2       910     714.57 -1 -0.55445   0.4565</code></pre>
+1       909     708.86                     
+2       910     709.41 -1 -0.55078    0.458</code></pre>
 </div>
 </div>
 <p>Os dois modelo têm a mesma interpretação, mas o <code>modelo2</code> ajusta melhor os dados.</p>
@@ -1100,22 +1100,22 @@ glm(formula = sobreviveu ~ sexo * classe + idade + irco, family = "binomial",
 
 Coefficients:
                           Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)               5.036349   0.698267   7.213 5.49e-13 ***
-sexomasc                 -4.476998   0.627800  -7.131 9.95e-13 ***
-classe2ª Classe          -0.808608   0.789868  -1.024 0.305965    
-classe3ª Classe          -3.440118   0.636174  -5.408 6.39e-08 ***
-idade                    -0.035444   0.008087  -4.383 1.17e-05 ***
-irco                     -0.420978   0.112696  -3.736 0.000187 ***
-sexomasc:classe2ª Classe -0.872473   0.866511  -1.007 0.313992    
-sexomasc:classe3ª Classe  1.736813   0.673835   2.578 0.009952 ** 
+(Intercept)               5.128510   0.694034   7.389 1.47e-13 ***
+sexomasc                 -4.489470   0.628708  -7.141 9.28e-13 ***
+classe2ª Classe          -0.850926   0.790798  -1.076 0.281912    
+classe3ª Classe          -3.578684   0.641818  -5.576 2.46e-08 ***
+idade                    -0.036861   0.007657  -4.814 1.48e-06 ***
+irco                     -0.406307   0.111315  -3.650 0.000262 ***
+sexomasc:classe2ª Classe -0.891283   0.867016  -1.028 0.303955    
+sexomasc:classe3ª Classe  1.685273   0.674083   2.500 0.012416 *  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
     Null deviance: 1210.44  on 915  degrees of freedom
-Residual deviance:  690.18  on 908  degrees of freedom
-AIC: 706.18
+Residual deviance:  685.86  on 908  degrees of freedom
+AIC: 701.86
 
 Number of Fisher Scoring iterations: 6</code></pre>
 </div>
@@ -1162,12 +1162,12 @@ Figura&nbsp;24.4: Gráfico de linha da interação sexo:classe
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>aic</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        df      AIC
-modelo2  6 726.5669
-modelo3  8 706.1834</code></pre>
+modelo2  6 721.4141
+modelo3  8 701.8619</code></pre>
 </div>
 </div>
-<p>A saída mostra que existe uma diferença de 20.39 pontos. Isso é uma forte evidência que o modelo com a interação melhora o ajuste.<br>
-O coeficiente de interação positivo como 1.736813 não significa que homens da 3ª classe têm alta probabilidade de sobreviver. Significa que o efeito negativo de ser homem na 3ª classe é menos grave (ou a relação da classe com a sobrevivência é diferente para homens) do que seria previsto apenas pelos efeitos principais <code>sexomasc</code> e 3ª Classe somados linearmente. É uma correção para a relação aditiva simples.<br>
+<p>A saída mostra que existe uma diferença de 19.55 pontos. Isso é uma forte evidência que o modelo com a interação melhora o ajuste.<br>
+O coeficiente de interação positivo como 1.6852729 não significa que homens da 3ª classe têm alta probabilidade de sobreviver. Significa que o efeito negativo de ser homem na 3ª classe é menos grave (ou a relação da classe com a sobrevivência é diferente para homens) do que seria previsto apenas pelos efeitos principais <code>sexomasc</code> e 3ª Classe somados linearmente. É uma correção para a relação aditiva simples.<br>
 O gráfico mostra claramente que homens da 3ª classe têm uma probabilidade predita de sobrevivência bem baixa, que é a mais baixa de todas as categorias.</p>
 <p>Desta forma, a interpretação é semelhante a que foi mostrada com o modelo sem interação:</p>
 <ul>
@@ -1216,8 +1216,8 @@ Figura&nbsp;24.5: Proporção de sobrevivência por sexo e classe
 Model 1: sobreviveu ~ classe + sexo + idade + irco
 Model 2: sobreviveu ~ sexo * classe + idade + irco
   Resid. Df Resid. Dev Df Deviance  Pr(&gt;Chi)    
-1       910     714.57                          
-2       908     690.18  2   24.384 5.072e-06 ***
+1       910     709.41                          
+2       908     685.86  2   23.552 7.686e-06 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
@@ -1316,43 +1316,43 @@ Figura&nbsp;24.6: Comparação das curvas ROC(modelo sem interação = preto; mo
 
           Reference
 Prediction   0   1
-         0 233  28
-         1  19 113
+         0 235  26
+         1  17 115
                                           
-               Accuracy : 0.8804          
-                 95% CI : (0.8442, 0.9108)
+               Accuracy : 0.8906          
+                 95% CI : (0.8555, 0.9197)
     No Information Rate : 0.6412          
     P-Value [Acc &gt; NIR] : &lt;2e-16          
                                           
-                  Kappa : 0.7364          
+                  Kappa : 0.7588          
                                           
- Mcnemar's Test P-Value : 0.2432          
+ Mcnemar's Test P-Value : 0.2225          
                                           
-            Sensitivity : 0.8014          
-            Specificity : 0.9246          
-         Pos Pred Value : 0.8561          
-         Neg Pred Value : 0.8927          
+            Sensitivity : 0.8156          
+            Specificity : 0.9325          
+         Pos Pred Value : 0.8712          
+         Neg Pred Value : 0.9004          
              Prevalence : 0.3588          
-         Detection Rate : 0.2875          
+         Detection Rate : 0.2926          
    Detection Prevalence : 0.3359          
-      Balanced Accuracy : 0.8630          
+      Balanced Accuracy : 0.8741          
                                           
        'Positive' Class : 1               
                                           </code></pre>
 </div>
 </div>
 <p>A tabela de contingência do início da matriz de confusão, mostra a comparação dos dados preditos e os dados reais (reference) e o significado de cada célula, onde <em>Classe 0</em> representa negativo e <em>Classe 1</em>, positivo.</p>
-<p>A <strong>Acurácia</strong> (88%) é a proporção de previsões corretas. O modelo tem uma alta acurácia, isso indica um bom desempenho geral. Um modelo é considerado razoavelmente bom se a precisão do modelo for superior a 70%.<br>
-A <strong>Sensibilidade (Recall)</strong> é a proporção de verdadeiros positivos (VP) identificados corretamente. O modelo o modelo identifica corretamete 80.1% dos verdadeiros positivos.<br>
-A <strong>Especificidade</strong> é a proporção de verdadeiros negativos(VN). O modelo reconhece 92.5% dos verdadeiros negativos.<br>
-O <strong>Valor P</strong> (<em>McNemar’s Test</em>) testa se há viés significativo na classificação dos erros. O valor alto (<em>P</em> = 0.243) sugere que os erros entre classes não são estatisticamente diferentes.<br>
+<p>A <strong>Acurácia</strong> (89.1%) é a proporção de previsões corretas. O modelo tem uma alta acurácia, isso indica um bom desempenho geral. Um modelo é considerado razoavelmente bom se a precisão do modelo for superior a 70%.<br>
+A <strong>Sensibilidade (Recall)</strong> é a proporção de verdadeiros positivos (VP) identificados corretamente. O modelo o modelo identifica corretamete 81.6% dos verdadeiros positivos.<br>
+A <strong>Especificidade</strong> é a proporção de verdadeiros negativos(VN). O modelo reconhece 93.3% dos verdadeiros negativos.<br>
+O <strong>Valor P</strong> (<em>McNemar’s Test</em>) testa se há viés significativo na classificação dos erros. O valor alto (<em>P</em> = 0.222) sugere que os erros entre classes não são estatisticamente diferentes.<br>
 O <strong>Kappa</strong> mede concordância ajustada para a distribuição dos dados. Um valor próximo de 1 indica boa concordância entre previsões e valores reais.<br>
 O <strong>escore F1</strong> (não listado diretamente) representa o equilíbrio entre precisão e recall. Pode ser obtido pela equação:</p>
 <p><span class="math display">\[
 F1 = 2 \times \frac{VPN \times sensibilidade}{VPN + sensibilidade}
 \]</span><br>
-Ou consultando <code>conf_matrix$byClass[7]</code> (82.8%).</p>
-<p>A <strong>Precisão (VPP)</strong> é a proporção de previsões positivas que estavam corretas, também denomonada de valor preditivo positivo (VPP). A precisão do modelo é igual 85.6, é considerada um valor alto.</p>
+Ou consultando <code>conf_matrix$byClass[7]</code> (84.2%).</p>
+<p>A <strong>Precisão (VPP)</strong> é a proporção de previsões positivas que estavam corretas, também denomonada de valor preditivo positivo (VPP). A precisão do modelo é igual 87.1, é considerada um valor alto.</p>
 </section>
 <section id="uso-da-curva-roc-para-avaliar-o-modelo" class="level4" data-number="24.6.7.2">
 <h4 data-number="24.6.7.2" class="anchored" data-anchor-id="uso-da-curva-roc-para-avaliar-o-modelo"><span class="header-section-number">24.6.7.2</span> Uso da curva ROC para avaliar o modelo</h4>
@@ -1429,7 +1429,7 @@ Figura&nbsp;24.7: Desempenho do modelo treino e do modelo teste
 </div>
 <p>A <strong>Curva ROC</strong> mostra o quão bem seu modelo distingue entre as classes positiva e negativa em diferentes limites de classificação. Uma curva que se aproxima do canto superior esquerdo indica um modelo com bom poder de discriminação.</p>
 <p>A <strong>AUC (Area Under the Curve)</strong> é um resumo numérico desse desempenho. Um valor de AUC de 1 significa um modelo perfeito, enquanto 0.5 indica um modelo que se comporta aleatoriamente (como jogar uma moeda para classificar). Quanto maior a AUC, melhor o desempenho geral do seu modelo em separar as classes. Em geral, uma AUC acima de 0.7 é considerada razoável, acima de 0.8 é boa e acima de 0.9 é excelente.</p>
-<p>A AUC Teste = 0.91 é considerada <strong>excelente</strong>. Isso significa que o modelo tem uma capacidade muito alta de distinguir entre as classes positiva e negativa no conjunto de dados não visto (teste). Uma AUC Treino = 0.89 também é um desempenho muito forte. A diferença entre as duas é mínima (0.01). Isso é um sinal extremamente positivo. Significa que o modelo não está sofrendo de:</p>
+<p>A AUC Teste = 0.91 é considerada <strong>excelente</strong>. Isso significa que o modelo tem uma capacidade muito alta de distinguir entre as classes positiva e negativa no conjunto de dados não visto (teste). Uma AUC Treino = 0.89 também é um desempenho muito forte. A diferença entre as duas é mínima (0.02). Isso é um sinal extremamente positivo. Significa que o modelo não está sofrendo de:</p>
 <ul>
 <li><strong>Overfitting</strong> (sobreajuste): Se houvesse <em>overfitting</em>, a AUC de treino seria significativamente mais alta que a AUC de teste, indicando que o modelo “memorizou” os dados de treino e não generaliza bem para dados novos.<br>
 </li>
@@ -1488,10 +1488,10 @@ Figura&nbsp;24.9: Avaliação do modelo com interação com foco na linearidade
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vif_valores)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           GVIF Df GVIF^(1/(2*Df))
-classe 1.427017  2        1.092968
-sexo   1.233873  1        1.110798
-idade  1.324465  1        1.150854
-irco   1.147276  1        1.071109</code></pre>
+classe 1.585231  2        1.122078
+sexo   1.260839  1        1.122871
+idade  1.438552  1        1.199397
+irco   1.130289  1        1.063150</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>vif_valores2 <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">vif</span>(modelo3)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -1501,11 +1501,11 @@ consider setting type = 'predictor'; see ?vif</code></pre>
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vif_valores2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                 GVIF Df GVIF^(1/(2*Df))
-sexo         9.788254  1        3.128619
-classe      29.201327  2        2.324613
-idade        1.350924  1        1.162293
-irco         1.141819  1        1.068559
-sexo:classe 37.909947  2        2.481352</code></pre>
+sexo         9.765362  1        3.124958
+classe      29.672128  2        2.333926
+idade        1.451498  1        1.204781
+irco         1.118778  1        1.057723
+sexo:classe 37.554534  2        2.475515</code></pre>
 </div>
 </div>
 <ul>
@@ -1537,7 +1537,7 @@ O -2LL do modelo nulo (<code>Null deviance</code>) e do modelo proposto (<code>R
 </div>
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>modelo2<span class="sc">$</span>deviance</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 714.5669</code></pre>
+<pre><code>[1] 709.4141</code></pre>
 </div>
 </div>
 <p>O cálculo da estatística G (Teste da Razão de Verossimilhança) pode ser obtido, como visto pela diferença entre deviance do modelo nulo e do modelo ajustado:</p>
@@ -1545,7 +1545,7 @@ O -2LL do modelo nulo (<code>Null deviance</code>) e do modelo proposto (<code>R
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>estatistica_G <span class="ot">&lt;-</span> modelo2<span class="sc">$</span>null.deviance <span class="sc">-</span> modelo2<span class="sc">$</span>deviance </span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(estatistica_G)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 495.874</code></pre>
+<pre><code>[1] 501.0268</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Graus de liberdade para o teste G</span></span>
 <span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>df_G <span class="ot">&lt;-</span> modelo2<span class="sc">$</span>df.null <span class="sc">-</span> modelo2<span class="sc">$</span>df.residual</span>
@@ -1575,7 +1575,7 @@ Pode-se obter os vários valores de <span class="math inline">\(R^2\)</span>, us
 <span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="fu">PseudoR2</span>(modelo2, <span class="at">which =</span><span class="fu">c</span>(<span class="st">"Nagelkerke"</span>, <span class="st">"McFadden"</span>, <span class="st">"CoxSnell"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Nagelkerke   McFadden   CoxSnell 
- 0.5701145  0.4096639  0.4180363 </code></pre>
+ 0.5745667  0.4139209  0.4213008 </code></pre>
 </div>
 </div>
 <p>Como se verifica, na Saída do código, todos os valores de <span class="math inline">\(R^2\)</span> diferem ligeiramente, mas podem ser usados como medidas de tamanho de efeito para o modelo. Então, basicamente, o pseudo R quadrado pode ser interpretado como <span class="math inline">\(R^2\)</span>, mas não se espera que seja tão grande. Uma regra prática, bastante útil é que o pseudo R quadrado de McFadden variando de 0,2 a 0,4 indica um ajuste muito bom do modelo <span class="citation" data-cites="mcfadden2021quantitative">(<a href="referencias.html#ref-mcfadden2021quantitative" role="doc-biblioref">17</a>)</span>.</p>
@@ -1588,7 +1588,7 @@ Uma observação influente é uma observação que tem um impacto desproporciona
 <span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(residuos_p)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
--2.69824 -0.53302 -0.36470 -0.05385  0.51851  2.66390 </code></pre>
+-2.76101 -0.56864 -0.35773 -0.05342  0.51689  2.68141 </code></pre>
 </div>
 </div>
 <p>Em uma amostra normalmente distribuída, ao redor de 95% dos valores estão entre –1,96 e +1,96, 99% deve estar entre –2,58 e +2,58 e quase todos (99,9%) devem situar-se entre –3,09 e +3,09. Portanto, resíduos padronizados com um valor absoluto maior que 3 são motivo de preocupação porque em uma amostra média é improvável que aconteça um valor tão alto por acaso <span class="citation" data-cites="field2012outliers">(<a href="referencias.html#ref-field2012outliers" role="doc-biblioref">19</a>)</span>. Na Saída da função <code>rstandard()</code>, observa-se que os valores estão dentro de –3 e +3.</p>
@@ -1615,16 +1615,16 @@ Figura&nbsp;24.10: Gráfico diagnóstico dos resíduos e pontos de alavancagem.
 <span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span> (hat)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
-0.001926 0.002814 0.006031 0.006550 0.007597 0.077549 </code></pre>
+0.001892 0.002701 0.006122 0.006550 0.007575 0.079128 </code></pre>
 </div>
 </div>
-<p>Os valores de alavancagem podem estar entre 0 (indicando que o caso não tem qualquer influência) e 1 (indicando que o caso tem grande influência). Se nenhum caso exercer influência indevida sobre o modelo, se espera que todos os valores de alavancagem estivessem próximos do valor médio. Alguns autores <span class="citation" data-cites="hoaglin1978hat">(<a href="referencias.html#ref-hoaglin1978hat" role="doc-biblioref">20</a>)</span>, recomendam investigar casos com valores superiores a duas vezes a média (0.0131004) como ponto de corte para identificar casos com influência indevida. Alguns valores (<span class="math inline">\(\sim\)</span> 5%) estão acima de duas vezes a média, o que se pode considerar pouco. Principalmente, porque o maior valor está bem longe do valor igual a 1 (0.0775491). É interessante fazer a análise, observando junto a <em>distância de Cook</em> para ver se um ponto é um <em>outlier</em> significativo.</p>
+<p>Os valores de alavancagem podem estar entre 0 (indicando que o caso não tem qualquer influência) e 1 (indicando que o caso tem grande influência). Se nenhum caso exercer influência indevida sobre o modelo, se espera que todos os valores de alavancagem estivessem próximos do valor médio. Alguns autores <span class="citation" data-cites="hoaglin1978hat">(<a href="referencias.html#ref-hoaglin1978hat" role="doc-biblioref">20</a>)</span>, recomendam investigar casos com valores superiores a duas vezes a média (0.0131004) como ponto de corte para identificar casos com influência indevida. Alguns valores (<span class="math inline">\(\sim\)</span> 5%) estão acima de duas vezes a média, o que se pode considerar pouco. Principalmente, porque o maior valor está bem longe do valor igual a 1 (0.0791285). É interessante fazer a análise, observando junto a <em>distância de Cook</em> para ver se um ponto é um <em>outlier</em> significativo.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>cook <span class="ot">&lt;-</span> <span class="fu">cooks.distance</span>(modelo2)</span>
 <span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span> (cook)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-1.373e-06 3.693e-05 1.702e-04 1.072e-03 6.084e-04 3.120e-02 </code></pre>
+1.438e-06 3.536e-05 1.944e-04 1.055e-03 5.286e-04 3.146e-02 </code></pre>
 </div>
 </div>
 <p>Se a distância de Cook é <span class="math inline">\(\lt\)</span> 1, não há necessidade real de excluir esses valores, uma vez que não tem um grande efeito na análise de regressão <span class="citation" data-cites="stevens1984outliers">(<a href="referencias.html#ref-stevens1984outliers" role="doc-biblioref">21</a>)</span>. Na <a href="#fig-graph5" class="quarto-xref">Figura&nbsp;<span>24.10</span></a>), verifica-se que os casos mais distantes não alcançam a distância de Cook.</p>

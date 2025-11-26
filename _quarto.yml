@@ -83,7 +83,7 @@ format:
     reference-location: document
 
 bibliography: referencias.bib
-csl: vancouver.csl
+csl: styles/vancouver.csl
 lang: pt
 
 freeze: false  
