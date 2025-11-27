@@ -1,6 +1,6 @@
 # Prefácio {.unnumbered}
 
-![](capa_floco.png){fig-align="center" height="200 px"}
+![](capa_floco.png){fig-align="center" height="150 px"}
 
 ## Bem-vindos ao **Bioestatística usando o R**
 
