@@ -141,7 +141,7 @@ Existem algumas recomendações na construção de uma tabela de frequência [@a
 #### Dados para os exemplos {#sec-dados7}
 
 Para os exemplos, o dataframe `dadosMater.xlsx` será acionado para fornecer dados, semelhante ao realizado na @sec-dados6 .\
-Após carregar o dataframe, serão selecionadas as variáveis necessárias. As variáveis `utiNeo`, `sexo` serão convertidas a fatores; a variável `idadeMae` será categorizada em três níveis (<20 anos, 20-35 anos, >35 anos), criando uma nova variável `categIdade`. Além disso, será criada a variável `imc` que também será categorizada em uma nova variável `estNutri` em quatro níveis (Baixo Peso, Peso adequado, Sobrepeso, Obesidade). Por último, será extraída uma amostra de n = 200 e atribuída a um objeto `dados`:
+Após carregar o dataframe, serão selecionadas as variáveis necessárias. As variáveis `utiNeo`, `sexo` serão convertidas a fatores; a variável `idadeMae` será categorizada em três níveis (\<20 anos, 20-35 anos, \>35 anos), criando uma nova variável `categIdade`. Além disso, será criada a variável `imc` que também será categorizada em uma nova variável `estNutri` em quatro níveis (Baixo Peso, Peso adequado, Sobrepeso, Obesidade). Por último, será extraída uma amostra de n = 200 e atribuída a um objeto `dados`:
 
 ```{r}
 #| message: false
@@ -235,7 +235,7 @@ Como exemplo prático, a variável de interesse será representada pelos pesos d
 
 **Passo 1**: [Definir os intervalos de classe]{.underline}
 
-Antes, as classes foram estabelecidas de acordo com algum critério escolhido pelo autor ou por algum critério relacionado à saúde, como por exemplo a idade materna, onde as gestante com idade abaixo de 20 anos e acima de 35 anos, gestantes com baixa escolaridade (< de 5 anos), situação conjugal insegura, etc., constituem fatores de risco na gravidez [@schirmer2000manual]. Em geral, quando não há um padrão pré-determinado, o número de classes é estabelecido de acordo com o tamanho da amostra. Este número pode ser escolhido lembrando-se das oscilações que ocorrem nos dados e do interesse do pesquisador em mostrar seus dados. Não existe uma regra totalmente eficiente para determinar o número de classes. É importante ter bom senso, de maneira que seja possível ver como os valores se distribuem. Uma regra geral é usar entre 5 e 15 classes [@Daniel_Cross_2013], mas isso pode variar. Com poucas classes, perde-se precisão e, com muitas classes, a tabela torna-se muito extensa. Uma forma comum é usar a *Regra de Sturges* [^07-tabelas-1], para estimar o número de classes. Baseado na regra de Sturges é sugerido usar a recomendação da @tbl-sturges [@arango2009classes].
+Antes, as classes foram estabelecidas de acordo com algum critério escolhido pelo autor ou por algum critério relacionado à saúde, como por exemplo a idade materna, onde as gestante com idade abaixo de 20 anos e acima de 35 anos, gestantes com baixa escolaridade (\< de 5 anos), situação conjugal insegura, etc., constituem fatores de risco na gravidez [@schirmer2000manual]. Em geral, quando não há um padrão pré-determinado, o número de classes é estabelecido de acordo com o tamanho da amostra. Este número pode ser escolhido lembrando-se das oscilações que ocorrem nos dados e do interesse do pesquisador em mostrar seus dados. Não existe uma regra totalmente eficiente para determinar o número de classes. É importante ter bom senso, de maneira que seja possível ver como os valores se distribuem. Uma regra geral é usar entre 5 e 15 classes [@Daniel_Cross_2013], mas isso pode variar. Com poucas classes, perde-se precisão e, com muitas classes, a tabela torna-se muito extensa. Uma forma comum é usar a *Regra de Sturges* [^07-tabelas-1], para estimar o número de classes. Baseado na regra de Sturges é sugerido usar a recomendação da [@tbl-sturges; @arango2009classes].
 
 [^07-tabelas-1]: Determina que o número de classes (*k*) pode ser calculado pela fórmula: $k = 1 + 3.322 * log10(n)$, onde *n* é igual ao número de observações.
 
@@ -350,7 +350,7 @@ Como diria , o famoso personagem Obelix, amigo inseparável do gaulês Asterix[^
 
 [^07-tabelas-4]: Personagens criados pelos franceses Albert Uderzo e Rene Goscinny.
 
-Nada de especial. simplesmente, o R retornou valores em notação científica. Não tem nada errado! Apenas, isso torna a legibilidade dos números mais complicada, menos intuitiva. A primeira classe [810,1.24e+03) ficaria mais fácil de ser lida se estivesse como [810, 1240), ou seja, inclui o valor de 810 e exclui o 1240 e a última classe [4.24e+03,4.67e+03] inclui ambos os limites, melhor escritos como [4240, 4670].
+Nada de especial. simplesmente, o R retornou valores em notação científica. Não tem nada errado! Apenas, isso torna a legibilidade dos números mais complicada, menos intuitiva. A primeira classe \[810,1.24e+03) ficaria mais fácil de ser lida se estivesse como \[810, 1240), ou seja, inclui o valor de 810 e exclui o 1240 e a última classe \[4.24e+03,4.67e+03\] inclui ambos os limites, melhor escritos como \[4240, 4670\].
 
 ::: callout-note
 ### Nota
@@ -810,7 +810,7 @@ ft3
 
 Muitas outras funções existem para alterar o layout, dependendo do que o pesquisador deseja mostrar. Para isso, o `flextable` tem funções para altera as bordas, as fontes, formato, cores, alinhamento, etc. que podem ser pesquisadas na [documentação](https://cran.r-project.org/web/packages/flextable/flextable.pdf) do pacote.
 
-### Pacote gtsummary
+### Pacote gtsummary {#sec-gtsummary}
 
 O pacote `gtsummary` foi criado [@daniel2021gtsummary] como complemento do pacote `gt`. Para usar o pacote , ele deve estar instalado e carregado:
 

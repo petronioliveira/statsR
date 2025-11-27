@@ -56,7 +56,7 @@ knitr::include_graphics("https://i.imgur.com/Pk9Il89.png")
 
 *William Farr* (30/11/1807 - 14/04/1883) foi um médico sanitarista e estatístico inglês, nascido na vila de Kenley, Shropshire. Foi o primeiro investigador a examinar séries temporais de morbimortalidade para longos períodos e, assim, considerado o criador da Estatística da Saúde Pública Moderna. Seus relatórios foram fundamentais para o desencadeamento das reformas sanitárias britânicas, em meados e final do século XIX [@stolley1995beginnings].
 
-*Florence Nightingale* (12/05/1820 -- 13/08/1910) foi uma enfermeira (@fig-florence) que ficou famosa por ser pioneira no tratamento de feridos, durante a Guerra da Criméia [@history2009]. Ficou conhecida na história pelo apelido de "A dama da lâmpada", pelo fato de servir-se de uma lamparina para auxiliar no cuidado aos feridos durante a noite. Também contribuiu no campo da Estatística, sendo pioneira na utilização de métodos de representação visual de informações, como por exemplo gráfico de setores (habitualmente conhecido como gráfico do tipo "pizza")
+*Florence Nightingale* (12/05/1820 -- 13/08/1910) foi uma enfermeira (@fig-florence) que ficou famosa por ser pioneira no tratamento de feridos, durante a Guerra da Criméia [@cohen1984florence]. Ficou conhecida na história pelo apelido de "A dama da lâmpada", pelo fato de servir-se de uma lamparina para auxiliar no cuidado aos feridos durante a noite. Também contribuiu no campo da Estatística, sendo pioneira na utilização de métodos de representação visual de informações, como por exemplo gráfico de setores (habitualmente conhecido como gráfico do tipo "pizza")
 
 ```{r #fig-florence, echo = FALSE, out.width = '30%', fig.align = 'center', fig.cap="Florence Nightingale", fig.pos="h"}
 

@@ -57,7 +57,7 @@ str(dadosNeonatos)
 
 ### Transformação de variáveis {#sec-transform}
 
-Observa-se que todas as variáveis estão como variáveis numéricas (`num`), exceto a variável ´utiNeo`questá como caractere (`chr`). Isto não está correto, pois as variáveis`sexo`,`tipoParto`são variáveis categóricas, bem como a  a variável`utiNeo`, adicionada posteriormente. Elas necessitam ser transformadas para fatores, usando a função`factor()\`. Os principais argumentos dessa função são:
+Observa-se que todas as variáveis estão como variáveis numéricas (`num`), exceto a variável `utiNeo` que está como caractere (`chr`). Isso não está correto, pois as variáveis `sexo`,`tipoParto` são variáveis categóricas, bem como a  a variável `utiNeo`, adicionada posteriormente. Elas necessitam ser transformadas para fatores, usando a função`factor()`. Os principais argumentos dessa função são:
 
 -   **x** $\to$ vetor numérico
 -   **levels** $\to$ vetor opcional dos valores que *x* pode assumir
@@ -300,7 +300,7 @@ Os princípios fundamentais são:
 
 1.  Reutilizar estruturas de dados existentes.
 
-2.  Organizar funções simples usando o `pipe`.[^05-manipulandodados-4]. Esse operador, introduzido por Stefan Milton Bache no pacote `magrittr`[ @bache2022magritt], permite encadear múltiplas operações em uma sequência clara e legível, de forma que a saída de uma função se torna a entrada da próxima. Isso torna o código mais fácil de ler e entender, eliminando a necessidade de criar muitas variáveis intermediárias. O `pipe` pode ser acionado digitando `%>%` ou usando o atalho `ctrl + shift + M`. [^05-manipulandodados-5]
+2.  Organizar funções simples usando o `pipe`.[^05-manipulandodados-4]. Esse operador, introduzido por Stefan Milton Bache no pacote `magrittr`[@bache2022magritt], permite encadear múltiplas operações em uma sequência clara e legível, de forma que a saída de uma função se torna a entrada da próxima. Isso torna o código mais fácil de ler e entender, eliminando a necessidade de criar muitas variáveis intermediárias. O `pipe` pode ser acionado digitando `%>%` ou usando o atalho `ctrl + shift + M`. [^05-manipulandodados-5]
 
 3.  Usar uma sintaxe consistente: As funções dos pacotes tidyverse seguem uma lógica de nomeação e de argumentos parecida, facilitando a memorização e o uso.
 

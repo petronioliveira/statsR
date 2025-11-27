@@ -1,6 +1,6 @@
 # Prefácio {.unnumbered}
 
-![](capa_floco.png){fig-align="center" height="100 px"}
+![](capa_floco.png){fig-align="center" height="90 px"}
 
 ## Bem-vindos ao **Bioestatística usando o R**
 
@@ -38,3 +38,9 @@ knitr::include_graphics("https://i.imgur.com/uukObDQ.png")
 
 email: petronioliveira\@gmail.com\
 WhatsApp: +55 54 9997 15499
+
+::: callout-caution
+## ATENÇÃO
+
+Leia este livro cuidado, pois ele ainda se encontra em processo e de revisão e construção. O autor ficará muito agradecidos com contribuições que corrijam erros ou que melhorem o livro.
+:::
