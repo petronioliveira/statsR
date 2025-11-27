@@ -14,7 +14,7 @@ pacman::p_load(dplyr,
                vcd)
 ```
 
-## Raciocínio Bayesiano no diagnóstico médico  {#sec-diagbayes}
+## Raciocínio Bayesiano no diagnóstico médico {#sec-diagbayes}
 
 O processo diagnóstico é o centro da atenção da atividade médica na busca de reduzir as incertezas e reconhecer a que classe pertence determinado paciente. Portanto, é extremamente importante saber quão bem os testes diagnósticos podem prever que um indivíduo é portador de certa condição ou doença. Entende-se aqui como teste diagnóstico todo o processo diagnótico, desde o exame clínico até o mais sofisticado exame de imagem ou laboratorial. A ideia é saber como o teste diagnóstico se comporta para separar um "doente" e um "não doente"; qual a sua validade neste processo?
 
@@ -41,11 +41,11 @@ As estatísticas mais utilizadas para descrever a validade dos testes de diagnó
 
 **Sensibilidade** é a habilidade do teste em identificar corretamente quem tem a doença. É a taxa de verdadeiros positivos (VP) de um teste e corresponde a probabilidade de um indivíduo com a doença ter um teste positivo.
 
-Um teste sensível raramente deixará passar pessoas que tenham a doença. Testes com sensibilidade alta são úteis para *excluir* a presença de uma doença. Isto é, um teste negativo exclui virtualmente a possibilidade de o paciente ter a doença de interesse, pois tem pouca probabilidade de produzir resultados falsos negativos. Isto pode ser lembrado pelo mnemônico *SnNout*, do inglês: *High Sensivity, a Negative result rules out the diagnosis* @straus2019screening.
+Um teste sensível raramente deixará passar pessoas que tenham a doença. Testes com sensibilidade alta são úteis para *excluir* a presença de uma doença. Isto é, um teste negativo exclui virtualmente a possibilidade de o paciente ter a doença de interesse, pois tem pouca probabilidade de produzir resultados falsos negativos. Isto pode ser lembrado pelo mnemônico *SnNout*, do inglês: *High Sensivity, a Negative result rules out the diagnosis* [@straus2019screening].
 
 **Especificidade** é a habilidade do teste em identificar corretamente quem não tem a doença. É a taxa de verdadeiros negativos (VN) de um teste e corresponde a probabilidade de um indivíduo sem a doença ter um teste negativo. Um teste específico raramente classificará de forma errônea indivíduos sendo portadores da doença quando eles não são. Os testes muito específicos são usados para *confirmar* a presença da doença. Se o teste é altamente específico, um teste positivo sugere fortemente a presença da doença de interesse.
 
-De forma similar que a sensibilidade pode-se usar o mnemônico *SpPin*, do inglês: *High Specificity, a Positive result rules in the diagnosis* @straus2019screening.
+De forma similar que a sensibilidade pode-se usar o mnemônico *SpPin*, do inglês: *High Specificity, a Positive result rules in the diagnosis* [@straus2019screening].
 
 Estas estatísticas de diagnóstico podem ser calculadas a partir das equações, cujas letras representam as caselas da tabela $2 \times 2$ da @tbl-fpfn;
 
@@ -65,14 +65,14 @@ $$
 
 Idealmente, um teste de diagnóstico deveria ter altos níveis de sensibilidade e especificidade. No entanto, isso não é possível, pois existe um balanço entre sensibilidade e especificidade. À medida que a especificidade aumenta, a sensibilidade diminui e vice-versa. As curvas ROC podem ser usadas para identificar um ponto de corte em uma medição contínua que maximize a sensibilidade e a especificidade (veja @sec-rocurve).
 
-Quando um clínico tem um paciente cujo teste apresentou resultado positivo, a pergunta mais importante é a seguinte: dado que o teste é positivo, qual é a probabilidade de o paciente ter a doença? A sensibilidade do teste não responde a este questionamento, mas sim a probabilidade de um resultado positivo, dado que o paciente tem a doença @altman1994diagnostic.
+Quando um clínico tem um paciente cujo teste apresentou resultado positivo, a pergunta mais importante é a seguinte: dado que o teste é positivo, qual é a probabilidade de o paciente ter a doença? A sensibilidade do teste não responde a este questionamento, mas sim a probabilidade de um resultado positivo, dado que o paciente tem a doença [@altman1994diagnostic].
 
 ### Dados do exemplo {#sec-exapendicite}
 
 ::: callout-note
 ## Cenário
 
-Foram avaliados 156 pacientes com diagnóstico clínico de apendicite aguda, submetidos à ultrassonografia abdominal e apendicectomia laparoscópica, acompanhado de estudo anatomopatológico dos apêndices extirpados @peixoto2011indices.
+Foram avaliados 156 pacientes com diagnóstico clínico de apendicite aguda, submetidos à ultrassonografia abdominal e apendicectomia laparoscópica, acompanhado de estudo anatomopatológico dos apêndices extirpados [@peixoto2011indices].
 :::
 
 Os dados estão contidos no conjunto de dados `dadosApendicite.xlsx` que pode ser obtido [**aqui**](https://github.com/petronioliveira/Arquivos/blob/main/dadosApendicite.xlsx). Salve o mesmo em seu diretório de trabalho.
@@ -109,7 +109,7 @@ addmargins(tab_ap, FUN = sum)
 
 #### Avaliação do teste diagnóstico através da sensibilidade e da especificidade
 
-Pode-se usar a função `epi.tests()` do pacote `epiR` @stevenson2022epir que calcula, junto com os intervalos de confiança exatos, a prevalência aparente e verdadeira, sensibilidade, especificidade, valores preditivos positivos e negativos e razões de probabilidade positivas e negativas a partir de dados de contagem fornecidos em uma tabela $2\times2$. Utiliza os argumentos
+Pode-se usar a função `epi.tests()` do pacote `epiR` [@stevenson2022epir] que calcula, junto com os intervalos de confiança exatos, a prevalência aparente e verdadeira, sensibilidade, especificidade, valores preditivos positivos e negativos e razões de probabilidade positivas e negativas a partir de dados de contagem fornecidos em uma tabela $2\times2$. Utiliza os argumentos
 
 -   **dat** \to dados sob a forma de vetor ou matriz\
 -   **conf.level** \to magnitude do intervalode confiança, entre 0 e 1.
@@ -122,11 +122,11 @@ diag <- epiR::epi.tests(tab_ap,
 print(diag)
 ```
 
-Assim, a sensibilidade é igual a 65% (IC95%: 56 – 73%) e a especificidade é igual a 72% (IC95%: 51 – 88%). Isto significa que um indivíduo com apendicite aguda tem 65% de probabilidade de ter uma ecografia alterada; um indivíduo sem apendicite aguda tem 72% de probabilidade de ter uma ecografia normal. O objetivo do teste de diagnóstico é usá-lo para fazer um diagnóstico, então há necessidade de saber a probabilidade que o teste fornece para um diagnóstico correto. A sensibilidade e a especificidade não fornecem esta informação. Para atingir esse objetivo, usa-se o **valor preditivo** @altman1994predictive.
+Assim, a sensibilidade é igual a 65% (IC95%: 56 – 73%) e a especificidade é igual a 72% (IC95%: 51 – 88%). Isto significa que um indivíduo com apendicite aguda tem 65% de probabilidade de ter uma ecografia alterada; um indivíduo sem apendicite aguda tem 72% de probabilidade de ter uma ecografia normal. O objetivo do teste de diagnóstico é usá-lo para fazer um diagnóstico, então há necessidade de saber a probabilidade que o teste fornece para um diagnóstico correto. A sensibilidade e a especificidade não fornecem esta informação. Para atingir esse objetivo, usa-se o **valor preditivo** [@altman1994predictive].
 
 ## Valor Preditivo
 
-O propósito de um teste diagnóstico é usar seus resultados para fazer um diagnóstico, portanto, é necessário conhecer a probabilidade de que o resultado do teste forneça o diagnóstico correto @altman1994predictive.
+O propósito de um teste diagnóstico é usar seus resultados para fazer um diagnóstico, portanto, é necessário conhecer a probabilidade de que o resultado do teste forneça o diagnóstico correto [@altman1994predictive].
 
 Os valores preditivos positivo e negativo descrevem a probabilidade de um paciente ter doença, uma vez que os resultados de seus testes são conhecidos.
 
@@ -199,9 +199,9 @@ A **Razão de Probabilidades** (*likelihood ratio*) é uma forma alternativa de 
 
 [^21-testesdiag-1]: Verossimilhança no sentido de a qualidade de algo que parece verdadeiro ou provável, que não contraria a verdade
 
-A razão de probabilidades para um resultado de teste é definida como a razão entre a probabilidade de observar aquele resultado em indivíduos com a doença em questão e a probabilidade desse resultado em indivíduos sem a doença @halkin1998likelihood.
+A razão de probabilidades para um resultado de teste é definida como a razão entre a probabilidade de observar aquele resultado em indivíduos com a doença em questão e a probabilidade desse resultado em indivíduos sem a doença [@halkin1998likelihood].
 
-Razões de probabilidade são, clinicamente, mais úteis do que sensibilidade e especificidade. Fornecem um resumo de quantas vezes mais (ou menos) a probabilidade de os indivíduos com a doença apresentarem aquele resultado específico do que os indivíduos sem a doença, e também podem ser usados para calcular a probabilidade de doença para pacientes individuais @deeks2004likelihood. Cada vez mais as razões de probabilidade estão se tornando populares para relatar a utilidade dos testes de diagnóstico.
+Razões de probabilidade são, clinicamente, mais úteis do que sensibilidade e especificidade. Fornecem um resumo de quantas vezes mais (ou menos) a probabilidade de os indivíduos com a doença apresentarem aquele resultado específico do que os indivíduos sem a doença, e também podem ser usados para calcular a probabilidade de doença para pacientes individuais [@deeks2004likelihood]. Cada vez mais as razões de probabilidade estão se tornando populares para relatar a utilidade dos testes de diagnóstico.
 
 Quando os resultados do teste são relatados como sendo positivos ou negativos, dois tipos de razões de probabilidades podem ser descritos, a razão de probabilidades para um teste positivo (denotada LR +) e a razão de probabilidades para um teste negativo (denotada LR−).
 
@@ -213,7 +213,7 @@ $$
 LR(+)=\frac{sensibilidade}{1 - especificidade}
 $$
 
-Razão de probabilidades positiva maior que 1 significa que um teste positivo tem mais probabilidade de ocorrer em pessoas com a doença do que em pessoas sem a doença. De um modo geral, para os indivíduos que apresentam um resultado positivo, LR (+) \> 10 aumenta significativamente a probabilidade de doença (“confirma” a doença), enquanto LR (+) \< 0,1, virtualmente, exclui a probabilidade de uma pessoa ter a doença @guyatt2015diagnostic.
+Razão de probabilidades positiva maior que 1 significa que um teste positivo tem mais probabilidade de ocorrer em pessoas com a doença do que em pessoas sem a doença. De um modo geral, para os indivíduos que apresentam um resultado positivo, LR (+) \> 10 aumenta significativamente a probabilidade de doença (“confirma” a doença), enquanto LR (+) \< 0,1, virtualmente, exclui a probabilidade de uma pessoa ter a doença [@guyatt2015diagnostic].
 
 Usando os dados incluídos no objeto `diag`, obtido com a função `epi.tests()` do pacote `epiR`, tem-se que a LR (+) da ultrassonografia para o diagnóstico de apendicite aguda é igual 2.32 (IC95%: 1,22 – 4,40). Significa que uma pessoa com apendicite aguda tem cerca de 2,32 vezes mais probabilidade de ter um teste positivo do que uma pessoa que não tem a doença.
 
@@ -225,7 +225,7 @@ $$
 LR(-)=\frac{sensibilidade}{1-especificidade}
 $$
 
-Razão de probabilidade negativa menor que 1 significa que um teste negativo é menos provável de ocorrer em pessoas com a doença do que em pessoas sem a doença. Um LR muito baixo (abaixo de 0,1) praticamente exclui a chance de que uma pessoa tenha a doença @guyatt2015diagnostic.
+Razão de probabilidade negativa menor que 1 significa que um teste negativo é menos provável de ocorrer em pessoas com a doença do que em pessoas sem a doença. Um LR muito baixo (abaixo de 0,1) praticamente exclui a chance de que uma pessoa tenha a doença [@guyatt2015diagnostic].
 
 Voltando aos dados anteriores, a LR (-) para a ultrassonografia é igual a 0.49 (IC95%: 0.35 - 0.68). Significa que a probabilidade de ter um teste negativo para indivíduos com doença é 0,49 vezes ou cerca de metade daqueles sem a doença. Dito de outra forma, os indivíduos sem a doença têm cerca o dobro probabilidade de ter um teste negativo do que os indivíduos com a doença.
 
@@ -237,7 +237,7 @@ A razão mais importante pela qual um teste é realizado é tentar modificar a p
 
 Os resultados dos testes clínicos são geralmente usados não para fazer ou excluir categoricamente um diagnóstico, mas para modificar a probabilidade do pré-teste a fim de gerar a probabilidade do pós-teste. O teorema de Bayes é uma relação matemática que permite estimar a probabilidade pós-teste.
 
-Para se compreender este conceito, é importante entender a diferença entre **probabilidade** e **odds** @oliveira2022diagnostico.
+Para se compreender este conceito, é importante entender a diferença entre **probabilidade** e **odds** [@oliveira2022diagnostico].
 
 **Probabilidade** é a proporção de pessoas que apresentam uma determinada característica (teste positivo, sinal clínico).\
 **Odds** (chance) representa a razão entre duas características complementares, ou seja, a probabilidade de um evento dividido pela probabilidade do não evento (1 – evento). Ambos contêm as mesmas informações de maneiras diferentes. Por exemplo, usando os dados da tabela `tab_ap` (veja @sec-exapendicite), verifica-se que a probabilidade (*p*) de uma ultrassonografia positiva para apendicite aguda é igual
@@ -315,7 +315,7 @@ round(p_pos, 3)
 
 Ou, em outras palavras, diante de um teste positivo, a probabilidade de o paciente ter apendicite aguda passa de 7% antes do teste para praticamente 15%!
 
-Estes cálculos podem ser simplificados, utilizando o nomograma de Fagan @fagan1975nomogram, extremamente fácil de se usar @caraguel2013fagan, pois basta unir a probabilidade pré-teste ao LR que a reta apontará para a probabilidade pós-teste (@fig-fagan)).
+Estes cálculos podem ser simplificados, utilizando o nomograma de Fagan [@fagan1975nomogram], extremamente fácil de se usar [@caraguel2013fagan], pois basta unir a probabilidade pré-teste ao LR que a reta apontará para a probabilidade pós-teste (@fig-fagan)).
 
 ```{r}
 #| label: fig-fagan
@@ -334,7 +334,7 @@ Nem sempre o resultado de um teste é dicotômico (positivo/negativo). Com frequ
 
 A escolha do ponto de corte depende das consequências de um resultado falso positivo ou de um falso negativo. Falsos positivos estão associados com custos (emocional ou financeiro) e com a dificuldade de “desrotular” alguém que recebeu o rótulo de “positivo”. Resultados falsos negativos podem “tranquilizar” pessoas doentes que não são seguidas ou tratadas precocemente.
 
-A distribuição dos níveis glicêmicos em diabéticos e não diabéticos não tem um ponto de corte bem nítido. As duas populações se sobrepõem (@fig-diabetes)), gerando falso positivos ou falso negativos, dependendo do ponto de corte escolhido @oliveira2022diagnostico.
+A distribuição dos níveis glicêmicos em diabéticos e não diabéticos não tem um ponto de corte bem nítido. As duas populações se sobrepõem (@fig-diabetes)), gerando falso positivos ou falso negativos, dependendo do ponto de corte escolhido [@oliveira2022diagnostico].
 
 ```{r}
 #| label: fig-diabetes
@@ -371,7 +371,7 @@ Ao se escolher um ponto de corte deve-se fazer um balanço entre a sensibilidade
 
 Em contraste, a triagem para o câncer de mama deve favorecer a especificidade sobre a sensibilidade, uma vez que uma avaliação mais aprofundada daquelas com teste positivo, implica em biopsias dispendiosas e invasivas.
 
-As **curvas ROC** (*Receiver Operating Characteristic*) são uma ferramenta inestimável para encontrar o ponto de corte em uma medida com distribuição contínua que melhor prediz se uma condição está presente, por exemplo, se pacientes são positivos ou negativos para a presença de uma doença @altman1994roc. As curvas ROC são usadas para encontrar um ponto de corte que separa um resultado de teste "normal" de um "anormal" quando o resultado do teste é uma medida contínua. As curvas ROC são traçadas calculando a sensibilidade e a especificidade do teste na predição do diagnóstico para cada valor da medida. A curva permite determinar um ponto de corte para a medição que maximiza a taxa de verdadeiros positivos (sensibilidade) e minimiza a taxa de falsos positivos (1 – especificidade) e, portanto, maximiza a razão de probabilidades (*likelihood ratio*).
+As **curvas ROC** (*Receiver Operating Characteristic*) são uma ferramenta inestimável para encontrar o ponto de corte em uma medida com distribuição contínua que melhor prediz se uma condição está presente, por exemplo, se pacientes são positivos ou negativos para a presença de uma doença [@altman1994roc]. As curvas ROC são usadas para encontrar um ponto de corte que separa um resultado de teste "normal" de um "anormal" quando o resultado do teste é uma medida contínua. As curvas ROC são traçadas calculando a sensibilidade e a especificidade do teste na predição do diagnóstico para cada valor da medida. A curva permite determinar um ponto de corte para a medição que maximiza a taxa de verdadeiros positivos (sensibilidade) e minimiza a taxa de falsos positivos (1 – especificidade) e, portanto, maximiza a razão de probabilidades (*likelihood ratio*).
 
 ### Dados do exemplo {#sec-exdadosTestes}
 
@@ -409,7 +409,7 @@ A @fig-status123 mostra a quantidade de sobreposição na distribuição da medi
 
 ### Construção da curva ROC
 
-A validade dos testes, na distinção entre os grupos doença-positivo e doença-negativo, pode ser quantificada pelas curvas ROC, usando a função `roc()` do pacote `pROC` @robin2011proc. Este pacote tem várias funções:
+A validade dos testes, na distinção entre os grupos doença-positivo e doença-negativo, pode ser quantificada pelas curvas ROC, usando a função `roc()` do pacote `pROC` [@robin2011proc]. Este pacote tem várias funções:
 
 -   **auc**: calcula a área da curva ROC;
 -   **ci**: calcula o intervalo de confiança da curva ROC;
@@ -503,7 +503,7 @@ ci.auc(roc3)
 ```
 
 A acurácia geral de um teste pode ser descrita como a área sob a curva; quanto maior for a área, melhor será o teste. Na @fig-roc, o Teste 3 tem uma AUC maior que os outros dois testes.\
-Usa-se a seguinte estimativa (@tbl-roc1) para avaliar a acurácia de um teste ou da capacidade de identificar corretamente uma condição usando curva ROC @borges2016accuracy:
+Usa-se a seguinte estimativa (@tbl-roc1) para avaliar a acurácia de um teste ou da capacidade de identificar corretamente uma condição usando curva ROC [@borges2016accuracy]:
 
 ```{r}
 #| label: tbl-roc1
@@ -533,7 +533,7 @@ Desta forma, o Teste 3 pode ser considerado um bom teste e o Teste 1 é um teste
 
 [Comparando duas curvas]{.underline}
 
-Pode-se comparar duas curvas ROC com a função `roc.test()`, por exemplo, comparando as curvas dos Teste 3 e 2 @delong1988comparing:
+Pode-se comparar duas curvas ROC com a função `roc.test()`, por exemplo, comparando as curvas dos Teste 3 e 2 [@delong1988comparing]:
 
 ```{r}
 #| message: false
@@ -587,7 +587,7 @@ coordenadas <- testes %>% roc(doenca, teste3) %>% coords (transpose = F)
 head(coordenadas, 10)
 ```
 
-A *estatística J de Youden* @youden1950index é calculada deduzindo 1 a partir da soma de sensibilidade e especificidade do teste e não é expressa como porcentagem, mas como parte de um número inteiro: $\left (sensibilidade + especificidade\right) - 1$. A estatística J de Youden no melhor ponto de corte do Teste 3 é igual a $\left (0,845+ 0,854\right) - 1 = 0,699$.
+A *estatística J de Youden* [@youden1950index] é calculada deduzindo 1 a partir da soma de sensibilidade e especificidade do teste e não é expressa como porcentagem, mas como parte de um número inteiro: $\left (sensibilidade + especificidade\right) - 1$. A estatística J de Youden no melhor ponto de corte do Teste 3 é igual a $\left (0,845+ 0,854\right) - 1 = 0,699$.
 
 Este é o maior valor de todos os valores das coordenadas (91 valores) usadas.
 
@@ -610,7 +610,7 @@ O método para obter o melhor ponto de corte (`best.method`) pode ser pelo méto
 
 ## Estatística *kappa*
 
-A estatística de concordância *kappa* (*k*) de Cohen é utilizada para descrever a concordância entre dois ou mais avaliadores quando realizam uma avaliação nominal ou ordinal de uma mesma amostra @cohen1960coefficient. A estatística *kappa* corrige a chance do acaso nas avaliações e é obtida pela fórmula igual a:
+A estatística de concordância *kappa* (*k*) de Cohen é utilizada para descrever a concordância entre dois ou mais avaliadores quando realizam uma avaliação nominal ou ordinal de uma mesma amostra [@cohen1960coefficient]. A estatística *kappa* corrige a chance do acaso nas avaliações e é obtida pela fórmula igual a:
 
 $$
 k= \frac{p_{o} - p_{e}}{1 - p_{e}}
@@ -620,7 +620,7 @@ Onde $p_{o}$ = proporção observada de concordância e $p_{e}$ = proporção es
 
 Por exemplo, dois radiologistas podem revisar independentemente uma série de radiografias do tórax de pacientes para determinar a presença ou ausência de pneumonia. Para avaliar o grau de concordância entre as classificações dos dois médicos, pode ser relatado o percentual de concordância entre os avaliadores (por exemplo, 50% dos avaliadores responderam "sim" nas duas ocasiões). No entanto, esse percentual pode ser enganoso, pois não leva em conta o nível de concordância entre os dois avaliadores que pode ocorrer por acaso. A estatística *kappa* pode ser usada para avaliar a concordância das respostas para dois ou mais avaliadores após considerar a concordância casual. Portanto, a estatística *kappa* é uma estimativa da proporção de concordância entre avaliadores que excede a concordância que ocorreria por acaso.
 
-A interpretação dos valores de *kappa* é mostrada na @tbl-kappa @landis1977measurement. Quando a proporção observada de concordância é menor que a esperada por acaso, o *kappa* terá um valor negativo indicando não concordância. Um valor de *kappa* igual a 0 indica que a concordância observada é igual à concordância casual.
+A interpretação dos valores de *kappa* é mostrada na @tbl-kappa [@landis1977measurement]. Quando a proporção observada de concordância é menor que a esperada por acaso, o *kappa* terá um valor negativo indicando não concordância. Um valor de *kappa* igual a 0 indica que a concordância observada é igual à concordância casual.
 
 O teste de hipóteses testa a hipótese de que a concordância entre os dois avaliadores seja puramente aleatória. Quando o valor *P* é menor que 0,05, rejeitamos a hipótese de que a concordância foi puramente aleatória. As premissas para o *kappa* de Cohen são que os participantes ou itens a serem classificados são independentes e também que os avaliadores e categorias são independentes.
 
@@ -659,7 +659,7 @@ Existem diferentes tipos de estatísticas *kappa*. Para dados com três ou mais 
 Cinquenta e quatro crianças com suspeita de pneumonia realizaram radiografias de tórax para confirmar o diagnóstico. Essas radiografias foram avaliadas por dois radiologistas.
 :::
 
-O arquivo `dadosPneumonia.xlsx` contém os dados dos diagnósticos independentes dos dois radiologistas. O objetivo foi medir a concordância diagnóstica dos dois profissionais. Para o cálculo do coeficiente *kappa*, será usada a função `Kappa()` do pacote `vcd` @zeileis2007residual. Essa função tem os seguintes argumentos:
+O arquivo `dadosPneumonia.xlsx` contém os dados dos diagnósticos independentes dos dois radiologistas. O objetivo foi medir a concordância diagnóstica dos dois profissionais. Para o cálculo do coeficiente *kappa*, será usada a função `Kappa()` do pacote `vcd` [@zeileis2007residual]. Essa função tem os seguintes argumentos:
 
 -   **x** $\longrightarrow$ matriz ou tabela
 -   **weights** $\longrightarrow$ matriz especificada pelo usuário com as mesmas dimensões de *x*, desnecessário para *kappa* não ponderado.

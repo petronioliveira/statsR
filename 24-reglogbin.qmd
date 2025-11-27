@@ -206,9 +206,9 @@ dim(teste)
 
 #### Verificação e tratamento dos dados faltantes
 
-O próximo passo é investigar dados faltantes (NA) ou valores vazios[^2] em cada conjunto separadamente. Isso garante que o tratamento seja feito corretamente sem contaminar o teste.
+O próximo passo é investigar dados faltantes (NA) ou valores vazios[^24-reglogbin-2] em cada conjunto separadamente. Isso garante que o tratamento seja feito corretamente sem contaminar o teste.
 
-[^2]: Deve-se fazer isso, pois algumas vezes, o R não interpreta espaços vazios como NA.
+[^24-reglogbin-2]: Deve-se fazer isso, pois algumas vezes, o R não interpreta espaços vazios como NA.
 
 Para verificar os dados faltantes e espaços vazios (strings "") no banco de dados, pode-se usar o comando que soma os dados faltantes e espaços vazios em cada coluna do banco de dados:
 
@@ -267,10 +267,16 @@ O que fazer?
 
 1)  **Exclusão de casos**:
 
+<!-- -->
+
 a.  *Listwise deletion*: Remover todas as observações com algum dado faltante. Não recomendado neste caso, pois você perderia uma quantidade significativa de dados.
 b.  *Pairwise deletion*: Utilizar todas as observações disponíveis para cada análise. Pode gerar resultados inconsistentes.
 
+<!-- -->
+
 2)  **Imputação**:
+
+<!-- -->
 
 a.  *Imputação por média, mediana ou moda*: Substituir os valores faltantes pela média, mediana ou moda da variável. Simples, mas pode subestimar a variância.
 b.  *Imputação por regressão*: Utilizar um modelo de regressão para prever os valores faltantes com base em outras variáveis. Mais preciso, mas pode ser enviesado se o modelo não for adequado.
@@ -395,7 +401,7 @@ mod1 <- glm(sobreviveu ~.,
 
 A saída da função `glm()` fornece os coeficientes, da mesma forma como na regressão linear, que estima o efeito das variáveis preditoras sobre a *chance* de ocorrência do desfecho (no exemplo, sucesso = 1).
 
-[Interpretação Coeficientes]{.underline} 
+[Interpretação Coeficientes]{.underline}
 
 Os coeficientes podem ser interpretados da seguinte maneira [@anderson2023coeficientes]:
 
@@ -924,7 +930,7 @@ A AUC (Área sob a Curva ROC) indica a qualidade do modelo (veja também a Seç�
 
 Usando as métricas de validade, a curva ROC e a AUC, conclui-se que:
 
-Após a avaliação dos modelos ajustados, observou-se que o modelo com interação entre classe e sexo (`mod4`) apresentou melhor ajuste estatístico, com menor AIC e deviance, além de capturar nuances importantes entre as variáveis. No entanto, esse modelo também apresentou colinearidade moderada e padrão de erro enviesado, conforme indicado pelo teste de McNemar (*p* < 0,05), o que pode comprometer a estabilidade dos coeficientes e a neutralidade preditiva. Por outro lado, o modelo simples (*mod2*) demonstrou desempenho preditivo praticamente equivalente, com AUC ligeiramente superior (0,919 vs. 0,918), menor colinearidade e maior robustez interpretativa. Diante disso, optou-se por priorizar o modelo simples para fins de interpretação e comunicação dos resultados, mantendo o modelo com interação como referência complementar para análise de padrões específicos
+Após a avaliação dos modelos ajustados, observou-se que o modelo com interação entre classe e sexo (`mod4`) apresentou melhor ajuste estatístico, com menor AIC e deviance, além de capturar nuances importantes entre as variáveis. No entanto, esse modelo também apresentou colinearidade moderada e padrão de erro enviesado, conforme indicado pelo teste de McNemar (*p* \< 0,05), o que pode comprometer a estabilidade dos coeficientes e a neutralidade preditiva. Por outro lado, o modelo simples (*mod2*) demonstrou desempenho preditivo praticamente equivalente, com AUC ligeiramente superior (0,919 vs. 0,918), menor colinearidade e maior robustez interpretativa. Diante disso, optou-se por priorizar o modelo simples para fins de interpretação e comunicação dos resultados, mantendo o modelo com interação como referência complementar para análise de padrões específicos
 
 ### Comparar duas curvas ROC (treino vs teste)
 
@@ -979,7 +985,7 @@ ggroc(list(Treino = roc_treino, Teste = roc_teste), aes = c("color")) +
   theme(legend.position = "none")
 ```
 
-Além de observar visualmente, pode-se realizar um teste estatístico (Teste de Delong) para verificar se a diferença entre as AUCs das curvas tem significância estatística:
+Além de observar visualmente, pode-se realizar um teste estatístico, o Teste de Delong [@delong1988comparing], para verificar se a diferença entre as AUCs das curvas tem significância estatística:
 
 ```{r}
 #| warning: false
@@ -1002,7 +1008,7 @@ teste_delong <- roc.test(roc_treino, roc_teste, method = "delong")
 teste_delong
 ```
 
-A saída do teste retorna um valor *p* = 0.1421 (< 0.05) indicando que a diferença entre os AUCs é estatisticamente não significativa. Os modelo apresentam AUCs semelhantes em ambos dados.
+A saída do teste retorna um valor *p* = 0.1421 (\< 0.05) indicando que a diferença entre os AUCs é estatisticamente não significativa. Os modelo apresentam AUCs semelhantes em ambos dados.
 
 ## Relato dos resultados
 
@@ -1276,4 +1282,3 @@ tab
 :::
 
 *It's frightening, but that's roughly what happened. It's the voice of numbers!*
-

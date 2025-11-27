@@ -52,7 +52,6 @@ book:
         - 22-medidasOcorrencia.qmd
         - 23-sobrevida.qmd
         - 24-reglogbin.qmd
-    - glossario.qmd
     - referencias.qmd
 
 format:

@@ -30,11 +30,11 @@ Esses tempos de sobrevida censurados subestimam o verdadeiro (mas desconhecido) 
 
 A censura também pode ocorrer quando se observa a presença de um evento, mas não se sabe onde começou. Por exemplo, considere um estudo que investigue o tempo para a recorrência de um câncer após a remoção cirúrgica do tumor primário. Se os pacientes forem examinados 3 meses após a cirurgia e já tinham recorrência, então o tempo de sobrevida será censurado a esquerda, porque o tempo real (desconhecido) de recorrência ocorreu menos de 3 meses após a cirurgia.
 
-Os dados de tempo do evento também podem ser censurados em intervalos, o que significa que os indivíduos entram e saem da observação. Se considerarmos o exemplo anterior e os pacientes também forem examinados aos 6 meses, aqueles que estão livres da doença aos 3 meses e perdem o acompanhamento entre 3 e 6 meses são considerados censurados no intervalo. A maioria dos dados de sobrevivência incluem observações censuradas à direita @clark2003survival.
+Os dados de tempo do evento também podem ser censurados em intervalos, o que significa que os indivíduos entram e saem da observação. Se considerarmos o exemplo anterior e os pacientes também forem examinados aos 6 meses, aqueles que estão livres da doença aos 3 meses e perdem o acompanhamento entre 3 e 6 meses são considerados censurados no intervalo. A maioria dos dados de sobrevivência incluem observações censuradas à direita [@clark2003survival].
 
 ## Método de Kaplan-Meier
 
-O método de Kaplan-Meier (KM) é um método não paramétrico usado para estimar a probabilidade de sobrevivência a partir dos tempos de sobrevivência observados @kaplan1958nonparametric.
+O método de Kaplan-Meier (KM) é um método não paramétrico usado para estimar a probabilidade de sobrevivência a partir dos tempos de sobrevivência observados [@kaplan1958nonparametric].
 
 A função de sobrevida é a probabilidade de sobreviver a pelo menos um determinado ponto no tempo e o gráfico desta probabilidade é a curva de sobrevida. O método de sobrevida de Kaplan-Meier pode ser usado para comparar as curvas de sobrevida de dois ou mais grupos, como comparar um grupo tratado a um grupo não tratado (placebo), ou homens comparados a mulheres.
 
@@ -42,7 +42,7 @@ A curva de sobrevida KM, um gráfico da probabilidade de sobrevida de Kaplan-Mei
 
 ### Pressupostos do método de Kaplan-Meier
 
-Os pressupostos para o uso da análise de sobrevida são as seguintes @peat2014survival:
+Os pressupostos para o uso da análise de sobrevida são as seguintes [@peat2014survival]:
 
 -   os participantes devem ser independentes, ou seja, cada participante aparece apenas uma vez no grupo;
 -   os grupos devem ser independentes, ou seja, cada participante está apenas em um grupo;
@@ -52,7 +52,7 @@ Os pressupostos para o uso da análise de sobrevida são as seguintes @peat2014s
 -   as perspectivas de sobrevida dos participantes permanecem constantes, ou seja, os participantes inscritos no início ou no final do estudo devem ter as mesmas perspectivas de sobrevida;
 -   a probabilidade de censura não está relacionada à probabilidade do evento.
 
-Como em todas as análises, se o número total de pacientes em qualquer grupo for pequeno, digamos menos de 30 participantes em cada grupo, os erros padrão em torno das estatísticas resumidas serão grandes e, portanto, as estimativas de sobrevida serão imprecisas. Para estudos de sobrevida, recomenda-se fazer o cálculo do tamanho amostral previamente. O R dispõe de um pacote que possibilita este cálculo, o `powerSurvEpi` @qiu2015powersurvepi.
+Como em todas as análises, se o número total de pacientes em qualquer grupo for pequeno, digamos menos de 30 participantes em cada grupo, os erros padrão em torno das estatísticas resumidas serão grandes e, portanto, as estimativas de sobrevida serão imprecisas. Para estudos de sobrevida, recomenda-se fazer o cálculo do tamanho amostral previamente. O R dispõe de um pacote que possibilita este cálculo, o `powerSurvEpi` [@qiu2015powersurvepi].
 
 ### Dados do exemplo
 
@@ -93,7 +93,7 @@ A saída mostra o número em cada grupo, o número de eventos e o número censur
 
 ### Tabela de Sobrevida
 
-Deve-se calcular as estimativas de sobrevida de Kaplan-Meier que servirão para a construção da Curva de Sobrevida de cada tratamento. Para isso, pode-se usar a função `survfit()` do pacote `survival`@therneau2015survival. Seus principais argumentos incluem:
+Deve-se calcular as estimativas de sobrevida de Kaplan-Meier que servirão para a construção da Curva de Sobrevida de cada tratamento. Para isso, pode-se usar a função `survfit()` do pacote `survival`[@therneau2015survival]. Seus principais argumentos incluem:
 
 -   objeto de sobrevida, criado usando a função `Surv()`, aninhada na função `survfit()`
 -   e o conjunto de dados contendo as variáveis.
@@ -140,7 +140,7 @@ legend (legend = c ("Tratamento Novo", "Tratamento Padrão"),
         x = 5)
 ```
 
-Outra maneira, mais sofisticada, de produzir a curva de KM é usando a função `ggsurvplot()`, incluída no pacote `survminer` @kassambara2021survminer que utiliza o pacote `ggplot2` (@fig-survival1)
+Outra maneira, mais sofisticada, de produzir a curva de KM é usando a função `ggsurvplot()`, incluída no pacote `survminer` [@kassambara2021survminer] que utiliza o pacote `ggplot2` (@fig-survival1)
 
 Com essa função é possível mostrar:
 
@@ -172,11 +172,11 @@ ggsurvplot (tabsurv,
             palette = c ("steelblue", "tomato"))
 ```
 
-O teste `Log Rank` pondera todos os pontos de tempo igualmente e é a estatística de sobrevida mais usada @bland2004logrank. O teste de log rank é um teste não paramétrico, que não faz suposições sobre as distribuições de sobrevivência. Os pressupostos deste teste são os mesmos do método de Kaplan-Meier. No exemplo, o valor *p* do teste é fornecido na @fig-survival1 e é igual a 0,083, ou seja, acima de 0,05, indicando não rejeição da $H_{0}$. A hipótese nula diz que não há diferença na sobrevivência entre os dois grupos.
+O teste `Log Rank` pondera todos os pontos de tempo igualmente e é a estatística de sobrevida mais usada [@bland2004logrank]. O teste de log rank é um teste não paramétrico, que não faz suposições sobre as distribuições de sobrevivência. Os pressupostos deste teste são os mesmos do método de Kaplan-Meier. No exemplo, o valor *p* do teste é fornecido na @fig-survival1 e é igual a 0,083, ou seja, acima de 0,05, indicando não rejeição da $H_{0}$. A hipótese nula diz que não há diferença na sobrevivência entre os dois grupos.
 
 Essencialmente, o teste de log rank compara o número observado de eventos em cada grupo com o que seria esperado se a hipótese nula fosse verdadeira (ou seja, se as curvas de sobrevivência fossem idênticas). A estatística de log rank é aproximadamente distribuída como uma estatística de teste qui-quadrado.
 
-A função `survdiff()`, também do pacote `survival`, pode ser usada para calcular o teste de log-rank comparando duas ou mais curvas de sobrevida e pode ser usado da seguinte forma:
+A função `survdiff()`, também do pacote `survival` [@survival2024package], pode ser usada para calcular o teste de log-rank comparando duas ou mais curvas de sobrevida e pode ser usado da seguinte forma:
 
 ```{r}
 dif_sobrevida <- survdiff (Surv (tempo, evento) ~ grupo, data = sobrevida)

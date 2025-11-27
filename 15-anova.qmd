@@ -28,7 +28,7 @@ Ou, usando uma função do R , `choose(k, n)`, facilmente se chega ao resultado.
 choose(4, 2)
 ```
 
-Foi visto na @sec-erros que ao realizar um teste de hipótese podem ocorrer erros. Em geral, tolera-se aceitar um taxa de falsos positivos (erro tipo I) de até 5% ($\alpha$ = 0,05). Consequentemente, a probabilidade de um erro do tipo I não ocorrer para cada teste *t* é de 0,95 (isto é, 1 – 0,05). Como os três testes são independentes, a probabilidade de um erro do tipo I não ocorrer nos seis testes é de $(0,95)^6 = 0,735$. Dessa maneira, a probabilidade de ocorrer pelo menos um erro do tipo I nos seis testes *t* de duas amostras é de 1 – 0,735 ou 0,265 (26,5%), o que é mais alto do que o nível de significância definido de 0,05 @field2012anova. Ou seja, realizar múltiplos testes *t*, infla o erro tipo I.
+Foi visto na @sec-erros que ao realizar um teste de hipótese podem ocorrer erros. Em geral, tolera-se aceitar um taxa de falsos positivos (erro tipo I) de até 5% ($\alpha$ = 0,05). Consequentemente, a probabilidade de um erro do tipo I não ocorrer para cada teste *t* é de 0,95 (isto é, 1 – 0,05). Como os três testes são independentes, a probabilidade de um erro do tipo I não ocorrer nos seis testes é de $(0,95)^6 = 0,735$. Dessa maneira, a probabilidade de ocorrer pelo menos um erro do tipo I nos seis testes *t* de duas amostras é de 1 – 0,735 ou 0,265 (26,5%), o que é mais alto do que o nível de significância definido de 0,05 [@field2012anova]. Ou seja, realizar múltiplos testes *t*, infla o erro tipo I.
 
 Por essa razão, a ANOVA de um fator é usada para verificar as diferenças entre vários várias médias dentro de um fator, reduzindo assim o número de comparações de pares e a probabilidade de ocorrer um erro tipo I.
 
@@ -89,7 +89,7 @@ text(2, 0.2, expression("X"[3]), cex = 1.5, col = "firebrick3")
 
 ```
 
-Agora, observe o @fig-logicb, onde a distribuição da variável *X* é mostrada, mantendo as mesmas médias, mas com variâncias maiores. Isto torna claro que se o objetivo é distinguir observações provenientes desses grupos não basta avaliar suas médias, há necessidade de comparar a **variação entre os grupos** com a **variação dentro de cada grupo** @menezes2004anova.
+Agora, observe o @fig-logicb, onde a distribuição da variável *X* é mostrada, mantendo as mesmas médias, mas com variâncias maiores. Isto torna claro que se o objetivo é distinguir observações provenientes desses grupos não basta avaliar suas médias, há necessidade de comparar a **variação entre os grupos** com a **variação dentro de cada grupo** [@menezes2004anova].
 
 ```{r}
 #| label: fig-logicb
@@ -285,7 +285,7 @@ $$
 
 onde (SQ~1~) e (SQ~2~) são variáveis independentes com distribuições qui-quadrado (veja @sec-qui) com graus de liberdade (gl~1~) e (gl~2~), respectivamente.
 
-Como a distribuição qui-quadrado se aproxima da normal quando os graus de liberdade aumentam, a razão entre elas (a distribuiçãoa F) também começa a se comportar como uma normal — especialmente quando gl~2~ é grande (@tbl-gl1gl2) @ferreira2011distf.\
+Como a distribuição qui-quadrado se aproxima da normal quando os graus de liberdade aumentam, a razão entre elas (a distribuiçãoa F) também começa a se comportar como uma normal — especialmente quando gl~2~ é grande (@tbl-gl1gl2) [@ferreira2011distf].\
 Esse comportamento é útil na prática porque permite usar testes que assumem normalidade quando os graus de liberdade são grandes, mesmo quando a distribuição original é mais complexa.
 
 #### Funções do R para trabalhar com a distribuição F
@@ -515,7 +515,7 @@ A **análise de variância (ANOVA) de um fator**, também conhecida como ANOVA d
 ::: callout-note
 ## Contexto
 
-Diversos estudos @schuh2008efeitos documentaram a associação entre tabagismo materno na gestação e redução do peso dos recém-nascidos. Em um estudo @madi2010prevalence foi registrado informações maternas e neonatais 1368 partos na maternidade do Hospital Geral de Caxias do Sul (HGCS), 2008.
+Diversos estudos [@schuh2008efeitos] documentaram a associação entre tabagismo materno na gestação e redução do peso dos recém-nascidos. Em um estudo [@madi2010prevalence] foi registrado informações maternas e neonatais 1368 partos na maternidade do Hospital Geral de Caxias do Sul (HGCS), 2008.
 :::
 
 #### Dados do exemplo {#sec-dadosANOVA}
@@ -794,7 +794,7 @@ Pode-se simplesmente relatar isso e encerrar, mas é provável que se queira sab
 
 Ao realizar um teste de ANOVA de um fator deve-se assumir que:
 
-1.  Exista normalidade dos resíduos @altman1991anova;
+1.  Exista normalidade dos resíduos [@altman1991anova];
 2.  Exista homogeneidade de variâncias: os grupos devem ter variâncias semelhantes (homocedasticidade);
 3.  Amostras aleatórias e independentes;
 4.  Todos os grupos devem ter tamanho amostral adequado. Grupos com menos de 10 participantes são problemáticos por reduzirem a precisão da média. Na prática, deve-se evitar menos de 30 participantes. A relação entre os grupos não deve ser maior do que 1:4 @peat2014anova;
@@ -864,7 +864,7 @@ A saída do teste de Shapiro-Wilk um valor *p* = 0,082, ou seja, maior que 0.05 
 
 ##### Verificação da presença de outliers
 
-Pode-se aqui, além de usar boxplots, usar a função a função `identify_outliers()` do pacote `rstatix` @kassambara2022rstatix e, quando os grupos forem desbalanceados, usar a função `by_group()` do pacote `dplyr` para avaliar por nível de fator:
+Pode-se aqui, além de usar boxplots, usar a função a função `identify_outliers()` do pacote `rstatix` [@kassambara2022rstatix] e, quando os grupos forem desbalanceados, usar a função `by_group()` do pacote `dplyr` para avaliar por nível de fator:
 
 ```{r}
 dados_anova %>% 
@@ -873,9 +873,9 @@ dados_anova %>%
 
 Existem 11 observações marcadas como `is.outlier = TRUE`, mas nenhuma como `is.extreme = TRUE`, o que indica que esses pontos estão fora dos limites interquartis (IIQ), mas não ultrapassam os limites extremos (\> 3×IIQ). São outliers moderados, não extremos — ainda assim, merecem atenção, verificando se esses pontos têm influência desproporcional no modelo .
 
-Para isso, pode-se usar medidas de influência @armitage_berry_matthews_2002, que são usadas na análise de regressão, pois a ANOVA pode ser encarada como um caso especial de regressão linear com variáveis categóricas. E como foi observado a presença de vários outliers eles devem ser avaliados., pois podem influenciar os coeficientes. Isto é particularmente importante quando se trabalha com poucos grupos ou grupos desbalanceados e também quando se tem mais de um fator e existe interação entre os fatores.
+Para isso, pode-se usar medidas de influência [@armitage_berry_matthews_2002], que são usadas na análise de regressão, pois a ANOVA pode ser encarada como um caso especial de regressão linear com variáveis categóricas. E como foi observado a presença de vários outliers eles devem ser avaliados., pois podem influenciar os coeficientes. Isto é particularmente importante quando se trabalha com poucos grupos ou grupos desbalanceados e também quando se tem mais de um fator e existe interação entre os fatores.
 
-1.  [Distância de Cook]{.underline}: avalia o impacto de cada ponto na estimativa dos coeficientes @cook1986residuals. É calculada pela função `cooks.distance()` que exige um objeto da classe `lm` (*linear model*) e, portanto, o modelo deve ser refeito. Este modelo necessita, como o `aov()`, de uma fórmula (`pesoRN~tabagismo`) e dos dados:
+1.  [Distância de Cook]{.underline}: avalia o impacto de cada ponto na estimativa dos coeficientes [@cook1986residuals]. É calculada pela função `cooks.distance()` que exige um objeto da classe `lm` (*linear model*) e, portanto, o modelo deve ser refeito. Este modelo necessita, como o `aov()`, de uma fórmula (`pesoRN~tabagismo`) e dos dados:
 
     ```{r}
     #| label: fig-cook
@@ -897,7 +897,7 @@ Para isso, pode-se usar medidas de influência @armitage_berry_matthews_2002, qu
 
 2.  [Alavancagem]{.underline} (Leverage)
 
-    As estatísticas de alavancagem (ou valores *hat*) medem a influência do valor observado da variável desfecho sobre os valores previstos. Os valores de alavancagem podem situar-se entre 0 (o caso não tem qualquer influência) e 1 (o caso tem influência total ). Se nenhum caso exercer influência indevida sobre o modelo, seria de esperar que todos os valores de alavancagem se situassem próximos do valor médio. Alguns autores (\@Hoaglin1978TheHM) recomendam investigar casos com valores superiores ao dobro da média como ponto de corte para identificar casos com influência indevida.
+    As estatísticas de alavancagem (ou valores *hat*) medem a influência do valor observado da variável desfecho sobre os valores previstos. Os valores de alavancagem podem situar-se entre 0 (o caso não tem qualquer influência) e 1 (o caso tem influência total ). Se nenhum caso exercer influência indevida sobre o modelo, seria de esperar que todos os valores de alavancagem se situassem próximos do valor médio. Alguns autores [@Hoaglin1978TheHM] recomendam investigar casos com valores superiores ao dobro da média como ponto de corte para identificar casos com influência indevida.
 
     ```{r}
     valores_hat <- hatvalues(modelo_lm)
@@ -910,7 +910,7 @@ Para isso, pode-se usar medidas de influência @armitage_berry_matthews_2002, qu
 
 3.  [DFBETAS]{.underline} (Difference in BETA)
 
-    É uma medida de diagnóstico importante na análise de resíduos em um modelo linear. Ele serve para quantificar o quanto a remoção de uma única observação (um ponto de dados) **influencia** a estimativa de **cada coeficiente** no modelo @belsley1980regression.
+    É uma medida de diagnóstico importante na análise de resíduos em um modelo linear. Ele serve para quantificar o quanto a remoção de uma única observação (um ponto de dados) **influencia** a estimativa de **cada coeficiente** no modelo [@belsley1980regression.]
 
 [^15-anova-10]: Por isso, não apareceu a linha vermelha horizontal tracejada.
 
@@ -961,17 +961,17 @@ Da mesma maneira que no teste *t*, os pressupostos têm mais importância em gru
 
 ##### Conclusão
 
-A análise de variância de uma via foi aplicada para investigar o efeito do tabagismo sobre o escore da variável dependente. Os resultados indicaram diferenças estatisticamente significativas entre os níveis do fator, evidenciando que o tabagismo está associado a variações no escore analisado. A suposição de normalidade dos resíduos foi avaliada por meio do teste de Shapiro-Wilk, cujo resultado (p = 0,082) não indicou violação da normalidade. A presença de outliers foi identificada globalmente, com 11 observações classificadas como moderadas, distribuídas entre os grupos de tabagismo. Nenhuma observação foi considerada extrema, o que reduz o risco de distorção sistemática nos resultados. A análise de influência, realizada por meio dos DFBETAS e do gráfico de influência, demonstrou que nenhuma observação individual exerceu impacto relevante sobre os coeficientes do modelo. Os valores máximos de DFBETAS permaneceram abaixo de 0,25, indicando estabilidade nas estimativas, conforme os critérios propostos por Field @field2012influential. Dessa forma, o modelo ajustado pode ser considerado estatisticamente adequado, com efeitos confiáveis e interpretáveis entre os níveis do fator tabagismo. As suposições da ANOVA foram atendidas, e os resultados obtidos são válidos para fins de inferência.
+A análise de variância de uma via foi aplicada para investigar o efeito do tabagismo sobre o escore da variável dependente. Os resultados indicaram diferenças estatisticamente significativas entre os níveis do fator, evidenciando que o tabagismo está associado a variações no escore analisado. A suposição de normalidade dos resíduos foi avaliada por meio do teste de Shapiro-Wilk, cujo resultado (p = 0,082) não indicou violação da normalidade. A presença de outliers foi identificada globalmente, com 11 observações classificadas como moderadas, distribuídas entre os grupos de tabagismo. Nenhuma observação foi considerada extrema, o que reduz o risco de distorção sistemática nos resultados. A análise de influência, realizada por meio dos DFBETAS e do gráfico de influência, demonstrou que nenhuma observação individual exerceu impacto relevante sobre os coeficientes do modelo. Os valores máximos de DFBETAS permaneceram abaixo de 0,25, indicando estabilidade nas estimativas, conforme os critérios propostos por Field [@field2012influential]. Dessa forma, o modelo ajustado pode ser considerado estatisticamente adequado, com efeitos confiáveis e interpretáveis entre os níveis do fator tabagismo. As suposições da ANOVA foram atendidas, e os resultados obtidos são válidos para fins de inferência.
 
 #### O que fazer se os pressupostos são violados?
 
-Se a homogeneidade da variância é o problema, um teste possível de ser implementado no *R* é o *F de Welch*, aplicando a função`welch.test()`, incluída no pacote `onewaytests` @dag2018onewaytests. Existem também testes não paramétricos, como o *Teste de Kruskal-Wallis*, que será visto mais adiante (@sec-kruskalwallis).
+Se a homogeneidade da variância é o problema, um teste possível de ser implementado no *R* é o *F de Welch*, aplicando a função`welch.test()`, incluída no pacote `onewaytests` [@dag2018onewaytests]. Existem também testes não paramétricos, como o *Teste de Kruskal-Wallis*, que será visto mais adiante (@sec-kruskalwallis).
 
 ### Testes *post-hoc*
 
 Os testes de comparações múltiplas constituem-se em uma análise após a realização da ANOVA. Se houve uma diferença, indicada pela ANOVA, os testes de comparações múltiplas ou também conhecidos como *teste post hoc*, ajudam a quantificar as diferenças entre os grupos para determinar quais grupos diferem significativamente uns dos outros.
 
-Aqui será usado o *HSD de Tukey*, que é conservador. *HSD* vem da expressão em inglês - *Honest Significant Difference @damasio2021posthoc. Este teste requer um objeto `aov` no qual executa seu procedimento, que chamaremos de `pwc`*[^15-anova-12]. O procedimento de Tukey HSD executará uma comparação de pares de todas as combinações possíveis dos grupos e testará esses pares para diferenças significativas entre suas médias, tudo enquanto ajusta o valor p\* a um limite superior de significância para compensar o fato de que muitos testes estatísticos estão sendo realizados e a probabilidade de um falso positivo aumenta com o aumento do número de testes. A função a ser usada é a `tukey_hsd()`, do pacote `rstatix`.
+Aqui será usado o *HSD de Tukey*, que é conservador. *HSD* vem da expressão em inglês - *Honest Significant Difference @damasio2021posthoc. Este teste requer um objeto `aov` no qual executa seu procedimento, que chamaremos de `pwc`*[^15-anova-12]. O procedimento de Tukey HSD executará uma comparação de pares de todas as combinações possíveis dos grupos e testará esses pares para diferenças significativas entre suas médias, tudo enquanto ajusta o valor *p* a um limite superior de significância para compensar o fato de que muitos testes estatísticos estão sendo realizados e a probabilidade de um falso positivo aumenta com o aumento do número de testes. A função a ser usada é a `tukey_hsd()`, do pacote `rstatix`.
 
 [^15-anova-12]: *Foi escolhido o nome `pwc` com o objtivo de lembrar que uma comparação de pares (**P**air**w**ise **C**omparison).*
 
@@ -1016,13 +1016,13 @@ ggplot(pwc, aes(x = estimate, y = comparacao, color = p.adj.signif)) +
 
 Uma das medidas de tamanho de efeito mais comumente relatadas para a ANOVA é o **eta ao quadrado** ($\eta^2$), que é um índice da força da associação entre um fator e uma variável dependente. Eta ao quadrado é a proporção da variação total atribuível ao fator. É calculado como a razão da variância do fator para a variância total e os valores variam de 0 a 1. Pode ser calculado o eta qo quadrado parcial ou generalizado. Aquio eta ao quadrado parcial é suficiente, enquanto que para desenhos mais complexos, como ANOVA de medidas repetidas, está mais indicado o generalizado, pois além de incluir o efeito entre sujeito, inclui outros efeitos
 
-Esta medida pode ser obtida com o pacote `effectsize` @ben2020effectsize, usando a função `eta_squared()`, usando o modelo `modelo.aov`.
+Esta medida pode ser obtida com o pacote `effectsize` [@ben2020effectsize], usando a função `eta_squared()`, usando o modelo `modelo.aov`.
 
 ```{r}
 effectsize::eta_squared (modelo.aov, partial = TRUE)
 ```
 
-Apesar de ser controverso, pode-se seguir a orientação da @tbl-effectsize), para a interpretação @watson2021effectsize:
+Apesar de ser controverso, pode-se seguir a orientação da @tbl-effectsize), para a interpretação [@watson2021effectsize]:
 
 ```{r}
 #| label: tbl-effectsize
@@ -1173,7 +1173,7 @@ A partir da ANOVA de dois fatores será possível avaliar:
 table(dados_anova$sexo, dados_anova$tabagismo)
 ```
 
-Através da função `table()`, observa-se que os dados têm uma estrutura um pouco mais complexa daquela da ANOVA de um fator, pois, à medida que aumentam os fatores, aumentam o número de células na estrutura do modelo. Existe uma preocupação a mais a ser analisada no ajuste do modelo. Esses dados estão claramente **desbalanceados**, tanto entre os níveis de tabagismo quanto entre os sexos. Tem-se um desenho 2 x 3 com cada célula contendo um número diferente de indivíduos. Isso pode afetar diretamente a forma como os efeitos são estimados em uma ANOVA de duas vias. Entretanto, as contagens variam de 48 a 72. Essa variação (máx/mín ≈ 1,5:1) é muito mais gerenciável. Segundo Peat (@Barton_Peat2014anova), um desequilíbrio no tamanho das células de mais de 1:4, no modelo, seria uma preocupação. Da mesma forma, um número mínimo por célula de 10, sendo desejável pelo menos 30, pois um número pequeno leva a uma perda de poder estatístico. Na prática, na área da saúde, igual número em cada uma das caselas é muito raro (@bland2015anova) .
+Através da função `table()`, observa-se que os dados têm uma estrutura um pouco mais complexa daquela da ANOVA de um fator, pois, à medida que aumentam os fatores, aumentam o número de células na estrutura do modelo. Existe uma preocupação a mais a ser analisada no ajuste do modelo. Esses dados estão claramente **desbalanceados**, tanto entre os níveis de tabagismo quanto entre os sexos. Tem-se um desenho 2 x 3 com cada célula contendo um número diferente de indivíduos. Isso pode afetar diretamente a forma como os efeitos são estimados em uma ANOVA de duas vias. Entretanto, as contagens variam de 48 a 72. Essa variação (máx/mín ≈ 1,5:1) é muito mais gerenciável. Segundo Peat [@Barton_Peat2014anova], um desequilíbrio no tamanho das células de mais de 1:4, no modelo, seria uma preocupação. Da mesma forma, um número mínimo por célula de 10, sendo desejável pelo menos 30, pois um número pequeno leva a uma perda de poder estatístico. Na prática, na área da saúde, igual número em cada uma das caselas é muito raro [@bland2015anova].
 
 #### Descrição dos dados
 
@@ -1272,13 +1272,13 @@ $H_{0}$: não há interação entre sexo e tabagismo, o que significa que o efei
 
 ### Teste estatístico
 
-De um modo geral, o sofware estatístico calcula a **Soma dos Quadrados**(SQ) para cada uma das fontes de variação (sexo, tabagismo, interação e resíduos) e a partir delas, calcula os **Quadrados Médios** (QM)[^15-anova-15] e dividindo cada um pelos seus respectivos graus de liberdade, obtém-se a estatística F para cada efeito. O valor de F é comparado a uma distribuição F (veja a @sec-distF) para obter o valor *p* associado a cada hipótese, de acordo com o o valor de $\alpha$ escolhido previamente (em geral, 0,05) .
+De um modo geral, o sofware estatístico calcula a **Soma dos Quadrados**(SQ) para cada uma das fontes de variação (sexo, tabagismo, interação e resíduos) e a partir delas, calcula os **Quadrados Médios** (QM)[^15-anova-14] e dividindo cada um pelos seus respectivos graus de liberdade, obtém-se a estatística F para cada efeito. O valor de F é comparado a uma distribuição F (veja a @sec-distF) para obter o valor *p* associado a cada hipótese, de acordo com o o valor de $\alpha$ escolhido previamente (em geral, 0,05) .
 
-[^15-anova-15]: Que são as variâncias.
+[^15-anova-14]: Que são as variâncias.
 
 $$
 F = \frac{\text{variância entre}}{\text{variância dentro}} = \frac{\frac{SQ_{E}}{gl_{E}}}{\frac{SQ_{R}}{gl_{R}}} =\frac{QM_{E}}{QM_{D}}
-$$ O resultado do teste é tipicamente apresentado em uma tabela como esta (\@tbl-anova), denominada de **Tabela da ANOVA**:
+$$ O resultado do teste é tipicamente apresentado em uma tabela como esta (@tbl-anova), denominada de **Tabela da ANOVA**:
 
 ```{r}
 #| label: tbl-anova
@@ -1363,10 +1363,10 @@ Para delineamentos não balanceados, ou seja, números desiguais de indivíduos 
 
 -   A **ANOVA do tipo II**, quando não há interação significativa, que pode ser feita, no R, com `Anova(modelo, type = “II”)` ou `Anova(modelo, type = 2)` , em que `modelo` é o nome do modelo salvo, e
 
--   A **ANOVA do tipo III**, quando há uma interação significativa, que pode ser feita, no R, com `Anova(modelo, type = “III”)` ou `Anova(modelo, type = 3)`. Fundamentalmente, a diferença entre um método e outro é como o R calcula a soma dos quadrados ao calcular a ANOVA. Quando os dados são balanceados, os três tipos dão o mesmo resultado [^15-anova-16].
+-   A **ANOVA do tipo III**, quando há uma interação significativa, que pode ser feita, no R, com `Anova(modelo, type = “III”)` ou `Anova(modelo, type = 3)`. Fundamentalmente, a diferença entre um método e outro é como o R calcula a soma dos quadrados ao calcular a ANOVA. Quando os dados são balanceados, os três tipos dão o mesmo resultado [^15-anova-15].
 :::
 
-[^15-anova-16]: Para os interessados, pode-se obter maiores informações sobre os diferentes tipos de ANOVA em <https://www.r-bloggers.com/2011/03/anova-%E2%80%93-type-iiiiii-ss-explained/>
+[^15-anova-15]: Para os interessados, pode-se obter maiores informações sobre os diferentes tipos de ANOVA em <https://www.r-bloggers.com/2011/03/anova-%E2%80%93-type-iiiiii-ss-explained/>
 
 Pode-se dar seguimento, ajustando o modelo sem a interação.
 
@@ -1530,7 +1530,7 @@ Alguns *outliers* (11) foram identificados com base nos resíduos padronizados, 
 Antes da interpretação dos resultados obtidos por meio da Análise de Variância (ANOVA), é fundamental avaliar se os pressupostos do modelo foram atendidos. A validade das inferências estatísticas depende diretamente do cumprimento dessas condições.
 
 1.  Normalidade dos resíduos\
-    A suposição de normalidade dos resíduos foi inicialmente avaliada por meio do teste de Shapiro-Wilk, cujo resultado indicou uma leve violação desse pressuposto (p = 0,02). Apesar disso, a inspeção visual do gráfico quantil-quantil (QQ plot) e do histograma dos resíduos revelou uma distribuição aproximadamente simétrica, com pequeno desvio nas caudas, sem indícios de distorções severas. Considerando o elevado tamanho amostral por grupo (superior a 100 observações), a ANOVA demonstra robustez suficiente para lidar com pequenas violações da normalidade.
+    A suposição de normalidade dos resíduos foi inicialmente avaliada por meio do teste de Shapiro-Wilk, cujo resultado indicou uma leve violação desse pressuposto (*p* = 0,02). Apesar disso, a inspeção visual do gráfico quantil-quantil (QQ plot) e do histograma dos resíduos revelou uma distribuição aproximadamente simétrica, com pequeno desvio nas caudas, sem indícios de distorções severas. Considerando o elevado tamanho amostral por grupo (superior a 100 observações), a ANOVA demonstra robustez suficiente para lidar com pequenas violações da normalidade.
 
 2.  Homogeneidade das variâncias (homocedasticidade)
 
@@ -1552,7 +1552,7 @@ A análise conjunta dos testes estatísticos e das evidências gráficas indica 
 
 Quando uma análise de variância (ANOVA) detecta diferenças estatisticamente significativas entre médias de grupos, o próximo passo é identificar quais pares de médias diferem entre si. Para isso, utiliza-se um teste post hoc, ou seja, um procedimento complementar que controla o erro tipo I em múltiplas comparações.
 
-Entre os testes post hoc disponíveis, o teste de Tukey HSD (Honest Significant Difference) é um dos mais utilizados pela sua robustez e facilidade de interpretação.
+Entre os testes post hoc disponíveis, o teste de Tukey HSD (*Honest Significant Difference*) é um dos mais utilizados pela sua robustez e facilidade de interpretação.
 
 ```{r}
 pwc <- rstatix::tukey_hsd (mod.aov)
@@ -1687,20 +1687,70 @@ Os resultados indicam que tanto o sexo do recém-nascido quanto o nível de taba
 
 -   Um efeito negativo do tabagismo intenso sobre o peso neonatal, sugerindo impacto negativo crescente conforme o nível de exposição.
 
-    [Efeito de Tabagismo]{.underline}:
+    [Efeito de Tabagismo]{.underline} (@tbl-final1):
 
-    | Comparação       | Diferença (g) |        IC 95%        |    p    |  Sig  |
-    |------------------|:-------------:|:--------------------:|:-------:|:-----:|
-    | Não vs. Leve     |    -113,75    |  \[-257,90; 30,41\]  |  0,153  |  ns   |
-    | Não vs. Intenso  |    -190,72    | \[-338,07; -43,37\]  |  0,007  | \*\*  |
-    | Leve vs. Intenso |    -76,97     | \[-224,03; 70,08\]   |  0,435  |  ns   |
+```{r}
+#| label: tbl-final1
+#| echo: false
+#| message: false
+#| warning: false
+#| tbl-cap: "Efeito do tabagismo sobre o peso neonatal"
+
+comparacao <-c("Não vs. Leve", "Não vs. Intenso", "Leve vs. Intenso")
+diferenca <- c(-113.75, -190.72, -76.97)
+ic <- c("[-257,90; 30,41]", "[-338,07; -43,37]", "[-224,03; 70,08]")
+p <- c(0.153, 0.007, 0.435)
+sig <- c("ns", "**", "ns")
+
+df <- data.frame(comparacao, diferenca, ic, p, sig)
+
+tab_final1 <- flextable(df) %>%
+    set_header_labels(
+    comparacao = "Comparação",
+    diferenca = "Diferença",
+    ic = "IC95%",
+    p = "Valor p",
+    sig = "Sig"
+  ) %>%
+  autofit() %>%
+  theme_booktabs() %>%
+  align(align = "center", part = "all") %>%
+  bold(part = "header")
+tab_final1
+```
 
 -   Um peso maior entre recém-nascidos do sexo masculino, corroborado pelos dados descritivos e pelos resultados inferenciais.
 
-    Efeito de Sexo:
+    Efeito de Sexo (@tbl-final2):
 
-    | Comparação   | Diferença (g) |      IC 95%       |   p   | Sig  |
-    |:-------------|:-------------:|:-----------------:|:-----:|:----:|
-    | Masc vs. Fem |    133,97     | \[33,78; 234,16\] | 0,008 | \*\* |
+```{r}
+#| label: tbl-final2
+#| echo: false
+#| message: false
+#| warning: false
+#| tbl-cap: "Efeito do sexo sobre o peso neonatal"
+
+comparacao <-"Masc vs. Fem"
+diferenca <- 133.97
+ic <- "[33,78; 234,16]"
+p <- 0.008
+sig <- "**"
+
+df <- data.frame(comparacao, diferenca, ic, p, sig)
+
+tab_final2 <- flextable(df) %>%
+    set_header_labels(
+    comparacao = "Comparação",
+    diferenca = "Diferença",
+    ic = "IC95%",
+    p = "Valor p",
+    sig = "Sig"
+  ) %>%
+  autofit() %>%
+  theme_booktabs() %>%
+  align(align = "center", part = "all") %>%
+  bold(part = "header")
+tab_final2
+```
 
 Todos os pressupostos da ANOVA foram adequadamente atendidos, permitindo confiança nos resultados obtidos.

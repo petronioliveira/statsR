@@ -1,8 +1,0 @@
-# Glossário {.unnumbered}
-
-**−2LL**: a log-likelihood multiplicada por menos 2. Esta versão da verossimilhança é utilizada na regressão logística.  
-**AIC (critério de informação de Akaike)**: uma medida de adequação corrigida para a complexidade do modelo. Isso significa apenas que leva em consideração quantos parâmetros foram estimados. Não é intrinsecamente interpretável, mas pode ser comparado em diferentes modelos para ver como a alteração do modelo afeta a adequação. Um valor pequeno representa uma melhor adequação dos dados.  
-**Análise de covariância**: um procedimento estatístico que usa a razão F para testar o ajuste geral de um modelo linear, controlando o efeito que uma ou mais covariáveis têm sobre a variável de desfecho. Na pesquisa experimental, esse modelo linear tende a ser definido em termos de médias de grupo e, portanto, a ANOVA resultante é um teste geral para verificar se as médias de grupo diferem após a remoção da variância na variável de desfecho explicada por quaisquer covariáveis.  
-**Análise de variância (ANOVA)**: um procedimento estatístico que usa a razão F para testar a adequação geral de um modelo linear. Na pesquisa experimental, esse modelo linear tende a ser definido em termos de médias de grupo e, portanto, a ANOVA resultante é um teste geral para verificar se as médias de grupo diferem.  
-**ANCOVA**: sigla para análise de covariância.
-

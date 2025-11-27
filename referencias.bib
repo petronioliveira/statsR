@@ -6,11 +6,25 @@
 }
 
 @book{massad2004metodos,
-  title={Métodos quantitativos em medicina},
+  title={Métodos Quantitativos em Medicina},
   author={Massad, Eduardo and Silveira, Paulo Sérgio Panse and de Menezes, Renèe Xavier and Ortega, Neli Regina Siqueira},
   year={2004},
-  publisher={Editora Manole Ltda}
+  publisher={Editora Manole},
+  address={São Paulo, SP}
 }
+
+@incollection{massad2004inferencia,
+  author    = {Burattini, Marcelo N},
+  title     = {Raciocínio médico e inferência},
+  editor    = {Massad, Eduardo and Silveira, Paulo SP and de Menezes, Renèe X and Others},
+  booktitle = {Métodos Quantitativos em Medicina},
+  publisher = {Editora Manole},
+  year      = {2004},
+  address   = {São Paulo, SP},
+  pages     = {208--223},
+  chapter   = {9}
+}
+
 
 @article{kendall1960studies,
   title={Studies in the history of probability and statistics. Where shall the history of statistics begin?},
@@ -380,11 +394,14 @@ month={Jul}
   month={Sep}
 }
 
-@book{callegari2003bioestatistica,
-  title={Bioestatistica: principios e aplicações},
-  author={},
+@inbook{callegari2003dam,
+  booktitle={Bioestatistica: principios e aplicações},
+  title={Distribuição amostral das médias},
+  author={Callegari-Jacques, Sidia M},
   year={2003},
-  publisher={Artmed Editora}
+  publisher={Artmed Editora},
+  place={Porto Alegre, RS},
+  pages={47-53}
 }
 
 @inbook{callegari2003bioestatistica, 
@@ -847,6 +864,17 @@ month={Jul}
   pages={9-12}
 }
 
+@incollection{oliveira2022estparam,
+  author={Oliveira Filho, Petronio Fagundes de},
+  title={População e Amostra},
+  booktitle={Epidemiologia e Bioestatística: Fundamentos para a leitura crítica},
+  edition ={Segunda Edição},
+  publisher={Editora Rubio},
+  address={Rio de Janeiro},
+  year=2022,
+  pages={109-112}
+}
+
 @inbook{arango2009tab, 
   place={Rio de Janeiro, RJ},
   title={Organização dos dados em tabelas}, 
@@ -1286,6 +1314,26 @@ month={Nov}
   year={2021}, 
   month={Mar}
 } 
+
+@Manual{singmann2025afex,
+  title = {afex: Analysis of Factorial Experiments},
+  author = {Henrik Singmann and Ben Bolker and Jake Westfall and Frederik Aust and Mattan S. Ben-Shachar},
+  year = {2025},
+  note = {R package version 1.5-0},
+  url = {https://CRAN.R-project.org/package=afex},
+  doi = {10.32614/CRAN.package.afex},
+}
+
+@article{halunga2017pagan,
+  title = {A heteroskedasticity robust Breusch–Pagan test for Contemporaneous correlation in dynamic panel data models},
+  author = {Andreea G. Halunga and Chris D. Orme and Takashi Yamagata},
+  journal = {Journal of Econometrics},
+  volume = {198},
+  number = {2},
+  pages = {209-230},
+  year = {2017},
+  doi = {https://doi.org/10.1016/j.jeconom.2016.12.005}
+}
 
 @book{cohen1988power,
   title={Statistical power analysis for the behavioral sciences},
@@ -1755,6 +1803,34 @@ year={2021}
   pages = {266-76}
 }
 
+@article{durbin1950testing,
+  title={Testing for serial correlation in least squares regression: I},
+  author={Durbin, James and Watson, Geoffrey S},
+  journal={Biometrika},
+  volume={37},
+  number={3/4},
+  pages={409--428},
+  year={1950},
+  publisher={JSTOR}
+}
+
+@Manual{survival2024package,
+  title = {A Package for Survival Analysis in R},
+  author = {Terry M Therneau},
+  year = {2024},
+  note = {R package version 3.8-3},
+  url = {https://CRAN.R-project.org/package=survival},
+}
+
+@incollection{therneau2000cox,
+  title={The cox model},
+  author={Therneau, Terry M and Grambsch, Patricia M},
+  booktitle={Modeling survival data: extending the Cox model},
+  pages={39--77},
+  year={2000},
+  publisher={Springer}
+}
+
 @article{hothorn2015lmtest,
   title={Package ‘lmtest’},
   author={Hothorn, Torsten and Zeileis, Achim and Farebrother, Richard W and others},
@@ -1897,6 +1973,16 @@ year={2021}
   address={Edinburgh},
   year=2014,
   pages={189-98}
+}
+
+@incollection{zar2014popsamples,
+  author={Zar, Jerrold H.},
+  title={Populations and Samples},
+  booktitle={Biostatistical Analysis},
+  publisher={Pearson},
+  address={Edinburgh},
+  year=2014,
+  pages={18-22}
 }
 
 @misc{karadimitriou2020kruskal,
@@ -2356,6 +2442,25 @@ year={2021}
   volume={9},
   year={2021}
 }
+
+@article{altman2005ic,
+  title={Why We Need Confidence Intervals},
+  author={Altman, Douglas G},
+  journal={World J. Surg},
+  volume={29},
+  pages={554-556},
+  year={2005}
+}
+
+@Manual{ryan2022rmisc,
+  title = {Rmisc: Ryan Miscellaneous},
+  author = {Ryan M. Hope},
+  year = {2022},
+  note = {R package version 1.5.1},
+  url = {https://CRAN.R-project.org/package=Rmisc},
+  doi = {10.32614/CRAN.package.Rmisc},
+}
+
 
 @article{bland2004logrank,
   title={The logrank test},

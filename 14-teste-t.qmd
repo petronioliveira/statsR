@@ -135,7 +135,7 @@ Para determinar se existe uma diferença estatisticamente significativa entre as
 
 #### Lógica do teste *t*
 
-O teste *t* compara as médias de duas amostras independentes, usando o erro padrão como métrica da diferença entre essas médias. Quanto maior o valor de *t* , maior a probabilidade de que as amostras pertençam a grupos diferentes, ocorrendo nessas circunstâncias a rejeição da hipótese nula @pagano2000t_test.
+O teste *t* compara as médias de duas amostras independentes, usando o erro padrão como métrica da diferença entre essas médias. Quanto maior o valor de *t* , maior a probabilidade de que as amostras pertençam a grupos diferentes, ocorrendo nessas circunstâncias a rejeição da hipótese nula [@pagano2000t_test].
 
 Calcula-se o teste *t* com a seguinte equação:
 
@@ -187,7 +187,7 @@ O teste *t* assume que:
 2.  Deve haver distribuição normal. Entretanto, quando as amostras são grandes (teorema do limite central), isso não é muito importante;
 3.  Exista homocedasticidade, ou seja, as variâncias dos grupos devem ser iguais.
 
-Violar o pressuposto de número 3 tem importância se os tamanhos dos grupos forem diferentes. Se os grupos tiverem o mesmo tamanho e a amostra for grande, este pressuposto torna-se menos importante, não preocupando muito se essa hipótese foi violada @zimmerman2004note. O pressuposto tem mais importância em grupos pequenos e desiguais. Existe um teste, denominado *teste t de Welch* que corrige essa violação. É possível portanto, esquecer esse pressuposto e fazer o teste de Welch sempre.
+Violar o pressuposto de número 3 tem importância se os tamanhos dos grupos forem diferentes. Se os grupos tiverem o mesmo tamanho e a amostra for grande, este pressuposto torna-se menos importante, não preocupando muito se essa hipótese foi violada [@zimmerman2004note]. O pressuposto tem mais importância em grupos pequenos e desiguais. Existe um teste, denominado *teste t de Welch* que corrige essa violação. É possível portanto, esquecer esse pressuposto e fazer o teste de Welch sempre.
 
 [Avaliação da normalidade]{.underline}
 
@@ -219,7 +219,7 @@ Outra maneira de analisar a normalidade é verificar se a distribuição como um
 
 Esses testes comparam os dados da amostra com um conjunto de valores normalmente distribuídos com a mesma média e desvio padrão. Se o teste não for significativo (*P* \> 0,05), informa-se que a distribuição da amostra não é significativamente diferente de uma distribuição normal. Se, no entanto, o teste for significativo (*P* $\le$ 0,05), a distribuição em questão será significativamente diferente de uma distribuição normal.
 
-O método de Shapiro-Wilk é amplamente recomendado para teste de normalidade @razali2011power, @ghasemi2012normality, @yap2011comparisons.
+O método de Shapiro-Wilk é amplamente recomendado para teste de normalidade [@razali2011power], [@ghasemi2012normality], [@yap2011comparisons].
 
 ```{r}
 sw <- dados %>% 
@@ -236,7 +236,7 @@ Na visualização da @fig-bxpnotas, nos dois grupos de alunos, observa-se que h�
 
 Portanto, homogeneidade da variância é o pressuposto de que a dispersão das medidas é aproximadamente igual em diferentes grupos de casos, ou que a dispersão dos valores são aproximadamente iguais em pontos diferentes da variável preditora.
 
-Além do aspecto visual, a homogeneidade da variância pode ser testada com o *teste de Levene*. Neste teste, a $H_{0}$ é todas as variâncias são iguais. No *R*, a função que calcula o teste é `leveneTest()` do pacote `car` @fox2018car. Os argumentos são:
+Além do aspecto visual, a homogeneidade da variância pode ser testada com o *teste de Levene*. Neste teste, a $H_{0}$ é todas as variâncias são iguais. No *R*, a função que calcula o teste é `leveneTest()` do pacote `car` [@fox2018car]. Os argumentos são:
 
 -   **y** $\to$ variável de resposta para o método padrão ou um objeto `lm` ou `fórmula`. Se `y` for um objeto de modelo linear ou uma fórmula, as variáveis do lado direito do modelo devem ser todas fatores e devem ser completamente cruzadas;
 -   **group** $\to$ fator que define os grupos;
@@ -263,7 +263,7 @@ A saída do teste permite uma conclusão igual ao teste de Levene, pois o valor 
 
 #### Execução do teste *t* de Student
 
-Os pressupostos do teste não foram violados, portanto ele pode ser realizado com confiança. Será utilizado a função `t_test()` do pacote `rstatix` @kassambara2022rstatix para calcular o teste *t* para amostras independentes. Ele fornece uma estrutura compatível com operador pipe %\>% (*pipe-friendly*) para executar testes *t* de uma e duas amostras. Para consultar os argumentos, consulte a @sec-exeth1 ou a ajuda do *RStudio*.
+Os pressupostos do teste não foram violados, portanto ele pode ser realizado com confiança. Será utilizado a função `t_test()` do pacote `rstatix` [@kassambara2022rstatix] para calcular o teste *t* para amostras independentes. Ele fornece uma estrutura compatível com operador pipe %\>% (*pipe-friendly*) para executar testes *t* de uma e duas amostras. Para consultar os argumentos, consulte a @sec-exeth1 ou a ajuda do *RStudio*.
 
 ```{r}
  teste <- dados %>% rstatix::t_test(formula = notas ~ sexo,
@@ -336,7 +336,7 @@ Normalmente, em ensaios clínicos tem-se um grupo de tratamento e um grupo de co
 
 #### *d* de Cohen {#sec-cohen}
 
-Também conhecida como *diferença média padronizada*, o *d* de Cohen @cohen1988power @lindenau2012effect é uma medida adequada e bastante popular para encontrar a magnitude do efeito na comparação entre duas médias.
+Também conhecida como *diferença média padronizada*, o *d* de Cohen[ @cohen1988power] [@lindenau2012effect] é uma medida adequada e bastante popular para encontrar a magnitude do efeito na comparação entre duas médias.
 
 Para calcular a diferença média padronizada se verifica a diferença entre as médias dos dois grupos e se divide pelo desvio padrão conjugado:
 
@@ -366,7 +366,7 @@ d <- lsr::cohensD (notas ~ sexo, data = dados)
 d
 ```
 
-Bastante simples! Agora, como interpretar este resultado de d = 1,3 (arredondado)? Sua interpretação não é intuitiva, recomenda-se usar a @tbl-effect para interpretar @cohen1988power.
+Bastante simples! Agora, como interpretar este resultado de d = 1,3 (arredondado)? Sua interpretação não é intuitiva, recomenda-se usar a @tbl-effect para interpretar [@cohen1988power].
 
 ```{r}
 #| label: tbl-effect
@@ -674,7 +674,7 @@ shapiro <- dados %>%
 
 O teste de Shapiro-Wilk retorna um valor P \> 0,05, mostrando que a variável D que não se pode rejeitar a hipóteses nula de sua normalidade.
 
-Além disso, um gráfico Q-Q (@fig-qq) pode ser usado para avaliar a normalidade, com a função `ggqqplot()` do pacote `ggpubr` @kassambara2022ggpubr que produz um gráfico QQ normal com uma linha de referência, acompanhada de area sombreada, correspondente ao IC95%
+Além disso, um gráfico Q-Q (@fig-qq) pode ser usado para avaliar a normalidade, com a função `ggqqplot()` do pacote `ggpubr` [@kassambara2022ggpubr] que produz um gráfico QQ normal com uma linha de referência, acompanhada de area sombreada, correspondente ao IC95%
 
 ```{r}
 #| label: fig-qq

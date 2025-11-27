@@ -29,7 +29,7 @@ O R não precisa ser iniciado, pois o software que será usado, neste livro, é 
 ### RStudio
 
 Um ambiente de desenvolvimento integrado (IDE - *Integrated Development Environment*) é uma ferramenta que facilita a escrita, execução e depuração de código.\
-O *RStudio* é o ambiente de desenvolvimento integrado mais utilizado com o R. Ele serve para facilitar a escrita, execução e depuração de código R, bem como para gerenciar projetos, visualizar dados e criar gráficos. O *RStudio* é um membro ativo da comunidade R. Foi fundado em 2009 por Joseph J. Allaire, engenheiro de software americano. O *RStudio*, inspirado pelas inovações dos usuários de R em ciência, educação e indústria, desenvolveu ferramentas gratuitas e abertas para facilitar o uso do R. O *RStudio* é escrito em linguagem C++ e foi inicialmente focado apenas na linguagem R. Com o tempo o desenvolveu suporte para *Python* e *VSCode*. Em 2022, para acompanhar essa mudança, foi anunciada a mudança do nome da empresa que o desenvolve para [Posit](https://posit.co/) e, recentemente, introduzido um novo IDE, denominado *Positron* @blog_2024, um projeto inicial, com um ambiente semelhante ao *RStudio* e que continua em desenvolvimento. Talvez, no futuro, possa substituir o RStudio. Por enquanto, isso será difícil , pois o *Positron* não tem todas as funcionalidades do *RStudio* @positron2025.
+O *RStudio* é o ambiente de desenvolvimento integrado mais utilizado com o R. Ele serve para facilitar a escrita, execução e depuração de código R, bem como para gerenciar projetos, visualizar dados e criar gráficos. O *RStudio* é um membro ativo da comunidade R. Foi fundado em 2009 por Joseph J. Allaire, engenheiro de software americano. O *RStudio*, inspirado pelas inovações dos usuários de R em ciência, educação e indústria, desenvolveu ferramentas gratuitas e abertas para facilitar o uso do R. O *RStudio* é escrito em linguagem C++ e foi inicialmente focado apenas na linguagem R. Com o tempo o desenvolveu suporte para *Python* e *VSCode*. Em 2022, para acompanhar essa mudança, foi anunciada a mudança do nome da empresa que o desenvolve para [Posit](https://posit.co/) e, recentemente, introduzido um novo IDE, denominado *Positron* [@blog_2024], um projeto inicial, com um ambiente semelhante ao *RStudio* e que continua em desenvolvimento. Talvez, no futuro, possa substituir o RStudio. Por enquanto, isso será difícil , pois o *Positron* não tem todas as funcionalidades do *RStudio* [@positron2025].
 
 #### Instalação do *R Studio*
 
@@ -153,7 +153,7 @@ No lado direito, abaixo, existem outras abas muito úteis (@fig-inicial), em ama
 
 3)  **Pacotes (Packages)** - mostra uma lista de todos os pacotes R instalados no seu computador e indica se eles estão atualmente carregados ou não. Pacotes que estão sendo executados na sessão atual, estão marcados, enquanto aqueles que estão instalados, mas ainda inativos, estão desmarcados.
 
-4)  **Ajuda (Help)** - menu de ajuda para as funções R. Você pode digitar o nome de uma função na janela de pesquisa (por exemplo, `histogram` ou usar o `?hist`), no *Console* ou no *R Script*, para procurar ajuda sobre uma função (@fig-ajuda)). A Ajuda no *R Studio* pode também ser acessada no menu *Help* da barra de ferramentas onde existem várias opções. Para complementar, alguns livros são muito uteis, como o *R Cookbook* @chang2021cookbook ou *Using* R\* for introductory statistics\* @verzani2004using. No entanto, na maioria das vezes a forma mais prática de conseguir ajuda com uma dúvida específica é a busca em fóruns na internet, como o *Stack Overflow*: <https://stackoverflow.com/>.
+4)  **Ajuda (Help)** - menu de ajuda para as funções R. Você pode digitar o nome de uma função na janela de pesquisa (por exemplo, `histogram` ou usar o `?hist`), no *Console* ou no *R Script*, para procurar ajuda sobre uma função (@fig-ajuda)). A Ajuda no *R Studio* pode também ser acessada no menu *Help* da barra de ferramentas onde existem várias opções. Para complementar, alguns livros são muito uteis, como o *R Cookbook* [@chang2021cookbook] ou *Using* R\* for introductory statistics\* [@verzani2004using]. No entanto, na maioria das vezes a forma mais prática de conseguir ajuda com uma dúvida específica é a busca em fóruns na internet, como o *Stack Overflow*: <https://stackoverflow.com/>.
 
 5)  **Apresentação (Presentation)** – é visualizador de apresentações. Nas últimas versões do Rstudio, é possível com o Quarto, editar um código em R Markdown para construir uma apresentação. Não faz parte do objetivo deste livro desenvolver este assunto. É possível encontrar um tutorial em <https://quarto.org/docs/get-started/hello/rstudio.html>.
 
@@ -207,7 +207,7 @@ Periodicamente, há necessidade de atualizar os pacotes instalados. Essa necessi
 
 #### Instalando e carregando mais de um pacote {#sec-pacman}
 
-Uma das funções, atualmente, mais usadas para executar essa ação é fornecida pelo pacote `pacman` @tyler2018pacman.
+Uma das funções, atualmente, mais usadas para executar essa ação é fornecida pelo pacote `pacman` [@tyler2018pacman].
 
 É interessante configurar o `pacman` para que ele esteja sempre disponível assim que o R é aberto. Isso é feito editando o arquivo chamado `.Rprofile`, que é carregado automaticamente toda vez que você inicia uma sessão do R. Para configurar o `pacman` no `.Rprofile`, abra-o no *RStudio*:
 
@@ -666,7 +666,7 @@ is.double(altura)
 
 ## Fatores {#sec-fatores}
 
-A classe `factor` serve para designar categorias para um vetor. Essa classe é semelhante a um vetor da classe `character`, mas tem importancia maior na modelagem estatística e análise exploratóriade dados @wickham2017factors. Tanto números quanto caracteres podem ser convertidos em fatores usando a função `factor()`. Esses fatores podem não ser ordenados representado apenas diferentes categorias ou podem representar categorias ordenadas. A função `ordered()` gera fatores ordenados, em ordem crescente ou descrescente.
+A classe `factor` serve para designar categorias para um vetor. Essa classe é semelhante a um vetor da classe `character`, mas tem importancia maior na modelagem estatística e análise exploratóriade dados [@wickham2017factors]. Tanto números quanto caracteres podem ser convertidos em fatores usando a função `factor()`. Esses fatores podem não ser ordenados representado apenas diferentes categorias ou podem representar categorias ordenadas. A função `ordered()` gera fatores ordenados, em ordem crescente ou descrescente.
 
 O vetor a seguir representa o tipo de parto ocorrido em 15 anscimentos, ond 1 = parto normal e 2 = parto cesáreo:
 

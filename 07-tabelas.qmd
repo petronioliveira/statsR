@@ -122,9 +122,7 @@ tab_freq
 
 ### Regras gerais para construção de tabelas de frequência
 
-As tabelas de frequências seguem algumas regras,
-
-Existem algumas recomendações na construção de uma tabela de frequência @arango2009tab:
+Existem algumas recomendações na construção de uma tabela de frequência [@arango2009tab]:
 
 -   Deve ter um título na parte superior que responda as perguntas: “o que? quando? onde?” relativas ao fato estudado;
 
@@ -143,7 +141,7 @@ Existem algumas recomendações na construção de uma tabela de frequência @ar
 #### Dados para os exemplos {#sec-dados7}
 
 Para os exemplos, o dataframe `dadosMater.xlsx` será acionado para fornecer dados, semelhante ao realizado na @sec-dados6 .\
-Após carregar o dataframe, serão selecionadas as variáveis necessárias. As variáveis `utiNeo`, `sexo` serão convertidas a fatores; a variável `idadeMae` será categorizada em três níveis (\<20 anos, 20-35 anos, \>35 anos), criando uma nova variável `categIdade`. Além disso, será criada a variável `imc` que também será categorizada em uma nova variável `estNutri` em quatro níveis (Baixo Peso, Peso adequado, Sobrepeso, Obesidade). Por último, será extraída uma amostra de n = 200 e atribuída a um objeto `dados`:
+Após carregar o dataframe, serão selecionadas as variáveis necessárias. As variáveis `utiNeo`, `sexo` serão convertidas a fatores; a variável `idadeMae` será categorizada em três níveis (<20 anos, 20-35 anos, >35 anos), criando uma nova variável `categIdade`. Além disso, será criada a variável `imc` que também será categorizada em uma nova variável `estNutri` em quatro níveis (Baixo Peso, Peso adequado, Sobrepeso, Obesidade). Por último, será extraída uma amostra de n = 200 e atribuída a um objeto `dados`:
 
 ```{r}
 #| message: false
@@ -225,9 +223,9 @@ print(tab_completa)
 
 Este último exemplo mostra a flexibilidade do R para manipular e apresentar dados de forma clara e organizada, combinando as saídas de funções básicas em uma única tabela.
 
-Para análises mais avançadas ou para variáveis quantitativas contínuas, pode-se usar a função `mutate()` ,junto com a função `case_when()` @geeks2025case_when , usada para criar a variáveis `categIdade` e `estNutri`, na @sec-dados7. Também é possível associar a função `mutate()` com a função `cut()`, como se verá a seguir.
+Para análises mais avançadas ou para variáveis quantitativas contínuas, pode-se usar a função `mutate()` ,junto com a função `case_when()` [@geeks2025case_when] , usada para criar a variáveis `categIdade` e `estNutri`, na @sec-dados7. Também é possível associar a função `mutate()` com a função `cut()`, como se verá a seguir.
 
-#### Tabelas de frequência para dados numéricos  {#sec-freq}
+#### Tabelas de frequência para dados numéricos {#sec-freq}
 
 A construção de tabelas de frequência com dados agrupados em classes é crucial quando se lida com variáveis quantitativas contínuas, como idade, altura, peso do recém-nascido, renda, etc. Usar table() diretamente, nesses casos não faz sentido, pois cada valor pode ser único e o número de “categorias” seria imenso, tornando a tabela quase inútil. A solução é agrupar os dados em **intervalos** ou **classes**. Para realizar esta operação, pode-se acionar a mesma função `mutate()` associada a função `cut()`, que divide um vetor numérico em fatores com base em intervalos especificados.
 
@@ -237,7 +235,7 @@ Como exemplo prático, a variável de interesse será representada pelos pesos d
 
 **Passo 1**: [Definir os intervalos de classe]{.underline}
 
-Antes, as classes foram estabelecidas de acordo com algum critério escolhido pelo autor ou por algum critério relacionado à saúde, como por exemplo a idade materna, onde as gestante com idade abaixo de 20 anos e acima de 35 anos, gestantes com baixa escolaridade (< de 5 anos), situação conjugal insegura, etc., constituem fatores de risco na gravidez @schirmer2000manual. Em geral, quando não há um padrão pré-determinado, o número de classes é estabelecido de acordo com o tamanho da amostra. Este número pode ser escolhido lembrando-se das oscilações que ocorrem nos dados e do interesse do pesquisador em mostrar seus dados. Não existe uma regra totalmente eficiente para determinar o número de classes. É importante ter bom senso, de maneira que seja possível ver como os valores se distribuem. Uma regra geral é usar entre 5 e 15 classes @Daniel_Cross_2013, mas isso pode variar. Com poucas classes, perde-se precisão e, com muitas classes, a tabela torna-se muito extensa. Uma forma comum é usar a *Regra de Sturges* [^07-tabelas-1], para estimar o número de classes. Baseado na regra de Sturges é sugerido usar a recomendação da @tbl-sturges @arango2009classes.
+Antes, as classes foram estabelecidas de acordo com algum critério escolhido pelo autor ou por algum critério relacionado à saúde, como por exemplo a idade materna, onde as gestante com idade abaixo de 20 anos e acima de 35 anos, gestantes com baixa escolaridade (< de 5 anos), situação conjugal insegura, etc., constituem fatores de risco na gravidez [@schirmer2000manual]. Em geral, quando não há um padrão pré-determinado, o número de classes é estabelecido de acordo com o tamanho da amostra. Este número pode ser escolhido lembrando-se das oscilações que ocorrem nos dados e do interesse do pesquisador em mostrar seus dados. Não existe uma regra totalmente eficiente para determinar o número de classes. É importante ter bom senso, de maneira que seja possível ver como os valores se distribuem. Uma regra geral é usar entre 5 e 15 classes [@Daniel_Cross_2013], mas isso pode variar. Com poucas classes, perde-se precisão e, com muitas classes, a tabela torna-se muito extensa. Uma forma comum é usar a *Regra de Sturges* [^07-tabelas-1], para estimar o número de classes. Baseado na regra de Sturges é sugerido usar a recomendação da @tbl-sturges [@arango2009classes].
 
 [^07-tabelas-1]: Determina que o número de classes (*k*) pode ser calculado pela fórmula: $k = 1 + 3.322 * log10(n)$, onde *n* é igual ao número de observações.
 
@@ -352,7 +350,7 @@ Como diria , o famoso personagem Obelix, amigo inseparável do gaulês Asterix[^
 
 [^07-tabelas-4]: Personagens criados pelos franceses Albert Uderzo e Rene Goscinny.
 
-Nada de especial. simplesmente, o R retornou valores em notação científica. Não tem nada errado! Apenas, isso torna a legibilidade dos números mais complicada, menos intuitiva. A primeira classe \[810,1.24e+03) ficaria mais fácil de ser lida se estivesse como \[810, 1240), ou seja, inclui o valor de 810 e exclui o 1240 e a última classe \[4.24e+03,4.67e+03\] inclui ambos os limites, melhor escritos como \[4240, 4670\].
+Nada de especial. simplesmente, o R retornou valores em notação científica. Não tem nada errado! Apenas, isso torna a legibilidade dos números mais complicada, menos intuitiva. A primeira classe [810,1.24e+03) ficaria mais fácil de ser lida se estivesse como [810, 1240), ou seja, inclui o valor de 810 e exclui o 1240 e a última classe [4.24e+03,4.67e+03] inclui ambos os limites, melhor escritos como [4240, 4670].
 
 ::: callout-note
 ### Nota
@@ -531,7 +529,7 @@ tab_completa <- tab_completa[c("Classificação", "f", "frp", "F", "Frp")]
 print(tab_completa)
 ```
 
-Assim, pode-se dizer que a prevalência de baixo peso na maternidade do Hospital Geral de Caxias do Sul é bem mais alta da prevalência no Brasil que é de 6,1% (IC95%: 4,5-8,3%) @viana2013birth.
+Assim, pode-se dizer que a prevalência de baixo peso na maternidade do Hospital Geral de Caxias do Sul é bem mais alta que a prevalência no Brasil que é de 6,1% (IC95%: 4,5-8,3%) [@viana2013birth].
 
 ## Tabelas Prontas para Publicação
 
@@ -539,7 +537,7 @@ O R possui várias alternativas para produzir tabelas científicas, bonitas e el
 
 ### Pacote gt
 
-O pacote `gt` é um pacote que permite a apresentação de tabelas de maneira limpa e organizada @iannone2020gt. funciona através do `tidyverse` com os comandos `pipe %>%`, o que facilita sua aplicação.
+O pacote `gt` é um pacote que permite a apresentação de tabelas de maneira limpa e organizada [@iannone2020gt]. funciona através do `tidyverse` com os comandos `pipe %>%`, o que facilita sua aplicação.
 
 #### Passos para criar uma tabela com o pacote gt
 
@@ -635,7 +633,7 @@ tab_gt
 
 ### Pacote flextable
 
-O pacote `flextable` fornece uma estrutura para criar facilmente tabelas elegantes e personalizadas para relatórios e publicações. @gohel2025flextable.
+O pacote `flextable` fornece uma estrutura para criar facilmente tabelas elegantes e personalizadas para relatórios e publicações [@gohel2025flextable].
 
 As finalidades básicas do pacote `flextable` são:
 
@@ -661,7 +659,7 @@ As finalidades básicas do pacote `flextable` são:
 
 #### Passos para criar uma tabela com o pacote flextable
 
-**Passo 1**: Da mesma forma como nas tabelas criadas pelo pacote `gt`, o `flextable` também necessita de tabela base (dataframe ou tibble) @navarro2024flextable. Será usada a mesma tabela (`tab_completa`). Uma tabela simples (tbl-ft1) pode ser facilmente gerada:
+**Passo 1**: Da mesma forma como nas tabelas criadas pelo pacote `gt`, o `flextable` também necessita de tabela base (dataframe ou tibble) [@navarro2024flextable]. Será usada a mesma tabela (`tab_completa`). Uma tabela simples (@tbl-ft1) pode ser facilmente gerada:
 
 ```{r}
 #| label: tbl-ft1
@@ -814,7 +812,7 @@ Muitas outras funções existem para alterar o layout, dependendo do que o pesqu
 
 ### Pacote gtsummary
 
-O pacote `gtsummary` foi criado @daniel2021gtsummary como complemento do pacote `gt`. Para usar o pacote , ele deve estar instalado e carregado:
+O pacote `gtsummary` foi criado [@daniel2021gtsummary] como complemento do pacote `gt`. Para usar o pacote , ele deve estar instalado e carregado:
 
 ```{r}
 #| message: false

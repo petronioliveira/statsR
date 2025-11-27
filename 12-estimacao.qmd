@@ -73,7 +73,7 @@ O valor de `r x_barra`g é a média amostral, $\bar{x}$, usado como um estimativ
 
 Para melhorar a precisão, usa-se uma estimativa de intervalo. Em vez de atribuir um único valor para o parâmetro populacional, é construído um intervalo, acrescentando ou subtraindo um valor, chamado de **margem de erro**, à estimativa pontual.
 
-Este procedimento é conhecido como *estimação por intervalo* e o intervalo construído, estabelecendo um limite inferior e um limite superior em torno da estimativa amostral, é denominado de **intervalo de confiança**. Desta forma, é possível afirmar que o intervalo de confiança, provavelmente, contém o parâmetro populacional correspondente (@fig-intconf).
+Este procedimento é conhecido como *estimação por intervalo* e o intervalo construído, estabelecendo um limite inferior e um limite superior em torno da estimativa amostral, é denominado de **intervalo de confiança** [@altman2005ic]. Desta forma, é possível afirmar que o intervalo de confiança, provavelmente, contém o parâmetro populacional correspondente (@fig-intconf).
 
 ```{r}
 #| label: fig-intconf
@@ -413,7 +413,7 @@ round(t1, digits = 2)
 Assim, a área abaixo de `r round(t1, digits = 2)` é igual a 95% (@fig-unilateral).
 
 $$
-p(t\le 1,81)=0,95
+p(t \le 1,81)=0,95
 $$
 
 ```{r}
@@ -461,7 +461,7 @@ A maneira mais intuitiva de estimar a média da população com base na amostra,
 
 #### Cálculo manual do IC
 
-Quando o desvio padrão da população ($\sigma$) não é conhecido, pode-se usar o seu estimador que é o desvio padrão da amostra (*s*), respeitando os pressupostos @motulsky2010ci. Então, o erro padrão da média ($\sigma_{\bar{x}}$) pode ser estimado pelo $EP_{\bar{x}}$.
+Quando o desvio padrão da população ($\sigma$) não é conhecido, pode-se usar o seu estimador que é o desvio padrão da amostra (*s*), respeitando os pressupostos [@motulsky2010ci]. Então, o erro padrão da média ($\sigma_{\bar{x}}$) pode ser estimado pelo $EP_{\bar{x}}$.
 
 $$
 EP_{\bar{x}}=\frac{s}{\sqrt{n}}
@@ -527,7 +527,7 @@ round(ic95, 2)
 
 #### Cálculo usando uma função do R
 
-O R possui algumas funções que calculam o intervalo de confiança para variáveis numéricas, baseadas na distribuição *t*. Entre elas, a função `CI()`, incluída no pacote `Rmisc`. Esta função tem dois argumentos:
+O R possui algumas funções que calculam o intervalo de confiança para variáveis numéricas, baseadas na distribuição *t*. Entre elas, a função `CI()`, incluída no pacote `Rmisc` [@ryan2022rmisc]. Esta função tem dois argumentos:
 
 -   **x** ⟶ vetor de dados;
 -   **ci** ⟶ intervalo de confiança a ser calculado
@@ -610,7 +610,7 @@ round(ic_prop, 3)
 
 **Cálculo usando uma função**
 
-O chamado *Intervalo de Confiança Exato* corrigem as deficiências da aproximação normal. O R tem uma função para este cálculo: `BinomCI()` do pacote `DescTools`@signorell2022desctools. É preferível usar o método de Clopper e Pearson que fornece o IC exato.
+O chamado *Intervalo de Confiança Exato* corrigem as deficiências da aproximação normal. O R tem uma função para este cálculo: `BinomCI()` do pacote `DescTools` [@signorell2022desctools]. É preferível usar o método de Clopper e Pearson que fornece o IC exato.
 
 Os argumentos da função `BinomCI()` são:
 

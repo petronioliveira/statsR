@@ -4,11 +4,11 @@
 
 Os indivíduos variam em relação as suas características biológicas, psicológicas e sociais na saúde e na doença. Esta variabilidade gera uma grande quantidade de incertezas.
 
-A Bioestatística, estatística aplicada às ciências biológicas e da saúde, é a ferramenta utilizada pelos pesquisadores para trabalhar com essas incertezas advindas da variabilidade. Várias definições foram escritas para a estatística, uma delas é a seguinte @armitage2008statistical:
+A Bioestatística, estatística aplicada às ciências biológicas e da saúde, é a ferramenta utilizada pelos pesquisadores para trabalhar com essas incertezas advindas da variabilidade. Várias definições foram escritas para a estatística, uma delas é a seguinte [@armitage2008statistical]:
 
 > <font size=3> Estatística é a disciplina interessada com o tratamento dos dados numéricos obtidos a partir de grupos de indivíduos </font>
 
-A Bioestatística lida com a variabilidade humana utilizando técnicas estatísticas quantitativas @massad2004metodos que ajudam a diminuir a ignorância em relação a esta diversidade. A compreensão da variabilidade humana torna a medicina mais ciência, diminuindo as incertezas, na tentativa de verificar se os resultados encontrados de fato existem ou são apenas obra do acaso.
+A Bioestatística lida com a variabilidade humana utilizando técnicas estatísticas quantitativas [@massad2004metodos] que ajudam a diminuir a ignorância em relação a esta diversidade. A compreensão da variabilidade humana torna a medicina mais ciência, diminuindo as incertezas, na tentativa de verificar se os resultados encontrados de fato existem ou são apenas obra do acaso.
 
 Na década de 1990, houve um acesso maior aos computadores. Os profissionais da saúde não estatísticos passaram a ter mais interesse no campo da bioestatística. Isto gerou uma onda que facilitou o aparecimento de novas ferramentas estatísticas de ponta. Apesar disso, o conhecimento da Bioestatística permanece restrito aos especialistas na área.
 
@@ -22,7 +22,7 @@ Para a tomada de decisão em saúde é fundamental o acúmulo de conhecimento ad
 
 Entretanto, é natural, que se trace as raízes voltando ao passado, tanto quanto possível. Alguns referem-se à curiosidade em relação ao registro de dados à dinastia Shank, na China, possivelmente no século XIII a.c, com a realização de censos populacionais. Há relatos bíblicos de possíveis censos realizados por Moisés (1491 a.C.) e por Davi (1017 a.C.).
 
-Os romanos e os gregos já realizavam censos por volta do século VIII a IV a.C. Em 578-534 a.C., o imperador *Servo Túlio* mandou realizar um censo de população masculina adulta e suas propriedades que serviu para estabelecer o recrutamento para o exército, para o exercício dos direitos políticos e para o pagamento de impostos. Os romanos fizeram 72 censos entre 555 a.C. e 72 d.C. A punição para quem não respondia, geralmente era a morte! Na Idade Média, na Europa, existem registros de diversos censos: durante o domínio muçulmano, na Península Ibérica, nos séculos VII a XV; no reinado de Carlos Magno (712-814) e ainda o maior registro estatístico feito na época, o *Domesday Book* (@fig-domesday), realizado na Inglaterra, por Guilherme I @kendall1960studies , o Conquistador, onde registravam nascimentos, mortes, batismos e casamentos. Houve, também, recenseamentos nas repúblicas italianas no século XII ao XIII [@ine2014censos].
+Os romanos e os gregos já realizavam censos por volta do século VIII a IV a.C. Em 578-534 a.C., o imperador *Servo Túlio* mandou realizar um censo de população masculina adulta e suas propriedades que serviu para estabelecer o recrutamento para o exército, para o exercício dos direitos políticos e para o pagamento de impostos. Os romanos fizeram 72 censos entre 555 a.C. e 72 d.C. A punição para quem não respondia, geralmente era a morte! Na Idade Média, na Europa, existem registros de diversos censos: durante o domínio muçulmano, na Península Ibérica, nos séculos VII a XV; no reinado de Carlos Magno (712-814) e ainda o maior registro estatístico feito na época, o *Domesday Book* (@fig-domesday), realizado na Inglaterra, por Guilherme I [@kendall1960studies] , o Conquistador, onde registravam nascimentos, mortes, batismos e casamentos. Houve, também, recenseamentos nas repúblicas italianas no século XII ao XIII [@ine2014censos].
 
 ```{r #fig-domesday, echo = FALSE, out.width = '50%', fig.align = 'center', fig.cap="Domesday Book", fig.pos="h"}
 
@@ -74,14 +74,14 @@ knitr::include_graphics("https://i.imgur.com/jh61uxb.png")
 
 *Charles Edward Spearman* (10/09/1863 - 17/09/1945) foi um psicólogo inglês conhecido pelo seu trabalho na área da estatística, como um pioneiro da análise fatorial e pelo coeficiente de correlação de postos de Spearman. Ele também fez bons trabalhos de modelos da inteligência humana.
 
-*William Sealy Gosset* (13/07/1876 - 16/10/1937) foi um químico e estatístico inglês (@fig-student)). Em 1907, enquanto trabalhava químico da cervejaria experimental de Arthur Guinness & Son, criou a distribuição t que usou para identificar a melhor variedade de cevada, trabalhando com pequenas amostras. A cervejaria Guinness tinha uma política que proibia que seus empregados publicassem suas descobertas em seu próprio nome. Ele, então, usou o pseudônimo "Student" e o teste é chamado "t de Student" em sua homenagem @salsburg2009.
+*William Sealy Gosset* (13/07/1876 - 16/10/1937) foi um químico e estatístico inglês (@fig-student)). Em 1907, enquanto trabalhava químico da cervejaria experimental de Arthur Guinness & Son, criou a distribuição t que usou para identificar a melhor variedade de cevada, trabalhando com pequenas amostras. A cervejaria Guinness tinha uma política que proibia que seus empregados publicassem suas descobertas em seu próprio nome. Ele, então, usou o pseudônimo "Student" e o teste é chamado "t de Student" em sua homenagem [@salsburg2009].
 
 ```{r #fig-student, echo = FALSE, out.width = '30%', fig.align = 'center', fig.cap="William Sealy Gosset", fig.pos="h"}
 
 knitr::include_graphics("https://i.imgur.com/Zyul6nM.png")
 ```
 
-*Ronald Aylmer Fisher* (17/02/1890 - 29/07/1962) foi um estatístico, biólogo e geneticista inglês. Em 1919, Fisher se envolveu com pesquisa agrícola no centro de experimentos de *Rothamsted Research*, em Harpenden, Inglaterra, e desenvolveu novas metodologias e teoria no ramo de experimentos [@hald2007]. Durante sua vida, Fisher (@fig-fisher) escreveu 7 livros e publicou cerca de 400 artigos acadêmicos em estatística e genética . Em um dos seus livros, *The design of Experiments* (1935), Fisher relata um experimento que surgiu de uma pergunta curiosa: o gosto do chá muda de acordo com a ordem em que as ervas e o leite são colocados? Essa simples questão resultou em um estudo pioneiro na área e serviu de sustentação para análise da aleatorização de dados experimentais [@salsburg2009]. Ronald A. Fisher foi descrito @kruskal1980 como "um gênio que criou praticamente sozinho os fundamentos para o moderno pensamento estatístico". Era muito temperamental. Seus atritos com outros estatísticos ficaram famosos, entre eles encontra-se ninguém menos do que Karl Pearson, outro notável estatístico.
+*Ronald Aylmer Fisher* (17/02/1890 - 29/07/1962) foi um estatístico, biólogo e geneticista inglês. Em 1919, Fisher se envolveu com pesquisa agrícola no centro de experimentos de *Rothamsted Research*, em Harpenden, Inglaterra, e desenvolveu novas metodologias e teoria no ramo de experimentos [@hald2007]. Durante sua vida, Fisher (@fig-fisher) escreveu 7 livros e publicou cerca de 400 artigos acadêmicos em estatística e genética . Em um dos seus livros, *The design of Experiments* (1935), Fisher relata um experimento que surgiu de uma pergunta curiosa: o gosto do chá muda de acordo com a ordem em que as ervas e o leite são colocados? Essa simples questão resultou em um estudo pioneiro na área e serviu de sustentação para análise da aleatorização de dados experimentais [@salsburg2009]. Ronald A. Fisher foi descrito [@kruskal1980] como "um gênio que criou praticamente sozinho os fundamentos para o moderno pensamento estatístico". Era muito temperamental. Seus atritos com outros estatísticos ficaram famosos, entre eles encontra-se ninguém menos do que Karl Pearson, outro notável estatístico.
 
 ```{r #fig-fisher, echo = FALSE, out.width = '30%', fig.align = 'center', fig.cap="Ronald A. Fisher", fig.pos="h"}
 
@@ -97,7 +97,7 @@ knitr::include_graphics("https://i.imgur.com/MbHvZ7c.png")
 
 *John Wilder Tukey* (16/06/1915 - 26/07/2000) foi um estatístico norte-americano. Desenvolveu uma filosofia para a análise de dados que mudou a maneira de pensar dos estatísticos, sugerindo que se faça uma visualização dos dados, interpretando o formato, centro, dispersão, presença de valores atípicos, sumarizar numericamente e por fim escolher um modelo matemático. Foi o criador do boxplot e introduziu a palavra "bit" como uma contração do termo *binary digit*.
 
-*Douglas G. Altman* (12 /07/1948 - 03/06/2018) foi um estatístico inglês (@fig-altman)), conhecido por seu trabalho em melhorar a confiabilidade dos artigos de pesquisa médica @matthews2018douglas e por artigos altamente citados sobre metodologia estatística. Ele foi professor de estatística em medicina na Universidade de Oxford. Há praticamente 30 anos, Altman @altman1994scandal escreveu um artigo sobre problema da qualidade da pesquisa em medicina que causou um grande impacto e permanece válido até hoje. Nesta publicação ele afirma:
+*Douglas G. Altman* (12 /07/1948 - 03/06/2018) foi um estatístico inglês (@fig-altman)), conhecido por seu trabalho em melhorar a confiabilidade dos artigos de pesquisa médica [@matthews2018douglas] e por artigos altamente citados sobre metodologia estatística. Ele foi professor de estatística em medicina na Universidade de Oxford. Há praticamente 30 anos, Altman [@altman1994scandal] escreveu um artigo sobre problema da qualidade da pesquisa em medicina que causou um grande impacto e permanece válido até hoje. Nesta publicação ele afirma:
 
 > <font size=3> A má qualidade de muitas pesquisas médicas é amplamente reconhecida, mas, de forma perturbadora, os líderes da profissão médica parecem apenas minimamente preocupados com o problema e não fazem nenhum esforço aparente para encontrar uma solução.</font>
 
@@ -112,15 +112,15 @@ O R é uma linguagem e um ambiente de desenvolvimento voltado fundamentalmente p
 
 O nome R provém em parte das iniciais dos criadores, *George Ross Ihaka* e *Robert Gentleman* (@fig-ross), e também de um jogo figurado com a linguagem S. Em 29 de Fevereiro de 2000, o software foi considerado com funcionalidades e estável o suficiente para a versão 1.0.
 
-O R é um projeto GNU [^intro-1]. Software Livre significa que os usuários têm liberdade para executar, copiar, distribuir, estudar, alterar e melhorar o software. Foi desenvolvido em um esforço colaborativo de pessoas em vários locais do mundo @rproject2022.
+O R é um projeto GNU [^intro-1]. Software Livre significa que os usuários têm liberdade para executar, copiar, distribuir, estudar, alterar e melhorar o software. Foi desenvolvido em um esforço colaborativo de pessoas em vários locais do mundo [@rproject2022].
 
 [^intro-1]: Esta sigla está associada ao animal gnu africano, símbolo de software de distribuição livre, quer dizer is Not Unix, sigla recursiva muito comum entre nerds!
 
-O projeto R fornece uma grande variedade de técnicas estatísticas e gráficas. É uma linguagem e um ambiente similar ao S. A linguagem do S que também é uma linguagem de computador voltada para cálculos estatísticos. Um dos pontos fortes de R é a facilidade com que produções gráficas de qualidade podem ser produzidas. O R é também altamente expansível com o uso dos pacotes, que são bibliotecas para sub-rotinas específicas ou áreas de estudo específicas. Um conjunto de pacotes é incluído com a instalação de R e muito outros estão disponíveis na rede de distribuição do R - *Comprehensive R Archive Network* (CRAN) @cranmirrors2022.
+O projeto R fornece uma grande variedade de técnicas estatísticas e gráficas. É uma linguagem e um ambiente similar ao S. A linguagem do S que também é uma linguagem de computador voltada para cálculos estatísticos. Um dos pontos fortes de R é a facilidade com que produções gráficas de qualidade podem ser produzidas. O R é também altamente expansível com o uso dos pacotes, que são bibliotecas para sub-rotinas específicas ou áreas de estudo específicas. Um conjunto de pacotes é incluído com a instalação de R e muito outros estão disponíveis na rede de distribuição do R - *Comprehensive R Archive Network* (CRAN) [@cranmirrors2022].
 
 ```{r #fig-ross, echo = FALSE, out.width = '40%', fig.align = 'center', fig.cap="Robert Gentlemen (E) e George Ross (D)", fig.pos="h"}
 
 knitr::include_graphics("https://i.imgur.com/gjp0Rkc.png")
 ```
 
-A linguagem R é largamente usada entre estatísticos e analistas de dados para desenvolver softwares de estatística e análise de dados. Pesquisas e levantamentos com profissionais da área da saúde mostram que a popularidade do R aumentou substancialmente nos últimos anos @Whitney2020.
+A linguagem R é largamente usada entre estatísticos e analistas de dados para desenvolver softwares de estatística e análise de dados. Pesquisas e levantamentos com profissionais da área da saúde mostram que a popularidade do R aumentou substancialmente nos últimos anos [@Whitney2020].

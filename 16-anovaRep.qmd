@@ -57,7 +57,7 @@ tab <- flextable(df) %>%
 tab
 ```
 
-A ANOVA de medidas repetidas é mais poderosa estatisticamente porque reduz a variabilidade entre sujeitos, focando nas mudanças dentro de cada indivíduo. A ANOVA de medidas repetidas pode ser entendida como uma expansão da ANOVA @anunciacao2021anovarep.
+A ANOVA de medidas repetidas é mais poderosa estatisticamente porque reduz a variabilidade entre sujeitos, focando nas mudanças dentro de cada indivíduo. A ANOVA de medidas repetidas pode ser entendida como uma expansão da ANOVA [@anunciacao2021anovarep].
 
 ## ANOVA de medidas repetidas unifatorial
 
@@ -85,7 +85,7 @@ str(dados_uni)
 
 Observando a saída da função `str()`, verifica-se os dados se encontram no formato amplo (a variável tempo está colocada em três colunas, t~0~, t~1~, t~2~) e a ANOVA de medidas repetidas necessita de que os dados estejam no formato longo. Isso significa que, ao invés de ter cada medida repetida em uma coluna separada, haverá uma coluna para o identificador (`id`) do indivíduo, uma coluna para o `tempo/condição` (fator de medidas repetidas), e uma coluna para o valor da variável dependente (`VD = escores`).
 
-Para fazer esta transformação será realizada pela função `pivot_longer()`[^16-anovarep-1]do pacote `tidyr` @wickham2022tidyr. Nesta função, no argumento `data`, coloca-se o nome do conjunto de dados; em `cols`, há necessidade informar as colunas do formato amplo que serão reunidas. No argumento `names_to`, nomear a coluna que conterá as colunas unificadas e em `values_to`, especificar o nome da variável no formato longo que conterá os valores. A variável `id` e a nova variável `tempo` devem ser convertida para fatores e o novo conjunto de dados será atribuído a um objeto nomeado `dadosL_uni`:
+Para fazer esta transformação será realizada pela função `pivot_longer()`[^16-anovarep-1]do pacote `tidyr` [@wickham2022tidyr]. Nesta função, no argumento `data`, coloca-se o nome do conjunto de dados; em `cols`, há necessidade informar as colunas do formato amplo que serão reunidas. No argumento `names_to`, nomear a coluna que conterá as colunas unificadas e em `values_to`, especificar o nome da variável no formato longo que conterá os valores. A variável `id` e a nova variável `tempo` devem ser convertida para fatores e o novo conjunto de dados será atribuído a um objeto nomeado `dadosL_uni`:
 
 [^16-anovarep-1]: Veja a @sec-pivot para mais detalhes da função
 
@@ -171,9 +171,9 @@ Ambas as figuras exibem uma modificação dos escores espirométricos (melhora n
 
 ### Criação do modelo de ajuste {#sec-anova1model}
 
-Para criar o modelo da ANOVA de medidas repetidas pode-se usar a função `aov_car()` pacote `afex` que fornece uma abordagem de alta robustez estatística e libera o teste de Mauchly com as correções de esfericidade.
+Para criar o modelo da ANOVA de medidas repetidas pode-se usar a função `aov_car()` pacote `afex`[@singmann2025afex] que fornece uma abordagem de alta robustez estatística e libera o teste de Mauchly com as correções de esfericidade.
 
-::: {#aov_car .callout-note}
+::: callout-note
 ## Estrutura do modelo aov_car
 
 ```         
@@ -277,12 +277,12 @@ A ANOVA de Medidas Repetidas Unifatorial possui três pressupostos importantes e
 2.  Ausência de valores atípicos\
 3.  Esfericidade (pressuposto exclusivo para medidas repetidas e é avaliado nas diferenças entre as medidas, não diretamente nos resíduos do modelo, mas é fundamental).
 
-#### Obtenção dos resíduos e valores ajustados
+#### Obtenção dos resíduos e valores ajustados {#sec-modlme}
 
-Para a avaliação dos pressupostos há necessidade de obter os resíduos do modelo. Os resíduos correspondem a diferença entre os valores observados e os valores ajustados (*fitted values*) pelo modelo. Esses valores podem ser extraídos com a função `residuals()` e a função `fitted()` a partir do modelo. Para a avaliação dos pressupostos sera ajustado um modelo com a função `lme()` do pacote `nlme`, pois ele fornece resíduos menos dispersos, mais realistas e considera a estrutura de correlação entre medidas @matsubara2019anova @pinheiro2000mixed.
+Para a avaliação dos pressupostos há necessidade de obter os resíduos do modelo. Os resíduos correspondem a diferença entre os valores observados e os valores ajustados (*fitted values*) pelo modelo. Esses valores podem ser extraídos com a função `residuals()` e a função `fitted()` a partir do modelo. Para a avaliação dos pressupostos sera ajustado um modelo com a função `lme()` do pacote `nlme`, pois ele fornece resíduos menos dispersos, mais realistas e considera a estrutura de correlação entre medidas [@matsubara2019anova], [@pinheiro2000mixed].
 
-::: {#modelo_lme .callout-note}
-## Estrutura do modelo lme
+::: {callout-note}
+## Estrutura do modelo lme  
 
 O `modelo_lme` deve incluir o seguinte:
 
@@ -355,7 +355,7 @@ ggplot(dadosL_uni,
 
 Os gráficos QQ (@fig-qqpef) revelaram que os resíduos nos tempos t~1~ e t~2~ estão bem alinhados à linha teórica, indicando distribuição aproximadamente normal. Já no tempo t~0~, observou-se maior dispersão nas extremidades, sugerindo violação da normalidade. Essa observação foi confirmada pelo teste de Shapiro-Wilk.\
 Os resíduos do tempo t~0~ apresentaram distribuição significativamente diferente da normal (*p* \< 0,05), enquanto os tempos t~1~ e t~2~ não rejeitaram a hipótese de normalidade. Essa variação pode refletir maior heterogeneidade basal ou instabilidade clínica inicial. Recomenda-se, portanto, que a avaliação da normalidade dos resíduos em modelos com medidas repetidas seja feita por tempo, e não de forma agregada, para garantir maior precisão na interpretação dos pressupostos.\
-Mesmo com resíduos não normalmente distribuídos em t~0~, o modelo permanece válido desde que a esfericidade seja assumida; que o modelo tenha sido ajustado com `lme()` ou `aov_car()` com estrutura de erro adequada e que os resíduos nos demais tempos estejam dentro dos padrões esperados @pinheiro2000mixed @copilot2025.
+Mesmo com resíduos não normalmente distribuídos em t~0~, o modelo permanece válido desde que a esfericidade seja assumida; que o modelo tenha sido ajustado com `lme()` ou `aov_car()` com estrutura de erro adequada e que os resíduos nos demais tempos estejam dentro dos padrões esperados [@pinheiro2000mixed], [@copilot2025].
 
 #### Identificação de valores atípicos
 
@@ -431,7 +431,7 @@ A suposição de **esfericidade** (que o teste de Mauchly avalia) é que todos o
 
 O teste de Mauchly verifica se essa suposição de esfericidade é verdadeira. • Se o **teste de Mauchly for não significativo** (*p* \> 0,05): Significa que a matriz das diferenças é "esférica" e a suposição de esfericidade foi mantida. Se pode confiar no resultado da ANOVA. • Se o **teste de Mauchly for significativo** (*p* \< 0,05): Significa que a suposição de esfericidade foi violada. As variâncias das diferenças não são iguais, e isso pode inflar a taxa de erro do Tipo I (a chance de encontrar um resultado significativo quando não existe um de verdade).
 
-Quando a esfericidade é violada, é calculada as correções de **Greenhouse-Geisser (GGe)** ou **Huynh-Feldt (HFe)**, que ajustam os graus de liberdade e tornam o teste mais conservador, garantindo que o seu resultado final seja confiável. Huynh e Feldt @huynh1976epsilon relataram que quando a correção $\epsilon$ de Greenhouse-Geisser é \> 0,75 muitas hipóteses nulas falsas deixam de ser rejeitadas, isto é, o teste é muito conservador, propondo outra correção dos graus de liberdade. É recomendado o uso da correção de Greenhouse-Geisser para o ajuste dos graus de liberdade quando $\epsilon$ \< 0,75 ou nada se sabe a respeito da esfericidade @girden1992epsilon. Avaliando o poder destes testes, Muller @muller1989sphericity verificou que a correção de Greenhouse-Geisser fornece um controle adicional do erro Tipo I, enquanto o poder é maximizado.
+Quando a esfericidade é violada, é calculada as correções de **Greenhouse-Geisser (GGe)** ou **Huynh-Feldt (HFe)**, que ajustam os graus de liberdade e tornam o teste mais conservador, garantindo que o seu resultado final seja confiável. Huynh e Feldt [@huynh1976epsilon] relataram que quando a correção $\epsilon$ de Greenhouse-Geisser é \> 0,75 muitas hipóteses nulas falsas deixam de ser rejeitadas, isto é, o teste é muito conservador, propondo outra correção dos graus de liberdade. É recomendado o uso da correção de Greenhouse-Geisser para o ajuste dos graus de liberdade quando $\epsilon$ \< 0,75 ou nada se sabe a respeito da esfericidade [@girden1992epsilon]. Avaliando o poder destes testes, Muller [@muller1989sphericity] verificou que a correção de Greenhouse-Geisser fornece um controle adicional do erro Tipo I, enquanto o poder é maximizado.
 :::
 
 ### Testes *post hoc*
@@ -590,9 +590,9 @@ A observação da @fig-pfe2 mostra que ambos os grupos melhoraram a função res
 
 ### Criação do modelo com dois fatores {#sec-anova2model}
 
-Este modelo permite testar se há diferença no tempo, independentemente do grupo; testar se há diferença entre os grupos, independentemente do tempo e verificar se há interação entre tempo e grupo, ou seja, se a mudança ao longo do tempo difere entre os grupos (por ex., se o tratamento teve efeito). Usando o formato longo, pode-se fazer o ajuste do modelo com a função `aov_car()` do pacote `afex` (@aov_car). Essa função também é apropriada para delineamentos com mais de um fatores: um fator intra-sujeitos (tempo); um fator entre sujeitos (grupo) e, principalmente, se houver interação, desbalanceamento e se deseja realizar uma ANOVA tipo III. Além disso, a `aov_car()` já calcula automaticamente o teste de esfericidade de Mauchly e as correções (Greenhouse-Geisser e Huynh-Feldt).
+Este modelo permite testar se há diferença no tempo, independentemente do grupo; testar se há diferença entre os grupos, independentemente do tempo e verificar se há interação entre tempo e grupo, ou seja, se a mudança ao longo do tempo difere entre os grupos (por ex., se o tratamento teve efeito). Usando o formato longo, pode-se fazer o ajuste do modelo com a função `aov_car()` do pacote `afex`. Essa função também é apropriada para delineamentos com mais de um fatores: um fator intra-sujeitos (tempo); um fator entre sujeitos (grupo) e, principalmente, se houver interação, desbalanceamento e se deseja realizar uma ANOVA tipo III. Além disso, a `aov_car()` já calcula automaticamente o teste de esfericidade de Mauchly e as correções (Greenhouse-Geisser e Huynh-Feldt).
 
-Veja a sintaxe da função em @aov_car.
+Veja a sintaxe da função em @sec-anova1model.
 
 ```{r}
 modelo_aov2 <- aov_car(escores ~ grupo * tempo + Error(id/tempo), 
@@ -616,7 +616,7 @@ O Teste de Mauchly, obtido junto com o modelo, mostrou que tanto o `tempo` como 
 
 Da mesma forma como realizado para a ANOVA de medidas repetidas unifatorial, para avaliar os pressupostos, há necessidade de obter os resíduos do modelo.
 
-A função `aov_car()` ajusta a ANOVA com estrutura para medidas repetidas, mas não expõe resíduos diretamente e, portanto, eles necessitam ser extraídos a partir de outro modelo de ajuste como o modelo linear de efeitos mistos (*Linear mixed-effects model*) através da função `lme()` do pacote `nlme`. (veja @modelo_lme).
+A função `aov_car()` ajusta a ANOVA com estrutura para medidas repetidas, mas não expõe resíduos diretamente e, portanto, eles necessitam ser extraídos a partir de outro modelo de ajuste como o modelo linear de efeitos mistos (*Linear mixed-effects model*) através da função `lme()` do pacote `nlme`. (veja @sec-modlme).
 
 ```{r}
 modelo_lme <- lme(
@@ -835,7 +835,7 @@ bptest(modelo_lm)
 
 O valor *p* \< 0.05 indica que há evidência de heteroscedasticidade — ou seja, a variância dos resíduos não é constante entre os grupos ou tempos. Isso viola o pressuposto de homoscedasticidade, que é importante para testes F na ANOVA clássica.
 
-Como o modelo principal é uma  ANOVA de medidas repetidas via `aov_car()` ou `lme()`, esses modelos já são mais robustos à heteroscedasticidade do que o `lm()` usado no teste.
+Como o modelo principal é uma ANOVA de medidas repetidas via `aov_car()` ou `lme()`, esses modelos já são mais robustos à heteroscedasticidade do que o `lm()` usado no teste.
 
 Apesar da significância estatística, o efeito observado foi pequeno, e o uso de um modelo misto (`lme`), que acomoda estruturas de variância flexíveis, reduz a influência dessa violação sobre os resultados inferenciais.
 
@@ -867,7 +867,7 @@ Apesar de desvios pontuais nos pressupostos (normalidade, homoscedasticidade), o
 
 ### Testes post hoc
 
-Considerando que a interação `grupo:tempo` foi significativa (ver \@sec-anova2model), se justifica explorar as diferenças dentro e entre grupos ao longo do tempo.
+Considerando que a interação `grupo:tempo` foi significativa (ver @sec-anova2model), se justifica explorar as diferenças dentro e entre grupos ao longo do tempo.
 
 Embora de tanto o modelo construído com `aov_car()`, do pacote `afex`, quanto o modelo com `lme()`, do pacote `nlme`, possam ser utilizados para ajustar modelos de ANOVA de medidas repetidas, a opção para os pós testes, será será pelo uso do `lme()`, assim como realizado com os resíduos. Existem alguns motivos para isso:
 

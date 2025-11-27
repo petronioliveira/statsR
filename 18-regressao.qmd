@@ -19,7 +19,7 @@ pacman::p_load(car,
 
 ## Introdução
 
-A *regressão linear simples*, assim como a correlação, é uma técnica usada para explorar a natureza da relação entre duas variáveis aleatórias contínuas. A principal diferença entre esses dois métodos analíticos é que a regressão permite investigar a alteração em uma variável, chamada *resposta*, correspondente a uma determinada alteração em outra, conhecida como variável *explicativa*. A regressão é um modelo matemático que permite a *predição* de uma variável resposta a partir de uma outra variável explicativa. A análise de correlação quantifica a força da relação entre as variáveis, tratando-as simetricamente @sedgwick2013correlation.
+A *regressão linear simples*, assim como a correlação, é uma técnica usada para explorar a natureza da relação entre duas variáveis aleatórias contínuas. A principal diferença entre esses dois métodos analíticos é que a regressão permite investigar a alteração em uma variável, chamada *resposta*, correspondente a uma determinada alteração em outra, conhecida como variável *explicativa*. A regressão é um modelo matemático que permite a *predição* de uma variável resposta a partir de uma outra variável explicativa. A análise de correlação quantifica a força da relação entre as variáveis, tratando-as simetricamente [@sedgwick2013correlation].
 
 A *regressão linear simples* é chamada assim, porque existe apenas uma variável independente. Se houver mais de uma variável independente, é chamada de *regressão múltipla*.
 
@@ -145,7 +145,7 @@ ggplot2::ggplot(dados,
   theme(legend.position = "none")
 ```
 
-Uma boa maneira de testar a qualidade do ajuste do modelo é observar os resíduos @kim2019statistical ou as diferenças entre os valores reais (pontos vermelhos) e os valores previstos (pontos azuis). A reta de regressão, em azul no gráfico, representa os valores previstos. A linha vertical pontilhada da linha reta até o valor dos dados observados é o **resíduo**.
+Uma boa maneira de testar a qualidade do ajuste do modelo é observar os resíduos [@kim2019statistical] ou as diferenças entre os valores reais (pontos vermelhos) e os valores previstos (pontos azuis). A reta de regressão, em azul no gráfico, representa os valores previstos. A linha vertical pontilhada da linha reta até o valor dos dados observados é o **resíduo**.
 
 A ideia aqui é que a soma dos resíduos seja aproximadamente zero ou o mais baixo possível. Na vida real, a maioria dos casos não seguirá uma linha perfeitamente reta, portanto, resíduos são esperados. Na saída do resumo da função `lm()` em (`mod_reg$residuals`), você pode ver estatísticas descritivas sobre os resíduos do modelo (*residuals*), elas mostram como os resíduos são aproximadamente zero. Pode-se observar isso, usando a função `summary ()` e `sum()`:
 
@@ -223,7 +223,7 @@ summary(residuos_p)
 
 Em uma amostra normalmente distribuída, ao redor de 95% dos valores estão entre –1,96 e +1,96, 99% deve estar entre –2,58 e +2,58 e quase todos (99,9%) deve se situar entre –3,09 e +3,09.
 
-Portanto, resíduos padronizados com um valor absoluto maior que 3 são motivo de preocupação porque em uma amostra média é improvável que aconteça um valor tão alto por acaso @field2012regression.
+Portanto, resíduos padronizados com um valor absoluto maior que 3 são motivo de preocupação porque em uma amostra média é improvável que aconteça um valor tão alto por acaso [@field2012regression].
 
 Se a saída da função `rstandard()` for comparada com o eixo *y* do gráfico `Residuals vs Leverage`, dos gráficos diagnósticos, verifica-se valores semelhantes que variam abaixo de 3 e acima de -3, indicando que não há `outliers` influenciando e a mediana está próxima de zero.
 
@@ -235,7 +235,7 @@ O problema mais sério associado à heterocedasticidade é o fato de que os erro
 
 #### Independência dos resíduos {#sec-dw}
 
-Os resíduos no modelo devem ser independentes, ou seja, não devem ser correlacionados entre si. Para verificar isso, pode-se executar o *teste Durbin-Watson* (`teste dw`), utilizando a função `durbinWatsonTest()` do pacote ´car\`. O teste retorna um valor entre 0 e 4. Um valor maior que 2 indica uma correlação negativa entre resíduos adjacentes, enquanto um valor menor que 2 indica uma correlação positiva. Se o valor for dois, é provável que exista independência. Existe uma sugestão de que valores abaixo de 1 ou mais de 3 são um motivo definitivo de preocupação @field2012regression. É importante mencionar que o teste tem como pressuposto a normalidade dos dados.
+Os resíduos no modelo devem ser independentes, ou seja, não devem ser correlacionados entre si. Para verificar isso, pode-se executar o *teste Durbin-Watson* - `teste dw` [@durbin1950testing], utilizando a função `durbinWatsonTest()` do pacote ´car\`. O teste retorna um valor entre 0 e 4. Um valor maior que 2 indica uma correlação negativa entre resíduos adjacentes, enquanto um valor menor que 2 indica uma correlação positiva. Se o valor for dois, é provável que exista independência. Existe uma sugestão de que valores abaixo de 1 ou mais de 3 são um motivo definitivo de preocupação [@field2012regression]. É importante mencionar que o teste tem como pressuposto a normalidade dos dados.
 
 ```{r}
 durbinWatsonTest(mod_reg)
@@ -247,7 +247,7 @@ Como na saída do teste o valor *p* \> 0,05 e a estatística DW é igual a 2,2, 
 
 O tamanho da amostra deve ser suficiente para suportar o modelo de regressão. É importante coletar dados suficientes para obter um modelo de regressão confiável. O tamanho da amostra necessário para suportar um modelo depende do valor do coeficiente de correlação do modelo (no caso da correlação linear simples é o *r* de Pearson) e do número de variáveis incluídas.
 
-A @tbl-samplesize @peat2014regression mostra o número de participantes necessários em modelos com 1 a 4 preditores independentes. Como se observa, o requisito de tamanho da amostra aumenta com o número de variáveis preditoras.
+A @tbl-samplesize [@peat2014regression] mostra o número de participantes necessários em modelos com 1 a 4 preditores independentes. Como se observa, o requisito de tamanho da amostra aumenta com o número de variáveis preditoras.
 
 ```{r}
 #| label: tbl-samplesize
@@ -284,7 +284,7 @@ minha_tab <- flextable(df) %>%
 minha_tab
 ```
 
-Existem muitas regras práticas, sugerindo o tamanho da amostra. Uma delas, diz que se deve ter 10 a 15 casos por variável preditora no modelo. Entretanto, essas regras podem ser duvidosas e o melhor é calcular o tamanho amostral baseado no tamanho do efeito, usando, por exemplo o site [*StatToDo*](https://www.statstodo.com/SSizMulReg.php) ou com o sofware *GPower* 3.1.9.7 @faul2007g.
+Existem muitas regras práticas, sugerindo o tamanho da amostra. Uma delas, diz que se deve ter 10 a 15 casos por variável preditora no modelo. Entretanto, essas regras podem ser duvidosas e o melhor é calcular o tamanho amostral baseado no tamanho do efeito, usando, por exemplo o site [*StatToDo*](https://www.statstodo.com/SSizMulReg.php) ou com o sofware *GPower* 3.1.9.7 [@faul2007g].
 
 ### Realização da regressão linear
 
@@ -359,7 +359,7 @@ ggplot2:: ggplot (dados, aes (x = idade, y = comp)) +
   theme (text = element_text (size = 12))
 ```
 
-No gráfico, o intervalo de previsão médio de 95% em torno da reta de regressão é um intervalo de confiança de 95%, ou seja, a área na qual há 95% de certeza de que a reta de regressão verdadeira se encontra @altman1988statistics. Esta banda de intervalo é levemente curvada porque os erros na estimativa do intercepto e da inclinação são incluídos em adição ao erro na previsão da variável desfecho.
+No gráfico, o intervalo de previsão médio de 95% em torno da reta de regressão é um intervalo de confiança de 95%, ou seja, a área na qual há 95% de certeza de que a reta de regressão verdadeira se encontra [@altman1988statistics]. Esta banda de intervalo é levemente curvada porque os erros na estimativa do intercepto e da inclinação são incluídos em adição ao erro na previsão da variável desfecho.
 
 Se for observado, o IC95% da reta de regressão obbtida pelo `ggplot2` difere um pouco do IC95% da função `confint()`. Isto ocorre porque:
 

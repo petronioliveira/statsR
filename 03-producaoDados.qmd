@@ -2,7 +2,7 @@
 
 ## Processo de Pesquisa
 
-A pesquisa é um processo de construção do conhecimento. O objetivo deste processo é gerar um novo conhecimento e/ou confirmar ou refutar algum conhecimento prévio. A pesquisa é um processo de aprendizagem tanto do pesquisador quanto da sociedade que se beneficiará deste novo conhecimento. Para ser chamada de científica, a pesquisa deve obedecer aos princípios consagrados pela ciência @mendes2012.
+A pesquisa é um processo de construção do conhecimento. O objetivo deste processo é gerar um novo conhecimento e/ou confirmar ou refutar algum conhecimento prévio. A pesquisa é um processo de aprendizagem tanto do pesquisador quanto da sociedade que se beneficiará deste novo conhecimento. Para ser chamada de científica, a pesquisa deve obedecer aos princípios consagrados pela ciência [@mendes2012].
 
 A pesquisa nasce de uma dúvida do pesquisador, de algum questionamento que ele considerou interessante sobre o mundo, ou seja, de algo que se costuma chamar de pergunta ou questão da pesquisa. Existem vários motivos que geram questões de pesquisa:
 
@@ -19,7 +19,7 @@ A pesquisa visa estabelecer novos conhecimentos em torno de um tema específico.
 
 O foco da questão de pesquisa pode ser na descrição de um fenômeno clínico. Neste caso a pergunta é dita **descritiva**, por exemplo, pesquisa de prevalência de uma enfermidade, proporção de utilização de um serviço de saúde, características de um teste, etc. Quando a pergunta busca a explicação para um fenômeno, ela é dita **analítica**, por exemplo, comparação entre dois fenômenos. Em geral, perguntas analíticas são mais interessantes. Entretanto, as perguntas descritivas são fundamentais no início de um estudo analítico.
 
-Uma boa pergunta de pesquisa deve ter as seguintes características @hulley2015delineando:
+Uma boa pergunta de pesquisa deve ter as seguintes características [@hulley2015delineando]:
 
 -   **Factível**: o pesquisador deve conhecer desde o início os limites e problemas práticos que podem interferir na pesquisa. A viabilidade está relacionada com o tamanho amostral, com o domínio técnico adequado, com o tempo e custos envolvidos e com um foco dirigido estritamente aos objetivos mais importantes.
 -   **Interessante**: a questão de pesquisa deve despertar o interesse não apenas do pesquisador, mas também de seus pares e agentes financiadores.
@@ -39,7 +39,7 @@ O objetivo da pesquisa, usando o método científico, é refutar ou não as hip�
 
 ## Processo de Amostragem
 
-Após o estabelecimento das hipóteses a serem testadas, há necessidade de coletar os dados. Uma vez que é praticamente impossível analisar toda a população que constitui a **população-alvo**, extrai-se uma **amostra** desta população. Este processo é denominado de **amostragem** @mccombes2019sampling.
+Após o estabelecimento das hipóteses a serem testadas, há necessidade de coletar os dados. Uma vez que é praticamente impossível analisar toda a população que constitui a **população-alvo**, extrai-se uma **amostra** desta população. Este processo é denominado de **amostragem** [@mccombes2019sampling].
 
 Uma amostra deve ser representativa da população, ou seja, deve ter características semelhantes às da população e ser fidedigna. A fidedignidade está relacionada à precisão dos dados que sofrem influência dos instrumentos de aferição, questionários não validados e falhas humanas. Uma amostra inadequada ameaça a validade da pesquisa. Os dados coletados de maneira não aleatória são chamados de **evidência anedótica**. O nível de confiança nos resultados de uma pesquisa está diretamente relacionado à qualidade da amostra. A amostra deve ser representativa.
 
@@ -75,7 +75,7 @@ Na amostragem não aleatória ou intencionada há uma escolha deliberada da amos
 
 A determinação do tamanho de uma amostra é de suma importância, pois amostras desnecessariamente grandes acarretam desperdício de tempo e de dinheiro e amostras muito pequenas podem levar a resultados não confiáveis, ameaçando a validade da pesquisa.
 
-Não existe um número estabelecido para o tamanho da amostra. Há uma solução para cada caso. O tamanho da amostra depende @callegari2003bioestatistica:
+Não existe um número estabelecido para o tamanho da amostra. Há uma solução para cada caso. O tamanho da amostra depende [@callegari2003bioestatistica]:
 
 -   do tipo de problema;
 -   do tipo de variável;
@@ -84,7 +84,7 @@ Não existe um número estabelecido para o tamanho da amostra. Há uma solução
 -   da probabilidade de que a amostra identifique uma diferença verdadeira: Poder estatístico;
 -   do tempo, dinheiro e pessoal disponível, bem como da dificuldade em se obterem dados e da complexidade da pesquisa.
 
-O tamanho amostral mínimo é determinado por fórmulas estatísticas complexas. Os cálculos são muito pesados, mas agora, felizmente, existem programas de computador disponíveis que realizam este trabalho, por exemplo o **G-Power3** @faul2007g. Além disso, é possível acessar um site que fornece informações e ferramentas para o cálculo amostral em pesquisas da área da saúde [^03-producaodados-1]. Existem tabelas extensas para calcular o número de participantes @cohen1988statistical para um determinado nível de poder (e vice-versa).
+O tamanho amostral mínimo é determinado por fórmulas estatísticas complexas. Os cálculos são muito pesados, mas agora, felizmente, existem programas de computador disponíveis que realizam este trabalho, por exemplo o **G-Power3** [@faul2007g]. Além disso, é possível acessar um site que fornece informações e ferramentas para o cálculo amostral em pesquisas da área da saúde [^03-producaodados-1]. Existem tabelas extensas para calcular o número de participantes [@cohen1988statistical] para um determinado nível de poder (e vice-versa).
 
 [^03-producaodados-1]: <http://calculoamostral.bauru.usp.br/calculoamostral/index.php>
 
@@ -94,7 +94,7 @@ Em geral, a pesquisa clínica, é dividida em dois tipos de investigação. O pr
 
 O segundo corresponde aos **estudos experimentais**, onde o pesquisador não se limita a observar, mas promove uma intervenção com o objetivo de conhecer os efeitos dessa sobre os participantes da pesquisa. A intervenção pode ser a prescrição de um medicamento, uma dieta, atividade física ou repouso, ou simplesmente, o estabelecimento de um programa de atenção à saúde.
 
-Os estudos podem ser também classificados em primários ou secundários ou integrativos @grimes2002overview. Estudos primários correspondem a pesquisas originais que constituem a maioria das publicações encontradas nas revistas médicas. Estudos secundários são aqueles que procuram sumarizar e extrair conclusões de estudos primários
+Os estudos podem ser também classificados em primários ou secundários ou integrativos [@grimes2002overview]. Estudos primários correspondem a pesquisas originais que constituem a maioria das publicações encontradas nas revistas médicas. Estudos secundários são aqueles que procuram sumarizar e extrair conclusões de estudos primários
 
 -   *Estudos Primários*
     -   Estudos Observacionais
@@ -126,7 +126,7 @@ Os estudos contêm três elementos básicos:
 
 ### Relato de Caso ou Série de casos
 
-No relato de caso, descrevem-se casos raros, eventos não comuns ou inesperados, doenças desconhecidas ou raras. Um evento notável deve ser identificado. Um relato de caso tem a descrição de até dez casos. Acima deste número tem-se uma série de casos @fletcher2014epidemiologia.
+No relato de caso, descrevem-se casos raros, eventos não comuns ou inesperados, doenças desconhecidas ou raras. Um evento notável deve ser identificado. Um relato de caso tem a descrição de até dez casos. Acima deste número tem-se uma série de casos [@fletcher2014epidemiologia].
 
 Metodologicamente, faz-se um relato descritivo simples de características interessantes observadas em um paciente ou grupo de pacientes. Os indivíduos são acompanhados em um espaço de tempo curto e não possuem participantes-controles. A coleta dos dados é, na maioria das vezes, retrospectiva.
 
@@ -134,7 +134,7 @@ Uma série de casos não é planejada e não envolve quaisquer hipóteses invest
 
 ### Estudos Transversais ou Seccionais
 
-Os estudos transversais são também conhecidos como estudos seccionais. Este tipo de estudo fornece a informação sobre a prevalência, ou seja, a proporção dos indivíduos que tem a doença ou condição clínica em um determinado momento. Por este motivo são também conhecidos como estudos de prevalência @grimes2002descriptive.
+Os estudos transversais são também conhecidos como estudos seccionais. Este tipo de estudo fornece a informação sobre a prevalência, ou seja, a proporção dos indivíduos que tem a doença ou condição clínica em um determinado momento. Por este motivo são também conhecidos como estudos de prevalência [@grimes2002descriptive].
 
 Observam dados coletados em um grupo de indivíduos em um único momento, sem um período de seguimento. O desfecho e exposição são avaliados no mesmo momento no tempo. Os dados são coletados apenas uma vez para cada indivíduo, podendo ser em dias diferentes em diferentes sujeitos. As informações são, em geral, obtidas em um curto espaço de tempo.
 
@@ -169,7 +169,7 @@ Quando se compara a prevalência de doença em expostos e não expostos, a medid
 
 Para examinar a possível associação de uma exposição a uma determinada doença, identifica-se um grupo de doentes (casos) e, com a finalidade de comparação, um grupo de pessoas sem a doença (controles) e determina-se a chance (*odds*) de exposição e não exposição entre casos e entre controles.
 
-Os estudos caso-controle, portanto, partem da presença ou ausência de um desfecho e após olham para trás no tempo (retrospectivamente) para detectar possíveis fatores de risco (@fig-cc)) @fletcher2014risco. Analisam o que aconteceu e são usados para investigar fatores de risco de doenças raras onde um estudo prospectivo seria muito longo para identificar uma quantidade suficiente de casos.
+Os estudos caso-controle, portanto, partem da presença ou ausência de um desfecho e após olham para trás no tempo (retrospectivamente) para detectar possíveis fatores de risco (@fig-cc)) [@fletcher2014risco]. Analisam o que aconteceu e são usados para investigar fatores de risco de doenças raras onde um estudo prospectivo seria muito longo para identificar uma quantidade suficiente de casos.
 
 É útil também para investigar surtos agudos (infecção alimentar) para identificar se existe ou não associação entre a exposição e o desfecho investigado. Com frequência, os estudos caso-controle são o primeiro passo na busca de uma etiologia quando há suspeita de que alguma de várias exposições esteja associada a uma determinada doença.
 
@@ -191,7 +191,7 @@ O problema do uso de casos incidentes é que há necessidade de se esperar que n
 
 #### Seleção dos controles
 
-Da mesma forma do que nos estudos experimentais, a escolha dos controles afeta a comparação com os casos @grimes2005compared. A escolha dos controles inclui:
+Da mesma forma do que nos estudos experimentais, a escolha dos controles afeta a comparação com os casos [@grimes2005compared]. A escolha dos controles inclui:
 
 -   Pacientes do mesmo hospital, mas com condições ou doenças não relacionadas;
 -   Pacientes pareados um a um em relação a fatores prognósticos, tais como sexo e idade;
@@ -207,9 +207,9 @@ Controles emparelhados são bastante comuns. O autor deve ter o cuidado de espec
 
 #### Estudos caso-controle aninhados
 
-Um delineamento do tipo caso-controle aninhado é um estudo de caso-controle ‘‘aninhado” em um estudo de coorte @ernster1994nested. É um excelente desenho para variáveis preditoras que são caras para medir e que podem ser avaliadas no final do estudo em indivíduos que desenvolvem o resultado durante o estudo (casos) e em uma amostra daqueles que não o fazem (controles).
+Um delineamento do tipo caso-controle aninhado é um estudo de caso-controle ‘‘aninhado” em um estudo de coorte [@ernster1994nested]. É um excelente desenho para variáveis preditoras que são caras para medir e que podem ser avaliadas no final do estudo em indivíduos que desenvolvem o resultado durante o estudo (casos) e em uma amostra daqueles que não o fazem (controles).
 
-O investigador começa com uma coorte adequada (@fig-aninhado) @hulley2015aninhado com casos suficientes ao final do acompanhamento para fornecer poder adequado para responder à pergunta de pesquisa. No final do estudo, aplica critérios que definem o resultado de interesse para identificar todos aqueles que desenvolveram o resultado (casos). Em seguida, seleciona uma amostra aleatória dos indivíduos que não desenvolveram o resultado (controles).
+O investigador começa com uma coorte adequada (@fig-aninhado) [@hulley2015aninhado] com casos suficientes ao final do acompanhamento para fornecer poder adequado para responder à pergunta de pesquisa. No final do estudo, aplica critérios que definem o resultado de interesse para identificar todos aqueles que desenvolveram o resultado (casos). Em seguida, seleciona uma amostra aleatória dos indivíduos que não desenvolveram o resultado (controles).
 
 A principal razão para usar delineamentos caso-controle aninhado é reduzir o trabalho e o custo na coleta de dados. A principal desvantagem desse projeto é que muitas questões e circunstâncias da pesquisa não são passíveis de armazenamento para posterior análise.
 
@@ -240,11 +240,11 @@ O Risco Relativo somente pode ser calculado quando é possível o cálculo da in
 
 Os estudos de coorte são considerados o padrão-ouro dos estudos observacionais. Seu nome se originou das coortes dos soldados romanos, cada uma delas constituída por 480 a 600 legionários. As coortes romanas eram distintas entre si e tinham sua identidade determinada por, ao menos, uma característica comum entre os indivíduos de cada grupo. Podia ser por características estratégicas no campo de batalha, por uma cor presente na indumentária, ou outras. Em Epidemiologia, o termo coorte permaneceu com significado semelhante.
 
-Em um estudo de coorte, um grupo de pacientes sadios (coorte), expostos ou não a um suspeitado fator de risco, é seguido através do tempo para determinar a incidência da doença em questão em cada um dos grupos @grimes2002cohort.
+Em um estudo de coorte, um grupo de pacientes sadios (coorte), expostos ou não a um suspeitado fator de risco, é seguido através do tempo para determinar a incidência da doença em questão em cada um dos grupos [@grimes2002cohort].
 
 Neste modelo de estudo, a característica comum aos dois grupos é a exposição. Tem-se uma coorte de expostos e uma coorte de não expostos que são acompanhadas por um período de tempo que permita o aparecimento do desfecho. No final do estudo, compara-se a incidência do desfecho (doença) entre os expostos com a incidência do desfecho entre os não expostos. Se existe uma associação positiva entre a exposição e o desfecho, se espera que a incidência do desfecho entre os expostos seja maior do que a incidência de desfecho entre não expostos.
 
-Um esquema simplificado de um estudo de coorte é mostrado na @fig-coorte @fletcher2014coorte.
+Um esquema simplificado de um estudo de coorte é mostrado na @fig-coorte [@fletcher2014coorte].
 
 ```{r #fig-coorte, echo = FALSE, out.width = '80%', fig.align = 'center', fig.cap = "Desenho de um estudo de coorte sobre risco.", fig.pos="H"}
  knitr::include_graphics("https://i.imgur.com/SF9kiX7.png")
@@ -257,7 +257,7 @@ Os estudos de coorte têm semelhança com os ensaios clínicos randomizados. Amb
 Existem duas maneiras básicas para formar os grupos:
 
 1)  Seleciona-se a população-alvo baseado no fato dos indivíduos estarem expostos ou não ao fator em estudo (@fig-coorte);
-2)  Ou seleciona-se a população-alvo antes que qualquer um dos seus membros se torne exposto, ou antes, que a exposição seja identificada (@fig-coorte2). Um exemplo típico deste modelo é o clássico Estudo de Framingham @kannel1979diabetes.
+2)  Ou seleciona-se a população-alvo antes que qualquer um dos seus membros se torne exposto, ou antes, que a exposição seja identificada (@fig-coorte2). Um exemplo típico deste modelo é o clássico Estudo de Framingham [@kannel1979diabetes].
 
 ```{r #fig-coorte2, echo = FALSE, out.width = '80%', fig.align = 'center', fig.cap = "Desenho de uma coorte com grupos expostos e não expostos.  @david2019gordis.", fig.pos="h"}
  knitr::include_graphics("https://i.imgur.com/1UgEuXR.png")
@@ -277,7 +277,7 @@ De acordo com as características do seguimento, as coortes podem ser:
 
 Os potenciais vieses nos estudos de coorte são os seguintes:
 
-1)  **Viés de confusão** – é a grande ameaça dos estudos observacionais. O confundimento causa um erro sistemático na inferência, podendo aumentar ou diminuir uma associação observada entre exposição e doença. Uma variável funciona como fator de confusão quando ela está associada com a exposição e ao mesmo tempo com a doença. Ela não deve fazer parte da cadeia causal da exposição à doença. Por exemplo, num estudo sobre fatores de risco, uma associação entre o hábito de beber café e a doença coronária é detectada. Porém, se não for considerado o fato de que os fumantes bebem mais café do que os não-fumantes, pode-se chegar à errônea conclusão de que o café é um fator de risco independente para doença coronária, o que não corresponde à realidade. Neste caso, o café é um fator de confusão e não um fator causal independente para a doença coronária @coutinho1998principios.
+1)  **Viés de confusão** – é a grande ameaça dos estudos observacionais. O confundimento causa um erro sistemático na inferência, podendo aumentar ou diminuir uma associação observada entre exposição e doença. Uma variável funciona como fator de confusão quando ela está associada com a exposição e ao mesmo tempo com a doença. Ela não deve fazer parte da cadeia causal da exposição à doença. Por exemplo, num estudo sobre fatores de risco, uma associação entre o hábito de beber café e a doença coronária é detectada. Porém, se não for considerado o fato de que os fumantes bebem mais café do que os não-fumantes, pode-se chegar à errônea conclusão de que o café é um fator de risco independente para doença coronária, o que não corresponde à realidade. Neste caso, o café é um fator de confusão e não um fator causal independente para a doença coronária [@coutinho1998principios].
 
 2)  **Viés na avaliação dos desfechos** – este viés pode ocorrer quando o pesquisador que avalia o desfecho também sabe sobre o *status* de exposição dos sujeitos da pesquisa. Evita-se este problema “cegando” a pessoa que faz a avaliação da doença.
 
@@ -320,11 +320,11 @@ Nos ensaios clínicos não controlados os indivíduos servem como seus próprios
 
 -   **Efeito Hawthorne**: o indivíduo melhora pela atenção e não pela terapêutica [@cambridge2014systematic].
 
--   **Regressão à média**: uma limitação importante surge quando se quer avaliar a evolução de um grupo que tenha sido selecionado por estar no extremo de uma distribuição sem que haja um grupo controle. Empiricamente, observa-se que indivíduos que se encontrem num determinado momento, em um dos extremos de uma distribuição, tendem a estarem menos distantes da média em um momento posterior, sem que qualquer intervenção tenha sido desenvolvida. Este fenômeno é conhecido como efeito de *regressão à média*. Por exemplo: uma pessoa com uma doença crônica tem dias piores e outros melhores. Se ela é medicada com gotas homeopáticas ou faz uso de florais nos dias em que se sente excepcionalmente mal vai notar que é frequente uma melhora, seguindo estes “tratamentos”. Não que eles funcionem, mas pela regressão à média @bland1994statistic.
+-   **Regressão à média**: uma limitação importante surge quando se quer avaliar a evolução de um grupo que tenha sido selecionado por estar no extremo de uma distribuição sem que haja um grupo controle. Empiricamente, observa-se que indivíduos que se encontrem num determinado momento, em um dos extremos de uma distribuição, tendem a estarem menos distantes da média em um momento posterior, sem que qualquer intervenção tenha sido desenvolvida. Este fenômeno é conhecido como efeito de *regressão à média*. Por exemplo: uma pessoa com uma doença crônica tem dias piores e outros melhores. Se ela é medicada com gotas homeopáticas ou faz uso de florais nos dias em que se sente excepcionalmente mal vai notar que é frequente uma melhora, seguindo estes “tratamentos”. Não que eles funcionem, mas pela regressão à média [@bland1994statistic].
 
 ### Características de um ensaio clínico
 
-Um ensaio clínico deve ter algumas características fundamentais (@fig-trial) @fletcher2014tratamento:
+Um ensaio clínico deve ter algumas características fundamentais (@fig-trial) [@fletcher2014tratamento]:
 
 1)  Os indivíduos devem ser designados por randomização para os grupos de comparação.
 
@@ -367,7 +367,7 @@ O grupo controle deve ser selecionado utilizando-se os mesmos critérios do grup
 -   Uso de grupo controle histórico (não concorrente);
 -   Grupo controle selecionado de outros locais (outras clínicas, outros hospitais).
 
-O grupo controle adequado é um grupo controle concorrente, tratado no mesmo momento e no mesmo local do grupo experimental. O característico é o grupo controle não receber tratamento. Mais comumente recebem um placebo, indistinguível do tratamento experimental, mas sem componente ativo. Mesmo assim, pode haver melhora dos participantes do grupo controle (Efeito Placebo ) @elander1995placebo. Quando não for ético suspender o tratamento e administrar placebo, o grupo controle pode ser constituído por indivíduos que recebem o tratamento padrão.
+O grupo controle adequado é um grupo controle concorrente, tratado no mesmo momento e no mesmo local do grupo experimental. O característico é o grupo controle não receber tratamento. Mais comumente recebem um placebo, indistinguível do tratamento experimental, mas sem componente ativo. Mesmo assim, pode haver melhora dos participantes do grupo controle (Efeito Placebo ) [@elander1995placebo]. Quando não for ético suspender o tratamento e administrar placebo, o grupo controle pode ser constituído por indivíduos que recebem o tratamento padrão.
 
 2)  [Alocação]{.underline}
 
@@ -413,13 +413,13 @@ Se o objetivo do ensaio clínico é testar se um novo tratamento é similar em e
 
 Em muitos estudos com controle ativo, os pesquisadores desejam comprovar que o tratamento em estudo, no mínimo, não é substancialmente pior que o tratamento controle. Estes estudos são chamados de **Estudos de Não Inferioridade**. Um aspecto importante do delineamento e da interpretação desses estudos é a determinação da margem de não inferioridade. Os estudos de não inferioridade devem demonstrar, pelo menos, que o tratamento em estudo tem alguma eficácia, não inferior ao tratamento padrão. A análise dos estudos de não inferioridade é, por natureza, unidirecional.
 
-Quando um ensaio clínico busca evidenciar que um tratamento é melhor do que outro ele é denominado **Estudos de Superioridade**. Quando o ensaio clínico é delineado, ele deve ter uma hipótese bilateral e o tamanho da amostra definido de maneira que haja alto poder estatístico para detectar uma diferença clinicamente significativa entre os dois tratamentos. Os ensaios clínicos clássicos têm esta característica. Entretanto, nos dias atuais, este desenho de estudo pode não ser eticamente possível, uma vez que é pouco provável que não exista um tratamento com algum benefício comprovado. A comparação, portanto, deverá ser feita com o tratamento já existente, provando que o tratamento em estudo é similar ou, pelo menos, não seja inferior @christensen2007methodology.
+Quando um ensaio clínico busca evidenciar que um tratamento é melhor do que outro ele é denominado **Estudos de Superioridade**. Quando o ensaio clínico é delineado, ele deve ter uma hipótese bilateral e o tamanho da amostra definido de maneira que haja alto poder estatístico para detectar uma diferença clinicamente significativa entre os dois tratamentos. Os ensaios clínicos clássicos têm esta característica. Entretanto, nos dias atuais, este desenho de estudo pode não ser eticamente possível, uma vez que é pouco provável que não exista um tratamento com algum benefício comprovado. A comparação, portanto, deverá ser feita com o tratamento já existente, provando que o tratamento em estudo é similar ou, pelo menos, não seja inferior [@christensen2007methodology].
 
 ### Outros tipos de ensaios clínicos
 
 #### Ensaio clínico com delineamento cruzado
 
-No delineamento cruzado (*crossover design*), os sujeitos da pesquisa são randomizados para um grupo e depois mudados para o outro grupo (@fig-cruzado). Cada sujeito serve como seu próprio controle, diminuindo a variabilidade intragrupo, aumentando o poder e consequentemente, reduzindo o erro $\beta$ (erro que ocorre quando a análise estatística dos dados não consegue rejeitar uma hipótese, no caso desta hipótese ser falsa). É um tipo de delineamento bastante atrativo e útil @trial2020crossover.
+No delineamento cruzado (*crossover design*), os sujeitos da pesquisa são randomizados para um grupo e depois mudados para o outro grupo (@fig-cruzado). Cada sujeito serve como seu próprio controle, diminuindo a variabilidade intragrupo, aumentando o poder e consequentemente, reduzindo o erro $\beta$ (erro que ocorre quando a análise estatística dos dados não consegue rejeitar uma hipótese, no caso desta hipótese ser falsa). É um tipo de delineamento bastante atrativo e útil [@trial2020crossover].
 
 A maior desvantagem é o efeito residual (*carryover*), por isso os estudos cruzados devem ter um período de *washout*, período sem nenhum tratamento. Este período de tempo deve ser suficiente para a eliminação da droga para se ter certeza de que nenhum efeito da terapia permaneceu. Também pode haver um viés de acordo com a ordem de administração das terapias, pois os pacientes podem reagir de modo diferente como resultado do entusiasmo no início do tratamento que pode diminuir com o tempo.
 
@@ -431,13 +431,13 @@ A maior desvantagem é o efeito residual (*carryover*), por isso os estudos cruz
 
 Uma variação interessante de ensaio clínico é o *delineamento fatorial*. Este tipo de estudo permite que sejam testadas duas drogas em apenas um estudo, assumindo que os desfechos antecipados para as duas são diferentes e que seus modos de ação são independentes. Este desenho de estudo gera economia.
 
-Um exemplo de delineamento fatorial é observado no *Physician’s Health Study* onde usando um delineamento fatorial 2 x 2 foi testada a aspirina para a prevenção primária de doença cardiovascular @steering1989final, e betacaroteno para a prevenção primária de câncer.
+Um exemplo de delineamento fatorial é observado no *Physician’s Health Study* onde usando um delineamento fatorial 2 x 2 foi testada a aspirina para a prevenção primária de doença cardiovascular [@steering1989final], e betacaroteno para a prevenção primária de câncer.
 
-No estudo da prevenção primária do câncer, os autores concluíram, após 12 anos de suplementação de betacaroteno, que o mesmo não produziu nem benefícios e nem prejuízos em termos de incidência de câncer @hennekens1996lack.
+No estudo da prevenção primária do câncer, os autores concluíram, após 12 anos de suplementação de betacaroteno, que o mesmo não produziu nem benefícios e nem prejuízos em termos de incidência de câncer [@hennekens1996lack].
 
 ### Fases de um ensaio clínico
 
-Para a realização de um ensaio clínico, a intervenção deve passar por várias fases @stanley2007design.
+Para a realização de um ensaio clínico, a intervenção deve passar por várias fases [@stanley2007design].
 
 #### Fase Não Clínica
 

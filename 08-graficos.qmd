@@ -1,8 +1,8 @@
 # Gráficos {#sec-graficos}
 
-Para descrever os dados e visualizar o que está acontecendo, recomenda-se utilizar um gráfico adequado. O que é adequado depende principalmente do tipo de dados, bem como das características particulares do que se quer explorar. Além disso, um gráfico em um relatório sempre é um fator de "impacto". Ou seja, pode ter um efeito positivo no leitor ou fazê-lo abandonar a leitura. Finalmente, um gráfico de frequência pode ser utilizado para ilustrar, explicar uma situação complexa onde palavras ou uma tabela podem ser confusos, extensos ou de outro modo insuficiente. Por outro lado, deve-se evitar usar gráficos onde poucas palavras expressam claramente o que se quer mostrar. Aconselha-se que, ao analisar os dados, é importante inspecioná-los como se fossem uma imagem, uma fotografia, ver como eles se parecem, qual o seu aspecto, e só então pensar em interpretar os aspectos vitais da estatística @field2012graphs.\
+Para descrever os dados e visualizar o que está acontecendo, recomenda-se utilizar um gráfico adequado. O que é adequado depende principalmente do tipo de dados, bem como das características particulares do que se quer explorar. Além disso, um gráfico em um relatório sempre é um fator de "impacto". Ou seja, pode ter um efeito positivo no leitor ou fazê-lo abandonar a leitura. Finalmente, um gráfico de frequência pode ser utilizado para ilustrar, explicar uma situação complexa onde palavras ou uma tabela podem ser confusos, extensos ou de outro modo insuficiente. Por outro lado, deve-se evitar usar gráficos onde poucas palavras expressam claramente o que se quer mostrar. Aconselha-se que, ao analisar os dados, é importante inspecioná-los como se fossem uma imagem, uma fotografia, ver como eles se parecem, qual o seu aspecto, e só então pensar em interpretar os aspectos vitais da estatística [@field2012graphs].\
 O R básico fornece uma grande variedade de funções para visualizar dados, elas de uma maneira relativamente simples permitem a construção de gráficos que facilitam a interpretação tanto de variáveis categórica como numéricas. Existe uma farta bibliografia para a construção de gráficos, utilizando o R básico, mas a [The R Graph Gallery](https://r-graph-gallery.com/) responde a maioria das dúvidas, apesar de ter seu foco em `tidyverse` (veja @sec-tidyverse) e `ggplot2.`\
-Neste livro, a ênfase será no pacote `ggplot2` @wickham2016ggplot2. Este pacote é uma ferramenta extremamente versátil que oferece uma estrutura com grande flexibilidade para exibir os dados através de gráficos. O `gpglot2` não é apenas uma instrumento para criar gráficos, mas uma maneira de pensar sobre a visualização de dados de uma forma mais estruturada e poderosa.
+Neste livro, a ênfase será no pacote `ggplot2` [@wickham2016ggplot2]. Este pacote é uma ferramenta extremamente versátil que oferece uma estrutura com grande flexibilidade para exibir os dados através de gráficos. O `gpglot2` não é apenas uma instrumento para criar gráficos, mas uma maneira de pensar sobre a visualização de dados de uma forma mais estruturada e poderosa.
 
 ## Pacotes necessários neste capítulo
 
@@ -52,7 +52,7 @@ str(dados)
 
 ## Pacote ggplot2 {#sec-ggplot2}
 
-O `ggplot2` é um pacote da linguagem R voltado para a visualização de dados, oferecendo uma abordagem poderosa e elegante baseada na *Gramática dos Gráficos* @wickham2010layered.
+O `ggplot2` é um pacote da linguagem R voltado para a visualização de dados, oferecendo uma abordagem poderosa e elegante baseada na *Gramática dos Gráficos* [@wickham2010layered].
 
 ### Gramática dos Gráficos {#sec-grammar}
 
@@ -155,7 +155,7 @@ Os principais componentes combinados para criar um gráfico no `ggplot2` são:
 
 -   **Facetas (Facets)**: Permitem criar múltiplos subgráficos baseados em uma ou mais variáveis categóricas. É uma ótima maneira de explorar as relações entre diferentes grupos de dados de forma visual (@fig-scatter11).
 
--   **Temas (Themes)**: Controlam a aparência geral do gráfico, como a cor de fundo, a fonte, as linhas da grade e a aparência dos títulos. O `ggplot2` permite construir gráficos complexos camada por camada, possibilitando a criação de gráficos sofisticados @wickham2023ggplot2. Em cada uma das camadas deve-se ter preocupação em controlar os componentes do gráfico.
+-   **Temas (Themes)**: Controlam a aparência geral do gráfico, como a cor de fundo, a fonte, as linhas da grade e a aparência dos títulos. O `ggplot2` permite construir gráficos complexos camada por camada, possibilitando a criação de gráficos sofisticados [@wickham2023ggplot2]. Em cada uma das camadas deve-se ter preocupação em controlar os componentes do gráfico.
 
 ### Vantagens do ggplot2
 
@@ -468,7 +468,7 @@ show_col(pal_simpsons())
 
 ##### Pacote RColorBrewer
 
-Existem outros pacotes, como o `RColorBrewer`, que oferecem paletas visualmente agradáveis e podem facilmente ser exploradas. Por alguns, é considerado uma ferramenta indispensável para gerenciar cores com R @holtz2025colorbrewer. Para visualizar (@fig-colorbrewer) as paletas do pacote `RColorBrewer`.
+Existem outros pacotes, como o `RColorBrewer`, que oferecem paletas visualmente agradáveis e podem facilmente ser exploradas. Por alguns, é considerado uma ferramenta indispensável para gerenciar cores com R [@holtz2025colorbrewer]. Para visualizar (@fig-colorbrewer) as paletas do pacote `RColorBrewer`.
 
 ```{r}
 #| echo: true
@@ -513,7 +513,7 @@ ggplot(dadosRNT100,
 
 ##### Paleta paletteer
 
-O pacote `paletteer` no R reúne um grande número de paletas de cores de diversos pacotes do R dedicados a cores. Fornece uma interface simples e consistente para acessar essas paletas, facilitando o trabalho. Oferece mais de 2000 paletas de cores de vários pacotes do R, como `ggthemes`, `wesanderson`, `lisa`, `scico`, entre outros. Tudo acessível por uma interface simples e poderosa, facilitando a criação de visualizações bonitas e informativas @hvitfeldt2024paletteer.\
+O pacote `paletteer` no R reúne um grande número de paletas de cores de diversos pacotes do R dedicados a cores. Fornece uma interface simples e consistente para acessar essas paletas, facilitando o trabalho. Oferece mais de 2000 paletas de cores de vários pacotes do R, como `ggthemes`, `wesanderson`, `lisa`, `scico`, entre outros. Tudo acessível por uma interface simples e poderosa, facilitando a criação de visualizações bonitas e informativas [@hvitfeldt2024paletteer].\
 Todas as paletas podem ser acessadas a partir das três funções `paletteer_c()`, `paletteer_d()` e `paletteer_dynamic()` usando a sintaxe: `nome_do_pacote::nome_da_paleta` [^08-graficos-6].
 
 [^08-graficos-6]: A função `paletteer_c()` é usada para variáveis contínuas; a `paletteer_d()` para variáveis categóricas e a `paletteer_dinamic()` é pouco usada, mas serve para paletas que mudam conforme o número de categorias.
@@ -547,7 +547,7 @@ ggplot(dadosRNT100,
   theme(legend.position = "bottom") 
 ```
 
-Para uma visualização rápida de algumas paletas com o `paleteteer`, pode-se digitar em um script do RStudio ou Positron o seguinte comando:
+Para uma visualização rápida de algumas paletas com o `paleteteer`, pode-se digitar em um script do *RStudio* ou do *Positron* o seguinte comando:
 
 ```{r}
 paletteer::paletteer_d("lisa::FridaKahlo")
@@ -598,7 +598,7 @@ O facetamento (@fig-scatter11) permite verificar que a relação entre o comprim
 
 A função `geom_smooth()` é uma forma geométrica do `ggplot2` usada para visualizar tendências ou padrões entre duas variáveis numéricas. Ele adiciona uma linha suavizada ao gráfico, que ajuda a entender a relação entre os dados , especialmente quando há muitos pontos ou quando a relação não é linear. O `geom_smooth()` ajusta uma curva aos dados, usando métodos estatísticos. A regressão linear usa `method = “lm”` [^08-graficos-9]. Por padrão, exibe o intervalo de confiança (veja @sec-estimacao), que mostra a incerteza da estimativa da reta. Esta técnica ajuda a identificar padrões que não podem ser visíveis apenas com os pontos brutos.
 
-[^08-graficos-9]: Outros métodos: `“loess”`, `“glm”`, `“gam”`. Para mais informações, consulte a ajuda `?loess`, `?gam` ou `?glm` ou `NULL`, onde a escolha é automática: usa `“loess”` para \< 1000 pontos e `“gam”` para \> 1000.
+[^08-graficos-9]: Outros métodos: `“loess”`, `“glm”`, `“gam”`. Para mais informações, consulte a ajuda `?loess`, `?gam` ou `?glm` ou `NULL`, onde a escolha é automática: usa `“loess”` para \< 1000 pontos e `“gam”` para \> 1000.
 
 O código da figura @fig-scatter8 será tomado como base sem a divisão por sexo [^08-graficos-10], com modificações, para gerar a reta de regressão.
 
@@ -719,7 +719,7 @@ ggplot(dadosRNT) +
 
 Na @fig-hist3, se observa que os pesos dos recém-nascidos se ajustam razoavelmente à curva normal.
 
-## Boxplot  {#sec-bxp}
+## Boxplot {#sec-bxp}
 
 O boxplot é uma representação gráfica de um resumo eficaz, de fácil compreensão, de uma ou mais varáveis numéricas. Fornece uma análise visual da posição, dispersão, simetria, caudas e valores discrepantes (outliers) do conjunto de dados (@fig-boxplot).
 
@@ -1069,7 +1069,7 @@ Qual a diferença entre `geom_bar()` e `geom_col()`? Construir o mesmo gráfico 
 
 [Resposta]{.underline} [^08-graficos-14]
 
-[^08-graficos-14]: A `geom_bar()` conta as ocorrências e usa a altura para representar essa contagem, enquanto `geom_col()` usa a altura para representar o valor especificado na estética *y* . Ambas as funções aceitam o argumento `width`. Enquanto o `geom_bar()` com `after_start()` calcula os valores automaticamente, o `geom_col()` exige que se forneça os valores de *y* (as proporções) diretamente.
+[^08-graficos-14]: A `geom_bar()` conta as ocorrências e usa a altura para representar essa contagem, enquanto `geom_col()` usa a altura para representar o valor especificado na estética *y* . Ambas as funções aceitam o argumento `width`. Enquanto o `geom_bar()` com `after_start()` calcula os valores automaticamente, o `geom_col()` exige que se forneça os valores de *y* (as proporções) diretamente.
 
 ### Gráfico de barras empilhadas
 

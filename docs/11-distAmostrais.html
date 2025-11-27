@@ -443,12 +443,6 @@ window.Quarto = {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./glossario.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Glossário</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./referencias.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Referências</span></a>
   </div>
@@ -513,8 +507,8 @@ window.Quarto = {
 </section>
 <section id="distribuições-populacional-e-amostral" class="level2" data-number="11.2">
 <h2 data-number="11.2" class="anchored" data-anchor-id="distribuições-populacional-e-amostral"><span class="header-section-number">11.2</span> Distribuições populacional e amostral</h2>
-<p>Métricas como a média, a mediana e o desvio padrão são medidas numéricas de resumo. Quando calculadas a partir de dados de uma amostra são denominadas <strong>estatísticas amostrais</strong>. Por outro lado, as mesmas medidas numéricas de resumo calculadas para dados populacionais são chamadas de <strong>parâmetros populacionais</strong>.</p>
-<p>Um parâmetro populacional é sempre uma constante, enquanto uma estatística de amostra é sempre uma variável aleatória. Como cada variável aleatória deve possuir uma distribuição de probabilidade, cada estatística de amostra possui uma distribuição de probabilidade. A distribuição de probabilidade de uma estatística de amostra é mais comumente chamada de <strong>distribuição amostral</strong>. Os conceitos abordados neste capítulo são a base da <strong>estatística inferencial</strong>.</p>
+<p>Métricas como a média, a mediana e o desvio padrão são medidas numéricas de resumo. Quando calculadas a partir de dados de uma amostra são denominadas <strong>estatísticas amostrais</strong>. Por outro lado, as mesmas medidas numéricas de resumo calculadas para dados populacionais são chamadas de <strong>parâmetros populacionais</strong> <span class="citation" data-cites="oliveira2022estparam">(<a href="referencias.html#ref-oliveira2022estparam" role="doc-biblioref">Oliveira Filho 2022</a>)</span>.</p>
+<p>Um parâmetro populacional é sempre uma constante, enquanto uma estatística de amostra é sempre uma variável aleatória. Como cada variável aleatória deve possuir uma distribuição de probabilidade, cada estatística de amostra possui uma distribuição de probabilidade. A distribuição de probabilidade de uma estatística de amostra é mais comumente chamada de <strong>distribuição amostral</strong>. Os conceitos abordados neste capítulo são a base da <strong>estatística inferencial</strong> <span class="citation" data-cites="zar2014popsamples">(<a href="referencias.html#ref-zar2014popsamples" role="doc-biblioref">Zar 2014</a>)</span>.</p>
 <section id="distribuição-populacional" class="level3" data-number="11.2.1">
 <h3 data-number="11.2.1" class="anchored" data-anchor-id="distribuição-populacional"><span class="header-section-number">11.2.1</span> Distribuição populacional</h3>
 <p>A distribuição populacional é a distribuição de probabilidade derivada das informações sobre todos os elementos de uma <strong>população</strong>.</p>
@@ -538,7 +532,7 @@ window.Quarto = {
 <section id="sec-dam" class="level3" data-number="11.2.2">
 <h3 data-number="11.2.2" class="anchored" data-anchor-id="sec-dam"><span class="header-section-number">11.2.2</span> Distribuição amostral</h3>
 <p>Conforme mencionado no início deste capítulo, o valor de um parâmetro da população é sempre constante. Por exemplo, para qualquer conjunto de dados populacionais, há apenas um valor para a média populacional, <span class="math inline">\(\mu\)</span>.</p>
-<p>No entanto, não se pode dizer o mesmo sobre a média amostral. Amostras diferentes do mesmo tamanho, retiradas da mesma população, produzem valores diferentes da média amostral, <span class="math inline">\(\bar{x}\)</span>. O valor da média amostral, para qualquer amostra, dependerá dos elementos incluídos nessa amostra. Em decorrência, a média amostral é uma variável aleatória. Portanto, como outras variáveis aleatórias, a média amostral possui uma distribuição de probabilidade, que é mais comumente chamada de <strong>distribuição amostral da média</strong>.</p>
+<p>No entanto, não se pode dizer o mesmo sobre a média amostral. Amostras diferentes do mesmo tamanho, retiradas da mesma população, produzem valores diferentes da média amostral, <span class="math inline">\(\bar{x}\)</span>. O valor da média amostral, para qualquer amostra, dependerá dos elementos incluídos nessa amostra. Em decorrência, a média amostral é uma variável aleatória. Portanto, como outras variáveis aleatórias, a média amostral possui uma distribuição de probabilidade, que é mais comumente chamada de <strong>distribuição amostral da média</strong> <span class="citation" data-cites="callegari2003dam">(<a href="referencias.html#ref-callegari2003dam" role="doc-biblioref">Callegari-Jacques 2003</a>)</span>.</p>
 <p>Outras estatísticas de amostra, como mediana, moda e desvio padrão, também possuem distribuições amostrais. Em geral, a distribuição de probabilidades de uma amostra é denominada de <strong>distribuição amostral</strong>.</p>
 <p>Usar a variável <code>altura</code> das puérperas da Maternidade do HGCS como a população de interesse é apenas uma estratégia didática. Raramente, na vida real, é possível obter dados da população inteira. Reunir essa informação costuma ser muito custoso ou impossível. Por essa razão, a prática é selecionar apenas uma amostra da população e a usar para compreender as suas características.</p>
 <p>A função <code>slice_sample()</code> do pacote <code>dplyr</code>extrairá uma amostra <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> de n = 30 da população. As funções <code>mean()</code> e <code>sd()</code> calcularão a média e o desvio padrão, repectivamente:</p>
@@ -629,14 +623,14 @@ Para a média amostral <span class="math inline">\(\bar{x}\)</span>, <span class
 \sigma_{\bar{x}} = \frac {\sigma}{\sqrt{n}}
 \]</span></p>
 <p>A dispersão da distribuição amostral da média é menor do que dispersão da distribuição populacional correspondente, como mostrado acima. Em outras palavras, <span class="math inline">\(\sigma_{\bar{x}} &lt; \sigma\)</span>. Isso é visível na fórmula do <span class="math inline">\(\sigma_{\bar{x}}\)</span> . Quando <em>n</em> é maior que 1, o que geralmente é verdadeiro, o denominador em <span class="math inline">\(\frac {\sigma}{\sqrt{n}}\)</span> é maior que 1. Desta forma, <span class="math inline">\(\sigma_{\bar{x}}\)</span> é menor que <span class="math inline">\(\sigma\)</span>. O desvio padrão da distribuição amostral da média diminui à medida que o tamanho amostral aumenta.</p>
-<p>Sempre que o <em>n</em> for grande, em geral &gt; 30 <span class="citation" data-cites="pagano2000sampling">Pagano e Gavreau (<a href="referencias.html#ref-pagano2000sampling" role="doc-biblioref">2000</a>)</span>, pode ser assumido que a distribuição será uma curva normal e que o desvio padrão da amostra (<em>s</em>) é um estimador não enviesado do desvio padrão populacional (<span class="math inline">\(\sigma\)</span>). Então, o erro padrão da média (<span class="math inline">\(\sigma_{\bar{x}}\)</span>) pode ser estimado pelo <span class="math inline">\(EP_{\bar{x}}\)</span>:</p>
+<p>Sempre que o <em>n</em> for grande, em geral &gt; 30 <span class="citation" data-cites="pagano2000sampling">(<a href="referencias.html#ref-pagano2000sampling" role="doc-biblioref">Pagano e Gavreau 2000</a>)</span>, pode ser assumido que a distribuição será uma curva normal e que o desvio padrão da amostra (<em>s</em>) é um estimador não enviesado do desvio padrão populacional (<span class="math inline">\(\sigma\)</span>). Então, o erro padrão da média (<span class="math inline">\(\sigma_{\bar{x}}\)</span>) pode ser estimado pelo <span class="math inline">\(EP_{\bar{x}}\)</span>:</p>
 <p><span class="math display">\[
 EP_{\bar{x}} = \frac {s}{\sqrt{n}}
 \]</span></p>
 </section>
 <section id="sec-tcl" class="level2" data-number="11.5">
 <h2 data-number="11.5" class="anchored" data-anchor-id="sec-tcl"><span class="header-section-number">11.5</span> Teorema do Limite Central (TCL)</h2>
-<p>Na maioria das vezes, a população da qual as amostras são extraídas não é normalmente distribuída. Em tais casos, a forma da distribuição amostral de X é inferida de um teorema muito importante chamado <em>teorema do limite central</em>. De acordo com este teorema para um grande tamanho de amostra (em geral, acima de 30), a distribuição amostral da média é aproximadamente normal, independentemente da forma da distribuição da população <span class="citation" data-cites="pagano2000sampling">Pagano e Gavreau (<a href="referencias.html#ref-pagano2000sampling" role="doc-biblioref">2000</a>)</span>. Esta aproximação tornar-se-á mais acurada à medida que aumenta o tamanho amostral:</p>
+<p>Na maioria das vezes, a população da qual as amostras são extraídas não é normalmente distribuída. Em tais casos, a forma da distribuição amostral de X é inferida de um teorema muito importante chamado <em>teorema do limite central</em>. De acordo com este teorema para um grande tamanho de amostra (em geral, acima de 30), a distribuição amostral da média é aproximadamente normal, independentemente da forma da distribuição da população <span class="citation" data-cites="pagano2000sampling">(<a href="referencias.html#ref-pagano2000sampling" role="doc-biblioref">Pagano e Gavreau 2000</a>)</span>. Esta aproximação tornar-se-á mais acurada à medida que aumenta o tamanho amostral:</p>
 <ul>
 <li>a média da distribuição amostral, <span class="math inline">\(\mu_{\bar{x}}\)</span>, é igual a média populacional, <span class="math inline">\(\mu\)</span>;</li>
 <li>desvio padrão da distribuição amostral, <span class="math inline">\(\sigma_{\bar{x}}\)</span>, é igual a <span class="math inline">\(\frac {\sigma}{\sqrt{n}}\)</span>;</li>
@@ -745,7 +739,7 @@ Importância do Teorema do Limite Central
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>O TCL é um dos pilares da inferência estatística. Entender a sua importância é como destrancar a porta para aplicar testes, construir intervalos de confiança e fazer previsões com segurança, mesmo quando os dados parecem confusos.</p>
+<p>O TCL é um dos pilares da inferência estatística <span class="citation" data-cites="massad2004inferencia">(<a href="referencias.html#ref-massad2004inferencia" role="doc-biblioref">Burattini 2004</a>)</span>. Entender a sua importância é como destrancar a porta para aplicar testes, construir intervalos de confiança e fazer previsões com segurança, mesmo quando os dados parecem confusos.</p>
 <p>O TCL afirma que:</p>
 <blockquote class="blockquote">
 <p>A distribuição das médias amostrais tende a ser normal, mesmo que a população original não seja, desde que o tamanho da amostra seja suficientemente grande.</p>
@@ -878,8 +872,20 @@ Exercício
 <!-- -->
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-massad2004inferencia" class="csl-entry" role="listitem">
+Burattini, Marcelo N. 2004. <span>«Raciocínio médico e inferência»</span>. Em <em>Métodos Quantitativos em Medicina</em>, editado por Eduardo Massad, Paulo SP Silveira, Renèe X de Menezes, e Others, 208–23. São Paulo, SP: Editora Manole.
+</div>
+<div id="ref-callegari2003dam" class="csl-entry" role="listitem">
+Callegari-Jacques, Sidia M. 2003. <span>«Distribuição amostral das médias»</span>. Em <em>Bioestatistica: principios e aplicações</em>, 47–53. Artmed Editora.
+</div>
+<div id="ref-oliveira2022estparam" class="csl-entry" role="listitem">
+Oliveira Filho, Petronio Fagundes de. 2022. <span>«População e Amostra»</span>. Em <em>Epidemiologia e Bioestatística: Fundamentos para a leitura crítica</em>, Segunda Edição, 109–12. Rio de Janeiro: Editora Rubio.
+</div>
 <div id="ref-pagano2000sampling" class="csl-entry" role="listitem">
 Pagano, Marcello, e Kimberlee Gavreau. 2000. <span>«The Central Limit Theorem»</span>. Em <em>Principles of Biostatistics</em>, Second Edition, 197–98. Pacific Grove, CA: Duxbury.
+</div>
+<div id="ref-zar2014popsamples" class="csl-entry" role="listitem">
+Zar, Jerrold H. 2014. <span>«Populations and Samples»</span>. Em <em>Biostatistical Analysis</em>, 18–22. Edinburgh: Pearson.
 </div>
 </div>
 </section>
@@ -1369,9 +1375,9 @@ Pagano, Marcello, e Kimberlee Gavreau. 2000. <span>«The Central Limit Theorem»
 <span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## Distribuições populacional e amostral</span></span>
 <span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>Métricas como a média, a mediana e o desvio padrão são medidas numéricas de resumo. Quando calculadas a partir de dados de uma amostra são denominadas **estatísticas amostrais**. Por outro lado, as mesmas medidas numéricas de resumo calculadas para dados populacionais são chamadas de **parâmetros populacionais**.</span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>Métricas como a média, a mediana e o desvio padrão são medidas numéricas de resumo. Quando calculadas a partir de dados de uma amostra são denominadas **estatísticas amostrais**. Por outro lado, as mesmas medidas numéricas de resumo calculadas para dados populacionais são chamadas de **parâmetros populacionais** <span class="co">[</span><span class="ot">@oliveira2022estparam</span><span class="co">]</span>.</span>
 <span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>Um parâmetro populacional é sempre uma constante, enquanto uma estatística de amostra é sempre uma variável aleatória. Como cada variável aleatória deve possuir uma distribuição de probabilidade, cada estatística de amostra possui uma distribuição de probabilidade. A distribuição de probabilidade de uma estatística de amostra é mais comumente chamada de **distribuição amostral**. Os conceitos abordados neste capítulo são a base da **estatística inferencial**.</span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>Um parâmetro populacional é sempre uma constante, enquanto uma estatística de amostra é sempre uma variável aleatória. Como cada variável aleatória deve possuir uma distribuição de probabilidade, cada estatística de amostra possui uma distribuição de probabilidade. A distribuição de probabilidade de uma estatística de amostra é mais comumente chamada de **distribuição amostral**. Os conceitos abordados neste capítulo são a base da **estatística inferencial** <span class="co">[</span><span class="ot">@zar2014popsamples</span><span class="co">]</span>.</span>
 <span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a><span class="fu">### Distribuição populacional</span></span>
 <span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a></span>
@@ -1393,7 +1399,7 @@ Pagano, Marcello, e Kimberlee Gavreau. 2000. <span>«The Central Limit Theorem»
 <span id="cb32-40"><a href="#cb32-40" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-41"><a href="#cb32-41" aria-hidden="true" tabindex="-1"></a>Conforme mencionado no início deste capítulo, o valor de um parâmetro da população é sempre constante. Por exemplo, para qualquer conjunto de dados populacionais, há apenas um valor para a média populacional, $\mu$.</span>
 <span id="cb32-42"><a href="#cb32-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-43"><a href="#cb32-43" aria-hidden="true" tabindex="-1"></a>No entanto, não se pode dizer o mesmo sobre a média amostral. Amostras diferentes do mesmo tamanho, retiradas da mesma população, produzem valores diferentes da média amostral, $\bar{x}$. O valor da média amostral, para qualquer amostra, dependerá dos elementos incluídos nessa amostra. Em decorrência, a média amostral é uma variável aleatória. Portanto, como outras variáveis aleatórias, a média amostral possui uma distribuição de probabilidade, que é mais comumente chamada de **distribuição amostral da média**.</span>
+<span id="cb32-43"><a href="#cb32-43" aria-hidden="true" tabindex="-1"></a>No entanto, não se pode dizer o mesmo sobre a média amostral. Amostras diferentes do mesmo tamanho, retiradas da mesma população, produzem valores diferentes da média amostral, $\bar{x}$. O valor da média amostral, para qualquer amostra, dependerá dos elementos incluídos nessa amostra. Em decorrência, a média amostral é uma variável aleatória. Portanto, como outras variáveis aleatórias, a média amostral possui uma distribuição de probabilidade, que é mais comumente chamada de **distribuição amostral da média** <span class="co">[</span><span class="ot">@callegari2003dam</span><span class="co">]</span>.</span>
 <span id="cb32-44"><a href="#cb32-44" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-45"><a href="#cb32-45" aria-hidden="true" tabindex="-1"></a>Outras estatísticas de amostra, como mediana, moda e desvio padrão, também possuem distribuições amostrais. Em geral, a distribuição de probabilidades de uma amostra é denominada de **distribuição amostral**.</span>
 <span id="cb32-46"><a href="#cb32-46" aria-hidden="true" tabindex="-1"></a></span>
@@ -1514,7 +1520,7 @@ Pagano, Marcello, e Kimberlee Gavreau. 2000. <span>«The Central Limit Theorem»
 <span id="cb32-173"><a href="#cb32-173" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-174"><a href="#cb32-174" aria-hidden="true" tabindex="-1"></a>A dispersão da distribuição amostral da média é menor do que dispersão da distribuição populacional correspondente, como mostrado acima. Em outras palavras, $\sigma_{\bar{x}} &lt; \sigma$. Isso é visível na fórmula do $\sigma_{\bar{x}}$ . Quando *n* é maior que 1, o que geralmente é verdadeiro, o denominador em $\frac {\sigma}{\sqrt{n}}$ é maior que 1. Desta forma, $\sigma_{\bar{x}}$ é menor que $\sigma$. O desvio padrão da distribuição amostral da média diminui à medida que o tamanho amostral aumenta.</span>
 <span id="cb32-175"><a href="#cb32-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-176"><a href="#cb32-176" aria-hidden="true" tabindex="-1"></a>Sempre que o *n* for grande, em geral \&gt; 30 @pagano2000sampling, pode ser assumido que a distribuição será uma curva normal e que o desvio padrão da amostra (*s*) é um estimador não enviesado do desvio padrão populacional ($\sigma$). Então, o erro padrão da média ($\sigma_{\bar{x}}$) pode ser estimado pelo $EP_{\bar{x}}$:</span>
+<span id="cb32-176"><a href="#cb32-176" aria-hidden="true" tabindex="-1"></a>Sempre que o *n* for grande, em geral \&gt; 30 [@pagano2000sampling], pode ser assumido que a distribuição será uma curva normal e que o desvio padrão da amostra (*s*) é um estimador não enviesado do desvio padrão populacional ($\sigma$). Então, o erro padrão da média ($\sigma_{\bar{x}}$) pode ser estimado pelo $EP_{\bar{x}}$:</span>
 <span id="cb32-177"><a href="#cb32-177" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-178"><a href="#cb32-178" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb32-179"><a href="#cb32-179" aria-hidden="true" tabindex="-1"></a>EP_{\bar{x}} = \frac {s}{\sqrt{n}}</span>
@@ -1522,7 +1528,7 @@ Pagano, Marcello, e Kimberlee Gavreau. 2000. <span>«The Central Limit Theorem»
 <span id="cb32-181"><a href="#cb32-181" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-182"><a href="#cb32-182" aria-hidden="true" tabindex="-1"></a><span class="fu">## Teorema do Limite Central (TCL) {#sec-tcl}</span></span>
 <span id="cb32-183"><a href="#cb32-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-184"><a href="#cb32-184" aria-hidden="true" tabindex="-1"></a>Na maioria das vezes, a população da qual as amostras são extraídas não é normalmente distribuída. Em tais casos, a forma da distribuição amostral de X é inferida de um teorema muito importante chamado *teorema do limite central*. De acordo com este teorema para um grande tamanho de amostra (em geral, acima de 30), a distribuição amostral da média é aproximadamente normal, independentemente da forma da distribuição da população @pagano2000sampling. Esta aproximação tornar-se-á mais acurada à medida que aumenta o tamanho amostral:</span>
+<span id="cb32-184"><a href="#cb32-184" aria-hidden="true" tabindex="-1"></a>Na maioria das vezes, a população da qual as amostras são extraídas não é normalmente distribuída. Em tais casos, a forma da distribuição amostral de X é inferida de um teorema muito importante chamado *teorema do limite central*. De acordo com este teorema para um grande tamanho de amostra (em geral, acima de 30), a distribuição amostral da média é aproximadamente normal, independentemente da forma da distribuição da população <span class="co">[</span><span class="ot">@pagano2000sampling</span><span class="co">]</span>. Esta aproximação tornar-se-á mais acurada à medida que aumenta o tamanho amostral:</span>
 <span id="cb32-185"><a href="#cb32-185" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-186"><a href="#cb32-186" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>a média da distribuição amostral, $\mu_{\bar{x}}$, é igual a média populacional, $\mu$;</span>
 <span id="cb32-187"><a href="#cb32-187" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>desvio padrão da distribuição amostral, $\sigma_{\bar{x}}$, é igual a $\frac {\sigma}{\sqrt{n}}$;</span>
@@ -1646,7 +1652,7 @@ Pagano, Marcello, e Kimberlee Gavreau. 2000. <span>«The Central Limit Theorem»
 <span id="cb32-319"><a href="#cb32-319" aria-hidden="true" tabindex="-1"></a>::: callout-important</span>
 <span id="cb32-320"><a href="#cb32-320" aria-hidden="true" tabindex="-1"></a><span class="fu">## Importância do Teorema do Limite Central</span></span>
 <span id="cb32-321"><a href="#cb32-321" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-322"><a href="#cb32-322" aria-hidden="true" tabindex="-1"></a>O TCL é um dos pilares da inferência estatística. Entender a sua importância é como destrancar a porta para aplicar testes, construir intervalos de confiança e fazer previsões com segurança, mesmo quando os dados parecem confusos.</span>
+<span id="cb32-322"><a href="#cb32-322" aria-hidden="true" tabindex="-1"></a>O TCL é um dos pilares da inferência estatística <span class="co">[</span><span class="ot">@massad2004inferencia</span><span class="co">]</span>. Entender a sua importância é como destrancar a porta para aplicar testes, construir intervalos de confiança e fazer previsões com segurança, mesmo quando os dados parecem confusos.</span>
 <span id="cb32-323"><a href="#cb32-323" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-324"><a href="#cb32-324" aria-hidden="true" tabindex="-1"></a>O TCL afirma que:</span>
 <span id="cb32-325"><a href="#cb32-325" aria-hidden="true" tabindex="-1"></a></span>

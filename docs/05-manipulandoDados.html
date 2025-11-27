@@ -443,12 +443,6 @@ window.Quarto = {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./glossario.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Glossário</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./referencias.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Referências</span></a>
   </div>
@@ -528,7 +522,7 @@ window.Quarto = {
 
 <section id="sec-dataframes" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="sec-dataframes"><span class="header-section-number">5.1</span> Dataframes no R</h2>
-<p>DataFrames são objetos de dados genéricos em formato tabular, onde os dados são organizados de maneira lógica em linha-e-coluna semelhante ao de uma planilha do Excel. O dataframe é uma estrutura bidimensional. Os DataFrames podem ser formados com objetos criados previamente, desde que tenham o mesmo comprimento <span class="citation" data-cites="zuur2009beginner">Zuur, Ieno, e Meesters (<a href="referencias.html#ref-zuur2009beginner" role="doc-biblioref">2009</a>)</span>.</p>
+<p>DataFrames são objetos de dados genéricos em formato tabular, onde os dados são organizados de maneira lógica em linha-e-coluna semelhante ao de uma planilha do Excel. O dataframe é uma estrutura bidimensional. Os DataFrames podem ser formados com objetos criados previamente, desde que tenham o mesmo comprimento <span class="citation" data-cites="zuur2009beginner">(<a href="referencias.html#ref-zuur2009beginner" role="doc-biblioref">Zuur, Ieno, e Meesters 2009</a>)</span>.</p>
 <p>Uma das formas de criar um DataFrame no R é a partir de um conjunto de vetores como, por exemplo, este relacionados a 15 nascimentos em uma determinada maternidade:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>id <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>, <span class="dv">13</span>, <span class="dv">14</span>, <span class="dv">15</span>)</span>
@@ -693,7 +687,7 @@ Atenção
 <p>Toda vez que se importa um dataset, deve-se verificar atentamente a sua estrutura antes de dar seguimento as análises</p>
 </div>
 </div>
-<p>Recentemente, foi desenvolvido o pacote <code>readr</code>, incluído no conjunto de pacotes <code>tidyverse</code> <span class="citation" data-cites="wickham2019tidyverse">Wickham et al. (<a href="referencias.html#ref-wickham2019tidyverse" role="doc-biblioref">2019</a>)</span>, para lidar rapidamente com a leitura de grandes arquivos. O pacote fornece substituições para funções como <code>read.csv()</code>. As funções <code>read_csv()</code> e <code>read_csv2()</code> oferecidas pelo <code>readr</code> são análogas às do R base. Entretanto, são muito mais rápidas e fornecem mais recursos, como um método compacto para especificar tipos de coluna. Além disso, produzem <code>tibbles</code> (ver adiante, <a href="#sec-tibble" class="quarto-xref"><span>Seção 5.3</span></a>) que são mais reproduzíveis, pois as funções básicas do R herdam alguns comportamentos do sistema operacional e das variáveis de ambiente, portanto, o código de importação que funciona no seu computador pode não funcionar no de outra pessoa. Para usar a função é necessário instalar e ativar o pacote <code>readr</code>. A função <code>read_csv2()</code> será utilizada para criar um outro objeto de nome <code>recemNascidos</code>, mas o conjunto de dados a ser ativado é o mesmo (<code>dadosNeonatos</code>):</p>
+<p>Recentemente, foi desenvolvido o pacote <code>readr</code>, incluído no conjunto de pacotes <code>tidyverse</code> <span class="citation" data-cites="wickham2019tidyverse">(<a href="referencias.html#ref-wickham2019tidyverse" role="doc-biblioref">Wickham et al. 2019</a>)</span>, para lidar rapidamente com a leitura de grandes arquivos. O pacote fornece substituições para funções como <code>read.csv()</code>. As funções <code>read_csv()</code> e <code>read_csv2()</code> oferecidas pelo <code>readr</code> são análogas às do R base. Entretanto, são muito mais rápidas e fornecem mais recursos, como um método compacto para especificar tipos de coluna. Além disso, produzem <code>tibbles</code> (ver adiante, <a href="#sec-tibble" class="quarto-xref"><span>Seção 5.3</span></a>) que são mais reproduzíveis, pois as funções básicas do R herdam alguns comportamentos do sistema operacional e das variáveis de ambiente, portanto, o código de importação que funciona no seu computador pode não funcionar no de outra pessoa. Para usar a função é necessário instalar e ativar o pacote <code>readr</code>. A função <code>read_csv2()</code> será utilizada para criar um outro objeto de nome <code>recemNascidos</code>, mas o conjunto de dados a ser ativado é o mesmo (<code>dadosNeonatos</code>):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">library</span>(readr)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a> recemNascidos <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">"dados/dadosNeonatos.csv"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -788,7 +782,7 @@ Figura&nbsp;5.2: Importando arquivos do excel com o RStudio
 <h2 data-number="5.3" class="anchored" data-anchor-id="sec-tibble"><span class="header-section-number">5.3</span> Tibble</h2>
 <p>A maneira mais comum de armazenar dados no R é usar <code>data.frames</code> ou <code>tibble</code>.</p>
 <p><em>Tibble</em> é um novo tipo de dataframe. É como se fosse um dataframe mais moderno. Ele mantém muitos recursos importantes do data frame original, mas remove muitos dos recursos desatualizados.</p>
-<p>A maioria dos pacotes do R usa dataframes tradicionais, entretanto é possível transformá-los para <code>tibble</code>, usando a função <code>as_tibble()</code>, incluída no pacote <code>tidyr</code> <span class="citation" data-cites="wickham2022tidyr">Wickham e Girlich (<a href="referencias.html#ref-wickham2022tidyr" role="doc-biblioref">2022</a>)</span>. O único propósito deste pacote é simplificar o processo de criação dados arrumados organizados (<code>tidy data</code>). A transformação de um dataframe tradicional em um <code>tibble</code>, é um procedimento rescomendável, em função da maior flexibilidade destes.</p>
+<p>A maioria dos pacotes do R usa dataframes tradicionais, entretanto é possível transformá-los para <code>tibble</code>, usando a função <code>as_tibble()</code>, incluída no pacote <code>tidyr</code> <span class="citation" data-cites="wickham2022tidyr">(<a href="referencias.html#ref-wickham2022tidyr" role="doc-biblioref">Wickham e Girlich 2022</a>)</span>. O único propósito deste pacote é simplificar o processo de criação dados arrumados organizados (<code>tidy data</code>). A transformação de um dataframe tradicional em um <code>tibble</code>, é um procedimento rescomendável, em função da maior flexibilidade destes.</p>
 <p>Como exemplo deste procedimento, será usado o dataframes criado na <a href="#sec-dataframes" class="quarto-xref"><span>Seção 5.1</span></a>: <code>dadosNeonatos</code>.</p>
 <p>Este é um conjunto de dados da classe <code>data.frame</code>, contendo 15 observações de 7 variáveis (colunas), pode convetrtido a um <code>tibble</code>, usando a função <code>as.tibble()</code>:</p>
 <div class="cell">
@@ -836,15 +830,15 @@ Figura&nbsp;5.3: Ciclo da Ciência de Dados
 </div>
 </div>
 </div>
-<p>O pacote <code>tidyverse</code> é uma coleção de pacotes para a linguagem de programação R, pensada e desenvolvida para facilitar e otimizar o fluxo de trabalho em ciência de dados <span class="citation" data-cites="wickham2019tidyverse">Wickham et al. (<a href="referencias.html#ref-wickham2019tidyverse" role="doc-biblioref">2019</a>)</span>.<br>
+<p>O pacote <code>tidyverse</code> é uma coleção de pacotes para a linguagem de programação R, pensada e desenvolvida para facilitar e otimizar o fluxo de trabalho em ciência de dados <span class="citation" data-cites="wickham2019tidyverse">(<a href="referencias.html#ref-wickham2019tidyverse" role="doc-biblioref">Wickham et al. 2019</a>)</span>.<br>
 Em vez de ser um pacote único, ele é um “meta-pacote”, o que significa que, ao instalá-lo, você instala vários pacotes menores que trabalham em conjunto.</p>
-<p>A filosofia principal por trás do <code>tidyverse</code> é a de dados “tidy” (arrumados ou organizados) <span class="citation" data-cites="wickham2014tidy">Wickham (<a href="referencias.html#ref-wickham2014tidy" role="doc-biblioref">2014</a>)</span>, onde:</p>
+<p>A filosofia principal por trás do <code>tidyverse</code> é a de dados “tidy” (arrumados ou organizados) <span class="citation" data-cites="wickham2014tidy">(<a href="referencias.html#ref-wickham2014tidy" role="doc-biblioref">Wickham 2014</a>)</span>, onde:</p>
 <ul>
 <li><p>Cada variável está em uma coluna.</p></li>
 <li><p>Cada observação está em uma linha.</p></li>
 <li><p>Cada valor está em uma célula.</p></li>
 </ul>
-<p>Seguindo essa lógica, as funções e pacotes do <code>tidyverse</code> são projetados para facilitar a manipulação dos dados dentro do Ciclo da Ciência de Dados (@fig-ciclo), tornando a manipulação, a análise e a visualização de dados mais consistentes e intuitivas.</p>
+<p>Seguindo essa lógica, as funções e pacotes do <code>tidyverse</code> são projetados para facilitar a manipulação dos dados dentro do Ciclo da Ciência de Dados (<a href="#fig-ciclo" class="quarto-xref">Figura&nbsp;<span>5.3</span></a>), tornando a manipulação, a análise e a visualização de dados mais consistentes e intuitivas.</p>
 <section id="principais-pacotes-do-tidyverse" class="level3" data-number="5.4.1">
 <h3 data-number="5.4.1" class="anchored" data-anchor-id="principais-pacotes-do-tidyverse"><span class="header-section-number">5.4.1</span> Principais Pacotes do tidyverse</h3>
 <p>O <code>tidyverse</code> simplifica tarefas complexas, oferecendo ferramentas específicas para cada etapa do Ciclo de Ciências de Dados. Alguns dos pacotes mais importantes são:</p>
@@ -864,7 +858,7 @@ Em vez de ser um pacote único, ele é um “meta-pacote”, o que significa que
 <p>Os princípios fundamentais são:</p>
 <ol type="1">
 <li><p>Reutilizar estruturas de dados existentes.</p></li>
-<li><p>Organizar funções simples usando o <code>pipe</code>.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. Esse operador, introduzido por Stefan Milton Bache no pacote <code>magrittr</code> <span class="citation" data-cites="bache2022magritt">Bache e Wickham (<a href="referencias.html#ref-bache2022magritt" role="doc-biblioref">2022</a>)</span>, permite encadear múltiplas operações em uma sequência clara e legível, de forma que a saída de uma função se torna a entrada da próxima. Isso torna o código mais fácil de ler e entender, eliminando a necessidade de criar muitas variáveis intermediárias. O <code>pipe</code> pode ser acionado digitando <code>%&gt;%</code> ou usando o atalho <code>ctrl + shift + M</code>. <a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p></li>
+<li><p>Organizar funções simples usando o <code>pipe</code>.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. Esse operador, introduzido por Stefan Milton Bache no pacote <code>magrittr</code><span class="citation" data-cites="bache2022magritt">(<a href="referencias.html#ref-bache2022magritt" role="doc-biblioref">Bache e Wickham 2022</a>)</span>, permite encadear múltiplas operações em uma sequência clara e legível, de forma que a saída de uma função se torna a entrada da próxima. Isso torna o código mais fácil de ler e entender, eliminando a necessidade de criar muitas variáveis intermediárias. O <code>pipe</code> pode ser acionado digitando <code>%&gt;%</code> ou usando o atalho <code>ctrl + shift + M</code>. <a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p></li>
 <li><p>Usar uma sintaxe consistente: As funções dos pacotes tidyverse seguem uma lógica de nomeação e de argumentos parecida, facilitando a memorização e o uso.</p></li>
 <li><p>Projetado com foco nos seres humanos, priorizando a eficiência do programador.</p></li>
 </ol>
@@ -903,7 +897,7 @@ Conflito de funções ao carregar tidyverse
 </section>
 <section id="sec-dplyr" class="level2" data-number="5.5">
 <h2 data-number="5.5" class="anchored" data-anchor-id="sec-dplyr"><span class="header-section-number">5.5</span> Pacote dplyr</h2>
-<p>Um dos pacotes de maior utilidade abarcado pelo <code>tidyverse</code> é o <code>dplyr</code>. Ele permite realizar transformação dos dados de uma forma simples e eficiente. O uso dos verbos <code>dplyr</code>, aliado ao operador <code>pipe</code>, tendem a tornar os scripts mais “enxutos” e elegantes <span class="citation" data-cites="wickham2015dplyr">Wickham et al. (<a href="referencias.html#ref-wickham2015dplyr" role="doc-biblioref">2015</a>)</span>.<br>
+<p>Um dos pacotes de maior utilidade abarcado pelo <code>tidyverse</code> é o <code>dplyr</code>. Ele permite realizar transformação dos dados de uma forma simples e eficiente. O uso dos verbos <code>dplyr</code>, aliado ao operador <code>pipe</code>, tendem a tornar os scripts mais “enxutos” e elegantes <span class="citation" data-cites="wickham2015dplyr">(<a href="referencias.html#ref-wickham2015dplyr" role="doc-biblioref">Wickham et al. 2015</a>)</span>.<br>
 As principais funções do <code>dplyr</code> são:</p>
 <ul>
 <li><code>select()</code> - seleciona colunas<br>
@@ -923,7 +917,7 @@ As principais funções do <code>dplyr</code> são:</p>
 </section>
 <section id="sec-dadosMater" class="level2" data-number="5.6">
 <h2 data-number="5.6" class="anchored" data-anchor-id="sec-dadosMater"><span class="header-section-number">5.6</span> Dataframe <code>dadosMater.xlsx</code></h2>
-<p>O arquivo <code>dadosMater.xlsx</code> é um dataframe constituído por dados de 1568 partos consecutivos do Hospital Geral de Caxias do Sul (HGCS) <a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> , durante um estudo sobre infecções congênitas <span class="citation" data-cites="madi2010prevalence">Madi et al. (<a href="referencias.html#ref-madi2010prevalence" role="doc-biblioref">2010</a>)</span>. Para baixar esses dados, clique <a href="https://github.com/petronioliveira/Arquivos/blob/main/dadosMater.xlsx">aqui</a> e faça o <em>download</em> para o diretório de trabalho, para uso posterior.</p>
+<p>O arquivo <code>dadosMater.xlsx</code> é um dataframe constituído por dados de 1568 partos consecutivos do Hospital Geral de Caxias do Sul (HGCS) <a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> , durante um estudo sobre infecções congênitas <span class="citation" data-cites="madi2010prevalence">(<a href="referencias.html#ref-madi2010prevalence" role="doc-biblioref">Madi et al. 2010</a>)</span>. Para baixar esses dados, clique <a href="https://github.com/petronioliveira/Arquivos/blob/main/dadosMater.xlsx">aqui</a> e faça o <em>download</em> para o diretório de trabalho, para uso posterior.</p>
 <section id="leitura-dos-dados" class="level3" data-number="5.6.1">
 <h3 data-number="5.6.1" class="anchored" data-anchor-id="leitura-dos-dados"><span class="header-section-number">5.6.1</span> Leitura dos dados</h3>
 <p>Para ler arquivos do Excel (<code>.xlsx</code>), o pacote ideal é o <code>readxl</code>, que também faz parte do <code>tidyverse</code>. Ele é leve, rápido e não depende do Excel instalado. A função a ser usada é <code>read_excel()</code>. O objeto <code>mater</code> será utilizado para receber os dados:</p>
@@ -1410,7 +1404,7 @@ Exercício
 </section>
 <section id="pacote-forcats" class="level2" data-number="5.7">
 <h2 data-number="5.7" class="anchored" data-anchor-id="pacote-forcats"><span class="header-section-number">5.7</span> Pacote forcats()</h2>
-<p>O pacote <code>forcats()</code> é uma das maravilhas do <code>tidyverse</code> voltada exclusivamente para o tratamento de variáveis categóricas no R — ou seja, os fatores. O nome vem de “<em>for categorical variables</em>”, e ele foi criado para resolver os desafios que surgem ao lidar com fatores, especialmente em visualizações e modelagens <span class="citation" data-cites="damiani2022forcats">Damiani et al. (<a href="referencias.html#ref-damiani2022forcats" role="doc-biblioref">2022</a>)</span>.</p>
+<p>O pacote <code>forcats()</code> é uma das maravilhas do <code>tidyverse</code> voltada exclusivamente para o tratamento de variáveis categóricas no R — ou seja, os fatores. O nome vem de “<em>for categorical variables</em>”, e ele foi criado para resolver os desafios que surgem ao lidar com fatores, especialmente em visualizações e modelagens <span class="citation" data-cites="damiani2022forcats">(<a href="referencias.html#ref-damiani2022forcats" role="doc-biblioref">Damiani et al. 2022</a>)</span>.</p>
 <p>A finalidade do pacote <code>forcats()</code>:</p>
 <p>Oferece funções intuitivas e poderosas para:</p>
 <ul>
@@ -1455,7 +1449,7 @@ As principais funções doforcats() são:</p></li>
 </section>
 <section id="manipulação-de-datas" class="level2" data-number="5.8">
 <h2 data-number="5.8" class="anchored" data-anchor-id="manipulação-de-datas"><span class="header-section-number">5.8</span> Manipulação de datas</h2>
-<p>Originalmente, todos os que trabalham com o R queixavam-se de como era frustrante trabalhar com datas. Era um processo que causava grande perda de tempo nas análises. O pacote <code>lubridate</code> <span class="citation" data-cites="grolemund2011dates">Grolemund e Wickham (<a href="referencias.html#ref-grolemund2011dates" role="doc-biblioref">2011</a>)</span> foi criado para simplificar ao máximo a leitura de datas e extração de informações das mesmas.</p>
+<p>Originalmente, todos os que trabalham com o R queixavam-se de como era frustrante trabalhar com datas. Era um processo que causava grande perda de tempo nas análises. O pacote <code>lubridate</code> <span class="citation" data-cites="grolemund2011dates">(<a href="referencias.html#ref-grolemund2011dates" role="doc-biblioref">Grolemund e Wickham 2011</a>)</span> foi criado para simplificar ao máximo a leitura de datas e extração de informações das mesmas.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1465,11 +1459,11 @@ Para evitar confusões e verificar que as funções corretas estão sendo usadas
 <div class="cell">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-11-26"</code></pre>
+<pre><code>[1] "2025-11-27"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">now</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-11-26 20:05:56 -03"</code></pre>
+<pre><code>[1] "2025-11-27 18:27:50 -03"</code></pre>
 </div>
 </div>
 <section id="convertendo-strings-ou-caractere-para-data" class="level3" data-number="5.8.1">
@@ -1589,15 +1583,15 @@ Para evitar confusões e verificar que as funções corretas estão sendo usadas
 </div>
 <div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">day</span>(data)             <span class="co"># Extrai o dia</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 26</code></pre>
+<pre><code>[1] 27</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">minute</span>(data)          <span class="co"># Extrai o minuto</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 5</code></pre>
+<pre><code>[1] 27</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">second</span>(data)          <span class="co"># Extrai o segundo</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 56.45342</code></pre>
+<pre><code>[1] 50.79869</code></pre>
 </div>
 </div>
 <p>Para verificar o número de dias tem em um determinado mês, usa-se a função <code>days_in_month()</code>:</p>
@@ -2190,7 +2184,7 @@ Zuur, Alain F, Elena N Ieno, e Erik HWG Meesters. 2009. <span>«Getting Data int
 <span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb120-3"><a href="#cb120-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Dataframes no R {#sec-dataframes}</span></span>
 <span id="cb120-4"><a href="#cb120-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-5"><a href="#cb120-5" aria-hidden="true" tabindex="-1"></a>DataFrames são objetos de dados genéricos em formato tabular, onde os dados são organizados de maneira lógica em linha-e-coluna semelhante ao de uma planilha do Excel. O dataframe é uma estrutura bidimensional. Os DataFrames podem ser formados com objetos criados previamente, desde que tenham o mesmo comprimento @zuur2009beginner.</span>
+<span id="cb120-5"><a href="#cb120-5" aria-hidden="true" tabindex="-1"></a>DataFrames são objetos de dados genéricos em formato tabular, onde os dados são organizados de maneira lógica em linha-e-coluna semelhante ao de uma planilha do Excel. O dataframe é uma estrutura bidimensional. Os DataFrames podem ser formados com objetos criados previamente, desde que tenham o mesmo comprimento <span class="co">[</span><span class="ot">@zuur2009beginner</span><span class="co">]</span>.</span>
 <span id="cb120-6"><a href="#cb120-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb120-7"><a href="#cb120-7" aria-hidden="true" tabindex="-1"></a>Uma das formas de criar um DataFrame no R é a partir de um conjunto de vetores como, por exemplo, este relacionados a 15 nascimentos em uma determinada maternidade:</span>
 <span id="cb120-8"><a href="#cb120-8" aria-hidden="true" tabindex="-1"></a></span>
@@ -2351,7 +2345,7 @@ Zuur, Alain F, Elena N Ieno, e Erik HWG Meesters. 2009. <span>«Getting Data int
 <span id="cb120-193"><a href="#cb120-193" aria-hidden="true" tabindex="-1"></a>Toda vez que se importa um dataset, deve-se verificar atentamente a sua estrutura antes de dar seguimento as análises</span>
 <span id="cb120-194"><a href="#cb120-194" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb120-195"><a href="#cb120-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-196"><a href="#cb120-196" aria-hidden="true" tabindex="-1"></a>Recentemente, foi desenvolvido o pacote <span class="in">`readr`</span>, incluído no conjunto de pacotes <span class="in">`tidyverse`</span> @wickham2019tidyverse, para lidar rapidamente com a leitura de grandes arquivos. O pacote fornece substituições para funções como <span class="in">`read.csv()`</span>. As funções <span class="in">`read_csv()`</span> e <span class="in">`read_csv2()`</span> oferecidas pelo <span class="in">`readr`</span> são análogas às do R base. Entretanto, são muito mais rápidas e fornecem mais recursos, como um método compacto para especificar tipos de coluna. Além disso, produzem <span class="in">`tibbles`</span> (ver adiante, @sec-tibble) que são mais reproduzíveis, pois as funções básicas do R herdam alguns comportamentos do sistema operacional e das variáveis de ambiente, portanto, o código de importação que funciona no seu computador pode não funcionar no de outra pessoa. Para usar a função é necessário instalar e ativar o pacote <span class="in">`readr`</span>. A função <span class="in">`read_csv2()`</span> será utilizada para criar um outro objeto de nome <span class="in">`recemNascidos`</span>, mas o conjunto de dados a ser ativado é o mesmo (<span class="in">`dadosNeonatos`</span>):</span>
+<span id="cb120-196"><a href="#cb120-196" aria-hidden="true" tabindex="-1"></a>Recentemente, foi desenvolvido o pacote <span class="in">`readr`</span>, incluído no conjunto de pacotes <span class="in">`tidyverse`</span> <span class="co">[</span><span class="ot">@wickham2019tidyverse</span><span class="co">]</span>, para lidar rapidamente com a leitura de grandes arquivos. O pacote fornece substituições para funções como <span class="in">`read.csv()`</span>. As funções <span class="in">`read_csv()`</span> e <span class="in">`read_csv2()`</span> oferecidas pelo <span class="in">`readr`</span> são análogas às do R base. Entretanto, são muito mais rápidas e fornecem mais recursos, como um método compacto para especificar tipos de coluna. Além disso, produzem <span class="in">`tibbles`</span> (ver adiante, @sec-tibble) que são mais reproduzíveis, pois as funções básicas do R herdam alguns comportamentos do sistema operacional e das variáveis de ambiente, portanto, o código de importação que funciona no seu computador pode não funcionar no de outra pessoa. Para usar a função é necessário instalar e ativar o pacote <span class="in">`readr`</span>. A função <span class="in">`read_csv2()`</span> será utilizada para criar um outro objeto de nome <span class="in">`recemNascidos`</span>, mas o conjunto de dados a ser ativado é o mesmo (<span class="in">`dadosNeonatos`</span>):</span>
 <span id="cb120-197"><a href="#cb120-197" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb120-200"><a href="#cb120-200" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb120-201"><a href="#cb120-201" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
@@ -2420,7 +2414,7 @@ Zuur, Alain F, Elena N Ieno, e Erik HWG Meesters. 2009. <span>«Getting Data int
 <span id="cb120-272"><a href="#cb120-272" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb120-273"><a href="#cb120-273" aria-hidden="true" tabindex="-1"></a>*Tibble* é um novo tipo de dataframe. É como se fosse um dataframe mais moderno. Ele mantém muitos recursos importantes do data frame original, mas remove muitos dos recursos desatualizados.</span>
 <span id="cb120-274"><a href="#cb120-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-275"><a href="#cb120-275" aria-hidden="true" tabindex="-1"></a>A maioria dos pacotes do R usa dataframes tradicionais, entretanto é possível transformá-los para <span class="in">`tibble`</span>, usando a função <span class="in">`as_tibble()`</span>, incluída no pacote <span class="in">`tidyr`</span> @wickham2022tidyr. O único propósito deste pacote é simplificar o processo de criação dados arrumados organizados (<span class="in">`tidy data`</span>). A transformação de um dataframe tradicional em um <span class="in">`tibble`</span>, é um procedimento rescomendável, em função da maior flexibilidade destes.</span>
+<span id="cb120-275"><a href="#cb120-275" aria-hidden="true" tabindex="-1"></a>A maioria dos pacotes do R usa dataframes tradicionais, entretanto é possível transformá-los para <span class="in">`tibble`</span>, usando a função <span class="in">`as_tibble()`</span>, incluída no pacote <span class="in">`tidyr`</span> <span class="co">[</span><span class="ot">@wickham2022tidyr</span><span class="co">]</span>. O único propósito deste pacote é simplificar o processo de criação dados arrumados organizados (<span class="in">`tidy data`</span>). A transformação de um dataframe tradicional em um <span class="in">`tibble`</span>, é um procedimento rescomendável, em função da maior flexibilidade destes.</span>
 <span id="cb120-276"><a href="#cb120-276" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb120-277"><a href="#cb120-277" aria-hidden="true" tabindex="-1"></a>Como exemplo deste procedimento, será usado o dataframes criado na @sec-dataframes: <span class="in">`dadosNeonatos`</span>.</span>
 <span id="cb120-278"><a href="#cb120-278" aria-hidden="true" tabindex="-1"></a></span>
@@ -2433,7 +2427,7 @@ Zuur, Alain F, Elena N Ieno, e Erik HWG Meesters. 2009. <span>«Getting Data int
 <span id="cb120-287"><a href="#cb120-287" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb120-288"><a href="#cb120-288" aria-hidden="true" tabindex="-1"></a>Por padrão, quando o dataset é muito longo, apenas as primeiras dez linhas são mostradas. Aqui, aparece o toda a estrutura dos dados. São apresentadas a dimensão da tabela e as classes de cada coluna. Verifica-se que não houve grandes mudanças, apenas o conjunto de dados está estruturalmente mais organizado, mais flexível.</span>
 <span id="cb120-289"><a href="#cb120-289" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-290"><a href="#cb120-290" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pacote tidyverse  {#sec-tidyverse}</span></span>
+<span id="cb120-290"><a href="#cb120-290" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pacote tidyverse {#sec-tidyverse}</span></span>
 <span id="cb120-291"><a href="#cb120-291" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb120-292"><a href="#cb120-292" aria-hidden="true" tabindex="-1"></a>A denominada ciência de dados é difícil de definir, pois a definição depende da formação específica de cada cientista de dados. Entretanto, é possível mostrar como a ciência de dados pode ser realizada na prática, constituindo aquilo que se costuma chamar de *Ciclo da Ciência de Dados* (@fig-ciclo).\</span>
 <span id="cb120-293"><a href="#cb120-293" aria-hidden="true" tabindex="-1"></a>Primeiramente, os dados brutos são coletados de diversas maneiras (veja @sec-producao). Após, são armazenados, por exemplo, em Excel, e, em seguida, são arrumados para reduzir problemas de padronização, conceituais e erros ou exclusão de variáveis e casos que não fazem parte do objetivo estabelecido no projeto de pesquisa. Isto constituirá a base de dados analítica.\</span>
@@ -2449,10 +2443,10 @@ Zuur, Alain F, Elena N Ieno, e Erik HWG Meesters. 2009. <span>«Getting Data int
 <span id="cb120-305"><a href="#cb120-305" aria-hidden="true" tabindex="-1"></a> knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"https://i.imgur.com/UYe9AIO.png"</span>)</span>
 <span id="cb120-306"><a href="#cb120-306" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb120-307"><a href="#cb120-307" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-308"><a href="#cb120-308" aria-hidden="true" tabindex="-1"></a>O pacote <span class="in">`tidyverse`</span> é uma coleção de pacotes para a linguagem de programação R, pensada e desenvolvida para facilitar e otimizar o fluxo de trabalho em ciência de dados @wickham2019tidyverse.\</span>
+<span id="cb120-308"><a href="#cb120-308" aria-hidden="true" tabindex="-1"></a>O pacote <span class="in">`tidyverse`</span> é uma coleção de pacotes para a linguagem de programação R, pensada e desenvolvida para facilitar e otimizar o fluxo de trabalho em ciência de dados <span class="co">[</span><span class="ot">@wickham2019tidyverse</span><span class="co">]</span>.\</span>
 <span id="cb120-309"><a href="#cb120-309" aria-hidden="true" tabindex="-1"></a>Em vez de ser um pacote único, ele é um "meta-pacote", o que significa que, ao instalá-lo, você instala vários pacotes menores que trabalham em conjunto.</span>
 <span id="cb120-310"><a href="#cb120-310" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-311"><a href="#cb120-311" aria-hidden="true" tabindex="-1"></a>A filosofia principal por trás do <span class="in">`tidyverse`</span> é a de dados "tidy" (arrumados ou organizados) @wickham2014tidy, onde:</span>
+<span id="cb120-311"><a href="#cb120-311" aria-hidden="true" tabindex="-1"></a>A filosofia principal por trás do <span class="in">`tidyverse`</span> é a de dados "tidy" (arrumados ou organizados) <span class="co">[</span><span class="ot">@wickham2014tidy</span><span class="co">]</span>, onde:</span>
 <span id="cb120-312"><a href="#cb120-312" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb120-313"><a href="#cb120-313" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Cada variável está em uma coluna.</span>
 <span id="cb120-314"><a href="#cb120-314" aria-hidden="true" tabindex="-1"></a></span>
@@ -2460,7 +2454,7 @@ Zuur, Alain F, Elena N Ieno, e Erik HWG Meesters. 2009. <span>«Getting Data int
 <span id="cb120-316"><a href="#cb120-316" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb120-317"><a href="#cb120-317" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Cada valor está em uma célula.</span>
 <span id="cb120-318"><a href="#cb120-318" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-319"><a href="#cb120-319" aria-hidden="true" tabindex="-1"></a>Seguindo essa lógica, as funções e pacotes do <span class="in">`tidyverse`</span> são projetados para facilitar a manipulação dos dados dentro do Ciclo da Ciência de Dados (\@fig-ciclo), tornando a manipulação, a análise e a visualização de dados mais consistentes e intuitivas.</span>
+<span id="cb120-319"><a href="#cb120-319" aria-hidden="true" tabindex="-1"></a>Seguindo essa lógica, as funções e pacotes do <span class="in">`tidyverse`</span> são projetados para facilitar a manipulação dos dados dentro do Ciclo da Ciência de Dados (@fig-ciclo), tornando a manipulação, a análise e a visualização de dados mais consistentes e intuitivas.</span>
 <span id="cb120-320"><a href="#cb120-320" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb120-321"><a href="#cb120-321" aria-hidden="true" tabindex="-1"></a><span class="fu">### Principais Pacotes do tidyverse</span></span>
 <span id="cb120-322"><a href="#cb120-322" aria-hidden="true" tabindex="-1"></a></span>
@@ -2488,7 +2482,7 @@ Zuur, Alain F, Elena N Ieno, e Erik HWG Meesters. 2009. <span>«Getting Data int
 <span id="cb120-344"><a href="#cb120-344" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb120-345"><a href="#cb120-345" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Reutilizar estruturas de dados existentes.</span>
 <span id="cb120-346"><a href="#cb120-346" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-347"><a href="#cb120-347" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Organizar funções simples usando o <span class="in">`pipe`</span>.<span class="ot">[^05-manipulandodados-4]</span>. Esse operador, introduzido por Stefan Milton Bache no pacote <span class="in">`magrittr`</span> @bache2022magritt, permite encadear múltiplas operações em uma sequência clara e legível, de forma que a saída de uma função se torna a entrada da próxima. Isso torna o código mais fácil de ler e entender, eliminando a necessidade de criar muitas variáveis intermediárias. O <span class="in">`pipe`</span> pode ser acionado digitando <span class="in">`%&gt;%`</span> ou usando o atalho <span class="in">`ctrl + shift + M`</span>. <span class="ot">[^05-manipulandodados-5]</span></span>
+<span id="cb120-347"><a href="#cb120-347" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Organizar funções simples usando o <span class="in">`pipe`</span>.<span class="ot">[^05-manipulandodados-4]</span>. Esse operador, introduzido por Stefan Milton Bache no pacote <span class="in">`magrittr`</span><span class="co">[</span><span class="ot"> @bache2022magritt</span><span class="co">]</span>, permite encadear múltiplas operações em uma sequência clara e legível, de forma que a saída de uma função se torna a entrada da próxima. Isso torna o código mais fácil de ler e entender, eliminando a necessidade de criar muitas variáveis intermediárias. O <span class="in">`pipe`</span> pode ser acionado digitando <span class="in">`%&gt;%`</span> ou usando o atalho <span class="in">`ctrl + shift + M`</span>. <span class="ot">[^05-manipulandodados-5]</span></span>
 <span id="cb120-348"><a href="#cb120-348" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb120-349"><a href="#cb120-349" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Usar uma sintaxe consistente: As funções dos pacotes tidyverse seguem uma lógica de nomeação e de argumentos parecida, facilitando a memorização e o uso.</span>
 <span id="cb120-350"><a href="#cb120-350" aria-hidden="true" tabindex="-1"></a></span>
@@ -2513,9 +2507,9 @@ Zuur, Alain F, Elena N Ieno, e Erik HWG Meesters. 2009. <span>«Getting Data int
 <span id="cb120-371"><a href="#cb120-371" aria-hidden="true" tabindex="-1"></a><span class="in">`stats::filter()`</span> e <span class="in">`stats::lag()`</span>.</span>
 <span id="cb120-372"><a href="#cb120-372" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb120-373"><a href="#cb120-373" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-374"><a href="#cb120-374" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pacote dplyr  {#sec-dplyr}</span></span>
+<span id="cb120-374"><a href="#cb120-374" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pacote dplyr {#sec-dplyr}</span></span>
 <span id="cb120-375"><a href="#cb120-375" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-376"><a href="#cb120-376" aria-hidden="true" tabindex="-1"></a>Um dos pacotes de maior utilidade abarcado pelo <span class="in">`tidyverse`</span> é o <span class="in">`dplyr`</span>. Ele permite realizar transformação dos dados de uma forma simples e eficiente. O uso dos verbos <span class="in">`dplyr`</span>, aliado ao operador <span class="in">`pipe`</span>, tendem a tornar os scripts mais "enxutos" e elegantes @wickham2015dplyr.\</span>
+<span id="cb120-376"><a href="#cb120-376" aria-hidden="true" tabindex="-1"></a>Um dos pacotes de maior utilidade abarcado pelo <span class="in">`tidyverse`</span> é o <span class="in">`dplyr`</span>. Ele permite realizar transformação dos dados de uma forma simples e eficiente. O uso dos verbos <span class="in">`dplyr`</span>, aliado ao operador <span class="in">`pipe`</span>, tendem a tornar os scripts mais "enxutos" e elegantes <span class="co">[</span><span class="ot">@wickham2015dplyr</span><span class="co">]</span>.\</span>
 <span id="cb120-377"><a href="#cb120-377" aria-hidden="true" tabindex="-1"></a>As principais funções do <span class="in">`dplyr`</span> são:</span>
 <span id="cb120-378"><a href="#cb120-378" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb120-379"><a href="#cb120-379" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`select()`</span> - seleciona colunas\</span>
@@ -2531,7 +2525,7 @@ Zuur, Alain F, Elena N Ieno, e Erik HWG Meesters. 2009. <span>«Getting Data int
 <span id="cb120-389"><a href="#cb120-389" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb120-390"><a href="#cb120-390" aria-hidden="true" tabindex="-1"></a><span class="fu">## Dataframe `dadosMater.xlsx` {#sec-dadosMater}</span></span>
 <span id="cb120-391"><a href="#cb120-391" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-392"><a href="#cb120-392" aria-hidden="true" tabindex="-1"></a>O arquivo <span class="in">`dadosMater.xlsx`</span> é um dataframe constituído por dados de 1568 partos consecutivos do Hospital Geral de Caxias do Sul (HGCS) <span class="ot">[^05-manipulandodados-6]</span> , durante um estudo sobre infecções congênitas @madi2010prevalence. Para baixar esses dados, clique <span class="co">[</span><span class="ot">aqui</span><span class="co">](https://github.com/petronioliveira/Arquivos/blob/main/dadosMater.xlsx)</span> e faça o *download* para o diretório de trabalho, para uso posterior.</span>
+<span id="cb120-392"><a href="#cb120-392" aria-hidden="true" tabindex="-1"></a>O arquivo <span class="in">`dadosMater.xlsx`</span> é um dataframe constituído por dados de 1568 partos consecutivos do Hospital Geral de Caxias do Sul (HGCS) <span class="ot">[^05-manipulandodados-6]</span> , durante um estudo sobre infecções congênitas <span class="co">[</span><span class="ot">@madi2010prevalence</span><span class="co">]</span>. Para baixar esses dados, clique <span class="co">[</span><span class="ot">aqui</span><span class="co">](https://github.com/petronioliveira/Arquivos/blob/main/dadosMater.xlsx)</span> e faça o *download* para o diretório de trabalho, para uso posterior.</span>
 <span id="cb120-393"><a href="#cb120-393" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb120-394"><a href="#cb120-394" aria-hidden="true" tabindex="-1"></a><span class="ot">[^05-manipulandodados-6]: </span>Hospital Escola da Universidade de Caxias do Sul, RS.</span>
 <span id="cb120-395"><a href="#cb120-395" aria-hidden="true" tabindex="-1"></a></span>
@@ -2829,217 +2823,226 @@ Zuur, Alain F, Elena N Ieno, e Erik HWG Meesters. 2009. <span>«Getting Data int
 <span id="cb120-725"><a href="#cb120-725" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb120-726"><a href="#cb120-726" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pacote forcats()</span></span>
 <span id="cb120-727"><a href="#cb120-727" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-728"><a href="#cb120-728" aria-hidden="true" tabindex="-1"></a>O pacote <span class="in">`forcats()`</span> é uma das maravilhas do <span class="in">`tidyverse`</span> voltada exclusivamente para o tratamento de variáveis categóricas no R — ou seja, os fatores. O nome vem de “*for categorical variables*”, e ele foi criado para resolver os desafios que surgem ao lidar com fatores, especialmente em visualizações e modelagens @damiani2022forcats.  </span>
-<span id="cb120-729"><a href="#cb120-729" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb120-728"><a href="#cb120-728" aria-hidden="true" tabindex="-1"></a>O pacote <span class="in">`forcats()`</span> é uma das maravilhas do <span class="in">`tidyverse`</span> voltada exclusivamente para o tratamento de variáveis categóricas no R — ou seja, os fatores. O nome vem de “*for categorical variables*”, e ele foi criado para resolver os desafios que surgem ao lidar com fatores, especialmente em visualizações e modelagens <span class="co">[</span><span class="ot">@damiani2022forcats</span><span class="co">]</span>.</span>
+<span id="cb120-729"><a href="#cb120-729" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb120-730"><a href="#cb120-730" aria-hidden="true" tabindex="-1"></a>A finalidade do pacote <span class="in">`forcats()`</span>:</span>
-<span id="cb120-731"><a href="#cb120-731" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb120-731"><a href="#cb120-731" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb120-732"><a href="#cb120-732" aria-hidden="true" tabindex="-1"></a>Oferece funções intuitivas e poderosas para:</span>
-<span id="cb120-733"><a href="#cb120-733" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb120-734"><a href="#cb120-734" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Reordenar os níveis de um fator;  </span>
-<span id="cb120-735"><a href="#cb120-735" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Modificar, combinar e recodificar níveis;  </span>
-<span id="cb120-736"><a href="#cb120-736" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Lidar com níveis raros ou ausentes;  </span>
-<span id="cb120-737"><a href="#cb120-737" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Preparar fatores para gráficos com ggplot2 (@sec-ggplot2)  </span>
-<span id="cb120-738"><a href="#cb120-738" aria-hidden="true" tabindex="-1"></a>As principais funções doforcats() são:</span>
+<span id="cb120-733"><a href="#cb120-733" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-734"><a href="#cb120-734" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Reordenar os níveis de um fator;\</span>
+<span id="cb120-735"><a href="#cb120-735" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-736"><a href="#cb120-736" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Modificar, combinar e recodificar níveis;\</span>
+<span id="cb120-737"><a href="#cb120-737" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-738"><a href="#cb120-738" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Lidar com níveis raros ou ausentes;\</span>
 <span id="cb120-739"><a href="#cb120-739" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-740"><a href="#cb120-740" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`fct_reorder()`</span> - Reordena os níveis com base em outra variável (ex: média);  </span>
-<span id="cb120-741"><a href="#cb120-741" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`fct_infrequent()`</span> - Reordena os níveis pela frequência (mais comum primeiro);  </span>
-<span id="cb120-742"><a href="#cb120-742" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`fct_rev()`</span>  -  Inverte a ordem dos níveis;   </span>
-<span id="cb120-743"><a href="#cb120-743" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`fct_lump()`</span> - Agrupa níveis menos frequentes em "outros":  </span>
-<span id="cb120-744"><a href="#cb120-744" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`fct_recode()`</span> - Renomeia níveis manualmente;  </span>
-<span id="cb120-745"><a href="#cb120-745" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`fct_drop()`</span>  - Remove níveis não utilizados;  </span>
-<span id="cb120-746"><a href="#cb120-746" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`fct_expand()`</span> - Adiciona novos níveis.</span>
-<span id="cb120-747"><a href="#cb120-747" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-748"><a href="#cb120-748" aria-hidden="true" tabindex="-1"></a>Como exemplo, será modificada a ordem de como a variável sexo será apresentada. Para ver a ordem dos níveis, pode-se usar:</span>
-<span id="cb120-749"><a href="#cb120-749" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-752"><a href="#cb120-752" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb120-753"><a href="#cb120-753" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(mater<span class="sc">$</span>sexo)</span>
-<span id="cb120-754"><a href="#cb120-754" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb120-755"><a href="#cb120-755" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-756"><a href="#cb120-756" aria-hidden="true" tabindex="-1"></a>Ou seja, o sexo masculino está colocado antes do feminino. Como é uma variável dicotômica, basta inverter a ordem, usando a função <span class="in">`fct_rev()`</span>:</span>
-<span id="cb120-757"><a href="#cb120-757" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-760"><a href="#cb120-760" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb120-761"><a href="#cb120-761" aria-hidden="true" tabindex="-1"></a>mater<span class="sc">$</span>sexo <span class="ot">&lt;-</span> <span class="fu">fct_rev</span>(mater<span class="sc">$</span>sexo)</span>
-<span id="cb120-762"><a href="#cb120-762" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-763"><a href="#cb120-763" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(mater<span class="sc">$</span>sexo)</span>
-<span id="cb120-764"><a href="#cb120-764" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb120-765"><a href="#cb120-765" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-766"><a href="#cb120-766" aria-hidden="true" tabindex="-1"></a><span class="fu">## Manipulação de datas</span></span>
-<span id="cb120-767"><a href="#cb120-767" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-768"><a href="#cb120-768" aria-hidden="true" tabindex="-1"></a>Originalmente, todos os que trabalham com o R queixavam-se de como era frustrante trabalhar com datas. Era um processo que causava grande perda de tempo nas análises. O pacote <span class="in">`lubridate`</span> @grolemund2011dates foi criado para simplificar ao máximo a leitura de datas e extração de informações das mesmas.  </span>
-<span id="cb120-769"><a href="#cb120-769" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-772"><a href="#cb120-772" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb120-773"><a href="#cb120-773" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb120-774"><a href="#cb120-774" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb120-775"><a href="#cb120-775" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-776"><a href="#cb120-776" aria-hidden="true" tabindex="-1"></a>Quando o <span class="in">`lubridate`</span> é carregado aparece uma mensagem, avisando que alguns nomes de funções também estão contidas no pacote base do R.    </span>
-<span id="cb120-777"><a href="#cb120-777" aria-hidden="true" tabindex="-1"></a>Para evitar confusões e verificar que as funções corretas estão sendo usadas, usa-se o duplo dois pontos (<span class="in">`::`</span>) antes do nome da função, precedido do nome do pacote, por exemplo: <span class="in">`lubridate::date()`</span>.  </span>
+<span id="cb120-740"><a href="#cb120-740" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Preparar fatores para gráficos com ggplot2 (@sec-ggplot2)\</span>
+<span id="cb120-741"><a href="#cb120-741" aria-hidden="true" tabindex="-1"></a>    As principais funções doforcats() são:</span>
+<span id="cb120-742"><a href="#cb120-742" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-743"><a href="#cb120-743" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`fct_reorder()`</span> - Reordena os níveis com base em outra variável (ex: média);\</span>
+<span id="cb120-744"><a href="#cb120-744" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-745"><a href="#cb120-745" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`fct_infrequent()`</span> - Reordena os níveis pela frequência (mais comum primeiro);\</span>
+<span id="cb120-746"><a href="#cb120-746" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-747"><a href="#cb120-747" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`fct_rev()`</span> - Inverte a ordem dos níveis;\</span>
+<span id="cb120-748"><a href="#cb120-748" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-749"><a href="#cb120-749" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`fct_lump()`</span> - Agrupa níveis menos frequentes em "outros":\</span>
+<span id="cb120-750"><a href="#cb120-750" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-751"><a href="#cb120-751" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`fct_recode()`</span> - Renomeia níveis manualmente;\</span>
+<span id="cb120-752"><a href="#cb120-752" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-753"><a href="#cb120-753" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`fct_drop()`</span> - Remove níveis não utilizados;\</span>
+<span id="cb120-754"><a href="#cb120-754" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-755"><a href="#cb120-755" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`fct_expand()`</span> - Adiciona novos níveis.</span>
+<span id="cb120-756"><a href="#cb120-756" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-757"><a href="#cb120-757" aria-hidden="true" tabindex="-1"></a>Como exemplo, será modificada a ordem de como a variável sexo será apresentada. Para ver a ordem dos níveis, pode-se usar:</span>
+<span id="cb120-758"><a href="#cb120-758" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-761"><a href="#cb120-761" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb120-762"><a href="#cb120-762" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(mater<span class="sc">$</span>sexo)</span>
+<span id="cb120-763"><a href="#cb120-763" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb120-764"><a href="#cb120-764" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-765"><a href="#cb120-765" aria-hidden="true" tabindex="-1"></a>Ou seja, o sexo masculino está colocado antes do feminino. Como é uma variável dicotômica, basta inverter a ordem, usando a função <span class="in">`fct_rev()`</span>:</span>
+<span id="cb120-766"><a href="#cb120-766" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-769"><a href="#cb120-769" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb120-770"><a href="#cb120-770" aria-hidden="true" tabindex="-1"></a>mater<span class="sc">$</span>sexo <span class="ot">&lt;-</span> <span class="fu">fct_rev</span>(mater<span class="sc">$</span>sexo)</span>
+<span id="cb120-771"><a href="#cb120-771" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-772"><a href="#cb120-772" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(mater<span class="sc">$</span>sexo)</span>
+<span id="cb120-773"><a href="#cb120-773" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb120-774"><a href="#cb120-774" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-775"><a href="#cb120-775" aria-hidden="true" tabindex="-1"></a><span class="fu">## Manipulação de datas</span></span>
+<span id="cb120-776"><a href="#cb120-776" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-777"><a href="#cb120-777" aria-hidden="true" tabindex="-1"></a>Originalmente, todos os que trabalham com o R queixavam-se de como era frustrante trabalhar com datas. Era um processo que causava grande perda de tempo nas análises. O pacote <span class="in">`lubridate`</span> <span class="co">[</span><span class="ot">@grolemund2011dates</span><span class="co">]</span> foi criado para simplificar ao máximo a leitura de datas e extração de informações das mesmas.</span>
 <span id="cb120-778"><a href="#cb120-778" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-779"><a href="#cb120-779" aria-hidden="true" tabindex="-1"></a>Para obter a data atual ou a data-hora, você pode usar as funções <span class="in">`today()`</span> ou <span class="in">`now()`</span>: </span>
-<span id="cb120-780"><a href="#cb120-780" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-783"><a href="#cb120-783" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb120-784"><a href="#cb120-784" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>()</span>
-<span id="cb120-785"><a href="#cb120-785" aria-hidden="true" tabindex="-1"></a><span class="fu">now</span>()</span>
-<span id="cb120-786"><a href="#cb120-786" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb120-781"><a href="#cb120-781" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb120-782"><a href="#cb120-782" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb120-783"><a href="#cb120-783" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb120-784"><a href="#cb120-784" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-785"><a href="#cb120-785" aria-hidden="true" tabindex="-1"></a>Quando o <span class="in">`lubridate`</span> é carregado aparece uma mensagem, avisando que alguns nomes de funções também estão contidas no pacote base do R.\</span>
+<span id="cb120-786"><a href="#cb120-786" aria-hidden="true" tabindex="-1"></a>Para evitar confusões e verificar que as funções corretas estão sendo usadas, usa-se o duplo dois pontos (<span class="in">`::`</span>) antes do nome da função, precedido do nome do pacote, por exemplo: <span class="in">`lubridate::date()`</span>.</span>
 <span id="cb120-787"><a href="#cb120-787" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-788"><a href="#cb120-788" aria-hidden="true" tabindex="-1"></a><span class="fu">### Convertendo *strings* ou caractere para data</span></span>
+<span id="cb120-788"><a href="#cb120-788" aria-hidden="true" tabindex="-1"></a>Para obter a data atual ou a data-hora, você pode usar as funções <span class="in">`today()`</span> ou <span class="in">`now()`</span>:</span>
 <span id="cb120-789"><a href="#cb120-789" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-790"><a href="#cb120-790" aria-hidden="true" tabindex="-1"></a>Para converter *string* ou caracteres em datas, basta executar funções específicas adequadas aos dados. Elas determinam automaticamente o formato quando você especifica a ordem do componente. Para usá-los, identifique a ordem em que o ano, o mês e o dia aparecem em suas datas e, em seguida, organize "y", "m" e "d" na mesma ordem. Isso lhe dá o nome da função do <span class="in">`lubridate`</span> que analisará a data. Por exemplo, suponhamos a data de 25/12/2022:</span>
-<span id="cb120-791"><a href="#cb120-791" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-794"><a href="#cb120-794" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb120-795"><a href="#cb120-795" aria-hidden="true" tabindex="-1"></a>natal <span class="ot">&lt;-</span> <span class="st">"25/12/2022"</span></span>
-<span id="cb120-796"><a href="#cb120-796" aria-hidden="true" tabindex="-1"></a>natal</span>
-<span id="cb120-797"><a href="#cb120-797" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb120-792"><a href="#cb120-792" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb120-793"><a href="#cb120-793" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>()</span>
+<span id="cb120-794"><a href="#cb120-794" aria-hidden="true" tabindex="-1"></a><span class="fu">now</span>()</span>
+<span id="cb120-795"><a href="#cb120-795" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb120-796"><a href="#cb120-796" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-797"><a href="#cb120-797" aria-hidden="true" tabindex="-1"></a><span class="fu">### Convertendo *strings* ou caractere para data</span></span>
 <span id="cb120-798"><a href="#cb120-798" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-799"><a href="#cb120-799" aria-hidden="true" tabindex="-1"></a>Aparentemente, o *R* aceitou a informação como uma data. Entretanto, se for verificada a classe do objeto, tem-se:</span>
+<span id="cb120-799"><a href="#cb120-799" aria-hidden="true" tabindex="-1"></a>Para converter *string* ou caracteres em datas, basta executar funções específicas adequadas aos dados. Elas determinam automaticamente o formato quando você especifica a ordem do componente. Para usá-los, identifique a ordem em que o ano, o mês e o dia aparecem em suas datas e, em seguida, organize "y", "m" e "d" na mesma ordem. Isso lhe dá o nome da função do <span class="in">`lubridate`</span> que analisará a data. Por exemplo, suponhamos a data de 25/12/2022:</span>
 <span id="cb120-800"><a href="#cb120-800" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb120-803"><a href="#cb120-803" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb120-804"><a href="#cb120-804" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(natal)</span>
-<span id="cb120-805"><a href="#cb120-805" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb120-806"><a href="#cb120-806" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-807"><a href="#cb120-807" aria-hidden="true" tabindex="-1"></a>Estando como caractere, esta data não poderá ser usada em operações com datas, pois necessitaria estar como uma classe <span class="in">`date`</span>. Para converte-la em data, usa-se a função <span class="in">`dmy()`</span>:</span>
-<span id="cb120-808"><a href="#cb120-808" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-811"><a href="#cb120-811" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb120-812"><a href="#cb120-812" aria-hidden="true" tabindex="-1"></a>natal <span class="ot">&lt;-</span> <span class="fu">dmy</span>(natal)</span>
-<span id="cb120-813"><a href="#cb120-813" aria-hidden="true" tabindex="-1"></a>natal</span>
-<span id="cb120-814"><a href="#cb120-814" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(natal)</span>
-<span id="cb120-815"><a href="#cb120-815" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb120-816"><a href="#cb120-816" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-817"><a href="#cb120-817" aria-hidden="true" tabindex="-1"></a>Dessa forma, a data, agora está sendo reconhecida pelo *R* como <span class="in">`date`</span>. É sempre importante verificar a classe da data.</span>
-<span id="cb120-818"><a href="#cb120-818" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-819"><a href="#cb120-819" aria-hidden="true" tabindex="-1"></a>Às vezes, as datas escritas estão com o mês abreviado, como 25/dez/2022. O procedimento é o mesmo</span>
-<span id="cb120-820"><a href="#cb120-820" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-823"><a href="#cb120-823" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb120-824"><a href="#cb120-824" aria-hidden="true" tabindex="-1"></a>minha.data <span class="ot">&lt;-</span> <span class="st">"25/dez/2022"</span></span>
-<span id="cb120-825"><a href="#cb120-825" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span> (minha.data)</span>
-<span id="cb120-826"><a href="#cb120-826" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb120-804"><a href="#cb120-804" aria-hidden="true" tabindex="-1"></a>natal <span class="ot">&lt;-</span> <span class="st">"25/12/2022"</span></span>
+<span id="cb120-805"><a href="#cb120-805" aria-hidden="true" tabindex="-1"></a>natal</span>
+<span id="cb120-806"><a href="#cb120-806" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb120-807"><a href="#cb120-807" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-808"><a href="#cb120-808" aria-hidden="true" tabindex="-1"></a>Aparentemente, o *R* aceitou a informação como uma data. Entretanto, se for verificada a classe do objeto, tem-se:</span>
+<span id="cb120-809"><a href="#cb120-809" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-812"><a href="#cb120-812" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb120-813"><a href="#cb120-813" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(natal)</span>
+<span id="cb120-814"><a href="#cb120-814" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb120-815"><a href="#cb120-815" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-816"><a href="#cb120-816" aria-hidden="true" tabindex="-1"></a>Estando como caractere, esta data não poderá ser usada em operações com datas, pois necessitaria estar como uma classe <span class="in">`date`</span>. Para converte-la em data, usa-se a função <span class="in">`dmy()`</span>:</span>
+<span id="cb120-817"><a href="#cb120-817" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-820"><a href="#cb120-820" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb120-821"><a href="#cb120-821" aria-hidden="true" tabindex="-1"></a>natal <span class="ot">&lt;-</span> <span class="fu">dmy</span>(natal)</span>
+<span id="cb120-822"><a href="#cb120-822" aria-hidden="true" tabindex="-1"></a>natal</span>
+<span id="cb120-823"><a href="#cb120-823" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(natal)</span>
+<span id="cb120-824"><a href="#cb120-824" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb120-825"><a href="#cb120-825" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-826"><a href="#cb120-826" aria-hidden="true" tabindex="-1"></a>Dessa forma, a data, agora está sendo reconhecida pelo *R* como <span class="in">`date`</span>. É sempre importante verificar a classe da data.</span>
 <span id="cb120-827"><a href="#cb120-827" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-830"><a href="#cb120-830" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb120-831"><a href="#cb120-831" aria-hidden="true" tabindex="-1"></a>minha.data <span class="ot">&lt;-</span> <span class="fu">dmy</span>(minha.data)</span>
-<span id="cb120-832"><a href="#cb120-832" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span> (minha.data)</span>
-<span id="cb120-833"><a href="#cb120-833" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb120-834"><a href="#cb120-834" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-835"><a href="#cb120-835" aria-hidden="true" tabindex="-1"></a>Se além da data, houver necessidade de especificar o horário, basta usar <span class="in">`dmy_h()`</span>, <span class="in">`dmy_hm()`</span> e <span class="in">`dmy_hms()`</span>. No padrão americano, pode ser usado <span class="in">`ymd()`</span>.</span>
+<span id="cb120-828"><a href="#cb120-828" aria-hidden="true" tabindex="-1"></a>Às vezes, as datas escritas estão com o mês abreviado, como 25/dez/2022. O procedimento é o mesmo</span>
+<span id="cb120-829"><a href="#cb120-829" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-832"><a href="#cb120-832" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb120-833"><a href="#cb120-833" aria-hidden="true" tabindex="-1"></a>minha.data <span class="ot">&lt;-</span> <span class="st">"25/dez/2022"</span></span>
+<span id="cb120-834"><a href="#cb120-834" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span> (minha.data)</span>
+<span id="cb120-835"><a href="#cb120-835" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb120-836"><a href="#cb120-836" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-837"><a href="#cb120-837" aria-hidden="true" tabindex="-1"></a>O <span class="in">`lubridate`</span> traz diversas funções para extrair os componentes de um objeto da classe date.</span>
-<span id="cb120-838"><a href="#cb120-838" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-839"><a href="#cb120-839" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`second()`</span> $\to$ extrai os segundos.</span>
-<span id="cb120-840"><a href="#cb120-840" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`minute()`</span> $\to$ extrai os minutos.</span>
-<span id="cb120-841"><a href="#cb120-841" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`hour()`</span> $\to$ extrai a hora.</span>
-<span id="cb120-842"><a href="#cb120-842" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`wday()`</span> $\to$ extrai o dia da semana.</span>
-<span id="cb120-843"><a href="#cb120-843" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`mday()`</span> $\to$ extrai o dia do mês.</span>
-<span id="cb120-844"><a href="#cb120-844" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`month()`</span> $\to$ extrai o mês.</span>
-<span id="cb120-845"><a href="#cb120-845" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`year()`</span> $\to$ extrai o ano.</span>
-<span id="cb120-846"><a href="#cb120-846" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-847"><a href="#cb120-847" aria-hidden="true" tabindex="-1"></a>Por exemplo, usando a data de nascimento (<span class="in">`dn`</span>) de um dos netos do autor:</span>
-<span id="cb120-848"><a href="#cb120-848" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-851"><a href="#cb120-851" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb120-852"><a href="#cb120-852" aria-hidden="true" tabindex="-1"></a>dn <span class="ot">&lt;-</span> <span class="fu">dmy</span>(<span class="st">"06/06/2018"</span>)</span>
-<span id="cb120-853"><a href="#cb120-853" aria-hidden="true" tabindex="-1"></a><span class="fu">year</span>(dn)</span>
-<span id="cb120-854"><a href="#cb120-854" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb120-839"><a href="#cb120-839" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb120-840"><a href="#cb120-840" aria-hidden="true" tabindex="-1"></a>minha.data <span class="ot">&lt;-</span> <span class="fu">dmy</span>(minha.data)</span>
+<span id="cb120-841"><a href="#cb120-841" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span> (minha.data)</span>
+<span id="cb120-842"><a href="#cb120-842" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb120-843"><a href="#cb120-843" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-844"><a href="#cb120-844" aria-hidden="true" tabindex="-1"></a>Se além da data, houver necessidade de especificar o horário, basta usar <span class="in">`dmy_h()`</span>, <span class="in">`dmy_hm()`</span> e <span class="in">`dmy_hms()`</span>. No padrão americano, pode ser usado <span class="in">`ymd()`</span>.</span>
+<span id="cb120-845"><a href="#cb120-845" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-846"><a href="#cb120-846" aria-hidden="true" tabindex="-1"></a>O <span class="in">`lubridate`</span> traz diversas funções para extrair os componentes de um objeto da classe date.</span>
+<span id="cb120-847"><a href="#cb120-847" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-848"><a href="#cb120-848" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`second()`</span> $\to$ extrai os segundos.</span>
+<span id="cb120-849"><a href="#cb120-849" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`minute()`</span> $\to$ extrai os minutos.</span>
+<span id="cb120-850"><a href="#cb120-850" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`hour()`</span> $\to$ extrai a hora.</span>
+<span id="cb120-851"><a href="#cb120-851" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`wday()`</span> $\to$ extrai o dia da semana.</span>
+<span id="cb120-852"><a href="#cb120-852" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`mday()`</span> $\to$ extrai o dia do mês.</span>
+<span id="cb120-853"><a href="#cb120-853" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`month()`</span> $\to$ extrai o mês.</span>
+<span id="cb120-854"><a href="#cb120-854" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`year()`</span> $\to$ extrai o ano.</span>
 <span id="cb120-855"><a href="#cb120-855" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-856"><a href="#cb120-856" aria-hidden="true" tabindex="-1"></a>Para acrescentar um horário ao objeto data de nascimento (<span class="in">`dn`</span>)\^<span class="sc">\[</span>UTC = Coordinated Universal Time}:</span>
+<span id="cb120-856"><a href="#cb120-856" aria-hidden="true" tabindex="-1"></a>Por exemplo, usando a data de nascimento (<span class="in">`dn`</span>) de um dos netos do autor:</span>
 <span id="cb120-857"><a href="#cb120-857" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb120-860"><a href="#cb120-860" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb120-861"><a href="#cb120-861" aria-hidden="true" tabindex="-1"></a><span class="fu">hour</span>(dn) <span class="ot">&lt;-</span> <span class="dv">18</span></span>
-<span id="cb120-862"><a href="#cb120-862" aria-hidden="true" tabindex="-1"></a>dn</span>
+<span id="cb120-861"><a href="#cb120-861" aria-hidden="true" tabindex="-1"></a>dn <span class="ot">&lt;-</span> <span class="fu">dmy</span>(<span class="st">"06/06/2018"</span>)</span>
+<span id="cb120-862"><a href="#cb120-862" aria-hidden="true" tabindex="-1"></a><span class="fu">year</span>(dn)</span>
 <span id="cb120-863"><a href="#cb120-863" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb120-864"><a href="#cb120-864" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-865"><a href="#cb120-865" aria-hidden="true" tabindex="-1"></a><span class="fu">### Juntando componentes de datas</span></span>
+<span id="cb120-865"><a href="#cb120-865" aria-hidden="true" tabindex="-1"></a>Para acrescentar um horário ao objeto data de nascimento (<span class="in">`dn`</span>)\^<span class="sc">\[</span>UTC = Coordinated Universal Time}:</span>
 <span id="cb120-866"><a href="#cb120-866" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-867"><a href="#cb120-867" aria-hidden="true" tabindex="-1"></a>Para juntar componentes de datas e horas, pode-se utilizar as funções <span class="in">`make_date()`</span> e <span class="in">`make_datetime()`</span>. Em muitos arquivos, os componentes da data estão em colunas diferentes e há necessidade de juntá-los em uma única coluna para compor a data:</span>
-<span id="cb120-868"><a href="#cb120-868" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-871"><a href="#cb120-871" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb120-872"><a href="#cb120-872" aria-hidden="true" tabindex="-1"></a>felix <span class="ot">&lt;-</span> <span class="fu">make_date</span>(<span class="at">year =</span> <span class="dv">2018</span>, <span class="at">month =</span> <span class="dv">06</span>, <span class="at">day =</span> <span class="dv">06</span>)</span>
-<span id="cb120-873"><a href="#cb120-873" aria-hidden="true" tabindex="-1"></a>felix</span>
-<span id="cb120-874"><a href="#cb120-874" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb120-869"><a href="#cb120-869" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb120-870"><a href="#cb120-870" aria-hidden="true" tabindex="-1"></a><span class="fu">hour</span>(dn) <span class="ot">&lt;-</span> <span class="dv">18</span></span>
+<span id="cb120-871"><a href="#cb120-871" aria-hidden="true" tabindex="-1"></a>dn</span>
+<span id="cb120-872"><a href="#cb120-872" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb120-873"><a href="#cb120-873" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-874"><a href="#cb120-874" aria-hidden="true" tabindex="-1"></a><span class="fu">### Juntando componentes de datas</span></span>
 <span id="cb120-875"><a href="#cb120-875" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-876"><a href="#cb120-876" aria-hidden="true" tabindex="-1"></a>Para juntar ano, mês, dia, hora e minuto:</span>
+<span id="cb120-876"><a href="#cb120-876" aria-hidden="true" tabindex="-1"></a>Para juntar componentes de datas e horas, pode-se utilizar as funções <span class="in">`make_date()`</span> e <span class="in">`make_datetime()`</span>. Em muitos arquivos, os componentes da data estão em colunas diferentes e há necessidade de juntá-los em uma única coluna para compor a data:</span>
 <span id="cb120-877"><a href="#cb120-877" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb120-880"><a href="#cb120-880" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb120-881"><a href="#cb120-881" aria-hidden="true" tabindex="-1"></a>minha.data <span class="ot">&lt;-</span> <span class="fu">make_datetime</span>(<span class="at">year =</span> <span class="dv">2018</span>, </span>
-<span id="cb120-882"><a href="#cb120-882" aria-hidden="true" tabindex="-1"></a>                            <span class="at">month =</span> <span class="dv">06</span>, </span>
-<span id="cb120-883"><a href="#cb120-883" aria-hidden="true" tabindex="-1"></a>                            <span class="at">day =</span> <span class="dv">06</span>, </span>
-<span id="cb120-884"><a href="#cb120-884" aria-hidden="true" tabindex="-1"></a>                            <span class="at">hour =</span> <span class="dv">18</span> ,</span>
-<span id="cb120-885"><a href="#cb120-885" aria-hidden="true" tabindex="-1"></a>                            <span class="at">min =</span> <span class="dv">00</span>, </span>
-<span id="cb120-886"><a href="#cb120-886" aria-hidden="true" tabindex="-1"></a>                            <span class="at">sec =</span> <span class="dv">15</span>)</span>
-<span id="cb120-887"><a href="#cb120-887" aria-hidden="true" tabindex="-1"></a>minha.data</span>
-<span id="cb120-888"><a href="#cb120-888" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb120-889"><a href="#cb120-889" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-890"><a href="#cb120-890" aria-hidden="true" tabindex="-1"></a><span class="fu">### Extraindo componentes de datas</span></span>
-<span id="cb120-891"><a href="#cb120-891" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-892"><a href="#cb120-892" aria-hidden="true" tabindex="-1"></a>Quando temos objetos do tipo POSIXt<span class="ot">[^05-manipulandodados-9]</span> podemos extrair componentes ou elementos deles. Para isso são usadas algumas funções específicas do pacote <span class="in">`lubridate`</span> como mostrado a seguir.</span>
-<span id="cb120-893"><a href="#cb120-893" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-894"><a href="#cb120-894" aria-hidden="true" tabindex="-1"></a><span class="ot">[^05-manipulandodados-9]: </span>POSIXt é uma classe de objetos do R que representa datas e horas. POSIXt significa Portable Operating System Interface for Unix Time, que é um padrão para medir o tempo em segundos desde 1 de janeiro de 1970. Existem duas formas internas de implementar POSIXt: POSIXct e POSIXlt. POSIXct armazena os segundos desde a época UNIX e POSIXlt armazena uma lista de dia, mês, ano, hora, minuto, segundo, etc.</span>
-<span id="cb120-895"><a href="#cb120-895" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-898"><a href="#cb120-898" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb120-899"><a href="#cb120-899" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">now</span>()</span>
+<span id="cb120-881"><a href="#cb120-881" aria-hidden="true" tabindex="-1"></a>felix <span class="ot">&lt;-</span> <span class="fu">make_date</span>(<span class="at">year =</span> <span class="dv">2018</span>, <span class="at">month =</span> <span class="dv">06</span>, <span class="at">day =</span> <span class="dv">06</span>)</span>
+<span id="cb120-882"><a href="#cb120-882" aria-hidden="true" tabindex="-1"></a>felix</span>
+<span id="cb120-883"><a href="#cb120-883" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb120-884"><a href="#cb120-884" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-885"><a href="#cb120-885" aria-hidden="true" tabindex="-1"></a>Para juntar ano, mês, dia, hora e minuto:</span>
+<span id="cb120-886"><a href="#cb120-886" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-889"><a href="#cb120-889" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb120-890"><a href="#cb120-890" aria-hidden="true" tabindex="-1"></a>minha.data <span class="ot">&lt;-</span> <span class="fu">make_datetime</span>(<span class="at">year =</span> <span class="dv">2018</span>, </span>
+<span id="cb120-891"><a href="#cb120-891" aria-hidden="true" tabindex="-1"></a>                            <span class="at">month =</span> <span class="dv">06</span>, </span>
+<span id="cb120-892"><a href="#cb120-892" aria-hidden="true" tabindex="-1"></a>                            <span class="at">day =</span> <span class="dv">06</span>, </span>
+<span id="cb120-893"><a href="#cb120-893" aria-hidden="true" tabindex="-1"></a>                            <span class="at">hour =</span> <span class="dv">18</span> ,</span>
+<span id="cb120-894"><a href="#cb120-894" aria-hidden="true" tabindex="-1"></a>                            <span class="at">min =</span> <span class="dv">00</span>, </span>
+<span id="cb120-895"><a href="#cb120-895" aria-hidden="true" tabindex="-1"></a>                            <span class="at">sec =</span> <span class="dv">15</span>)</span>
+<span id="cb120-896"><a href="#cb120-896" aria-hidden="true" tabindex="-1"></a>minha.data</span>
+<span id="cb120-897"><a href="#cb120-897" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb120-898"><a href="#cb120-898" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-899"><a href="#cb120-899" aria-hidden="true" tabindex="-1"></a><span class="fu">### Extraindo componentes de datas</span></span>
 <span id="cb120-900"><a href="#cb120-900" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-901"><a href="#cb120-901" aria-hidden="true" tabindex="-1"></a><span class="fu">year</span>(data)            <span class="co"># Extrai o ano</span></span>
-<span id="cb120-902"><a href="#cb120-902" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb120-903"><a href="#cb120-903" aria-hidden="true" tabindex="-1"></a><span class="fu">month</span>(data)           <span class="co"># Extrai o mês</span></span>
+<span id="cb120-901"><a href="#cb120-901" aria-hidden="true" tabindex="-1"></a>Quando temos objetos do tipo POSIXt<span class="ot">[^05-manipulandodados-8]</span> podemos extrair componentes ou elementos deles. Para isso são usadas algumas funções específicas do pacote <span class="in">`lubridate`</span> como mostrado a seguir.</span>
+<span id="cb120-902"><a href="#cb120-902" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-903"><a href="#cb120-903" aria-hidden="true" tabindex="-1"></a><span class="ot">[^05-manipulandodados-8]: </span>POSIXt é uma classe de objetos do R que representa datas e horas. POSIXt significa Portable Operating System Interface for Unix Time, que é um padrão para medir o tempo em segundos desde 1 de janeiro de 1970. Existem duas formas internas de implementar POSIXt: POSIXct e POSIXlt. POSIXct armazena os segundos desde a época UNIX e POSIXlt armazena uma lista de dia, mês, ano, hora, minuto, segundo, etc.</span>
 <span id="cb120-904"><a href="#cb120-904" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-905"><a href="#cb120-905" aria-hidden="true" tabindex="-1"></a><span class="fu">week</span>(data)            <span class="co"># Extrai a semana</span></span>
-<span id="cb120-906"><a href="#cb120-906" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-907"><a href="#cb120-907" aria-hidden="true" tabindex="-1"></a><span class="fu">day</span>(data)             <span class="co"># Extrai o dia</span></span>
-<span id="cb120-908"><a href="#cb120-908" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-909"><a href="#cb120-909" aria-hidden="true" tabindex="-1"></a><span class="fu">minute</span>(data)          <span class="co"># Extrai o minuto</span></span>
-<span id="cb120-910"><a href="#cb120-910" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-911"><a href="#cb120-911" aria-hidden="true" tabindex="-1"></a><span class="fu">second</span>(data)          <span class="co"># Extrai o segundo</span></span>
-<span id="cb120-912"><a href="#cb120-912" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb120-907"><a href="#cb120-907" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb120-908"><a href="#cb120-908" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">now</span>()</span>
+<span id="cb120-909"><a href="#cb120-909" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-910"><a href="#cb120-910" aria-hidden="true" tabindex="-1"></a><span class="fu">year</span>(data)            <span class="co"># Extrai o ano</span></span>
+<span id="cb120-911"><a href="#cb120-911" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb120-912"><a href="#cb120-912" aria-hidden="true" tabindex="-1"></a><span class="fu">month</span>(data)           <span class="co"># Extrai o mês</span></span>
 <span id="cb120-913"><a href="#cb120-913" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-914"><a href="#cb120-914" aria-hidden="true" tabindex="-1"></a>Para verificar o número de dias tem em um determinado mês, usa-se a função <span class="in">`days_in_month()`</span>:</span>
+<span id="cb120-914"><a href="#cb120-914" aria-hidden="true" tabindex="-1"></a><span class="fu">week</span>(data)            <span class="co"># Extrai a semana</span></span>
 <span id="cb120-915"><a href="#cb120-915" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-918"><a href="#cb120-918" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb120-919"><a href="#cb120-919" aria-hidden="true" tabindex="-1"></a> data1 <span class="ot">&lt;-</span> <span class="fu">dmy</span>(<span class="st">"25/02/2000"</span>)</span>
-<span id="cb120-920"><a href="#cb120-920" aria-hidden="true" tabindex="-1"></a> <span class="fu">days_in_month</span>(data1)          </span>
+<span id="cb120-916"><a href="#cb120-916" aria-hidden="true" tabindex="-1"></a><span class="fu">day</span>(data)             <span class="co"># Extrai o dia</span></span>
+<span id="cb120-917"><a href="#cb120-917" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-918"><a href="#cb120-918" aria-hidden="true" tabindex="-1"></a><span class="fu">minute</span>(data)          <span class="co"># Extrai o minuto</span></span>
+<span id="cb120-919"><a href="#cb120-919" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-920"><a href="#cb120-920" aria-hidden="true" tabindex="-1"></a><span class="fu">second</span>(data)          <span class="co"># Extrai o segundo</span></span>
 <span id="cb120-921"><a href="#cb120-921" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb120-922"><a href="#cb120-922" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-923"><a href="#cb120-923" aria-hidden="true" tabindex="-1"></a><span class="fu">### Operações com datas</span></span>
+<span id="cb120-923"><a href="#cb120-923" aria-hidden="true" tabindex="-1"></a>Para verificar o número de dias tem em um determinado mês, usa-se a função <span class="in">`days_in_month()`</span>:</span>
 <span id="cb120-924"><a href="#cb120-924" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-925"><a href="#cb120-925" aria-hidden="true" tabindex="-1"></a>O pacote <span class="in">`lubridate`</span> possui funções de duração e de período para manipular as datas. As funções de duração calculam o número de segundos em um determinado num determinado número de dias. As funções de duração não levam em consideração anos bissextos e horário de verão, enquanto as funções de período consideram esses fatores.</span>
-<span id="cb120-926"><a href="#cb120-926" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-929"><a href="#cb120-929" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb120-930"><a href="#cb120-930" aria-hidden="true" tabindex="-1"></a><span class="fu">ddays</span> (<span class="dv">1</span>)           <span class="co"># Número de segundos em 1 dia</span></span>
+<span id="cb120-927"><a href="#cb120-927" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb120-928"><a href="#cb120-928" aria-hidden="true" tabindex="-1"></a> data1 <span class="ot">&lt;-</span> <span class="fu">dmy</span>(<span class="st">"25/02/2000"</span>)</span>
+<span id="cb120-929"><a href="#cb120-929" aria-hidden="true" tabindex="-1"></a> <span class="fu">days_in_month</span>(data1)          </span>
+<span id="cb120-930"><a href="#cb120-930" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb120-931"><a href="#cb120-931" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-932"><a href="#cb120-932" aria-hidden="true" tabindex="-1"></a><span class="fu">dhours</span> (<span class="dv">1</span>)          <span class="co"># Número de segundos em 1 hora</span></span>
+<span id="cb120-932"><a href="#cb120-932" aria-hidden="true" tabindex="-1"></a><span class="fu">### Operações com datas</span></span>
 <span id="cb120-933"><a href="#cb120-933" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-934"><a href="#cb120-934" aria-hidden="true" tabindex="-1"></a><span class="fu">dminutes</span> (<span class="dv">1</span>)        <span class="co"># Número de segundos em 1 minuto</span></span>
+<span id="cb120-934"><a href="#cb120-934" aria-hidden="true" tabindex="-1"></a>O pacote <span class="in">`lubridate`</span> possui funções de duração e de período para manipular as datas. As funções de duração calculam o número de segundos em um determinado num determinado número de dias. As funções de duração não levam em consideração anos bissextos e horário de verão, enquanto as funções de período consideram esses fatores.</span>
 <span id="cb120-935"><a href="#cb120-935" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-936"><a href="#cb120-936" aria-hidden="true" tabindex="-1"></a><span class="fu">days</span> (<span class="dv">5</span>)            <span class="co"># Cria um período de 5 dias</span></span>
-<span id="cb120-937"><a href="#cb120-937" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-938"><a href="#cb120-938" aria-hidden="true" tabindex="-1"></a><span class="fu">weeks</span> (<span class="dv">5</span>)           <span class="co"># Cria um período de 5 semanas</span></span>
-<span id="cb120-939"><a href="#cb120-939" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb120-938"><a href="#cb120-938" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb120-939"><a href="#cb120-939" aria-hidden="true" tabindex="-1"></a><span class="fu">ddays</span> (<span class="dv">1</span>)           <span class="co"># Número de segundos em 1 dia</span></span>
 <span id="cb120-940"><a href="#cb120-940" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-941"><a href="#cb120-941" aria-hidden="true" tabindex="-1"></a>Suponha-se que haja necessidade de saber em qual dia cairá após acrescentarmos 5 semanas à <span class="in">`data1`</span> (25/02/2000), criada acima:</span>
+<span id="cb120-941"><a href="#cb120-941" aria-hidden="true" tabindex="-1"></a><span class="fu">dhours</span> (<span class="dv">1</span>)          <span class="co"># Número de segundos em 1 hora</span></span>
 <span id="cb120-942"><a href="#cb120-942" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-945"><a href="#cb120-945" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb120-946"><a href="#cb120-946" aria-hidden="true" tabindex="-1"></a>data1 <span class="sc">+</span> <span class="fu">weeks</span> (<span class="dv">5</span>)           </span>
-<span id="cb120-947"><a href="#cb120-947" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb120-948"><a href="#cb120-948" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-949"><a href="#cb120-949" aria-hidden="true" tabindex="-1"></a>Adicionando 1 ano à <span class="in">`data1`</span> (25/02/2000) com uma função de duração, tem-se:</span>
-<span id="cb120-950"><a href="#cb120-950" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-953"><a href="#cb120-953" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb120-954"><a href="#cb120-954" aria-hidden="true" tabindex="-1"></a>data1 <span class="sc">+</span> <span class="fu">dyears</span> (<span class="dv">1</span>)           </span>
-<span id="cb120-955"><a href="#cb120-955" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb120-956"><a href="#cb120-956" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-957"><a href="#cb120-957" aria-hidden="true" tabindex="-1"></a>Se for adicionado um ano à mesma data, mas agora com uma função de período, tem-se:</span>
-<span id="cb120-958"><a href="#cb120-958" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-961"><a href="#cb120-961" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb120-962"><a href="#cb120-962" aria-hidden="true" tabindex="-1"></a>data1 <span class="sc">+</span> <span class="fu">years</span> (<span class="dv">1</span>)           </span>
-<span id="cb120-963"><a href="#cb120-963" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb120-964"><a href="#cb120-964" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-965"><a href="#cb120-965" aria-hidden="true" tabindex="-1"></a>Um intervalo de tempo pode ser obtido a partir de uma data inicial e uma data final. Suponha que uma gestante tenha como data da sua última menstruação 04/10/2022 e o bebê tenha nascido em 30/06/2023. Qual a idade gestacional em dias? A sintaxe para calcular um intervalo é dada pela subtração das duas datas:</span>
-<span id="cb120-966"><a href="#cb120-966" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-969"><a href="#cb120-969" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb120-970"><a href="#cb120-970" aria-hidden="true" tabindex="-1"></a>data.inicial <span class="ot">&lt;-</span> <span class="fu">dmy</span>(<span class="st">"04/10/2022"</span>)</span>
-<span id="cb120-971"><a href="#cb120-971" aria-hidden="true" tabindex="-1"></a>data.final <span class="ot">&lt;-</span> <span class="fu">dmy</span>(<span class="st">"30/06/2023"</span>)</span>
-<span id="cb120-972"><a href="#cb120-972" aria-hidden="true" tabindex="-1"></a>idade_gesta <span class="ot">&lt;-</span> data.final <span class="sc">-</span> data.inicial</span>
-<span id="cb120-973"><a href="#cb120-973" aria-hidden="true" tabindex="-1"></a>idade_gesta</span>
-<span id="cb120-974"><a href="#cb120-974" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb120-943"><a href="#cb120-943" aria-hidden="true" tabindex="-1"></a><span class="fu">dminutes</span> (<span class="dv">1</span>)        <span class="co"># Número de segundos em 1 minuto</span></span>
+<span id="cb120-944"><a href="#cb120-944" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-945"><a href="#cb120-945" aria-hidden="true" tabindex="-1"></a><span class="fu">days</span> (<span class="dv">5</span>)            <span class="co"># Cria um período de 5 dias</span></span>
+<span id="cb120-946"><a href="#cb120-946" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-947"><a href="#cb120-947" aria-hidden="true" tabindex="-1"></a><span class="fu">weeks</span> (<span class="dv">5</span>)           <span class="co"># Cria um período de 5 semanas</span></span>
+<span id="cb120-948"><a href="#cb120-948" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb120-949"><a href="#cb120-949" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-950"><a href="#cb120-950" aria-hidden="true" tabindex="-1"></a>Suponha-se que haja necessidade de saber em qual dia cairá após acrescentarmos 5 semanas à <span class="in">`data1`</span> (25/02/2000), criada acima:</span>
+<span id="cb120-951"><a href="#cb120-951" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-954"><a href="#cb120-954" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb120-955"><a href="#cb120-955" aria-hidden="true" tabindex="-1"></a>data1 <span class="sc">+</span> <span class="fu">weeks</span> (<span class="dv">5</span>)           </span>
+<span id="cb120-956"><a href="#cb120-956" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb120-957"><a href="#cb120-957" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-958"><a href="#cb120-958" aria-hidden="true" tabindex="-1"></a>Adicionando 1 ano à <span class="in">`data1`</span> (25/02/2000) com uma função de duração, tem-se:</span>
+<span id="cb120-959"><a href="#cb120-959" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-962"><a href="#cb120-962" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb120-963"><a href="#cb120-963" aria-hidden="true" tabindex="-1"></a>data1 <span class="sc">+</span> <span class="fu">dyears</span> (<span class="dv">1</span>)           </span>
+<span id="cb120-964"><a href="#cb120-964" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb120-965"><a href="#cb120-965" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-966"><a href="#cb120-966" aria-hidden="true" tabindex="-1"></a>Se for adicionado um ano à mesma data, mas agora com uma função de período, tem-se:</span>
+<span id="cb120-967"><a href="#cb120-967" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-970"><a href="#cb120-970" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb120-971"><a href="#cb120-971" aria-hidden="true" tabindex="-1"></a>data1 <span class="sc">+</span> <span class="fu">years</span> (<span class="dv">1</span>)           </span>
+<span id="cb120-972"><a href="#cb120-972" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb120-973"><a href="#cb120-973" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-974"><a href="#cb120-974" aria-hidden="true" tabindex="-1"></a>Um intervalo de tempo pode ser obtido a partir de uma data inicial e uma data final. Suponha que uma gestante tenha como data da sua última menstruação 04/10/2022 e o bebê tenha nascido em 30/06/2023. Qual a idade gestacional em dias? A sintaxe para calcular um intervalo é dada pela subtração das duas datas:</span>
 <span id="cb120-975"><a href="#cb120-975" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-976"><a href="#cb120-976" aria-hidden="true" tabindex="-1"></a>Ou seja a gestação durou 269 dias, constituindo-se em um parto a termo, entre 37 (259 dias) e 42 semanas (294 dias).</span>
-<span id="cb120-977"><a href="#cb120-977" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-978"><a href="#cb120-978" aria-hidden="true" tabindex="-1"></a>Para mais informações sobre o <span class="in">`lubridate`</span>, consulte a ajuda do pacote ou o capítulo 16 do livro *R for Data Science*, Hadley Wickman e Garrett Grolemund, 2017 <span class="sc">\[</span>https://r4ds.had.co.nz/index.html<span class="sc">\]</span> .</span>
+<span id="cb120-978"><a href="#cb120-978" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb120-979"><a href="#cb120-979" aria-hidden="true" tabindex="-1"></a>data.inicial <span class="ot">&lt;-</span> <span class="fu">dmy</span>(<span class="st">"04/10/2022"</span>)</span>
+<span id="cb120-980"><a href="#cb120-980" aria-hidden="true" tabindex="-1"></a>data.final <span class="ot">&lt;-</span> <span class="fu">dmy</span>(<span class="st">"30/06/2023"</span>)</span>
+<span id="cb120-981"><a href="#cb120-981" aria-hidden="true" tabindex="-1"></a>idade_gesta <span class="ot">&lt;-</span> data.final <span class="sc">-</span> data.inicial</span>
+<span id="cb120-982"><a href="#cb120-982" aria-hidden="true" tabindex="-1"></a>idade_gesta</span>
+<span id="cb120-983"><a href="#cb120-983" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb120-984"><a href="#cb120-984" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-985"><a href="#cb120-985" aria-hidden="true" tabindex="-1"></a>Ou seja a gestação durou 269 dias, constituindo-se em um parto a termo, entre 37 (259 dias) e 42 semanas (294 dias).</span>
+<span id="cb120-986"><a href="#cb120-986" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-987"><a href="#cb120-987" aria-hidden="true" tabindex="-1"></a>Para mais informações sobre o <span class="in">`lubridate`</span>, consulte a ajuda do pacote ou o capítulo 16 do livro *R for Data Science*, Hadley Wickman e Garrett Grolemund, 2017 <span class="sc">\[</span>https://r4ds.had.co.nz/index.html<span class="sc">\]</span> .</span>
 </code><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

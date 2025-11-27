@@ -204,7 +204,7 @@ n2 <- resumo$n[2]
 n2
 ```
 
-6.  Calcular a estística do teste, usando a fórmula preconizada por Altman @altman1991mannwhitney:
+6.  Calcular a estística do teste, usando a fórmula preconizada por Altman [@altman1991mannwhitney]:
 
 $$
 U =n_{1} \times n_{2} \ +\left [\frac{n_{1} \times \left (n_{1} + 1  \right )}{2}  \right ] - T
@@ -289,7 +289,7 @@ r <- Z_U/sqrt(n1+n2)
 round(r,3)
 ```
 
-O R possui a função `wilcox_effsize()` incluída no pacote `rstatix`. Necessita também do pacote `coin` @hothorn2006lego instalado para calcular a estatística *r*.[^20-testes-naoparametricos-2] A saída exibirá junto a magnitude o efeito, que no caso é pequena (veja @tbl-wilcoxef).
+O R possui a função `wilcox_effsize()` incluída no pacote `rstatix`. Necessita também do pacote `coin` [@hothorn2006lego] instalado para calcular a estatística *r*.[^20-testes-naoparametricos-2] A saída exibirá junto a magnitude o efeito, que no caso é pequena (veja @tbl-wilcoxef).
 
 [^20-testes-naoparametricos-2]: Para maiores detalhes consulte a ajuda da função.
 
@@ -555,7 +555,7 @@ T <- min (soma_neg : soma_pos)
 T
 ```
 
-8.  Para dados com tamanhos grandes (\> 20 pares), a significância de *T* pode ser determinada @zar2014wilcoxon, considerando que a distribuição de *T* tem aproximadamente distribuição normal com média igual a
+8.  Para dados com tamanhos grandes (\> 20 pares), a significância de *T* pode ser determinada [@zar2014wilcoxon], considerando que a distribuição de *T* tem aproximadamente distribuição normal com média igual a
 
 $$
 \mu_{T} =\frac{n \times \left (n + 1  \right )}{4}
@@ -685,7 +685,7 @@ O teste não usa diretamente medições de quantidade conhecida, utiliza, como o
 ::: callout-note
 ## Cenário
 
-Um experimento foi realizado para verificar se o álcool ou o café afetam os tempos de reação ao dirigir @karadimitriou2020kruskal. O estudo tem três grupos diferentes de participantes: 10 bebendo água (controle), 10 bebendo cerveja contendo duas unidades de álcool[^20-testes-naoparametricos-3] e 10 bebendo café. O tempo de reação em uma simulação de direção foi medido para cada participante.
+Um experimento foi realizado para verificar se o álcool ou o café afetam os tempos de reação ao dirigir [@karadimitriou2020kruskal]. O estudo tem três grupos diferentes de participantes: 10 bebendo água (controle), 10 bebendo cerveja contendo duas unidades de álcool[^20-testes-naoparametricos-3] e 10 bebendo café. O tempo de reação em uma simulação de direção foi medido para cada participante.
 :::
 
 [^20-testes-naoparametricos-3]: Para calcular as unidades de álcool, multiplique o volume da bebida (em mililitros) pelo teor alcoólico (ABV, do inglês *Alcohol by Volume*) e divida o resultado por 1000.
@@ -793,7 +793,7 @@ O teste de Kruskal-Wallis pressupõe as seguintes condições para o seu adequad
 
 A teoria do teste Kruskal-Wallis é semelhante à do teste de Mann-Whitney, ou seja, tem como base a soma dos postos. Em primeiro lugar, os escores são ordenados do menor para o maior, independentemente do grupo que pertençam.
 
-O menor recebe o posto 1 e assim por diante. Após a atribuição dos postos, soma-se os postos por grupo. A soma dos postos de cada grupo é representada por $R_{1}$, $R_{2}$, $R_{3}$, ..., $R_{i}$. A estatística do teste, *H*, é calculada com a equação @zar2014kruskal:
+O menor recebe o posto 1 e assim por diante. Após a atribuição dos postos, soma-se os postos por grupo. A soma dos postos de cada grupo é representada por $R_{1}$, $R_{2}$, $R_{3}$, ..., $R_{i}$. A estatística do teste, *H*, é calculada com a equação [@zar2014kruskal]:
 
 $$
 H =\frac {12}{N \times \left (N + 1  \right )} \sum_{i=1}^{k} \frac {R_{i}^{2}}{n_{{i}}}-3 \times\left (N + 1\right)
@@ -835,7 +835,7 @@ H
 
 4.  Cálculo do Valor *p*
 
-Se existir três grupos, com cinco ou menos participantes em cada grupo, há necessidade de usar a tabela especial para tamanhos de amostra pequenos @gopal2006table. Se você tiver mais de cinco participantes por grupo, trate *H* como qui-quadrado. A estatística *H* é estatisticamente significativo se for igual ou maior que o valor crítico qui-quadrado para o grau de liberdade específico, igual a $k - 1$. Aqui, tem-se 10 participantes por grupo e, assumindo um $\alpha = 0,05$, o $H_{crítico}$ é igual a:
+Se existir três grupos, com cinco ou menos participantes em cada grupo, há necessidade de usar a tabela especial para tamanhos de amostra pequenos [@gopal2006table]. Se você tiver mais de cinco participantes por grupo, trate *H* como qui-quadrado. A estatística *H* é estatisticamente significativo se for igual ou maior que o valor crítico qui-quadrado para o grau de liberdade específico, igual a $k - 1$. Aqui, tem-se 10 participantes por grupo e, assumindo um $\alpha = 0,05$, o $H_{crítico}$ é igual a:
 
 ```{r}
 alpha <- 0.05
@@ -872,7 +872,7 @@ $$
 \eta_{H}^{2} = \frac {\left (H - k + 1 \right)}{\left (N - k\right)}
 $$
 
-onde *H* é a estatística obtida no teste de Kruskal-Wallis; *k* é o número de grupos; N é o número total de observações @tomczak2014need.
+onde *H* é a estatística obtida no teste de Kruskal-Wallis; *k* é o número de grupos; N é o número total de observações [@tomczak2014need].
 
 A estimativa eta ao quadrado assume valores de 0 a 1 e, multiplicada por 100, indica a porcentagem de variância na variável dependente explicada pela variável independente. Pode ser obtido no R com a função `kruskal_effsize()` do pacote `rstatix:`
 
@@ -880,13 +880,13 @@ A estimativa eta ao quadrado assume valores de 0 a 1 e, multiplicada por 100, in
 dados %>% kruskal_effsize (tempo~bebida)
 ```
 
-Um efeito $\ge 0,14$ é considerado grande e $<0,06$ é pequeno @watson2021effectsize.
+Um efeito $\ge 0,14$ é considerado grande e $<0,06$ é pequeno [@watson2021effectsize].
 
 ### Testes post hoc
 
 A partir do resultado do teste de Kruskal-Wallis, sabe-se que há uma diferença significativa entre os grupos, mas não se sabe quais pares de grupos são diferentes.
 
-Um teste de Kruskal-Wallis significativo é geralmente seguido pelo teste de Dunn @dunn1964multiple para identificar quais grupos são diferentes.
+Um teste de Kruskal-Wallis significativo é geralmente seguido pelo teste de Dunn [@dunn1964multiple] para identificar quais grupos são diferentes.
 
 Para realizar as múltiplas comparações, no R, pode ser usada a função `dunn_test()`, incluído no pacote `rstatix`. O ajuste de *P* é feito pelo método de Bonferroni:
 

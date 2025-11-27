@@ -55,7 +55,7 @@ tabFumo <- with(data = dados, table(fumo))
 addmargins(tabFumo, FUN = sum)
 ```
 
-Além de relatar a estimativa pontual da frequência da doença, é importante fornecer uma indicação da incerteza em torno dessa estimativa pontual. A função `epi.conf()`, do pacote `epiR` @stevenson2022epir, permite calcular intervalos de confiança para prevalência, motivo da escolha dessa função.
+Além de relatar a estimativa pontual da frequência da doença, é importante fornecer uma indicação da incerteza em torno dessa estimativa pontual. A função `epi.conf()`, do pacote `epiR` [@stevenson2022epir], permite calcular intervalos de confiança para prevalência, motivo da escolha dessa função.
 
 A função `epi.conf()` usa os seguintes argumentos:
 
@@ -136,7 +136,7 @@ Isto significa que se fossem acompanhadas 1000 pessoas por um ano, 123 delas apr
 
 Aparentemente, pessoas cegas tem uma menor incidência de câncer e esse efeito parece ser mais pronunciado em pessoas totalmente cegas do que em pessoas com deficiência visual grave.
 
-Para testar essa hipótese, foi identificada uma coorte de 1.567 pessoas totalmente cegas e 13.292 sujeitos com deficiência visual grave. As informações sobre a incidência de câncer foram obtidas do Registro Sueco de Câncer @feychting1998reduced. Foram diagnosticados de 136 casos de câncer em 22050 pessoas-ano em risco totalmente cegas e 1709 casos de câncer em 127650 pessoas-anos em risco com deficiência visual grave.
+Para testar essa hipótese, foi identificada uma coorte de 1.567 pessoas totalmente cegas e 13.292 sujeitos com deficiência visual grave. As informações sobre a incidência de câncer foram obtidas do Registro Sueco de Câncer [@feychting1998reduced]. Foram diagnosticados de 136 casos de câncer em 22050 pessoas-ano em risco totalmente cegas e 1709 casos de câncer em 127650 pessoas-anos em risco com deficiência visual grave.
 
 A taxa de incidência pode ser calculada, usando-se a mesma função `epi.conf()`, usada para o cálculo da prevalência, mudando o argumento `ctype = “prevalence”` para `ctype = “inc.rate”`, conforme recomendado:
 
@@ -184,7 +184,7 @@ As saídas mostram que para cada 1000 pessoas cegas (a função foi multiplicada
 
 #### Relação entre prevalência e incidência
 
-A incidência é uma medida de risco. A prevalência, por não levar em consideração o tempo de duração da doença (*t*), não tem esta capacidade. Em uma população onde a situação da doença encontra-se em estado estacionário (ou seja, sem grandes migrações ou mudanças ao longo do tempo na incidência/prevalência), a relação entre prevalência e incidência e duração da doença pode ser expressa pela seguinte fórmula @szklo2019measuring:
+A incidência é uma medida de risco. A prevalência, por não levar em consideração o tempo de duração da doença (*t*), não tem esta capacidade. Em uma população onde a situação da doença encontra-se em estado estacionário (ou seja, sem grandes migrações ou mudanças ao longo do tempo na incidência/prevalência), a relação entre prevalência e incidência e duração da doença pode ser expressa pela seguinte fórmula [@szklo2019measuring]:
 
 $$
 prevalência \ pontual = incidência \times duração \ da \ doença \ (t)
@@ -269,7 +269,7 @@ tab_cc <- table (cc$exposto,
 addmargins(tab_cc)         
 ```
 
-A OR será obtida utilizando a função `epi.2by2()` do pacote `epiR` @stevenson2022epir. Esta função tem os seguintes argumentos:
+A OR será obtida utilizando a função `epi.2by2()` do pacote `epiR` [@stevenson2022epir]. Esta função tem os seguintes argumentos:
 
 -   **dat** $\longrightarrow$ tabela de contingência $2 \times 2$;
 -   **method** $\longrightarrow$ as opções são “cohort.count”, “cohort.time”, “case.control” ou “cross.sectional”.;
@@ -319,7 +319,7 @@ Em 18 de abril de1940, ocorreu um surto de gastroenterite, após um jantar, em u
 ```
 :::
 
-As taxas de ataque (incidência) foram calculadas para aqueles que comeram e não comeram cada um dos 14 itens alimentares consumidos na ceia @gross1976oswego. O pacote `epitools` @aragon2020epitools contém os dados desta investigação no arquivo `oswego`.
+As taxas de ataque (incidência) foram calculadas para aqueles que comeram e não comeram cada um dos 14 itens alimentares consumidos na ceia [@gross1976oswego]. O pacote `epitools` [@aragon2020epitools] contém os dados desta investigação no arquivo `oswego`.
 
 ```{r}
 data(oswego)
@@ -364,7 +364,7 @@ Quanto maior o RR mais forte é a associação entre a doença em questão e a e
 
 ### *Odds Ratio* vs Risco Relativo
 
-A OR não deve ser entendida como uma medida aproximada do RR, exceto para doenças raras (doenças, em geral com prevalência menor do que 10%). Caso contrário, a OR tenderá a superestimar a magnitude da associação e o OR afasta-se da hipótese nula da não associação (OR =1), independentemente de ser um fator de risco ou de proteção. A discrepância (d)[^22-medidasocorrencia-2] entre as estimativas do RR e OR pode ser definido como a razão entre o OR e o RR estimados @szklo2019associations. Em outras palavras, a discrepância corresponde a uma proporção do RR @davies1998can.
+A OR não deve ser entendida como uma medida aproximada do RR, exceto para doenças raras (doenças, em geral com prevalência menor do que 10%). Caso contrário, a OR tenderá a superestimar a magnitude da associação e o OR afasta-se da hipótese nula da não associação (OR =1), independentemente de ser um fator de risco ou de proteção. A discrepância (d)[^22-medidasocorrencia-2] entre as estimativas do RR e OR pode ser definido como a razão entre o OR e o RR estimados [@szklo2019associations]. Em outras palavras, a discrepância corresponde a uma proporção do RR [@davies1998can].
 
 [^22-medidasocorrencia-2]: em inglês, *built-in bias*
 
@@ -378,7 +378,7 @@ $$
 OR = RR \times d
 $$
 
-Para finalizar, uma comparação entre OR e RR é mostrada na @tbl-magnitude @hopkins2016scales.
+Para finalizar, uma comparação entre OR e RR é mostrada na @tbl-magnitude [@hopkins2016scales].
 
 ```{r}
 #| label: tbl-magnitude
@@ -430,7 +430,7 @@ $$
 ::: callout-note
 ## Cenário
 
-Em um estudo transversal @madi2010prevalence, foi verificada a prevalência de infecções congênitas entre as puérperas com idade igual ou acima de 20 anos comparadas às mulheres com menos de 20 anos (adolescentes). A hipótese foi de que as adolescentes tinham uma prevalência maior de infecções.
+Em um estudo transversal [@madi2010prevalence], foi verificada a prevalência de infecções congênitas entre as puérperas com idade igual ou acima de 20 anos comparadas às mulheres com menos de 20 anos (adolescentes). A hipótese foi de que as adolescentes tinham uma prevalência maior de infecções.
 :::
 
 Parte dos dados estão no arquivo `dadosMater.xlsx`, que contém, como já mencionado, informações de 1368 nascimentos. Entre essas, tem-se a idade das mães (`idadeMae`) e se foi diagnosticada infecção congênita (`infCong`).
@@ -493,7 +493,7 @@ A saída exibe várias informações. Foi feita a hipótese de uma maior preval�
 
 O *Risco Atribuível* (RA) possui características de medida de impacto. O RA, ao invés de concentrar-se na associação em si, refere-se mais às consequências e às repercussões da exposição sobre a ocorrência do desfecho.
 
-O RA é a medida do excesso ou acréscimo absoluto de risco que pode ser atribuído à exposição @szklo2019ar. Com o RA é possível estimar o número de casos que podem ser prevenidos se a exposição for eliminada e assim estimar a magnitude do impacto, em termos de saúde pública, imposto por esta exposição.
+O RA é a medida do excesso ou acréscimo absoluto de risco que pode ser atribuído à exposição [@szklo2019ar]. Com o RA é possível estimar o número de casos que podem ser prevenidos se a exposição for eliminada e assim estimar a magnitude do impacto, em termos de saúde pública, imposto por esta exposição.
 
 O risco de desenvolver o desfecho (incidência) está aumentado em RA nos indivíduos expostos em comparação com os que não estão expostos. Nos estudos de coorte, costuma-se usar mais a expressão *Risco Atribuível* ou *Diferença de Risco*. Nos ensaios clínicos, usa-se mais a expressão *Redução Absoluta do Risco* (RAR), pois se espera que a intervenção reduza o risco.
 
@@ -580,7 +580,7 @@ Quando se avalia um tratamento ou alguma intervenção em que se suponha haver u
 
 Neste caso, ao invés de usar o Risco Atribuível Proporcional (RAP), onde se pressupõe que a exposição é um fator de risco para a doença e o RR $<$ 1, usa-se a *Redução Relativa do Risco*, pois a exposição é supostamente um fator protetor, como se espera que ocorra nos ensaios clínicos.
 
-Esta medida, análoga ao RAP, é também chamada de *Eficácia*, definida como a proporção da incidência nos indivíduos não tratados (por exemplo, o grupo controle) que é reduzida pela intervenção @szklo2019rrr.
+Esta medida, análoga ao RAP, é também chamada de *Eficácia*, definida como a proporção da incidência nos indivíduos não tratados (por exemplo, o grupo controle) que é reduzida pela intervenção [@szklo2019rrr].
 
 O cálculo da **Redução Relativa do Risco** (RRR) é semelhante ao Risco Atribuível Proporcional (RAP), onde a incidência nos expostos é a incidência no grupo que recebeu a intervenção (ou taxa de eventos no grupo tratamento) e a incidência nos não expostos é incidência nos controles (ou taxa de eventos nos controles – TEC). Como se supõe que a incidência nos controles seja maior que a incidência no grupo de tratamento, a equação fica:
 
@@ -594,7 +594,7 @@ $$
 RRR = \left(1 - RR\right) \times 100
 $$
 
-O *Physicians' Health Study* @steering1989final é um ensaio clinico randomizado controlado, duplo cego, desenhado com o objetivo de determinar se uma dose baixa de aspirina (325 mg a cada 48 horas) diminui a mortalidade cardiovascular e se o betacaroteno reduz a incidência de câncer. Participaram deste estudo 22071 indivíduos por uma média de 60,2 meses.
+O *Physicians' Health Study* [@steering1989final] é um ensaio clinico randomizado controlado, duplo cego, desenhado com o objetivo de determinar se uma dose baixa de aspirina (325 mg a cada 48 horas) diminui a mortalidade cardiovascular e se o betacaroteno reduz a incidência de câncer. Participaram deste estudo 22071 indivíduos por uma média de 60,2 meses.
 
 O estudo do componente aspirina mostrou os seguintes resultados (@tbl-aspirina):
 
@@ -631,7 +631,7 @@ $$
 
 Ou seja, houve uma redução de 42% no risco de IAM no grupo que usou aspirina e a conclusão dos autores foi que este ensaio clínico demonstrou, em relação à prevenção primária de doença cardiovascular, uma diminuição no risco de IAM.
 
-Estes cálculos podem ser realizados com a função `risks()` do pacote `MKmisc` @kohl2019package. Esta função calcula o risco relativo (RR), odds ratio (OR), redução relativa do risco (RRR) e outras estatísticas epidemiológicas, como RAR, NNT.
+Estes cálculos podem ser realizados com a função `risks()` do pacote `MKmisc` [@kohl2019package]. Esta função calcula o risco relativo (RR), odds ratio (OR), redução relativa do risco (RRR) e outras estatísticas epidemiológicas, como RAR, NNT.
 
 A função `risks()` usa como argumento:
 
@@ -668,7 +668,7 @@ $$
 NNT = \frac{1}{0,0091} = 109,89 \simeq 110
 $$
 
-Pode-se calcular os IC~95%~, calculando o NNT para os limites do RAR usando a seguinte equação @bender2001calculating:
+Pode-se calcular os IC~95%~, calculando o NNT para os limites do RAR usando a seguinte equação [@bender2001calculating]:
 
 $$
 IC_{95\%} \longrightarrow RAR \pm z_{\left({1 - \frac{\alpha}{2}}\right)} \times EP_{RAR}
@@ -768,7 +768,7 @@ $$
 
 #### Exemplo
 
-No *Physicians' Health Study* @steering1989final sobre o uso de aspirina na prevenção de IAM, foi verificado também os efeitos colaterais da aspirina, como acidentes vasculares cerebrais (AVC), @tbl-avc.
+No *Physicians' Health Study* [@steering1989final] sobre o uso de aspirina na prevenção de IAM, foi verificado também os efeitos colaterais da aspirina, como acidentes vasculares cerebrais (AVC), @tbl-avc.
 
 ```{r}
 #| label: tbl-avc

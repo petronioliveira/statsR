@@ -8,17 +8,17 @@ pacman::p_load(dplyr, readxl, scales, ggplot2)
 
 ## Introdução
 
-A teoria das probabilidades é a base sobre a qual a estatística é desenvolvida. Os jogos de azar deram um grande impulso ao conhecimento da moderna teoria das probabilidades, principalmente, pelo trabalho de Blaise Pascal (1623-1662), em parceria com Pierre de Fermat (1601-1665). Eles foram estimulados por um escritor francês e matemático amador, Antoine Gombaud (1607-1684), conhecido como Chevalier de Méré, que era muito interessado em jogos de azar @debnath2015short.
+A teoria das probabilidades é a base sobre a qual a estatística é desenvolvida. Os jogos de azar deram um grande impulso ao conhecimento da moderna teoria das probabilidades, principalmente, pelo trabalho de Blaise Pascal (1623-1662), em parceria com Pierre de Fermat (1601-1665). Eles foram estimulados por um escritor francês e matemático amador, Antoine Gombaud (1607-1684), conhecido como Chevalier de Méré, que era muito interessado em jogos de azar [@debnath2015short].
 
 A Teoria das probabilidades permite que seja possível modelar populações, experimentos ou qualquer situação que possa ser considerada aleatória. Estes modelos possibilitam fazer inferência sobre populações a partir da observação de uma amostra dessa população. Ao usar apenas uma parte da população, inevitavelmente, é cometido um erro, o **erro amostral**. Este erro amostral pode ser dimensionado pela teoria das probabilidades.
 
-Existem duas interpretações alternativas de probabilidades: a **frequentista** e a **bayesiana** @menezes2004probabilidade. Neste livro, será discutida, basicamente, a definição de probabilidade frequentista. O processo bayesiano de formulação de um modelo probabilístico faz uso do conhecimento subjetivo, estabelecendo uma especificação **a priori**, combinado com a informação objetiva ou empírica. A teoria bayesiana é a estrutura integradora dessas duas fontes de informação, derivando como resultado a distribuição **a posteriori** dos parâmetros de interesse. Na @sec-diagbayes, sobre análise de testes diagnósticos, serão abordados alguns aspectos relacionados à teoria bayesiana em medicina.
+Existem duas interpretações alternativas de probabilidades: a **frequentista** e a **bayesiana** [@menezes2004probabilidade]. Neste livro, será discutida, basicamente, a definição de probabilidade frequentista. O processo bayesiano de formulação de um modelo probabilístico faz uso do conhecimento subjetivo, estabelecendo uma especificação **a priori**, combinado com a informação objetiva ou empírica. A teoria bayesiana é a estrutura integradora dessas duas fontes de informação, derivando como resultado a distribuição **a posteriori** dos parâmetros de interesse. Na @sec-diagbayes, sobre análise de testes diagnósticos, serão abordados alguns aspectos relacionados à teoria bayesiana em medicina.
 
 ## Processo aleatório
 
 Um processo ou experimento é dito **aleatório** quando em uma situação se sabe quais os resultados que podem acontecer, mas não se sabe qual resultado particular irá acontecer. Por exemplo, quando uma moeda é lançada, se conhece que a probabilidade de o desfecho `cara` ocorrer é de 50%, mas se desconhece o que irá ocorrer até que a moeda esteja no chão.
 
-O número de caras que podem surgir em vários lançamentos da moeda é chamado de **variável aleatória**, ou seja, uma variável que pode assumir mais de um valor com determinadas probabilidades @pagano2000random. Da mesma forma, um dado lançado pode mostrar seis faces, numeradas de um a seis, com igual probabilidade de 16,7%. Portanto, quando a probabilidade é associada a todos os conjuntos de valores possíveis de uma variável, diz-se que ela é aleatória. O conjunto de todos os possíveis resultados de um experimento aleatório é denominado **espaço amostral**.
+O número de caras que podem surgir em vários lançamentos da moeda é chamado de **variável aleatória**, ou seja, uma variável que pode assumir mais de um valor com determinadas probabilidades [@pagano2000random]. Da mesma forma, um dado lançado pode mostrar seis faces, numeradas de um a seis, com igual probabilidade de 16,7%. Portanto, quando a probabilidade é associada a todos os conjuntos de valores possíveis de uma variável, diz-se que ela é aleatória. O conjunto de todos os possíveis resultados de um experimento aleatório é denominado **espaço amostral**.
 
 Na área da saúde, trabalha-se com uma infinidade de variáveis aleatórias, por exemplo, o número de filhos de uma mulher, o número de mortos diários em uma epidemia, o número de vacinados em uma campanha, etc. Essas variáveis são variáveis aleatórias discretas, pois apenas permitem ser quantificadas por processo de contagem. Por outro lado, o peso ou a altura de uma mulher são ditos variáveis aleatórias contínuas, pois podem assumir qualquer valor real entre uma medida e outra, dependendo da precisão do aparelho usado.
 
@@ -26,7 +26,7 @@ Em geral, variáveis aleatórias são representadas por letras maiúsculas, como
 
 ## Definição frequentista
 
-A probabilidade se relaciona a eventos futuros ou que ainda não ocorreram, desta forma a probabilidade pode ser entendida como uma medida de incerteza em relação ao evento. A probabilidade de um evento ocorrer, em determinadas circunstâncias, pode ser definida como a proporção de vezes que o evento é observado quando o experimento é repetido um número infinitamente grande de vezes @menezes2004probabilidade. Pode-se dizer que a visão frequentista define a probabilidade como uma **frequência de longo prazo**.
+A probabilidade se relaciona a eventos futuros ou que ainda não ocorreram, desta forma a probabilidade pode ser entendida como uma medida de incerteza em relação ao evento. A probabilidade de um evento ocorrer, em determinadas circunstâncias, pode ser definida como a proporção de vezes que o evento é observado quando o experimento é repetido um número infinitamente grande de vezes [@menezes2004probabilidade]. Pode-se dizer que a visão frequentista define a probabilidade como uma **frequência de longo prazo**.
 
 A chamada **Lei dos Grandes Números** diz que à medida que múltiplas observações são coletadas, a proporção observada de ocorrências de um determinado desfecho, após *n* ensaios, converge para a probabilidade real P desse desfecho. Ou seja, quanto mais vezes for repetido uma experiência, a melhor estimativa de probabilidade tende a ocorrer. Suponha que seja lançada uma moeda honesta repetidas vezes. Por definição, essa é uma moeda que tem $P(cara)=0,5$. O que se observaria? O autor fez 20 lançamentos seguidos com uma mesma moeda e obteve o seguinte resultado, onde 1 = cara (@fig-moeda20):
 
@@ -269,7 +269,7 @@ $$ onde:
 -   $\mu$ $\to$ média da variável *X*\
 -   $\sigma$ $\to$ desvio padrão da variável *X*
 
-Qualquer distribuição de uma variável aleatória normal pode ser padronizada, usando o escore *Z*. Isto permite que se calcule a probabilidade de se encontrar determinados intervalos de valores @gonzalez2021normal.
+Qualquer distribuição de uma variável aleatória normal pode ser padronizada, usando o escore *Z*. Isto permite que se calcule a probabilidade de se encontrar determinados intervalos de valores [@gonzalez2021normal].
 
 Como exemplo, se retornará à `altura` das mulheres. É, praticamente, impossível saber o valor da média populacional, por isso. costuma-se usar a média aritmética como um estimador da média populacional. Dessa forma, a variável `dados$altura` poderá utilizada com estimativa da média populacional. Em primeiro lugar, se construirá um `tibble` de nome `resumo`:
 
@@ -292,7 +292,7 @@ round(Z, 2)
 
 Esta mulher está distante praticamente 2 desvios padrão acima da média da sua população. Portanto, ela é considerada alta. Por que?
 
-Para responder a essa pergunta, há necessidade de calcular a probabilidade de encontrar uma mulher com esta altura, nesta população. Primeiro, calcula-se a probabilidade de encontrar uma mulher com esta altura, nesta amostra. No *R*, existem as funções `dnorm()`, `pnorm()` e `qnorm()`, que permitem calcular a densidade de probabilidade, a distribuição cumulativa e a função quantílica da distribuição normal para um conjunto de valores. Além dessas, há a função `rnorm()` que permite obter observações aleatórias que seguem uma distribuição normal @jain_2022norm.
+Para responder a essa pergunta, há necessidade de calcular a probabilidade de encontrar uma mulher com esta altura, nesta população. Primeiro, calcula-se a probabilidade de encontrar uma mulher com esta altura, nesta amostra. No *R*, existem as funções `dnorm()`, `pnorm()` e `qnorm()`, que permitem calcular a densidade de probabilidade, a distribuição cumulativa e a função quantílica da distribuição normal para um conjunto de valores. Além dessas, há a função `rnorm()` que permite obter observações aleatórias que seguem uma distribuição normal [@jain_2022norm].
 
 #### Função pnorm()
 
@@ -803,7 +803,7 @@ Na população 2, 93,5% das mulheres tem altura $\le 1,50$ m (@fig-normal935). C
 
 A distribuição normal padrão é apenas um dos exemplos de distribuição de probabilidade. Uma boa parte das situações se ajustam a ela. Entretanto, diversas situações reais muitas vezes se aproximam de outras distribuições estocásticas definidas por algumas hipóteses. Daí a importância de se conhecer e manipular algumas destas distribuições. Entre elas, a **distribuição binomial**.
 
-Quando um experimento aleatório resulta em um de dois, mutuamente exclusivos, desfechos, tais como vivo/morto, positivo/negativo, sim/não, masculino/feminino é denominado de *Ensaio de Bernoulli*. Recebeu esta denominação em homenagem ao matemático suíço, Jacob Bernoulli (1654-1705), considerado fundador do cálculo e da teoria da probabilidade @robertson2022bernoulli.
+Quando um experimento aleatório resulta em um de dois, mutuamente exclusivos, desfechos, tais como vivo/morto, positivo/negativo, sim/não, masculino/feminino é denominado de *Ensaio de Bernoulli*. Recebeu esta denominação em homenagem ao matemático suíço, Jacob Bernoulli (1654-1705), considerado fundador do cálculo e da teoria da probabilidade [@robertson2022bernoulli].
 
 A distribuição de frequências que descreve as proporções de um ensaio de Bernoulli, chama-se **Distribuição Binomial**. A probabilidade binomial dá a probabilidade de determinado desfecho ocorrer em determinado número de ensaios independentes. Uma sequência de ensaios de Bernoulli forma um **Processo de Bernoulli**.
 
@@ -1054,7 +1054,7 @@ A unidade de medida (tempo ou espaço) é uma variável contínua, mas a variáv
 
 Ela é utilizada para modelar eventos discretos que ocorrem com pouca frequência no tempo ou espaço, por isso é algumas vezes denominada de *distribuição de eventos raros*. Pode-se usar a distribuição de Poisson como uma aproximação da distribuição Binomial quando *n*, o número de tentativas, for grande e *p* ou (1 – *p*) for pequeno (eventos raros).
 
-Um bom princípio básico é usar a distribuição de Poisson quando $n \ge 20$ e $n \times p$ ou $n \times (1- p)$ \< 5% @fisher1993poisson. Nessas condições, a probabilidade que uma variável aleatória *X* adote um valor *x* é
+Um bom princípio básico é usar a distribuição de Poisson quando $n \ge 20$ e $n \times p$ ou $n \times (1- p)$ \< 5% [@fisher1993poisson]. Nessas condições, a probabilidade que uma variável aleatória *X* adote um valor *x* é
 
 $$
 P(X = x) = \frac {e^{-\lambda} \times \lambda^x}{x!}

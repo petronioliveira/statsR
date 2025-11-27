@@ -2,7 +2,7 @@
 
 ## Dataframes no R {#sec-dataframes}
 
-DataFrames são objetos de dados genéricos em formato tabular, onde os dados são organizados de maneira lógica em linha-e-coluna semelhante ao de uma planilha do Excel. O dataframe é uma estrutura bidimensional. Os DataFrames podem ser formados com objetos criados previamente, desde que tenham o mesmo comprimento @zuur2009beginner.
+DataFrames são objetos de dados genéricos em formato tabular, onde os dados são organizados de maneira lógica em linha-e-coluna semelhante ao de uma planilha do Excel. O dataframe é uma estrutura bidimensional. Os DataFrames podem ser formados com objetos criados previamente, desde que tenham o mesmo comprimento [@zuur2009beginner].
 
 Uma das formas de criar um DataFrame no R é a partir de um conjunto de vetores como, por exemplo, este relacionados a 15 nascimentos em uma determinada maternidade:
 
@@ -163,7 +163,7 @@ Como se observa na saída do comando, as variáveis foram importadas em classes 
 Toda vez que se importa um dataset, deve-se verificar atentamente a sua estrutura antes de dar seguimento as análises
 :::
 
-Recentemente, foi desenvolvido o pacote `readr`, incluído no conjunto de pacotes `tidyverse` @wickham2019tidyverse, para lidar rapidamente com a leitura de grandes arquivos. O pacote fornece substituições para funções como `read.csv()`. As funções `read_csv()` e `read_csv2()` oferecidas pelo `readr` são análogas às do R base. Entretanto, são muito mais rápidas e fornecem mais recursos, como um método compacto para especificar tipos de coluna. Além disso, produzem `tibbles` (ver adiante, @sec-tibble) que são mais reproduzíveis, pois as funções básicas do R herdam alguns comportamentos do sistema operacional e das variáveis de ambiente, portanto, o código de importação que funciona no seu computador pode não funcionar no de outra pessoa. Para usar a função é necessário instalar e ativar o pacote `readr`. A função `read_csv2()` será utilizada para criar um outro objeto de nome `recemNascidos`, mas o conjunto de dados a ser ativado é o mesmo (`dadosNeonatos`):
+Recentemente, foi desenvolvido o pacote `readr`, incluído no conjunto de pacotes `tidyverse` [@wickham2019tidyverse], para lidar rapidamente com a leitura de grandes arquivos. O pacote fornece substituições para funções como `read.csv()`. As funções `read_csv()` e `read_csv2()` oferecidas pelo `readr` são análogas às do R base. Entretanto, são muito mais rápidas e fornecem mais recursos, como um método compacto para especificar tipos de coluna. Além disso, produzem `tibbles` (ver adiante, @sec-tibble) que são mais reproduzíveis, pois as funções básicas do R herdam alguns comportamentos do sistema operacional e das variáveis de ambiente, portanto, o código de importação que funciona no seu computador pode não funcionar no de outra pessoa. Para usar a função é necessário instalar e ativar o pacote `readr`. A função `read_csv2()` será utilizada para criar um outro objeto de nome `recemNascidos`, mas o conjunto de dados a ser ativado é o mesmo (`dadosNeonatos`):
 
 ```{r}
 #| warning: false
@@ -232,7 +232,7 @@ A maneira mais comum de armazenar dados no R é usar `data.frames` ou `tibble`.
 
 *Tibble* é um novo tipo de dataframe. É como se fosse um dataframe mais moderno. Ele mantém muitos recursos importantes do data frame original, mas remove muitos dos recursos desatualizados.
 
-A maioria dos pacotes do R usa dataframes tradicionais, entretanto é possível transformá-los para `tibble`, usando a função `as_tibble()`, incluída no pacote `tidyr` @wickham2022tidyr. O único propósito deste pacote é simplificar o processo de criação dados arrumados organizados (`tidy data`). A transformação de um dataframe tradicional em um `tibble`, é um procedimento rescomendável, em função da maior flexibilidade destes.
+A maioria dos pacotes do R usa dataframes tradicionais, entretanto é possível transformá-los para `tibble`, usando a função `as_tibble()`, incluída no pacote `tidyr` [@wickham2022tidyr]. O único propósito deste pacote é simplificar o processo de criação dados arrumados organizados (`tidy data`). A transformação de um dataframe tradicional em um `tibble`, é um procedimento rescomendável, em função da maior flexibilidade destes.
 
 Como exemplo deste procedimento, será usado o dataframes criado na @sec-dataframes: `dadosNeonatos`.
 
@@ -245,7 +245,7 @@ as_tibble(dadosNeonatos)
 
 Por padrão, quando o dataset é muito longo, apenas as primeiras dez linhas são mostradas. Aqui, aparece o toda a estrutura dos dados. São apresentadas a dimensão da tabela e as classes de cada coluna. Verifica-se que não houve grandes mudanças, apenas o conjunto de dados está estruturalmente mais organizado, mais flexível.
 
-## Pacote tidyverse  {#sec-tidyverse}
+## Pacote tidyverse {#sec-tidyverse}
 
 A denominada ciência de dados é difícil de definir, pois a definição depende da formação específica de cada cientista de dados. Entretanto, é possível mostrar como a ciência de dados pode ser realizada na prática, constituindo aquilo que se costuma chamar de *Ciclo da Ciência de Dados* (@fig-ciclo).\
 Primeiramente, os dados brutos são coletados de diversas maneiras (veja @sec-producao). Após, são armazenados, por exemplo, em Excel, e, em seguida, são arrumados para reduzir problemas de padronização, conceituais e erros ou exclusão de variáveis e casos que não fazem parte do objetivo estabelecido no projeto de pesquisa. Isto constituirá a base de dados analítica.\
@@ -261,10 +261,10 @@ A base de dados analítica é então transformada, refinada, para produzir medid
  knitr::include_graphics("https://i.imgur.com/UYe9AIO.png")
 ```
 
-O pacote `tidyverse` é uma coleção de pacotes para a linguagem de programação R, pensada e desenvolvida para facilitar e otimizar o fluxo de trabalho em ciência de dados @wickham2019tidyverse.\
+O pacote `tidyverse` é uma coleção de pacotes para a linguagem de programação R, pensada e desenvolvida para facilitar e otimizar o fluxo de trabalho em ciência de dados [@wickham2019tidyverse].\
 Em vez de ser um pacote único, ele é um "meta-pacote", o que significa que, ao instalá-lo, você instala vários pacotes menores que trabalham em conjunto.
 
-A filosofia principal por trás do `tidyverse` é a de dados "tidy" (arrumados ou organizados) @wickham2014tidy, onde:
+A filosofia principal por trás do `tidyverse` é a de dados "tidy" (arrumados ou organizados) [@wickham2014tidy], onde:
 
 -   Cada variável está em uma coluna.
 
@@ -272,7 +272,7 @@ A filosofia principal por trás do `tidyverse` é a de dados "tidy" (arrumados o
 
 -   Cada valor está em uma célula.
 
-Seguindo essa lógica, as funções e pacotes do `tidyverse` são projetados para facilitar a manipulação dos dados dentro do Ciclo da Ciência de Dados (\@fig-ciclo), tornando a manipulação, a análise e a visualização de dados mais consistentes e intuitivas.
+Seguindo essa lógica, as funções e pacotes do `tidyverse` são projetados para facilitar a manipulação dos dados dentro do Ciclo da Ciência de Dados (@fig-ciclo), tornando a manipulação, a análise e a visualização de dados mais consistentes e intuitivas.
 
 ### Principais Pacotes do tidyverse
 
@@ -300,7 +300,7 @@ Os princípios fundamentais são:
 
 1.  Reutilizar estruturas de dados existentes.
 
-2.  Organizar funções simples usando o `pipe`.[^05-manipulandodados-4]. Esse operador, introduzido por Stefan Milton Bache no pacote `magrittr` @bache2022magritt, permite encadear múltiplas operações em uma sequência clara e legível, de forma que a saída de uma função se torna a entrada da próxima. Isso torna o código mais fácil de ler e entender, eliminando a necessidade de criar muitas variáveis intermediárias. O `pipe` pode ser acionado digitando `%>%` ou usando o atalho `ctrl + shift + M`. [^05-manipulandodados-5]
+2.  Organizar funções simples usando o `pipe`.[^05-manipulandodados-4]. Esse operador, introduzido por Stefan Milton Bache no pacote `magrittr`[ @bache2022magritt], permite encadear múltiplas operações em uma sequência clara e legível, de forma que a saída de uma função se torna a entrada da próxima. Isso torna o código mais fácil de ler e entender, eliminando a necessidade de criar muitas variáveis intermediárias. O `pipe` pode ser acionado digitando `%>%` ou usando o atalho `ctrl + shift + M`. [^05-manipulandodados-5]
 
 3.  Usar uma sintaxe consistente: As funções dos pacotes tidyverse seguem uma lógica de nomeação e de argumentos parecida, facilitando a memorização e o uso.
 
@@ -325,9 +325,9 @@ Para utilizar as funções originais do pacote `stats` após esse carregamento, 
 `stats::filter()` e `stats::lag()`.
 :::
 
-## Pacote dplyr  {#sec-dplyr}
+## Pacote dplyr {#sec-dplyr}
 
-Um dos pacotes de maior utilidade abarcado pelo `tidyverse` é o `dplyr`. Ele permite realizar transformação dos dados de uma forma simples e eficiente. O uso dos verbos `dplyr`, aliado ao operador `pipe`, tendem a tornar os scripts mais "enxutos" e elegantes @wickham2015dplyr.\
+Um dos pacotes de maior utilidade abarcado pelo `tidyverse` é o `dplyr`. Ele permite realizar transformação dos dados de uma forma simples e eficiente. O uso dos verbos `dplyr`, aliado ao operador `pipe`, tendem a tornar os scripts mais "enxutos" e elegantes [@wickham2015dplyr].\
 As principais funções do `dplyr` são:
 
 -   `select()` - seleciona colunas\
@@ -343,7 +343,7 @@ Neste capítulo e em muitos outros deste livro, será outilizado o dataframe `da
 
 ## Dataframe `dadosMater.xlsx` {#sec-dadosMater}
 
-O arquivo `dadosMater.xlsx` é um dataframe constituído por dados de 1568 partos consecutivos do Hospital Geral de Caxias do Sul (HGCS) [^05-manipulandodados-6] , durante um estudo sobre infecções congênitas @madi2010prevalence. Para baixar esses dados, clique [aqui](https://github.com/petronioliveira/Arquivos/blob/main/dadosMater.xlsx) e faça o *download* para o diretório de trabalho, para uso posterior.
+O arquivo `dadosMater.xlsx` é um dataframe constituído por dados de 1568 partos consecutivos do Hospital Geral de Caxias do Sul (HGCS) [^05-manipulandodados-6] , durante um estudo sobre infecções congênitas [@madi2010prevalence]. Para baixar esses dados, clique [aqui](https://github.com/petronioliveira/Arquivos/blob/main/dadosMater.xlsx) e faça o *download* para o diretório de trabalho, para uso posterior.
 
 [^05-manipulandodados-6]: Hospital Escola da Universidade de Caxias do Sul, RS.
 
@@ -641,25 +641,34 @@ Calcule o percentual de partos cesáreos no tibble mater.
 
 ## Pacote forcats()
 
-O pacote `forcats()` é uma das maravilhas do `tidyverse` voltada exclusivamente para o tratamento de variáveis categóricas no R — ou seja, os fatores. O nome vem de “*for categorical variables*”, e ele foi criado para resolver os desafios que surgem ao lidar com fatores, especialmente em visualizações e modelagens @damiani2022forcats.  
- 
-A finalidade do pacote `forcats()`:
- 
-Oferece funções intuitivas e poderosas para:
- 
-- Reordenar os níveis de um fator;  
-- Modificar, combinar e recodificar níveis;  
-- Lidar com níveis raros ou ausentes;  
-- Preparar fatores para gráficos com ggplot2 (@sec-ggplot2)  
-As principais funções doforcats() são:
+O pacote `forcats()` é uma das maravilhas do `tidyverse` voltada exclusivamente para o tratamento de variáveis categóricas no R — ou seja, os fatores. O nome vem de “*for categorical variables*”, e ele foi criado para resolver os desafios que surgem ao lidar com fatores, especialmente em visualizações e modelagens [@damiani2022forcats].
 
-- `fct_reorder()` - Reordena os níveis com base em outra variável (ex: média);  
-- `fct_infrequent()` - Reordena os níveis pela frequência (mais comum primeiro);  
-- `fct_rev()`  -  Inverte a ordem dos níveis;   
-- `fct_lump()` - Agrupa níveis menos frequentes em "outros":  
-- `fct_recode()` - Renomeia níveis manualmente;  
-- `fct_drop()`  - Remove níveis não utilizados;  
-- `fct_expand()` - Adiciona novos níveis.
+A finalidade do pacote `forcats()`:
+
+Oferece funções intuitivas e poderosas para:
+
+-   Reordenar os níveis de um fator;\
+
+-   Modificar, combinar e recodificar níveis;\
+
+-   Lidar com níveis raros ou ausentes;\
+
+-   Preparar fatores para gráficos com ggplot2 (@sec-ggplot2)\
+    As principais funções doforcats() são:
+
+-   `fct_reorder()` - Reordena os níveis com base em outra variável (ex: média);\
+
+-   `fct_infrequent()` - Reordena os níveis pela frequência (mais comum primeiro);\
+
+-   `fct_rev()` - Inverte a ordem dos níveis;\
+
+-   `fct_lump()` - Agrupa níveis menos frequentes em "outros":\
+
+-   `fct_recode()` - Renomeia níveis manualmente;\
+
+-   `fct_drop()` - Remove níveis não utilizados;\
+
+-   `fct_expand()` - Adiciona novos níveis.
 
 Como exemplo, será modificada a ordem de como a variável sexo será apresentada. Para ver a ordem dos níveis, pode-se usar:
 
@@ -677,16 +686,16 @@ levels(mater$sexo)
 
 ## Manipulação de datas
 
-Originalmente, todos os que trabalham com o R queixavam-se de como era frustrante trabalhar com datas. Era um processo que causava grande perda de tempo nas análises. O pacote `lubridate` @grolemund2011dates foi criado para simplificar ao máximo a leitura de datas e extração de informações das mesmas.  
+Originalmente, todos os que trabalham com o R queixavam-se de como era frustrante trabalhar com datas. Era um processo que causava grande perda de tempo nas análises. O pacote `lubridate` [@grolemund2011dates] foi criado para simplificar ao máximo a leitura de datas e extração de informações das mesmas.
 
 ```{r}
 library(lubridate)
 ```
 
-Quando o `lubridate` é carregado aparece uma mensagem, avisando que alguns nomes de funções também estão contidas no pacote base do R.    
-Para evitar confusões e verificar que as funções corretas estão sendo usadas, usa-se o duplo dois pontos (`::`) antes do nome da função, precedido do nome do pacote, por exemplo: `lubridate::date()`.  
+Quando o `lubridate` é carregado aparece uma mensagem, avisando que alguns nomes de funções também estão contidas no pacote base do R.\
+Para evitar confusões e verificar que as funções corretas estão sendo usadas, usa-se o duplo dois pontos (`::`) antes do nome da função, precedido do nome do pacote, por exemplo: `lubridate::date()`.
 
-Para obter a data atual ou a data-hora, você pode usar as funções `today()` ou `now()`: 
+Para obter a data atual ou a data-hora, você pode usar as funções `today()` ou `now()`:
 
 ```{r}
 today()
@@ -779,9 +788,9 @@ minha.data
 
 ### Extraindo componentes de datas
 
-Quando temos objetos do tipo POSIXt[^05-manipulandodados-9] podemos extrair componentes ou elementos deles. Para isso são usadas algumas funções específicas do pacote `lubridate` como mostrado a seguir.
+Quando temos objetos do tipo POSIXt[^05-manipulandodados-8] podemos extrair componentes ou elementos deles. Para isso são usadas algumas funções específicas do pacote `lubridate` como mostrado a seguir.
 
-[^05-manipulandodados-9]: POSIXt é uma classe de objetos do R que representa datas e horas. POSIXt significa Portable Operating System Interface for Unix Time, que é um padrão para medir o tempo em segundos desde 1 de janeiro de 1970. Existem duas formas internas de implementar POSIXt: POSIXct e POSIXlt. POSIXct armazena os segundos desde a época UNIX e POSIXlt armazena uma lista de dia, mês, ano, hora, minuto, segundo, etc.
+[^05-manipulandodados-8]: POSIXt é uma classe de objetos do R que representa datas e horas. POSIXt significa Portable Operating System Interface for Unix Time, que é um padrão para medir o tempo em segundos desde 1 de janeiro de 1970. Existem duas formas internas de implementar POSIXt: POSIXct e POSIXlt. POSIXct armazena os segundos desde a época UNIX e POSIXlt armazena uma lista de dia, mês, ano, hora, minuto, segundo, etc.
 
 ```{r}
 data <- now()

@@ -65,7 +65,7 @@ dados <- readxl::read_excel("dados/dadosMater.xlsx") %>%
 
 ### Média
 
-A média ( $\overline{x}$ ) é a mais usada medida de tendência central para representar um valor típico dentro de um conjunto de números. O conceito mais comum é a **média aritmética**, que se calcula somando todos os valores do conjunto e dividindo pelo número total de elementos. A média é mais adequada para medidas numéricas simétricas, pois ela é sensível aos valores extremos (*outliers*).
+A média ($\overline{x}$) é a mais usada medida de tendência central para representar um valor típico dentro de um conjunto de números. O conceito mais comum é a **média aritmética**, que se calcula somando todos os valores do conjunto e dividindo pelo número total de elementos. A média é mais adequada para medidas numéricas simétricas, pois ela é sensível aos valores extremos (*outliers*).
 
 $$
 \overline{x}= \frac{\sum(x_1 + x_2 + x_3 + ... + x_n)}{n}
@@ -150,7 +150,7 @@ mediana
 
 Imaginem que sempre que se for calcular a mediana houvesse necessidade de se proceder como realizado acima. Seria tedioso, quase um caos! Entretanto, usando o R, a situação fica bem mais agradável e intuitiva. O R facilita esse trabalho, fornecendo a função `median()`.
 
-Como exemplo, será usada a variável `apgar1` já incluída no dataframe `dados`. Como o Apgar é um escore @american2006apgar, a medida resumidora mais adequada, realmente, é a mediana.
+Como exemplo, será usada a variável `apgar1` já incluída no dataframe `dados`. Como o Apgar é um escore [@american2006apgar], a medida resumidora mais adequada, realmente, é a mediana.
 
 ```{r}
 median (dados$apgar1, na.rm = TRUE)
@@ -274,7 +274,7 @@ Os graus de liberdade representam o número de desvios que estão livres para va
 ::: callout-note
 ## Graus de liberdade {#sec-gl}
 
-Suponha uma maternidade há 50 anos atrás, quando não havia alojamento conjunto. Nessa época era comum os recém-nascidos normais ficarem em um berçário. A cada horário de amamentação eles eram levados para os quartos de suas mães para mamar. Posteriormente, eram trazidos para o berçário e colocados nos berços até a próxima mamada. Suponha que, em um determinado momento, havia 15 bebês e que, no berçário, existiam 15 berços (postos) para colocá-los durante o intervalo das mamadas. Quando o primeiro recém-nascido chega, a enfermeira poderá escolher qualquer um dos berços para o colocar. Depois, quando o próximo recém-nascido chegar, ela terá 14 opções de escolha, pois um dos berços está ocupado. Ainda existe uma boa liberdade de escolha. No entanto, à medida que os recém-nascidos forem sendo trazidos para o berçário, chegará a um ponto em que 14 berços estarão ocupados. Agora, a enfermeira não terá liberdade de escolha, pois só resta um berço. Nesse exemplo existem 14 graus de liberdade (gl)[^06-medidasresumidoras-2]. Para o último recém-nascido não houve liberdade de escolha @field2012df. Portanto, os graus de liberdade são iguais ao tamanho da amostra menos um ($n-1$).
+Suponha uma maternidade há 50 anos atrás, quando não havia alojamento conjunto. Nessa época era comum os recém-nascidos normais ficarem em um berçário. A cada horário de amamentação eles eram levados para os quartos de suas mães para mamar. Posteriormente, eram trazidos para o berçário e colocados nos berços até a próxima mamada. Suponha que, em um determinado momento, havia 15 bebês e que, no berçário, existiam 15 berços (postos) para colocá-los durante o intervalo das mamadas. Quando o primeiro recém-nascido chega, a enfermeira poderá escolher qualquer um dos berços para o colocar. Depois, quando o próximo recém-nascido chegar, ela terá 14 opções de escolha, pois um dos berços está ocupado. Ainda existe uma boa liberdade de escolha. No entanto, à medida que os recém-nascidos forem sendo trazidos para o berçário, chegará a um ponto em que 14 berços estarão ocupados. Agora, a enfermeira não terá liberdade de escolha, pois só resta um berço. Nesse exemplo existem 14 graus de liberdade (gl)[^06-medidasresumidoras-2]. Para o último recém-nascido não houve liberdade de escolha [@field2012df]. Portanto, os graus de liberdade são iguais ao tamanho da amostra menos um ($n-1$).
 :::
 
 [^06-medidasresumidoras-2]: No texto deste livro, `graus de liberdade` são abreviados por `gl`. Muitas vezes, é usado a abreviação `df` de `degree of freedom` porque em algumas funções aparecem como df e optou-se por manter sem a tradução.
@@ -376,4 +376,4 @@ Finalmente, a média somente deve ser usada com dados contínuos simétricos, se
 
 As medidas de dispersão devem estar associadas a uma medida de tendência central. Elas caracterizam a variabilidade dos dados na amostra. Com dados ordinais usar a amplitude ou o intervalo interquartil. O desvio padrão não é apropriado em dados ordinais devido à natureza não numérica destes.
 
-Com os dados numéricos deve-se usar o desvio padrão, que utiliza toda a informação nos dados, ou o intervalo interquartil (IIQ). Quando os dados forem simétricos, usar a média acompanhada do desvio padrão, caso contrário, usar a mediana e o IIQ. Não misturar e combinar medidas @bowers2008scratch.
+Com os dados numéricos deve-se usar o desvio padrão, que utiliza toda a informação nos dados, ou o intervalo interquartil (IIQ). Quando os dados forem simétricos, usar a média acompanhada do desvio padrão, caso contrário, usar a mediana e o IIQ. Não misturar e combinar medidas [@bowers2008scratch].

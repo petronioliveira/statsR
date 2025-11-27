@@ -68,7 +68,7 @@ histograma +
 
 A assimetria analisa a proximidade ou o afastamento de um conjunto de dados quantitativos em relação à distribuição normal. Mede o grau de afastamento de uma distribuição em relação a um eixo central (geralmente a média).
 
-Quando a curva é simétrica, a média, a mediana e a moda coincidem, num mesmo ponto, havendo um perfeito equilíbrio na distribuição. Quando o equilíbrio não acontece, isto é, a média, a mediana e a moda recaem em pontos diferentes da distribuição esta será assimétrica; enviesada a direita ou esquerda. podendo-se caracterizar como curvas assimétricas à direita ou à esquerda. Quando a distribuição é assimétrica à esquerda ou assimetria negativa, a cauda da curva localiza-se à esquerda, desviando a média para este lado (@fig-skew). Na assimetria positiva, ocorre o contrário, a cauda está localizada à direita e da mesma forma a média @peat2014descriptive.
+Quando a curva é simétrica, a média, a mediana e a moda coincidem, num mesmo ponto, havendo um perfeito equilíbrio na distribuição. Quando o equilíbrio não acontece, isto é, a média, a mediana e a moda recaem em pontos diferentes da distribuição esta será assimétrica; enviesada a direita ou esquerda. podendo-se caracterizar como curvas assimétricas à direita ou à esquerda. Quando a distribuição é assimétrica à esquerda ou assimetria negativa, a cauda da curva localiza-se à esquerda, desviando a média para este lado (@fig-skew). Na assimetria positiva, ocorre o contrário, a cauda está localizada à direita e da mesma forma a média [@peat2014descriptive].
 
 ```{r}
 #| label: fig-skew
@@ -87,7 +87,7 @@ O *R* dispões de diversas maneiras para o cálculo do *coeficiente de assimetri
 
 #### Cálculo do coeficiente de assimetria
 
-Várias medidas de coeficientes de assimetria amostrais foram propostas. O coeficiente de assimetria pode ser calculado no *R*, usando a função `skewness()` do pacote `e1071` @meyer2019package. Esta função usa os seguintes argumentos:
+Várias medidas de coeficientes de assimetria amostrais foram propostas. O coeficiente de assimetria pode ser calculado no *R*, usando a função `skewness()` do pacote `e1071` [@meyer2019package]. Esta função usa os seguintes argumentos:
 
 -   **x** $\to$ vetor numérico que contém os valores
 -   **na.rm** $\to$ um valor lógico que indica se os valores NA devem ser eliminados antes que o cálculo prossiga.
@@ -177,13 +177,13 @@ Usando a função `skewness()` do pacote `e1071`:
 e1071::skewness(dados$altura, type = 3)
 ```
 
-Para amostras grandes, há muito pouca diferença entre as várias medidas @joanes1998skewkurt. Todas as três medidas de assimetria são imparciais sob normalidade.
+Para amostras grandes, há muito pouca diferença entre as várias medidas [@joanes1998skewkurt]. Todas as três medidas de assimetria são imparciais sob normalidade.
 
 [Interpretação do coeficiente de assimetria]{.underline}
 
 Quando a $assimetria = 0$, tem-se uma distribuição simétrica e a média, a mediana e a moda coincidem; quando a ${assimetria} < {0}$, ${média} < {mediana} < {moda}$, a distribuição tem *assimetria negativa* e quando a ${assimetria} > {0}$, ${média} > {mediana} > {moda}$, a distribuição tem *assimetria positiva*.
 
-A @tbl-assimetria sugere uma forma de interpretar o coeficiente de assimetria @george2020asymmetry.
+A @tbl-assimetria sugere uma forma de interpretar o coeficiente de assimetria [@george2020asymmetry].
 
 ```{r}
 #| label: tbl-assimetria
@@ -378,7 +378,7 @@ Com a função `kurtosis()`:
 e1071::kurtosis(dados$altura, type = 3)
 ```
 
-Novamente, para amostras grandes, há muito pouca diferença entre as várias medidas, principalmente entre G2 e b2 @joanes1998skewkurt.
+Novamente, para amostras grandes, há muito pouca diferença entre as várias medidas, principalmente entre G2 e b2 [@joanes1998skewkurt].
 
 #### Interpretação do coeficiente de curtose
 

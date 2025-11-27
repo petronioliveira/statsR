@@ -24,7 +24,7 @@ Dois testes de hipótese são proeminentes na pesquisa na área da saúde. Um é
 
 ### Distribuição qui-quadrado
 
-Se uma variável *X* é normalmente distribuída, então a variável $X^{2}$ tem uma distribuição qui-quadrado @altman1991chisquared. A distribuição qui-quadrado com *k* categorias é a distribuição de uma soma dos quadrados de *k* variáveis aleatórias independentes com distribuição normal. O número de categorias determina o número de graus de liberdade. O formato da distribuição qui-quadrado depende desses graus de liberdade. Em geral, ela é assimétrica com apenas valores positivos, iniciando em zero. A assimetria diminui à medida que aumentam os graus de liberdade. Para cada grau de liberdade tem-se curvas de distribuição diferentes.
+Se uma variável *X* é normalmente distribuída, então a variável $X^{2}$ tem uma distribuição qui-quadrado [@altman1991chisquared]. A distribuição qui-quadrado com *k* categorias é a distribuição de uma soma dos quadrados de *k* variáveis aleatórias independentes com distribuição normal. O número de categorias determina o número de graus de liberdade. O formato da distribuição qui-quadrado depende desses graus de liberdade. Em geral, ela é assimétrica com apenas valores positivos, iniciando em zero. A assimetria diminui à medida que aumentam os graus de liberdade. Para cada grau de liberdade tem-se curvas de distribuição diferentes.
 
 ```{r}
 #| label: fig-chi
@@ -231,7 +231,7 @@ plotchisqtest(chisq = 3.84,
               ylabel = "Densidade de probabilidade")
 ```
 
-O gráfico foi criado com a função `plotchisqteste()` do pacote `nhstplot`, pacote simples e conveniente para representar graficamente os testes de significância de hipótese nula mais comuns, como testes *F*, testes *t* e testes *z* @myszkowski2020nhstplot.
+O gráfico foi criado com a função `plotchisqteste()` do pacote `nhstplot`, pacote simples e conveniente para representar graficamente os testes de significância de hipótese nula mais comuns, como testes *F*, testes *t* e testes *z* [@myszkowski2020nhstplot].
 
 ### Qui-quadrado de independência ou associação
 
@@ -434,7 +434,7 @@ Se um aviso como [Chi-squared approximation may be incorrect]{style="color:red"}
 
 ##### Outras maneiras de calcular o qui-quadrado no R
 
-No pacote `gmodels` @warnes2022gmodels, existe uma função muito interessante, a função `CrossTable()` que que imprime, além de uma tabela de frequência com as proporções, exibe vários testes, como o teste $\chi^2$, o teste exato de Fisher e o teste de McNemar com e sem correção de continuidade. Consulte a ajuda para melhor estudar esta elegante função! Neste momento, será explorado apenas o qui-quadrado e os valores esperados com três dígitos:
+No pacote `gmodels` [@warnes2022gmodels], existe uma função muito interessante, a função `CrossTable()` que que imprime, além de uma tabela de frequência com as proporções, exibe vários testes, como o teste $\chi^2$, o teste exato de Fisher e o teste de McNemar com e sem correção de continuidade. Consulte a ajuda para melhor estudar esta elegante função! Neste momento, será explorado apenas o qui-quadrado e os valores esperados com três dígitos:
 
 ```{r}
 CrossTable (tab,
@@ -455,7 +455,7 @@ Além disso, no relato dos resultados pode-se apresentar uma tabela ou em um gr�
 
 ##### Tabela
 
-Para a construção da tabela, pode-se usar a função `ctable()` do pacote `summarytools`@comtois2022summarytools para obter uma tabela com todos os dados a serem exibidos. O argumento `prop = "r"` exibe os percentuais das linhas ("c", nas colunas). Na realidade, são maneiras diferente de se obter o mesmo resultado.
+Para a construção da tabela, pode-se usar a função `ctable()` do pacote `summarytools`[@comtois2022summarytools] para obter uma tabela com todos os dados a serem exibidos. O argumento `prop = "r"` exibe os percentuais das linhas ("c", nas colunas). Na realidade, são maneiras diferente de se obter o mesmo resultado.
 
 ```{r}
 #| message: false
@@ -552,7 +552,7 @@ ggplot(dados) +
 
 ### Teste Aderência ou do Melhor Ajuste
 
-O teste de qualidade de ajuste do qui-quadrado (*chi-square goodness of fit*) é usado para comparar a distribuição observada com uma distribuição esperada, em uma situação em que se tem duas ou mais categorias em dados discretos. Em outras palavras, ele compara várias proporções observadas com as probabilidades esperadas @daniel2013chisquare.
+O teste de qualidade de ajuste do qui-quadrado (*chi-square goodness of fit*) é usado para comparar a distribuição observada com uma distribuição esperada, em uma situação em que se tem duas ou mais categorias em dados discretos. Em outras palavras, ele compara várias proporções observadas com as probabilidades esperadas [@daniel2013chisquare].
 
 #### Dados usados no exemplo
 
@@ -890,7 +890,7 @@ As medidas coletadas nesses tipos de projetos de estudo não são independentes 
 
 O teste de McNemar é usado para avaliar se há uma mudança significativa nas proporções ao longo do tempo para dados emparelhados ou se há uma diferença significativa nas proporções entre casos e controles. O resultado de interesse é a mudança dentro da pessoa (ou diferenças dentro do par) e não há variáveis explicativas.
 
-O teste é calculado examinando o número de respostas que são *concordantes* para positivo (sim em ambas as ocasiões) e negativo (não em ambas as ocasiões) e o número de pares *disconcordantes* (sim e não, ou não e sim). Os pares concordantes não fornecem informações sobre as diferenças e não são usados na avaliação. Em vez disso, deve-se concentrar nos pares discordantes, que podem ser divididos em dois tipos: um par discordante do tipo *sim – não* e um par discordante tipo *não – sim* @eliasziw1991application.
+O teste é calculado examinando o número de respostas que são *concordantes* para positivo (sim em ambas as ocasiões) e negativo (não em ambas as ocasiões) e o número de pares *disconcordantes* (sim e não, ou não e sim). Os pares concordantes não fornecem informações sobre as diferenças e não são usados na avaliação. Em vez disso, deve-se concentrar nos pares discordantes, que podem ser divididos em dois tipos: um par discordante do tipo *sim – não* e um par discordante tipo *não – sim* [@eliasziw1991application].
 
 ### Pressupostos do teste de McNemar
 
@@ -899,7 +899,7 @@ Os pressupostos para o teste de McNemar são:
 1.  A variável desfecho é binária, dicotômica;
 2.  Cada participante é representado na tabela apenas uma vez;
 3.  A diferença entre as proporções emparelhadas é o resultado de interesse;
-4.  O teste de McNemar pode não ser confiável se houver contagens baixas nas células "discordantes". Existe recomendação de que a soma dessas células seja $\ge 20$ @rosner2011mcnemar.
+4.  O teste de McNemar pode não ser confiável se houver contagens baixas nas células "discordantes". Existe recomendação de que a soma dessas células seja $\ge 20$ [@rosner2011mcnemar].
 
 ### Dados usados como exemplo
 
