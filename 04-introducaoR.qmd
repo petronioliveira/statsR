@@ -558,7 +558,7 @@ plotBpT <- function(df, var.x, var.y){
 }
 ```
 
-Neste momento, não serão discutidos os códigos da função. Ela será utilizada como uma função qualquer com os dados do arquivo `dadosPop.xlsx`\^\[Para maiores detalhes, consulte a o @sec-testet. Os argumentos da função são o dataframe (df = dados), a variável x (var.x = pop) e a variável y (var.y = altura). Dessa forma, está se comparando a altura de mulheres de duas populações de duas regiões diferentes :
+Neste momento, não serão discutidos os códigos da função. Ela será utilizada como uma função qualquer com os dados do arquivo `dadosPop.xlsx` ^[Para maiores detalhes, consulte a o @sec-testet. Os argumentos da função são o dataframe (df = dados), a variável x (var.x = pop) e a variável y (var.y = altura). Dessa forma, está se comparando a altura de mulheres de duas populações de duas regiões diferentes :
 
 ```{r}
 #| warning: false

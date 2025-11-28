@@ -56,15 +56,15 @@ Esta amostra de `r resumo$n[1]` meninos e `r resumo$n[2]` meninas, informa que o
 
 ## Introdução
 
-No capítulo anterior, foi discutido aspectos relacionados à estimação, que se constitui, junto com o teste de hipótese, em procedimentos básicos da *estatística inferencial*. Em um teste de hipóteses, testa-se uma teoria ou crença sobre um parâmetro populacional @kelen1988hypothesis. Na maioria das vezes, como mencionado anteriormente, obtém-se informações a partir de uma amostra em função da impossibilidade ou dificuldade de se conseguir essas informações a partir da população. Portanto, extrapolar ou estender os resultados, obtidos de uma amostra, para a população, significa aceitá-los como representações adequadas da mesma.
+No capítulo anterior, foi discutido aspectos relacionados à estimação, que se constitui, junto com o teste de hipótese, em procedimentos básicos da *estatística inferencial*. Em um teste de hipóteses, testa-se uma teoria ou crença sobre um parâmetro populacional [@kelen1988hypothesis]. Na maioria das vezes, como mencionado anteriormente, obtém-se informações a partir de uma amostra em função da impossibilidade ou dificuldade de se conseguir essas informações a partir da população. Portanto, extrapolar ou estender os resultados, obtidos de uma amostra, para a população, significa aceitá-los como representações adequadas da mesma.
 
-Sabe-se que as estimativas amostrais diferem dos valores reais (populacionais) e o objetivo dos testes de hipóteses é estabelecer a probabilidade de essa diferença ser explicada pelo acaso. O teste de hipóteses fornece um sistema referencial para a tomada de decisão sobre a adequação ou não dos dados amostrais serem representativos de uma população. Este sistema referencial é a distribuição de probabilidade do evento observado @menezes2004hipoteses.
+Sabe-se que as estimativas amostrais diferem dos valores reais (populacionais) e o objetivo dos testes de hipóteses é estabelecer a probabilidade de essa diferença ser explicada pelo acaso. O teste de hipóteses fornece um sistema referencial para a tomada de decisão sobre a adequação ou não dos dados amostrais serem representativos de uma população. Este sistema referencial é a distribuição de probabilidade do evento observado [@menezes2004hipoteses].
 
 Inicialmente é importante fazer uma distinção entre **hipótese de pesquisa** e **hipótese estatística**. Uma hipótese de pesquisa é uma afirmação que expressa a relação esperada entre as variáveis de um estudo científico. Ela é baseada em uma pergunta de pesquisa e serve para orientar a coleta e análise dos dados. Uma hipótese de pesquisa pode ser confirmada ou refutada pelos resultados do estudo. Um exemplo de hipótese de pesquisa é: “O tabagismo durante a gestação interfere sobre o peso dos conceptos”. Uma hipótese de pesquisa corresponde àquilo que se quer acreditar sobre o mundo. Uma hipótese estatística é uma afirmação relacionada aos parâmetros de uma população. Baseia-se em uma hipótese de pesquisa e serve para testar a validade da mesma usando técnicas estatísticas. Uma hipótese estatística pode ser aceita ou rejeitada com um certo nível de confiança. A hipótese estatística deve ter uma relação clara com as hipóteses de pesquisa Por exemplo: “A média de peso dos recém-nascidos de mães fumantes é menor do que o das não fumantes”; “A média de peso dos recém-nascidos masculinos é igual ao peso dos recém-nascidos femininos”, ou ainda, “A média de peso dos recém-nascidos masculinos é diferente do peso dos recém-nascidos femininos”. Todos esses exemplos são legítimos de uma hipótese estatística porque são afirmações sobre um parâmetro populacional e estão significativamente relacionados à hipótese de pesquisa.
 
 ## Hipótese nula e alternativa
 
-Em função da hipótese de pesquisa, mencionada anteriormente, foram gerados os dados do exemplo. A hipótese de pesquisa corresponde ao que se quer acreditar, “o sexo interfere no peso dos neonatos”. Para refutar ou não essa afirmação constrói-se um teste de hipótese para verificar se ela é compatível ou não com os dados disponíveis @guyatt1995basic.
+Em função da hipótese de pesquisa, mencionada anteriormente, foram gerados os dados do exemplo. A hipótese de pesquisa corresponde ao que se quer acreditar, “o sexo interfere no peso dos neonatos”. Para refutar ou não essa afirmação constrói-se um teste de hipótese para verificar se ela é compatível ou não com os dados disponíveis [@guyatt1995basic].
 
 No teste de hipóteses (TH), existem dois tipos de hipóteses, definidas como:
 
@@ -161,7 +161,7 @@ Suponha-se que foi escolhido uma região de rejeição que cobre 10% da distribu
 Obviamente, a resposta é 10%! E o teste usado teria um nível $\alpha$ = 0,10. Ou seja, se a hipótese nula é verdadeira e for rejeitada, foi cometido um erro.
 :::
 
-#### Erros de decisão    {#sec-erros}
+#### Erros de decisão {#sec-erros}
 
 Como se observa, ao se tomar uma decisão existe a possibilidade de se cometer *erros*. O primeiro erro é denominado de **erro tipo I** e ocorre quando, baseado na regra de decisão escolhida, uma hipótese nula verdadeira é rejeitada. Nesse caso, tem-se um resultado *falso positivo*. Há uma conclusão de que existe um efeito quando na verdade ele não existe. A probabilidade de cometer esse tipo de erro é $\alpha$, o mesmo usado como nível de significância no estabelecimento da regra de decisão.
 
@@ -181,7 +181,7 @@ $$
 
 Na construção de um teste de hipótese, o erro tipo II é considerado menos grave que o erro tipo I. Entretanto, ele é bastante importante. Tradicionalmente, adota-se o limite de 0,10 a 0,20 para o erro tipo II.
 
-Na @fig-erros estão resumidas as possíveis consequências na tomada de decisão em um teste de hipótese @fletcher2014acaso.
+Na @fig-erros estão resumidas as possíveis consequências na tomada de decisão em um teste de hipótese [@fletcher2014acaso].
 
 ```{r}
 #| label: fig-erros
@@ -250,7 +250,7 @@ A saída do teste mostra uma estatística de teste [^13-testehipoteses-3] igual 
 
 Nas seções anteriores, foi discutido um procedimento onde se encontrou o valor de probabilidade tal que uma dada hipótese nula é rejeitada ou não é rejeitada, de acordo com o nível de significância, $\alpha$, fixado, pelo pesquisador, no início da pesquisa.
 
-Essa abordagem do valor de probabilidade, mais comumente chamada de abordagem do valor *p*, fornece esse valor. Uma vez realizada a pesquisa, o pesquisador calcula a *probabilidade de obter um resultado tão ou mais extremo que o observado, uma vez que a hipótese nula é verdadeira*. O valor *p* também é conhecido como *nível descritivo do teste* @menezes2004testes.
+Essa abordagem do valor de probabilidade, mais comumente chamada de abordagem do valor *p*, fornece esse valor. Uma vez realizada a pesquisa, o pesquisador calcula a *probabilidade de obter um resultado tão ou mais extremo que o observado, uma vez que a hipótese nula é verdadeira*. É o **valor p** também é conhecido como *nível descritivo do teste* [@menezes2004testes].
 
 O objetivo de um teste estatístico é transformar em probabilidade a magnitude do desvio verificado em relação ao valor esperado, fornecendo o valor *p*. A partir daí pode-se, também, definir a regra de decisão, usando esse valor *p*. Toma-se o valor predeterminado (em geral, 0,05) de $\alpha$ e, então, compara-se o valor *p* com $\alpha$ e toma-se a decisão. Usando essa abordagem, rejeita-se a $H_{0}$ se o valor *p* \< $\alpha$ e não se rejeita se o valor *p* \> $\alpha$. Costuma-se dizer que se o valor *p* \< $\alpha$, o resultado é significativo e não significativo quando *p* \> $\alpha$.
 

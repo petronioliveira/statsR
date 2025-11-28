@@ -42,5 +42,5 @@ WhatsApp: +55 54 9997 15499
 ::: callout-caution
 ## ATENÇÃO
 
-Leia este livro cuidado, pois ele ainda se encontra em processo e de revisão e construção. O autor ficará muito agradecidos com contribuições que corrijam erros ou que melhorem o livro.
+Leia este livro com cuidado, pois ele ainda se encontra em processo e de revisão e construção. O autor ficará muito agradecidos com contribuições que corrijam erros ou que melhorem o livro.
 :::
