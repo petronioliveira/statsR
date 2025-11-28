@@ -586,7 +586,7 @@ window.Quarto = {
 </section>
 <section id="sec-transform" class="level3" data-number="5.1.2">
 <h3 data-number="5.1.2" class="anchored" data-anchor-id="sec-transform"><span class="header-section-number">5.1.2</span> Transformação de variáveis</h3>
-<p>Observa-se que todas as variáveis estão como variáveis numéricas (<code>num</code>), exceto a variável ´utiNeo<code>questá como caractere (</code>chr<code>). Isto não está correto, pois as variáveis</code>sexo<code>,</code>tipoParto<code>são variáveis categóricas, bem como a  a variável</code>utiNeo<code>, adicionada posteriormente. Elas necessitam ser transformadas para fatores, usando a função</code>factor()`. Os principais argumentos dessa função são:</p>
+<p>Observa-se que todas as variáveis estão como variáveis numéricas (<code>num</code>), exceto a variável <code>utiNeo</code> que está como caractere (<code>chr</code>). Isso não está correto, pois as variáveis <code>sexo</code>,<code>tipoParto</code> são variáveis categóricas, bem como a a variável <code>utiNeo</code>, adicionada posteriormente. Elas necessitam ser transformadas para fatores, usando a função<code>factor()</code>. Os principais argumentos dessa função são:</p>
 <ul>
 <li><strong>x</strong> <span class="math inline">\(\to\)</span> vetor numérico</li>
 <li><strong>levels</strong> <span class="math inline">\(\to\)</span> vetor opcional dos valores que <em>x</em> pode assumir</li>
@@ -1459,11 +1459,11 @@ Para evitar confusões e verificar que as funções corretas estão sendo usadas
 <div class="cell">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-11-27"</code></pre>
+<pre><code>[1] "2025-11-28"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">now</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-11-27 18:27:50 -03"</code></pre>
+<pre><code>[1] "2025-11-28 09:58:27 -03"</code></pre>
 </div>
 </div>
 <section id="convertendo-strings-ou-caractere-para-data" class="level3" data-number="5.8.1">
@@ -1583,15 +1583,15 @@ Para evitar confusões e verificar que as funções corretas estão sendo usadas
 </div>
 <div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">day</span>(data)             <span class="co"># Extrai o dia</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 27</code></pre>
+<pre><code>[1] 28</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">minute</span>(data)          <span class="co"># Extrai o minuto</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 27</code></pre>
+<pre><code>[1] 58</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">second</span>(data)          <span class="co"># Extrai o segundo</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 50.79869</code></pre>
+<pre><code>[1] 27.72371</code></pre>
 </div>
 </div>
 <p>Para verificar o número de dias tem em um determinado mês, usa-se a função <code>days_in_month()</code>:</p>
@@ -2239,7 +2239,7 @@ Zuur, Alain F, Elena N Ieno, e Erik HWG Meesters. 2009. <span>«Getting Data int
 <span id="cb120-69"><a href="#cb120-69" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb120-70"><a href="#cb120-70" aria-hidden="true" tabindex="-1"></a><span class="fu">### Transformação de variáveis {#sec-transform}</span></span>
 <span id="cb120-71"><a href="#cb120-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-72"><a href="#cb120-72" aria-hidden="true" tabindex="-1"></a>Observa-se que todas as variáveis estão como variáveis numéricas (<span class="in">`num`</span>), exceto a variável ´utiNeo<span class="in">`questá como caractere (`</span>chr<span class="in">`). Isto não está correto, pois as variáveis`</span>sexo<span class="in">`,`</span>tipoParto<span class="in">`são variáveis categóricas, bem como a  a variável`</span>utiNeo<span class="in">`, adicionada posteriormente. Elas necessitam ser transformadas para fatores, usando a função`</span>factor()<span class="sc">\`</span>. Os principais argumentos dessa função são:</span>
+<span id="cb120-72"><a href="#cb120-72" aria-hidden="true" tabindex="-1"></a>Observa-se que todas as variáveis estão como variáveis numéricas (<span class="in">`num`</span>), exceto a variável <span class="in">`utiNeo`</span> que está como caractere (<span class="in">`chr`</span>). Isso não está correto, pois as variáveis <span class="in">`sexo`</span>,<span class="in">`tipoParto`</span> são variáveis categóricas, bem como a  a variável <span class="in">`utiNeo`</span>, adicionada posteriormente. Elas necessitam ser transformadas para fatores, usando a função<span class="in">`factor()`</span>. Os principais argumentos dessa função são:</span>
 <span id="cb120-73"><a href="#cb120-73" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb120-74"><a href="#cb120-74" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**x** $\to$ vetor numérico</span>
 <span id="cb120-75"><a href="#cb120-75" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**levels** $\to$ vetor opcional dos valores que *x* pode assumir</span>
@@ -2482,7 +2482,7 @@ Zuur, Alain F, Elena N Ieno, e Erik HWG Meesters. 2009. <span>«Getting Data int
 <span id="cb120-344"><a href="#cb120-344" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb120-345"><a href="#cb120-345" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Reutilizar estruturas de dados existentes.</span>
 <span id="cb120-346"><a href="#cb120-346" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-347"><a href="#cb120-347" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Organizar funções simples usando o <span class="in">`pipe`</span>.<span class="ot">[^05-manipulandodados-4]</span>. Esse operador, introduzido por Stefan Milton Bache no pacote <span class="in">`magrittr`</span><span class="co">[</span><span class="ot"> @bache2022magritt</span><span class="co">]</span>, permite encadear múltiplas operações em uma sequência clara e legível, de forma que a saída de uma função se torna a entrada da próxima. Isso torna o código mais fácil de ler e entender, eliminando a necessidade de criar muitas variáveis intermediárias. O <span class="in">`pipe`</span> pode ser acionado digitando <span class="in">`%&gt;%`</span> ou usando o atalho <span class="in">`ctrl + shift + M`</span>. <span class="ot">[^05-manipulandodados-5]</span></span>
+<span id="cb120-347"><a href="#cb120-347" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Organizar funções simples usando o <span class="in">`pipe`</span>.<span class="ot">[^05-manipulandodados-4]</span>. Esse operador, introduzido por Stefan Milton Bache no pacote <span class="in">`magrittr`</span><span class="co">[</span><span class="ot">@bache2022magritt</span><span class="co">]</span>, permite encadear múltiplas operações em uma sequência clara e legível, de forma que a saída de uma função se torna a entrada da próxima. Isso torna o código mais fácil de ler e entender, eliminando a necessidade de criar muitas variáveis intermediárias. O <span class="in">`pipe`</span> pode ser acionado digitando <span class="in">`%&gt;%`</span> ou usando o atalho <span class="in">`ctrl + shift + M`</span>. <span class="ot">[^05-manipulandodados-5]</span></span>
 <span id="cb120-348"><a href="#cb120-348" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb120-349"><a href="#cb120-349" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Usar uma sintaxe consistente: As funções dos pacotes tidyverse seguem uma lógica de nomeação e de argumentos parecida, facilitando a memorização e o uso.</span>
 <span id="cb120-350"><a href="#cb120-350" aria-hidden="true" tabindex="-1"></a></span>
